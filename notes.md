@@ -1,7 +1,72 @@
-qala solution factory operation system
+qala: solution factory operating system
 
+qala is a solution factory operating system where users create solutions and manage their full lifecycle.
 
-solution development environemnts SDEs
+solution types
+- application
+- system
+- good
+- product
+- service
+- platform
 
+solution structure model
+- system contains applications
+- application contains processes
+- process contains components
+- component contains interfaces
+- interface has imports and exports
+- interface contains messages
+- message type is either:
+  - event (dynamic)
+  - state (static)
+- messages can be imported and exported through interfaces
+- message contains data structures
+- data structure contains data
 
-qala is a solution factory operating system, where users can create and manage/maintain the lifecycles of solutions. solutions can be of types: applications, systems, goods, products, services, platforms. A system contains applications, an application contains processes, processes contain components, components contain interfaces, interfaces have imports and exports and interfaces contain messages which can either be event (dynamic) messages or state (static) messages where messages can be imported+exported in an interface. messages contain datastructures and datastructures contain data. data has types such as: bool, string, int, custom, varchar, float, double, null, array, char, tuple, set, map, object, pointer, date. solutions are development with SDEs which are "solution development environments", which are deployable+configurable+distributable environments that can be distirbuted and deployed to an platform/environment/machine. SDEs are generic and solution agnostic and describe the conditions under which the solution can be created+maintained+lifecycled+managed and has configuration+profiles+settings+parameters+options for a given solution in the SDE. an SDE can be used to create a collection of solutions. an SF, a "solution factory" is a collection of SDEs, connected, networked, coordinated together to produce solutions in a consistent, repeatable, scalable way
+data types
+- bool
+- string
+- int
+- custom
+- varchar
+- float
+- double
+- null
+- array
+- char
+- tuple
+- set
+- map
+- object
+- pointer
+- date
+
+sde: solution development environment
+- an SDE is deployable, configurable, and distributable
+- an SDE can be deployed to a platform, environment, or machine
+- an SDE is solution-agnostic and defines the conditions for:
+  - creation
+  - maintenance
+  - lifecycle management
+  - operational management
+  - solution replication
+- an SDE includes:
+  - envirnoment variables
+  - IDEs
+  - languages
+  - user preferences
+  - configuration
+  - profiles
+  - settings
+  - parameters
+  - options
+  - toolkits which contain toolsets which contain tools, which when tools are linked together, they form toolchains
+  - solution documentation, charters, documents, files
+  - solution content management system
+- one SDE can support a collection of solutions
+
+sf: solution factory
+- an SF is a coordinated collection of connected SDEs
+- SDEs in an SF are networked and orchestrated
+- the SF produces solutions in a consistent, repeatable, and scalable way
