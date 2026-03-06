@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS metrics (
+    id UUID PRIMARY KEY,
+    pipeline_id UUID NOT NULL,
+    key TEXT NOT NULL,
+    value DOUBLE PRECISION NOT NULL,
+    timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS data_logs (
+    id UUID PRIMARY KEY,
+    source TEXT NOT NULL,
+    message TEXT NOT NULL,
+    timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

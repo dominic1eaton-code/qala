@@ -1,0 +1,34 @@
+openapi: 3.0.3
+info:
+  title: Qala CodeForge Core APIs
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/users:
+    post:
+      summary: Create user
+  /api/sdes:
+    post:
+      summary: Provision SDE
+  /api/workspaces:
+    post:
+      summary: Create workspace
+  /api/pipelines/run:
+    post:
+      summary: Trigger pipeline
+  /api/artifacts/upload:
+    post:
+      summary: Upload artifact
+  /api/data/pipeline/run:
+    post:
+      summary: Run data pipeline
+  /api/recommendations:
+    get:
+      summary: Get AI recommendations
+  /api/threats:
+    get:
+      summary: List threats
+  /api/notify:
+    post:
+      summary: Send notification

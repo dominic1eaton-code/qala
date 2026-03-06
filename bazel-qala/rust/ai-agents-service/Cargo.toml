@@ -1,0 +1,12 @@
+[package]
+name = "ai-agents-service"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+chrono = { workspace = true }
+qala-shared = { path = "../qala-shared" }

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QalaEventEnvelope",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "topic",
+    "source_service",
+    "occurred_at",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Globally unique event identifier"
+    },
+    "event_type": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string",
+      "enum": [
+        "USER_EVENTS",
+        "SDE_EVENTS",
+        "CMS_EVENTS",
+        "BUILD_EVENTS",
+        "ARTIFACT_EVENTS",
+        "DATA_EVENTS",
+        "SECURITY_EVENTS",
+        "NOTIFICATIONS",
+        "AI_RECOMMENDATIONS"
+      ]
+    },
+    "source_service": {
+      "type": "string"
+    },
+    "correlation_id": {
+      "type": "string"
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

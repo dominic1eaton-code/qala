@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS threats (
+    id UUID PRIMARY KEY,
+    type TEXT NOT NULL,
+    severity TEXT NOT NULL,
+    detected_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    sde_id UUID NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS policies (
+    id UUID PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
+    rules JSONB NOT NULL,
+    last_updated TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

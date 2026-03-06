@@ -1,0 +1,4 @@
+.metals
+.vscode
+rust/target
+scala/target

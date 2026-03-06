@@ -1,0 +1,21 @@
+# General
+.DS_Store
+*.log
+
+# Go
+go/bin/
+
+# Rust
+rust/target/
+
+# Scala / sbt
+scala/target/
+scala/project/target/
+scala/project/project/
+scala/.bsp/
+scala/.metals/
+
+# IntelliJ / VS Code
+.idea/
+.vscode/
+.metals/
