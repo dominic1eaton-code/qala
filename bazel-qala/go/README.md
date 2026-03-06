@@ -4,7 +4,7 @@
 
 - `cmd/api-gateway` (`:8080`)
 - `cmd/user-identity-service` (`:8081`)
-- `cmd/sde-management-service` (`:8082`)
+- `cmd/sde-management-service` (`:8082`) - SDE lifecycle, solutions, and solution factories
 - `cmd/workspace-cms-service` (`:8083`)
 - `cmd/artifact-package-service` (`:8085`)
 

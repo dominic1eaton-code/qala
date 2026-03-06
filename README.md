@@ -46,6 +46,9 @@ The implemented endpoints follow the SDD’s implementation table:
 
 - `POST /users`, `GET/PUT/DELETE /users/{id}`
 - `POST /sdes`, `GET/PATCH/DELETE /sdes/{id}`, `POST /sdes/{id}/snapshot`, `POST /sdes/{id}/rollback`
+- `POST /sdes/{id}/solutions`, `DELETE /sdes/{id}/solutions/{solutionId}`
+- `POST /solutions`, `GET /solutions`, `GET/PATCH/DELETE /solutions/{id}`
+- `POST /factories`, `GET /factories`, `GET/PATCH/DELETE /factories/{id}`, `POST /factories/{id}/sdes`, `DELETE /factories/{id}/sdes/{sdeId}`
 - `POST /workspaces`, `GET/PUT/DELETE /workspaces/{id}`, `POST /workspaces/{id}/content`
 - `POST /pipelines/run`, `GET /pipelines/{id}/status`
 - `POST /artifacts/upload`, `GET /artifacts/{id}`, `GET /artifacts/{id}/download`, `DELETE /artifacts/{id}`

@@ -7,7 +7,7 @@
 | `qala-kernel` | Rust | 7000 | Kernel | Registry, Health, Command Bus |
 | `api-gateway` | Go | 8080 | Control Plane | API ingress + service routing |
 | `user-identity-service` | Go | 8081 | Control Plane | Identity and RBAC seed |
-| `sde-management-service` | Go | 8082 | Control Plane | SDE lifecycle + snapshots |
+| `sde-management-service` | Go | 8082 | Control Plane | SDE lifecycle + snapshots + solutions + factories |
 | `workspace-cms-service` | Go | 8083 | Control Plane | Workspaces and file content |
 | `workflow-ci-cd-service` | Scala | 8084 | Execution Plane | Pipeline run/status |
 | `artifact-package-service` | Go | 8085 | Control Plane | Artifact metadata and retrieval |

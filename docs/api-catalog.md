@@ -23,6 +23,26 @@
 - `DELETE /sdes/{id}`
 - `POST /sdes/{id}/snapshot`
 - `POST /sdes/{id}/rollback`
+- `POST /sdes/{id}/solutions`
+- `DELETE /sdes/{id}/solutions/{solutionId}`
+
+## Solutions (Go, `:8082`)
+
+- `POST /solutions`
+- `GET /solutions`
+- `GET /solutions/{id}`
+- `PATCH /solutions/{id}`
+- `DELETE /solutions/{id}`
+
+## Solution Factories (Go, `:8082`)
+
+- `POST /factories`
+- `GET /factories`
+- `GET /factories/{id}`
+- `PATCH /factories/{id}`
+- `DELETE /factories/{id}`
+- `POST /factories/{id}/sdes`
+- `DELETE /factories/{id}/sdes/{sdeId}`
 
 ## Workspace CMS (Go, `:8083`)
 

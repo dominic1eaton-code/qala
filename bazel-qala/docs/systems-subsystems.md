@@ -10,7 +10,7 @@
 
 - `Gateway`: ingress and routing to microservices.
 - `Identity`: users and RBAC metadata.
-- `SDE`: software development environment lifecycle.
+- `SDE`: software development environment lifecycle, solution modeling, and solution factory coordination.
 - `Workspace`: workspace/file content management.
 - `Artifact`: package and binary metadata.
 

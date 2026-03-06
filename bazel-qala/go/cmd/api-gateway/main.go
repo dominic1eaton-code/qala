@@ -22,19 +22,21 @@ func main() {
 	port := runtime.EnvInt("PORT", 8080)
 
 	routes := map[string]routeTarget{
-		"users":         {BaseURL: envOr("USER_SERVICE_URL", "http://localhost:8081")},
-		"sdes":          {BaseURL: envOr("SDE_SERVICE_URL", "http://localhost:8082")},
-		"workspaces":    {BaseURL: envOr("WORKSPACE_SERVICE_URL", "http://localhost:8083")},
-		"pipelines":     {BaseURL: envOr("WORKFLOW_SERVICE_URL", "http://localhost:8084")},
-		"artifacts":     {BaseURL: envOr("ARTIFACT_SERVICE_URL", "http://localhost:8085")},
-		"data":          {BaseURL: envOr("DATA_SERVICE_URL", "http://localhost:8086")},
+		"users":           {BaseURL: envOr("USER_SERVICE_URL", "http://localhost:8081")},
+		"sdes":            {BaseURL: envOr("SDE_SERVICE_URL", "http://localhost:8082")},
+		"solutions":       {BaseURL: envOr("SDE_SERVICE_URL", "http://localhost:8082")},
+		"factories":       {BaseURL: envOr("SDE_SERVICE_URL", "http://localhost:8082")},
+		"workspaces":      {BaseURL: envOr("WORKSPACE_SERVICE_URL", "http://localhost:8083")},
+		"pipelines":       {BaseURL: envOr("WORKFLOW_SERVICE_URL", "http://localhost:8084")},
+		"artifacts":       {BaseURL: envOr("ARTIFACT_SERVICE_URL", "http://localhost:8085")},
+		"data":            {BaseURL: envOr("DATA_SERVICE_URL", "http://localhost:8086")},
 		"recommendations": {BaseURL: envOr("AI_SERVICE_URL", "http://localhost:8087")},
-		"analyze_sde":   {BaseURL: envOr("AI_SERVICE_URL", "http://localhost:8087")},
-		"threats":       {BaseURL: envOr("SECURITY_SERVICE_URL", "http://localhost:8088")},
-		"policy":        {BaseURL: envOr("SECURITY_SERVICE_URL", "http://localhost:8088")},
-		"scan_sde":      {BaseURL: envOr("SECURITY_SERVICE_URL", "http://localhost:8088")},
-		"notify":        {BaseURL: envOr("NOTIFICATION_SERVICE_URL", "http://localhost:8089")},
-		"notifications": {BaseURL: envOr("NOTIFICATION_SERVICE_URL", "http://localhost:8089")},
+		"analyze_sde":     {BaseURL: envOr("AI_SERVICE_URL", "http://localhost:8087")},
+		"threats":         {BaseURL: envOr("SECURITY_SERVICE_URL", "http://localhost:8088")},
+		"policy":          {BaseURL: envOr("SECURITY_SERVICE_URL", "http://localhost:8088")},
+		"scan_sde":        {BaseURL: envOr("SECURITY_SERVICE_URL", "http://localhost:8088")},
+		"notify":          {BaseURL: envOr("NOTIFICATION_SERVICE_URL", "http://localhost:8089")},
+		"notifications":   {BaseURL: envOr("NOTIFICATION_SERVICE_URL", "http://localhost:8089")},
 	}
 
 	mux := http.NewServeMux()

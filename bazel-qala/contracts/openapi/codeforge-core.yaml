@@ -11,6 +11,42 @@ paths:
   /api/sdes:
     post:
       summary: Provision SDE
+  /api/sdes/{id}/solutions:
+    post:
+      summary: Link solution to SDE
+  /api/sdes/{id}/solutions/{solutionId}:
+    delete:
+      summary: Unlink solution from SDE
+  /api/solutions:
+    post:
+      summary: Create solution
+    get:
+      summary: List solutions
+  /api/solutions/{id}:
+    get:
+      summary: Get solution
+    patch:
+      summary: Update solution
+    delete:
+      summary: Delete solution
+  /api/factories:
+    post:
+      summary: Create solution factory
+    get:
+      summary: List solution factories
+  /api/factories/{id}:
+    get:
+      summary: Get solution factory
+    patch:
+      summary: Update solution factory
+    delete:
+      summary: Delete solution factory
+  /api/factories/{id}/sdes:
+    post:
+      summary: Link SDE to solution factory
+  /api/factories/{id}/sdes/{sdeId}:
+    delete:
+      summary: Unlink SDE from solution factory
   /api/workspaces:
     post:
       summary: Create workspace

@@ -7,6 +7,7 @@ This maps the recurring implementation sections in `qala-sdd.md` (CodeForge impl
 | API Gateway routing (`/api/*`) | `go/cmd/api-gateway/main.go` |
 | User CRUD + `USER_EVENTS` | `go/cmd/user-identity-service/main.go` |
 | SDE lifecycle + snapshot/rollback + `SDE_EVENTS` | `go/cmd/sde-management-service/main.go` |
+| Solution hierarchy model + solution factory orchestration (`solutions`, `factories`) | `go/cmd/sde-management-service/main.go` |
 | Workspace CRUD + content operations + `CMS_EVENTS` | `go/cmd/workspace-cms-service/main.go` |
 | Pipeline run/status + `BUILD_EVENTS` | `scala/workflow-ci-cd-service/src/main/scala/com/qala/workflow/Main.scala` |
 | Artifact upload/download + `ARTIFACT_EVENTS` | `go/cmd/artifact-package-service/main.go` |
