@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qala — Solution Factory</title><link rel="stylesheet" href="qala-shared.css"><style>
+.sf-graph{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:5px;padding:16px;min-height:200px;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+.sf-graph-title{font-size:9px;font-family:var(--mono);color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;position:absolute;top:10px;left:12px}
+.node-row{display:flex;gap:10px;align-items:center}
+.sf-nd{background:var(--bg-overlay);border:1px solid var(--border-mid);border-radius:4px;padding:7px 10px;font-size:10px;font-family:var(--mono);cursor:pointer;transition:all .15s;text-align:center;min-width:110px}
+.sf-nd:hover{border-color:var(--gold);color:var(--gold)}
+.sf-nd.root{border-color:var(--gold);background:var(--gold-glow);color:var(--gold)}
+.sf-nd.ok-nd{border-color:var(--teal-dim);color:var(--teal)}
+.sf-nd.warn-nd{border-color:var(--gold-dim);color:var(--warn)}
+.sf-nd.idle-nd{border-color:var(--border-bright);color:var(--text-muted)}
+.sf-arrow{color:var(--text-dim);font-size:14px;user-select:none}
+.config-row{display:flex;gap:10px;margin-bottom:6px;align-items:center}
+.config-key{font-size:10px;font-family:var(--mono);color:var(--text-muted);width:160px;flex-shrink:0}
+.config-val{font-size:10px;font-family:var(--mono);color:var(--text-primary);flex:1}
+.config-edit{font-size:9px;font-family:var(--mono);color:var(--text-muted);cursor:pointer;padding:2px 6px;border:1px solid var(--border-dim);border-radius:3px;background:transparent}
+.config-edit:hover{color:var(--text-primary);border-color:var(--border-bright)}
+.sde-card{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:5px;padding:12px 13px;margin-bottom:8px;cursor:pointer;transition:all .12s;position:relative;overflow:hidden}
+.sde-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px}
+.sde-card.active::before{background:var(--ok)}
+.sde-card.warn-state::before{background:var(--warn)}
+.sde-card.idle::before{background:var(--muted)}
+.sde-card:hover{border-color:var(--border-bright)}
+.sde-card-name{font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.sde-card-row{display:flex;gap:12px;font-size:9.5px;font-family:var(--mono);color:var(--text-muted)}
+.sde-card-row span{color:var(--text-secondary)}
+</style></head><body>
+<div class="shell">
+<nav class="nav">
+  <div class="nav-logo"><span class="logo-word">qala</span><span class="logo-badge">SFOS</span></div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Factory</div>
+    <a class="nav-item" href="qala-01-dashboard.html"><span class="nav-ic">⬡</span>Dashboard</a>
+    <a class="nav-item on" href="qala-02-solution-factory.html"><span class="nav-ic">◈</span>Solution Factory</a>
+    <a class="nav-item" href="qala-03-sde-manager.html"><span class="nav-ic">⬕</span>SDE Manager<span class="nav-ct">5</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Solutions</div>
+    <a class="nav-item" href="qala-04-solution-registry.html"><span class="nav-ic">◫</span>Registry<span class="nav-ct">12</span></a>
+    <a class="nav-item" href="qala-05-workspace.html"><span class="nav-ic">⬜</span>Workspace</a>
+    <a class="nav-item" href="qala-07-artifacts.html"><span class="nav-ic">⬡</span>Artifacts<span class="nav-ct">34</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Execution</div>
+    <a class="nav-item" href="qala-06-cicd.html"><span class="nav-ic">▷</span>CI/CD Pipelines</a>
+    <a class="nav-item" href="#"><span class="nav-ic">∿</span>Data Platform</a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Intelligence</div>
+    <a class="nav-item" href="qala-08-ai-insights.html"><span class="nav-ic">✦</span>AI Insights<span class="nav-ct">7</span></a>
+    <a class="nav-item" href="qala-09-security.html"><span class="nav-ic">⛨</span>Security<span class="nav-ct">3</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Account</div>
+    <a class="nav-item" href="#"><span class="nav-ic">◯</span>Notifications<span class="nav-ct">9</span></a>
+    <a class="nav-item" href="#"><span class="nav-ic">⚙</span>Settings</a>
+  </div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Solution Factory</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>alpha-factory-01</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search…">
+      <button class="btn btn-g btn-sm">Export Config</button>
+      <button class="btn btn-p btn-sm">+ New SDE</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sr g4">
+      <div class="sc"><div class="sc-lbl">Factory ID</div><div class="sc-val g" style="font-size:14px;font-family:var(--mono)">alpha-factory-01</div><div class="sc-sub">Root factory · owner</div></div>
+      <div class="sc"><div class="sc-lbl">Networked SDEs</div><div class="sc-val">5</div><div class="sc-sub">8 max allocated</div></div>
+      <div class="sc"><div class="sc-lbl">Solutions Produced</div><div class="sc-val t">12</div><div class="sc-sub">across all SDEs</div></div>
+      <div class="sc"><div class="sc-lbl">Factory Uptime</div><div class="sc-val b">99.7%</div><div class="sc-sub">last 30 days</div></div>
+    </div>
+
+    <div class="g2">
+
+      <div>
+        <div class="panel">
+          <div class="ph"><span class="pt">Factory Topology</span><div class="pa"><button class="btn btn-g btn-sm">Edit Graph</button></div></div>
+          <div class="pb">
+            <div class="sf-graph">
+              <div class="sf-graph-title">SDE Network</div>
+              <div class="sf-nd root" style="margin-bottom:6px">◈ alpha-factory-01<br><span style="font-size:8px;opacity:.7">ROOT FACTORY</span></div>
+              <div style="display:flex;gap:4px;align-items:center;margin:2px 0">
+                <div class="sf-arrow" style="margin:0 20px">│</div>
+                <div class="sf-arrow" style="margin:0 15px">│</div>
+                <div class="sf-arrow" style="margin:0 10px">│</div>
+              </div>
+              <div class="node-row">
+                <div class="sf-nd ok-nd">sde-core-api<br><span style="font-size:8px">Active</span></div>
+                <div class="sf-nd ok-nd">sde-frontend<br><span style="font-size:8px">Active</span></div>
+                <div class="sf-nd warn-nd">sde-ml-research<br><span style="font-size:8px">Degraded</span></div>
+              </div>
+              <div class="node-row" style="margin-top:6px">
+                <div class="sf-nd ok-nd">sde-data-pipeline<br><span style="font-size:8px">Active</span></div>
+                <div class="sf-nd idle-nd">sde-infra<br><span style="font-size:8px">Idle</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Factory Configuration</span><div class="pa"><button class="btn btn-g btn-sm">Edit</button></div></div>
+          <div class="pb">
+            <div class="config-row"><span class="config-key">factory.name</span><span class="config-val">alpha-factory-01</span></div>
+            <div class="config-row"><span class="config-key">factory.owner</span><span class="config-val">Jordan Chen</span></div>
+            <div class="config-row"><span class="config-key">factory.tier</span><span class="config-val">root</span></div>
+            <div class="config-row"><span class="config-key">sde.max_count</span><span class="config-val">8</span></div>
+            <div class="config-row"><span class="config-key">build.isolation</span><span class="config-val">hermetic</span></div>
+            <div class="config-row"><span class="config-key">build.attestation</span><span class="config-val">enabled · sigstore</span></div>
+            <div class="config-row"><span class="config-key">networking.mode</span><span class="config-val">mesh · mTLS</span></div>
+            <div class="config-row"><span class="config-key">events.broker</span><span class="config-val">kafka · localhost:9092</span></div>
+            <div class="config-row"><span class="config-key">secrets.vault</span><span class="config-val">hashicorp-vault · v1.14</span></div>
+            <div class="config-row"><span class="config-key">governance.policy</span><span class="config-val">enterprise-baseline-v2</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <div class="ph"><span class="pt">Networked SDEs</span><div class="pa"><span class="ps">5 of 8 slots</span><button class="btn btn-p btn-sm">+ Add SDE</button></div></div>
+          <div class="pb">
+            <div class="sde-card active">
+              <div class="sde-card-name"><span class="bdg ok"><span class="dot"></span>Active</span>sde-core-api</div>
+              <div class="sde-card-row">Lang: <span>Go</span> · Version: <span>1.2.1</span> · Solutions: <span>3</span> · Snap: <span>v4</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">hermetic</span><span class="tag">ci-enabled</span><span class="tag">signed</span></div>
+            </div>
+            <div class="sde-card active">
+              <div class="sde-card-name"><span class="bdg ok"><span class="dot"></span>Active</span>sde-frontend</div>
+              <div class="sde-card-row">Lang: <span>TypeScript</span> · Version: <span>3.1.0</span> · Solutions: <span>4</span> · Snap: <span>v6</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">hermetic</span><span class="tag">ci-enabled</span></div>
+            </div>
+            <div class="sde-card active">
+              <div class="sde-card-name"><span class="bdg ok"><span class="dot"></span>Active</span>sde-data-pipeline</div>
+              <div class="sde-card-row">Lang: <span>Scala</span> · Version: <span>2.0.0</span> · Solutions: <span>2</span> · Snap: <span>v2</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">hermetic</span><span class="tag">data-plane</span></div>
+            </div>
+            <div class="sde-card warn-state">
+              <div class="sde-card-name"><span class="bdg wn"><span class="dot"></span>Degraded</span>sde-ml-research</div>
+              <div class="sde-card-row">Lang: <span>Rust</span> · Version: <span>0.9.3</span> · Solutions: <span>1</span> · Snap: <span>v1</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">prototype</span><span class="tag">ai-plane</span></div>
+            </div>
+            <div class="sde-card idle">
+              <div class="sde-card-name"><span class="bdg mt"><span class="dot"></span>Idle</span>sde-infra</div>
+              <div class="sde-card-row">Lang: <span>HCL</span> · Version: <span>1.0.0</span> · Solutions: <span>2</span> · Snap: <span>v3</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">infra-as-code</span><span class="tag">k8s</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Event Stream Topics</span></div>
+          <div class="pb">
+            <table class="dt">
+              <thead><tr><th>Topic</th><th>Last Event</th><th>Count / Day</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">SDE_EVENTS</td><td class="mono">2m ago</td><td class="mono">142</td><td><span class="bdg ok"><span class="dot"></span>Active</span></td></tr>
+                <tr><td class="mono">BUILD_EVENTS</td><td class="mono">14m ago</td><td class="mono">88</td><td><span class="bdg ok"><span class="dot"></span>Active</span></td></tr>
+                <tr><td class="mono">ARTIFACT_EVENTS</td><td class="mono">3h ago</td><td class="mono">22</td><td><span class="bdg ok"><span class="dot"></span>Active</span></td></tr>
+                <tr><td class="mono">SECURITY_EVENTS</td><td class="mono">1h ago</td><td class="mono">17</td><td><span class="bdg wn"><span class="dot"></span>Alert</span></td></tr>
+                <tr><td class="mono">AI_RECOMMENDATIONS</td><td class="mono">30m ago</td><td class="mono">34</td><td><span class="bdg tl"><span class="dot"></span>Active</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</body></html>

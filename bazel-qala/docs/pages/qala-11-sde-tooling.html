@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qala — SDE Tooling</title><link rel="stylesheet" href="qala-shared.css"><style>
+.toolkit-card{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:5px;padding:11px 13px;margin-bottom:8px;cursor:pointer;transition:all .12s}
+.toolkit-card:hover{border-color:var(--border-bright)}
+.toolkit-card.open{border-color:var(--gold-dim);background:var(--gold-glow)}
+.tk-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.tk-name{font-size:12px;font-weight:500;color:var(--text-primary);flex:1}
+.tk-toggle{font-size:10px;color:var(--text-muted);cursor:pointer}
+.toolset-block{margin-top:8px;padding-top:8px;border-top:1px solid var(--border-dim)}
+.ts-name{font-size:9.5px;font-family:var(--mono);color:var(--text-secondary);margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em}
+.tool-list{display:flex;flex-wrap:wrap;gap:4px}
+.tool-pill{display:inline-flex;align-items:center;gap:5px;background:var(--bg-overlay);border:1px solid var(--border-mid);border-radius:4px;padding:3px 8px;font-size:10px;font-family:var(--mono);color:var(--text-secondary);transition:all .1s;cursor:pointer}
+.tool-pill:hover{border-color:var(--border-bright);color:var(--text-primary)}
+.tool-pill .tv{font-size:8.5px;color:var(--text-muted);margin-left:2px}
+.tool-pill.linked{border-color:var(--teal-dim);color:var(--teal)}
+.chain-row{display:flex;align-items:center;gap:6px;padding:8px 10px;background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:4px;margin-bottom:6px;overflow-x:auto}
+.chain-step{display:flex;align-items:center;gap:4px;background:var(--bg-overlay);border:1px solid var(--border-mid);border-radius:3px;padding:4px 8px;font-size:10px;font-family:var(--mono);color:var(--text-secondary);flex-shrink:0;cursor:pointer;transition:all .1s}
+.chain-step:hover{border-color:var(--border-bright);color:var(--text-primary)}
+.chain-step.highlight{border-color:var(--teal-dim);color:var(--teal);background:var(--teal-glow)}
+.chain-arrow{color:var(--text-dim);font-size:11px;flex-shrink:0}
+.ide-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border-dim)}
+.ide-row:last-child{border-bottom:none}
+.ide-icon{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;background:var(--bg-overlay);border:1px solid var(--border-dim);flex-shrink:0}
+.ide-name{font-size:11.5px;font-weight:500;color:var(--text-primary);flex:1}
+.ide-meta{font-size:9.5px;font-family:var(--mono);color:var(--text-muted)}
+.tool-detail-pane{background:var(--bg-raised);border:1px solid var(--border-mid);border-radius:5px;padding:13px 14px}
+.td-row{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--border-dim)}
+.td-row:last-child{border-bottom:none}
+.tdk{font-size:9.5px;font-family:var(--mono);color:var(--text-muted);width:130px;flex-shrink:0}
+.tdv{font-size:10.5px;font-family:var(--mono);color:var(--text-primary);flex:1}
+</style></head><body>
+<div class="shell">
+<nav class="nav">
+  <div class="nav-logo"><span class="logo-word">qala</span><span class="logo-badge">SFOS</span></div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Factory</div>
+    <a class="nav-item" href="qala-01-dashboard.html"><span class="nav-ic">⬡</span>Dashboard</a>
+    <a class="nav-item" href="qala-02-solution-factory.html"><span class="nav-ic">◈</span>Solution Factory</a>
+    <a class="nav-item on" href="qala-03-sde-manager.html"><span class="nav-ic">⬕</span>SDE Manager<span class="nav-ct">5</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Solutions</div>
+    <a class="nav-item" href="qala-04-solution-registry.html"><span class="nav-ic">◫</span>Registry<span class="nav-ct">12</span></a>
+    <a class="nav-item" href="qala-05-workspace.html"><span class="nav-ic">⬜</span>Workspace</a>
+    <a class="nav-item" href="qala-07-artifacts.html"><span class="nav-ic">⬡</span>Artifacts<span class="nav-ct">34</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Execution</div>
+    <a class="nav-item" href="qala-06-cicd.html"><span class="nav-ic">▷</span>CI/CD Pipelines</a>
+    <a class="nav-item" href="qala-12-data-platform.html"><span class="nav-ic">∿</span>Data Platform</a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Intelligence</div>
+    <a class="nav-item" href="qala-08-ai-insights.html"><span class="nav-ic">✦</span>AI Insights<span class="nav-ct">7</span></a>
+    <a class="nav-item" href="qala-09-security.html"><span class="nav-ic">⛨</span>Security<span class="nav-ct">3</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Account</div>
+    <a class="nav-item" href="qala-13-notifications.html"><span class="nav-ic">◯</span>Notifications<span class="nav-ct">9</span></a>
+    <a class="nav-item" href="qala-16-settings.html"><span class="nav-ic">⚙</span>Settings</a>
+  </div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">SDE Tooling</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>sde-core-api</span><span class="sep">/</span><span style="color:var(--gold)">tooling</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search tools…">
+      <button class="btn btn-g btn-sm">Import Toolkit</button>
+      <button class="btn btn-p btn-sm">+ Add Tool</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sr g4" style="margin-bottom:14px">
+      <div class="sc"><div class="sc-lbl">Total Tools</div><div class="sc-val">24</div><div class="sc-sub">in 3 toolkits</div></div>
+      <div class="sc"><div class="sc-lbl">Toolchains</div><div class="sc-val g">4</div><div class="sc-sub">build · test · release · scan</div></div>
+      <div class="sc"><div class="sc-lbl">3rd-Party Integrations</div><div class="sc-val t">7</div><div class="sc-sub">all qualified</div></div>
+      <div class="sc"><div class="sc-lbl">Updates Available</div><div class="sc-val" style="color:var(--warn)">3</div><div class="sc-sub">patch updates pending</div></div>
+    </div>
+
+    <div class="g2">
+      <!-- Left: toolkits -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Toolkits & Toolsets</span><div class="pa"><span class="ps">sde-core-api</span></div></div>
+          <div class="pb" style="padding:8px">
+
+            <div class="toolkit-card open">
+              <div class="tk-header">
+                <span class="bdg gd">Toolkit</span>
+                <span class="tk-name">Backend Development Toolkit</span>
+                <span class="tk-toggle">▾</span>
+              </div>
+              <div style="font-size:10px;color:var(--text-muted);margin-bottom:6px">Core Go build and quality tooling for backend services.</div>
+              <div class="toolset-block">
+                <div class="ts-name">Go Build Toolset</div>
+                <div class="tool-list">
+                  <div class="tool-pill linked">go<span class="tv">1.22.3</span></div>
+                  <div class="tool-pill linked">gofmt<span class="tv">1.22.3</span></div>
+                  <div class="tool-pill linked">go vet<span class="tv">1.22.3</span></div>
+                  <div class="tool-pill">gotest<span class="tv">1.22.3</span></div>
+                </div>
+              </div>
+              <div class="toolset-block">
+                <div class="ts-name">Code Quality Toolset</div>
+                <div class="tool-list">
+                  <div class="tool-pill linked">golangci-lint<span class="tv">1.56</span></div>
+                  <div class="tool-pill linked">staticcheck<span class="tv">2024.1</span></div>
+                  <div class="tool-pill">govulncheck<span class="tv">1.1.0</span></div>
+                </div>
+              </div>
+              <div class="toolset-block">
+                <div class="ts-name">Release Toolset</div>
+                <div class="tool-list">
+                  <div class="tool-pill linked">goreleaser<span class="tv">1.24</span></div>
+                  <div class="tool-pill linked">cosign<span class="tv">2.2.3</span></div>
+                  <div class="tool-pill linked">syft<span class="tv">1.0.1</span></div>
+                  <div class="tool-pill">grype<span class="tv">0.74</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="toolkit-card">
+              <div class="tk-header">
+                <span class="bdg tl">Toolkit</span>
+                <span class="tk-name">Container & Orchestration Toolkit</span>
+                <span class="tk-toggle">▸</span>
+              </div>
+              <div style="font-size:10px;color:var(--text-muted)">Docker, Kubernetes, Helm — containerization and deployment tooling.</div>
+            </div>
+
+            <div class="toolkit-card">
+              <div class="tk-header">
+                <span class="bdg inf">Toolkit</span>
+                <span class="tk-name">Secrets & Security Toolkit</span>
+                <span class="tk-toggle">▸</span>
+              </div>
+              <div style="font-size:10px;color:var(--text-muted)">Vault CLI, trivy, semgrep — secrets and vulnerability scanning.</div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">IDE Integrations</span><div class="pa"><button class="btn btn-xs btn-g">+ Link IDE</button></div></div>
+          <div class="pb">
+            <div class="ide-row">
+              <div class="ide-icon">🟦</div>
+              <div>
+                <div class="ide-name">VSCode</div>
+                <div class="ide-meta">v1.87.2 · Go extension v0.41 · linked to sde-core-api</div>
+              </div>
+              <span class="bdg ok"><span class="dot"></span>Active</span>
+            </div>
+            <div class="ide-row">
+              <div class="ide-icon">🟥</div>
+              <div>
+                <div class="ide-name">GoLand</div>
+                <div class="ide-meta">2024.1 · JetBrains · linked to sde-core-api</div>
+              </div>
+              <span class="bdg mt"><span class="dot"></span>Inactive</span>
+            </div>
+            <div class="ide-row">
+              <div class="ide-icon">⬛</div>
+              <div>
+                <div class="ide-name">Neovim</div>
+                <div class="ide-meta">0.9.5 · LSP: gopls 0.15.3</div>
+              </div>
+              <span class="bdg ok"><span class="dot"></span>Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: toolchains + tool detail -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Toolchains</span><div class="pa"><button class="btn btn-g btn-sm">+ New Chain</button></div></div>
+          <div class="pb" style="padding:8px">
+            <div style="font-size:9.5px;font-family:var(--mono);color:var(--text-muted);margin-bottom:5px">BUILD CHAIN</div>
+            <div class="chain-row">
+              <div class="chain-step highlight">go build</div><span class="chain-arrow">→</span>
+              <div class="chain-step highlight">go vet</div><span class="chain-arrow">→</span>
+              <div class="chain-step highlight">golangci-lint</div><span class="chain-arrow">→</span>
+              <div class="chain-step highlight">goreleaser</div><span class="chain-arrow">→</span>
+              <div class="chain-step">cosign sign</div>
+            </div>
+            <div style="font-size:9.5px;font-family:var(--mono);color:var(--text-muted);margin-bottom:5px;margin-top:10px">TEST CHAIN</div>
+            <div class="chain-row">
+              <div class="chain-step">go test ./...</div><span class="chain-arrow">→</span>
+              <div class="chain-step">go tool cover</div><span class="chain-arrow">→</span>
+              <div class="chain-step">govulncheck</div><span class="chain-arrow">→</span>
+              <div class="chain-step">grype</div>
+            </div>
+            <div style="font-size:9.5px;font-family:var(--mono);color:var(--text-muted);margin-bottom:5px;margin-top:10px">RELEASE CHAIN</div>
+            <div class="chain-row">
+              <div class="chain-step">goreleaser build</div><span class="chain-arrow">→</span>
+              <div class="chain-step">syft</div><span class="chain-arrow">→</span>
+              <div class="chain-step">cosign sign</div><span class="chain-arrow">→</span>
+              <div class="chain-step">rekor upload</div>
+            </div>
+            <div style="font-size:9.5px;font-family:var(--mono);color:var(--text-muted);margin-bottom:5px;margin-top:10px">SECURITY SCAN CHAIN</div>
+            <div class="chain-row">
+              <div class="chain-step">staticcheck</div><span class="chain-arrow">→</span>
+              <div class="chain-step">semgrep</div><span class="chain-arrow">→</span>
+              <div class="chain-step">trivy</div><span class="chain-arrow">→</span>
+              <div class="chain-step">grype</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Tool Detail — golangci-lint</span><div class="pa"><button class="btn btn-g btn-sm">Update</button><button class="btn btn-d btn-sm">Remove</button></div></div>
+          <div class="pb">
+            <div class="g2">
+              <div>
+                <div class="td-row"><span class="tdk">tool id</span><span class="tdv">tool_gc_lint_156</span></div>
+                <div class="td-row"><span class="tdk">name</span><span class="tdv">golangci-lint</span></div>
+                <div class="td-row"><span class="tdk">version</span><span class="tdv" style="color:var(--warn)">1.56 ⚠ 1.57 available</span></div>
+                <div class="td-row"><span class="tdk">type</span><span class="tdv">linter</span></div>
+                <div class="td-row"><span class="tdk">vendor</span><span class="tdv">golangci-lint OSS</span></div>
+                <div class="td-row"><span class="tdk">license</span><span class="tdv">GPL-3.0</span></div>
+              </div>
+              <div>
+                <div class="td-row"><span class="tdk">toolset</span><span class="tdv">Code Quality Toolset</span></div>
+                <div class="td-row"><span class="tdk">toolchain pos</span><span class="tdv">Build Chain → pos 3</span></div>
+                <div class="td-row"><span class="tdk">hash sha256</span><span class="tdv" style="font-size:9px">e3b0c4429...7852b855</span></div>
+                <div class="td-row"><span class="tdk">verified</span><span class="tdv" style="color:var(--ok)">✓ supply chain verified</span></div>
+                <div class="td-row"><span class="tdk">last run</span><span class="tdv">14m ago · 2m 18s</span></div>
+              </div>
+            </div>
+            <div style="margin-top:10px">
+              <div class="sh">3rd-Party Integrations</div>
+              <table class="dt">
+                <thead><tr><th>Integration</th><th>Type</th><th>Auth</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td class="pri">GitHub</td><td class="mono">VCS</td><td class="mono">OAuth2</td><td><span class="bdg ok"><span class="dot"></span>Connected</span></td></tr>
+                  <tr><td class="pri">Slack</td><td class="mono">Notifications</td><td class="mono">Bot Token</td><td><span class="bdg ok"><span class="dot"></span>Connected</span></td></tr>
+                  <tr><td class="pri">HashiCorp Vault</td><td class="mono">Secrets</td><td class="mono">AppRole</td><td><span class="bdg ok"><span class="dot"></span>Connected</span></td></tr>
+                  <tr><td class="pri">Sigstore Rekor</td><td class="mono">Attestation</td><td class="mono">OIDC</td><td><span class="bdg ok"><span class="dot"></span>Connected</span></td></tr>
+                  <tr><td class="pri">Prometheus</td><td class="mono">Metrics</td><td class="mono">Bearer</td><td><span class="bdg wn"><span class="dot"></span>Degraded</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</body></html>

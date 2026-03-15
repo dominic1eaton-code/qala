@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qala — Governance</title><link rel="stylesheet" href="qala-shared.css"><style>
+.policy-card{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:5px;padding:11px 13px;margin-bottom:7px;cursor:pointer;transition:all .12s;position:relative;overflow:hidden}
+.policy-card:hover{border-color:var(--border-bright)}
+.policy-card.violation::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--err)}
+.policy-card.enforced::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--ok)}
+.policy-card.warn-p::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--warn)}
+.pc-header{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.pc-name{font-size:12px;font-weight:500;color:var(--text-primary);flex:1}
+.pc-desc{font-size:10.5px;color:var(--text-secondary);line-height:1.4;margin-bottom:5px}
+.pc-footer{display:flex;align-items:center;gap:8px;font-size:9px;font-family:var(--mono);color:var(--text-muted)}
+.approval-item{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-bottom:1px solid var(--border-dim);cursor:pointer;transition:background .1s}
+.approval-item:hover{background:var(--bg-raised)}.approval-item:last-child{border-bottom:none}
+.ai-icon{width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:13px;background:var(--bg-overlay);border:1px solid var(--border-dim);flex-shrink:0;margin-top:2px}
+.ai-title{font-size:11.5px;font-weight:500;color:var(--text-primary);margin-bottom:2px}
+.ai-desc{font-size:10px;color:var(--text-secondary);line-height:1.4}
+.ai-footer{display:flex;align-items:center;gap:7px;margin-top:5px;font-size:9px;font-family:var(--mono);color:var(--text-muted)}
+.playbook-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border-dim)}
+.playbook-row:last-child{border-bottom:none}
+.pb-ic{font-size:14px;width:20px;text-align:center;flex-shrink:0}
+.pb-name{font-size:11.5px;color:var(--text-primary);flex:1}
+.pb-meta{font-size:9.5px;font-family:var(--mono);color:var(--text-muted)}
+.standard-item{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:4px;padding:9px 11px;margin-bottom:6px}
+.si-name{font-size:11px;font-weight:500;color:var(--text-primary);margin-bottom:2px;display:flex;align-items:center;gap:7px}
+.si-desc{font-size:10px;color:var(--text-secondary);line-height:1.4}
+</style></head><body>
+<div class="shell">
+<nav class="nav">
+  <div class="nav-logo"><span class="logo-word">qala</span><span class="logo-badge">SFOS</span></div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Factory</div>
+    <a class="nav-item" href="qala-01-dashboard.html"><span class="nav-ic">⬡</span>Dashboard</a>
+    <a class="nav-item" href="qala-02-solution-factory.html"><span class="nav-ic">◈</span>Solution Factory</a>
+    <a class="nav-item" href="qala-03-sde-manager.html"><span class="nav-ic">⬕</span>SDE Manager<span class="nav-ct">5</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Solutions</div>
+    <a class="nav-item" href="qala-04-solution-registry.html"><span class="nav-ic">◫</span>Registry<span class="nav-ct">12</span></a>
+    <a class="nav-item" href="qala-05-workspace.html"><span class="nav-ic">⬜</span>Workspace</a>
+    <a class="nav-item" href="qala-07-artifacts.html"><span class="nav-ic">⬡</span>Artifacts<span class="nav-ct">34</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Execution</div>
+    <a class="nav-item" href="qala-06-cicd.html"><span class="nav-ic">▷</span>CI/CD Pipelines</a>
+    <a class="nav-item" href="qala-12-data-platform.html"><span class="nav-ic">∿</span>Data Platform</a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Intelligence</div>
+    <a class="nav-item" href="qala-08-ai-insights.html"><span class="nav-ic">✦</span>AI Insights<span class="nav-ct">7</span></a>
+    <a class="nav-item" href="qala-09-security.html"><span class="nav-ic">⛨</span>Security<span class="nav-ct">3</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Account</div>
+    <a class="nav-item" href="qala-13-notifications.html"><span class="nav-ic">◯</span>Notifications<span class="nav-ct">9</span></a>
+    <a class="nav-item on" href="qala-14-governance.html"><span class="nav-ic">◧</span>Governance</a>
+    <a class="nav-item" href="qala-16-settings.html"><span class="nav-ic">⚙</span>Settings</a>
+  </div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Governance & Policies</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>alpha-factory-01</span><span class="sep">/</span><span style="color:var(--gold)">governance</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search policies…">
+      <button class="btn btn-g btn-sm">Export Audit Log</button>
+      <button class="btn btn-p btn-sm">+ New Policy</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sr g4" style="margin-bottom:14px">
+      <div class="sc"><div class="sc-lbl">Active Policies</div><div class="sc-val g">12</div><div class="sc-sub">enterprise-baseline-v2</div></div>
+      <div class="sc"><div class="sc-lbl">Violations</div><div class="sc-val" style="color:var(--err)">1</div><div class="sc-sub">plaintext secret — sde-ml-research</div></div>
+      <div class="sc"><div class="sc-lbl">Pending CM Approvals</div><div class="sc-val" style="color:var(--warn)">2</div><div class="sc-sub">board review required</div></div>
+      <div class="sc"><div class="sc-lbl">Compliance Score</div><div class="sc-val t">91%</div><div class="sc-sub">8 gates fully satisfied</div></div>
+    </div>
+
+    <div class="g2">
+      <!-- Left -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Active Policies</span><div class="pa"><span class="ps">enterprise-baseline-v2</span></div></div>
+          <div class="pb" style="padding:8px">
+            <div class="policy-card enforced">
+              <div class="pc-header"><span class="bdg ok">Enforced</span><span class="pc-name">hermetic-build-required</span></div>
+              <div class="pc-desc">All builds must execute in hermetic, isolated environments with dependency locking and no ambient network access.</div>
+              <div class="pc-footer"><span>All SDEs</span><span>·</span><span>Scope: Build</span><span>·</span><span>100% compliant</span></div>
+            </div>
+            <div class="policy-card violation">
+              <div class="pc-header"><span class="bdg er">Violation</span><span class="pc-name">no-plain-secrets-in-env</span></div>
+              <div class="pc-desc">Secrets must be stored in the platform vault, not as plaintext environment variables. 1 violation detected in sde-ml-research.</div>
+              <div class="pc-footer"><span>All SDEs</span><span>·</span><span>1 violation</span><button class="btn btn-xs btn-d" style="margin-left:auto">Fix Now</button></div>
+            </div>
+            <div class="policy-card enforced">
+              <div class="pc-header"><span class="bdg ok">Enforced</span><span class="pc-name">artifact-signing-required</span></div>
+              <div class="pc-desc">All published artifacts must be signed via cosign and attestations recorded in Sigstore Rekor transparency log.</div>
+              <div class="pc-footer"><span>All SDEs</span><span>·</span><span>Scope: Artifact</span><span>·</span><span>100% compliant</span></div>
+            </div>
+            <div class="policy-card enforced">
+              <div class="pc-header"><span class="bdg ok">Enforced</span><span class="pc-name">sast-on-every-build</span></div>
+              <div class="pc-desc">Static application security testing (SAST) must run as part of every CI build pipeline.</div>
+              <div class="pc-footer"><span>All SDEs</span><span>·</span><span>Scope: CI</span><span>·</span><span>100% compliant</span></div>
+            </div>
+            <div class="policy-card warn-p">
+              <div class="pc-header"><span class="bdg wn">Alerting</span><span class="pc-name">cve-high-block-deploy</span></div>
+              <div class="pc-desc">High-severity CVEs (CVSS ≥ 7.0) must be resolved before a solution can be deployed to production environments. 1 open CVE blocking deploy.</div>
+              <div class="pc-footer"><span>Prod SDEs</span><span>·</span><span>CVE-2024-44000 blocking</span></div>
+            </div>
+            <div class="policy-card enforced">
+              <div class="pc-header"><span class="bdg ok">Enforced</span><span class="pc-name">mfa-required-admin</span></div>
+              <div class="pc-desc">All users with admin or factory-owner roles must authenticate with MFA. Currently: 3/3 admins compliant.</div>
+              <div class="pc-footer"><span>Admin Users</span><span>·</span><span>3/3 compliant</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Playbooks & Standards</span><div class="pa"><button class="btn btn-g btn-sm">+ New Playbook</button></div></div>
+          <div class="pb">
+            <div class="playbook-row"><span class="pb-ic">📋</span><span class="pb-name">Release Playbook v2</span><span class="pb-meta">12 steps</span><span class="bdg ok">Active</span></div>
+            <div class="playbook-row"><span class="pb-ic">🔥</span><span class="pb-name">Incident Response Playbook</span><span class="pb-meta">8 steps</span><span class="bdg ok">Active</span></div>
+            <div class="playbook-row"><span class="pb-ic">🚀</span><span class="pb-name">New SDE Onboarding</span><span class="pb-meta">6 steps</span><span class="bdg ok">Active</span></div>
+            <div class="playbook-row"><span class="pb-ic">🛡️</span><span class="pb-name">CVE Patch Workflow</span><span class="pb-meta">5 steps</span><span class="bdg ok">Active</span></div>
+            <div class="playbook-row"><span class="pb-ic">📐</span><span class="pb-name">Solution Design Review</span><span class="pb-meta">9 steps</span><span class="bdg wn">Draft</span></div>
+            <div class="playbook-row"><span class="pb-ic">🔐</span><span class="pb-name">CM Promotion Checklist</span><span class="pb-meta">14 steps</span><span class="bdg ok">Active</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">CM Board — Pending Approvals</span><div class="pa"><span class="ps">2 pending</span></div></div>
+          <div>
+            <div class="approval-item">
+              <div class="ai-icon">◈</div>
+              <div class="ni-body">
+                <div class="ai-title">inventory-tracker v1.2.0 → CM Promotion</div>
+                <div class="ai-desc">TEST gate passed. All test suites green. Coverage at 82% (threshold 90% not yet met). Awaiting coverage waiver or resolution.</div>
+                <div class="ai-footer">
+                  <span class="bdg wn">Pending</span>
+                  <span>Coverage waiver required</span>
+                  <div style="margin-left:auto;display:flex;gap:4px">
+                    <button class="btn btn-xs btn-p">Approve</button>
+                    <button class="btn btn-xs btn-d">Reject</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="approval-item">
+              <div class="ai-icon">⚙</div>
+              <div class="ni-body">
+                <div class="ai-title">Policy Update — cve-high-block-deploy v1.2</div>
+                <div class="ai-desc">Proposed update to extend CVSS threshold from 7.0 to 7.5, allowing medium-high CVEs to proceed with documented risk acceptance.</div>
+                <div class="ai-footer">
+                  <span class="bdg wn">Pending</span>
+                  <span>Requested by: Maya L.</span>
+                  <div style="margin-left:auto;display:flex;gap:4px">
+                    <button class="btn btn-xs btn-p">Approve</button>
+                    <button class="btn btn-xs btn-d">Reject</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Governance Standards</span></div>
+          <div class="pb" style="padding:8px">
+            <div class="standard-item">
+              <div class="si-name"><span class="bdg ok">Active</span>Hermetic Build Standard v1.0</div>
+              <div class="si-desc">All build environments must be fully isolated with dependency locking, no network egress, and attestation output.</div>
+            </div>
+            <div class="standard-item">
+              <div class="si-name"><span class="bdg ok">Active</span>Solution Maturity Gate Standard v2.1</div>
+              <div class="si-desc">Formal gate criteria for SANDBOX→DEV→NIGHTLY→TEST→CM promotion. Coverage, test, and security gates per stage.</div>
+            </div>
+            <div class="standard-item">
+              <div class="si-name"><span class="bdg ok">Active</span>SDE Lifecycle & Snapshot Standard v1.3</div>
+              <div class="si-desc">Snapshot intervals, rollback procedures, archive retention (90d active / 2yr cold), and owner responsibilities.</div>
+            </div>
+            <div class="standard-item">
+              <div class="si-name"><span class="bdg wn">Draft</span>AI Recommendation Action Standard v0.1</div>
+              <div class="si-desc">Defines response SLAs for high-confidence AI recommendations and escalation paths for ignored critical insights.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Compliance Matrix</span></div>
+          <div class="pb">
+            <div class="lrow" style="padding:5px 0;border-bottom:1px solid var(--border-dim)"><span style="font-size:11px;color:var(--text-primary)">Hermetic Builds</span><span class="bdg ok">✓ 5/5 SDEs</span></div>
+            <div class="lrow" style="padding:5px 0;border-bottom:1px solid var(--border-dim)"><span style="font-size:11px;color:var(--text-primary)">Artifact Signing</span><span class="bdg ok">✓ 18/18 published</span></div>
+            <div class="lrow" style="padding:5px 0;border-bottom:1px solid var(--border-dim)"><span style="font-size:11px;color:var(--text-primary)">SAST in CI</span><span class="bdg ok">✓ all pipelines</span></div>
+            <div class="lrow" style="padding:5px 0;border-bottom:1px solid var(--border-dim)"><span style="font-size:11px;color:var(--text-primary)">No Plaintext Secrets</span><span class="bdg er">✗ 1 violation</span></div>
+            <div class="lrow" style="padding:5px 0;border-bottom:1px solid var(--border-dim)"><span style="font-size:11px;color:var(--text-primary)">CVE Blocking (High)</span><span class="bdg wn">⚠ 1 open CVE</span></div>
+            <div class="lrow" style="padding:5px 0"><span style="font-size:11px;color:var(--text-primary)">MFA — Admins</span><span class="bdg ok">✓ 3/3 admins</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qala — Solution Detail</title><link rel="stylesheet" href="qala-shared.css"><style>
+.mat-track{display:flex;gap:0;align-items:stretch;margin:10px 0 4px}
+.mat-step{flex:1;text-align:center;padding:6px 4px;font-size:9px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;border:1px solid var(--border-dim);border-right:none;cursor:pointer;transition:all .1s;color:var(--text-muted)}
+.mat-step:first-child{border-radius:3px 0 0 3px}.mat-step:last-child{border-right:1px solid var(--border-dim);border-radius:0 3px 3px 0}
+.mat-step:hover{background:var(--bg-overlay);color:var(--text-secondary)}
+.mat-step.done{background:var(--bg-overlay);color:var(--text-secondary);border-color:var(--border-bright)}
+.mat-step.current{background:var(--gold-glow);color:var(--gold);border-color:var(--gold-dim);font-weight:700}
+.mat-step.locked{opacity:.35}
+.struct-node{margin-bottom:4px}
+.sn-row{display:flex;align-items:center;gap:6px;padding:4px 7px;border-radius:3px;cursor:pointer;transition:background .1s}
+.sn-row:hover{background:var(--bg-overlay)}
+.sn-row.selected{background:var(--gold-glow);border:1px solid var(--gold-dim)}
+.sn-indent-1{padding-left:20px}.sn-indent-2{padding-left:36px}.sn-indent-3{padding-left:52px}.sn-indent-4{padding-left:68px}.sn-indent-5{padding-left:84px}
+.sn-type{font-size:8.5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;min-width:70px;flex-shrink:0}
+.sn-type.system{color:var(--blue)}.sn-type.application{color:var(--teal)}.sn-type.process{color:var(--gold)}.sn-type.component{color:var(--violet)}.sn-type.interface{color:var(--ok)}.sn-type.message{color:var(--warn)}.sn-type.datastruct{color:var(--muted)}
+.sn-name{font-size:11px;color:var(--text-primary)}.sn-meta{font-size:9px;font-family:var(--mono);color:var(--text-muted);margin-left:auto}
+.detail-card{background:var(--bg-raised);border:1px solid var(--border-mid);border-radius:5px;padding:13px 14px}
+.field-row{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--border-dim)}
+.field-row:last-child{border-bottom:none}
+.fk{font-size:9.5px;font-family:var(--mono);color:var(--text-muted);width:120px;flex-shrink:0}
+.fv{font-size:10.5px;font-family:var(--mono);color:var(--text-primary);flex:1}
+.fv.editable{color:var(--teal);cursor:pointer;border-bottom:1px dashed var(--teal-dim)}
+.dtype-grid{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.dtype{display:inline-flex;padding:3px 7px;border-radius:3px;font-size:9px;font-family:var(--mono);background:var(--bg-overlay);color:var(--text-secondary);border:1px solid var(--border-dim);cursor:pointer;transition:all .1s}
+.dtype:hover{border-color:var(--teal-dim);color:var(--teal)}
+.dtype.sel{background:var(--teal-glow);color:var(--teal);border-color:var(--teal-dim)}
+.feat-item{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:4px;padding:9px 11px;margin-bottom:6px}
+.feat-name{font-size:11px;font-weight:500;color:var(--text-primary);margin-bottom:2px}
+.feat-brief{font-size:10.5px;color:var(--text-secondary);line-height:1.4}
+.feat-status{display:flex;gap:6px;margin-top:6px;align-items:center}
+.tab-bar{display:flex;gap:0;border-bottom:1px solid var(--border-dim);margin-bottom:12px}
+.tab{padding:7px 14px;font-size:10.5px;font-family:var(--mono);color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .1s}
+.tab:hover{color:var(--text-secondary)}.tab.on{color:var(--gold);border-bottom-color:var(--gold)}
+</style></head><body>
+<div class="shell">
+<nav class="nav">
+  <div class="nav-logo"><span class="logo-word">qala</span><span class="logo-badge">SFOS</span></div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Factory</div>
+    <a class="nav-item" href="qala-01-dashboard.html"><span class="nav-ic">⬡</span>Dashboard</a>
+    <a class="nav-item" href="qala-02-solution-factory.html"><span class="nav-ic">◈</span>Solution Factory</a>
+    <a class="nav-item" href="qala-03-sde-manager.html"><span class="nav-ic">⬕</span>SDE Manager<span class="nav-ct">5</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Solutions</div>
+    <a class="nav-item on" href="qala-04-solution-registry.html"><span class="nav-ic">◫</span>Registry<span class="nav-ct">12</span></a>
+    <a class="nav-item" href="qala-05-workspace.html"><span class="nav-ic">⬜</span>Workspace</a>
+    <a class="nav-item" href="qala-07-artifacts.html"><span class="nav-ic">⬡</span>Artifacts<span class="nav-ct">34</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Execution</div>
+    <a class="nav-item" href="qala-06-cicd.html"><span class="nav-ic">▷</span>CI/CD Pipelines</a>
+    <a class="nav-item" href="qala-12-data-platform.html"><span class="nav-ic">∿</span>Data Platform</a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Intelligence</div>
+    <a class="nav-item" href="qala-08-ai-insights.html"><span class="nav-ic">✦</span>AI Insights<span class="nav-ct">7</span></a>
+    <a class="nav-item" href="qala-09-security.html"><span class="nav-ic">⛨</span>Security<span class="nav-ct">3</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Account</div>
+    <a class="nav-item" href="qala-13-notifications.html"><span class="nav-ic">◯</span>Notifications<span class="nav-ct">9</span></a>
+    <a class="nav-item" href="qala-16-settings.html"><span class="nav-ic">⚙</span>Settings</a>
+  </div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Solution Detail</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>registry</span><span class="sep">/</span><span>application</span><span class="sep">/</span><span style="color:var(--teal)">inventory-tracker</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search structure…">
+      <button class="btn btn-g btn-sm">Clone</button>
+      <button class="btn btn-g btn-sm">Export Model</button>
+      <button class="btn btn-p btn-sm">Deploy</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <!-- Top metadata strip -->
+    <div class="sr g4" style="margin-bottom:14px">
+      <div class="sc"><div class="sc-lbl">Solution</div><div class="sc-val g" style="font-size:14px;font-family:var(--mono)">inventory-tracker</div><div class="sc-sub">Application · v1.2.0</div></div>
+      <div class="sc"><div class="sc-lbl">Maturity</div><div class="sc-val t" style="font-size:16px">TEST</div><div class="sc-sub">Gate: all suites passing</div></div>
+      <div class="sc"><div class="sc-lbl">Components</div><div class="sc-val">7</div><div class="sc-sub">across 2 processes</div></div>
+      <div class="sc"><div class="sc-lbl">Coverage</div><div class="sc-val b">82%</div><div class="sc-sub">target: 90% for CM</div></div>
+    </div>
+
+    <!-- Maturity track -->
+    <div class="panel" style="margin-bottom:14px">
+      <div class="ph"><span class="pt">Maturity Lifecycle</span><div class="pa"><button class="btn btn-g btn-sm">Request Promotion</button></div></div>
+      <div class="pb" style="padding:10px 14px">
+        <div class="mat-track">
+          <div class="mat-step done">Sandbox</div>
+          <div class="mat-step done">Dev</div>
+          <div class="mat-step done">Nightly</div>
+          <div class="mat-step current">Test</div>
+          <div class="mat-step locked">CM</div>
+        </div>
+        <div style="display:flex;gap:16px;font-size:9.5px;font-family:var(--mono);color:var(--text-muted);margin-top:6px">
+          <span style="color:var(--ok)">✓ CI green on main</span>
+          <span style="color:var(--ok)">✓ All unit tests pass</span>
+          <span style="color:var(--ok)">✓ Integration tests pass</span>
+          <span style="color:var(--warn)">⚠ Coverage 82% · need 90%</span>
+          <span style="color:var(--text-muted)">○ CM board approval pending</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tab on">Structure Model</div>
+      <div class="tab">Features</div>
+      <div class="tab">Components & Parts</div>
+      <div class="tab">Value Chain</div>
+      <div class="tab">Solution Book</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:300px 1fr;gap:12px">
+      <!-- Structure tree -->
+      <div>
+        <div class="panel">
+          <div class="ph"><span class="pt">Structure Tree</span><div class="pa"><button class="btn btn-xs btn-g">+ Add Node</button></div></div>
+          <div class="pb" style="padding:8px">
+            <div class="struct-node">
+              <div class="sn-row"><span class="sn-type system">System</span><span class="sn-name">inventory-system</span></div>
+              <div class="sn-row sn-indent-1"><span class="sn-type application">Application</span><span class="sn-name">inventory-tracker</span></div>
+              <div class="sn-row sn-indent-2"><span class="sn-type process">Process</span><span class="sn-name">product-management</span></div>
+              <div class="sn-row sn-indent-3"><span class="sn-type component">Component</span><span class="sn-name">product-catalog</span></div>
+              <div class="sn-row sn-indent-4"><span class="sn-type interface">Interface</span><span class="sn-name">CatalogAPI</span></div>
+              <div class="sn-row sn-indent-5"><span class="sn-type message">Message</span><span class="sn-name">ProductCreated</span><span class="sn-meta">event</span></div>
+              <div class="sn-row sn-indent-5"><span class="sn-type message">Message</span><span class="sn-name">ProductState</span><span class="sn-meta">state</span></div>
+              <div class="sn-row sn-indent-3"><span class="sn-type component">Component</span><span class="sn-name">stock-tracker</span></div>
+              <div class="sn-row sn-indent-4"><span class="sn-type interface">Interface</span><span class="sn-name">StockAPI</span></div>
+              <div class="sn-row sn-indent-5"><span class="sn-type message">Message</span><span class="sn-name">StockUpdated</span><span class="sn-meta">event</span></div>
+              <div class="sn-row sn-indent-5"><span class="sn-type message">Message</span><span class="sn-name">StockLevel</span><span class="sn-meta">state</span></div>
+              <div class="sn-row sn-indent-3"><span class="sn-type component">Component</span><span class="sn-name">supplier-connector</span></div>
+              <div class="sn-row sn-indent-4"><span class="sn-type interface">Interface</span><span class="sn-name">SupplierAPI</span></div>
+              <div class="sn-row sn-indent-2"><span class="sn-type process">Process</span><span class="sn-name">reporting</span></div>
+              <div class="sn-row sn-indent-3"><span class="sn-type component">Component</span><span class="sn-name">analytics-writer</span></div>
+              <div class="sn-row sn-indent-4"><span class="sn-type interface">Interface</span><span class="sn-name">AnalyticsAPI</span></div>
+              <div class="sn-row sn-indent-5 selected"><span class="sn-type datastruct">DataStruct</span><span class="sn-name">ReportPayload</span><span class="sn-meta">selected</span></div>
+              <div class="sn-row sn-indent-3"><span class="sn-type component">Component</span><span class="sn-name">report-scheduler</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: node detail editor -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">DataStructure — ReportPayload</span><div class="pa"><button class="btn btn-g btn-sm">Edit</button><button class="btn btn-p btn-sm">+ Add Field</button></div></div>
+          <div class="pb">
+            <div class="g2" style="margin-bottom:12px">
+              <div>
+                <div class="sh">Node Properties</div>
+                <div class="field-row"><span class="fk">node type</span><span class="fv">DataStructure</span></div>
+                <div class="field-row"><span class="fk">name</span><span class="fv editable">ReportPayload</span></div>
+                <div class="field-row"><span class="fk">parent</span><span class="fv">Message → ReportGenerated</span></div>
+                <div class="field-row"><span class="fk">message type</span><span class="fv">state (static)</span></div>
+                <div class="field-row"><span class="fk">interface</span><span class="fv">AnalyticsAPI</span></div>
+                <div class="field-row"><span class="fk">direction</span><span class="fv">export</span></div>
+              </div>
+              <div>
+                <div class="sh">Interface Contract</div>
+                <div class="field-row"><span class="fk">imports</span><span class="fv" style="color:var(--teal)">StockLevel, ProductState</span></div>
+                <div class="field-row"><span class="fk">exports</span><span class="fv" style="color:var(--gold)">ReportPayload</span></div>
+                <div class="field-row"><span class="fk">consumers</span><span class="fv">analytics-writer, report-scheduler</span></div>
+                <div class="field-row"><span class="fk">protocol</span><span class="fv">REST · JSON</span></div>
+                <div class="field-row"><span class="fk">versioned</span><span class="fv">v2</span></div>
+              </div>
+            </div>
+
+            <div class="sh">Data Fields</div>
+            <table class="dt" style="margin-bottom:12px">
+              <thead><tr><th>Field Name</th><th>Data Type</th><th>Required</th><th>Description</th><th></th></tr></thead>
+              <tbody>
+                <tr><td class="mono" style="color:var(--teal)">report_id</td><td><span class="tag">string</span></td><td><span class="bdg ok">yes</span></td><td>UUID v4 report identifier</td><td><button class="btn btn-xs btn-g">Edit</button></td></tr>
+                <tr><td class="mono" style="color:var(--teal)">generated_at</td><td><span class="tag">date</span></td><td><span class="bdg ok">yes</span></td><td>ISO 8601 generation timestamp</td><td><button class="btn btn-xs btn-g">Edit</button></td></tr>
+                <tr><td class="mono" style="color:var(--teal)">period_start</td><td><span class="tag">date</span></td><td><span class="bdg ok">yes</span></td><td>Report period start date</td><td><button class="btn btn-xs btn-g">Edit</button></td></tr>
+                <tr><td class="mono" style="color:var(--teal)">period_end</td><td><span class="tag">date</span></td><td><span class="bdg ok">yes</span></td><td>Report period end date</td><td><button class="btn btn-xs btn-g">Edit</button></td></tr>
+                <tr><td class="mono" style="color:var(--teal)">products</td><td><span class="tag">array</span></td><td><span class="bdg ok">yes</span></td><td>Array of ProductState objects</td><td><button class="btn btn-xs btn-g">Edit</button></td></tr>
+                <tr><td class="mono" style="color:var(--teal)">total_items</td><td><span class="tag">int</span></td><td><span class="bdg ok">yes</span></td><td>Total stock count at period end</td><td><button class="btn btn-xs btn-g">Edit</button></td></tr>
+                <tr><td class="mono" style="color:var(--teal)">total_value</td><td><span class="tag">float</span></td><td><span class="bdg mt">no</span></td><td>Estimated inventory value (USD)</td><td><button class="btn btn-xs btn-g">Edit</button></td></tr>
+                <tr><td class="mono" style="color:var(--teal)">tags</td><td><span class="tag">map</span></td><td><span class="bdg mt">no</span></td><td>Freeform metadata key-value pairs</td><td><button class="btn btn-xs btn-g">Edit</button></td></tr>
+              </tbody>
+            </table>
+
+            <div class="sh">Available Data Types</div>
+            <div class="dtype-grid">
+              <span class="dtype sel">string</span><span class="dtype sel">int</span><span class="dtype sel">float</span><span class="dtype sel">date</span><span class="dtype sel">array</span><span class="dtype sel">map</span>
+              <span class="dtype">bool</span><span class="dtype">double</span><span class="dtype">varchar</span><span class="dtype">char</span><span class="dtype">null</span><span class="dtype">tuple</span><span class="dtype">set</span><span class="dtype">object</span><span class="dtype">pointer</span><span class="dtype">custom</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="g2">
+          <div class="panel">
+            <div class="ph"><span class="pt">Features</span><div class="pa"><button class="btn btn-xs btn-p">+ Add</button></div></div>
+            <div class="pb" style="padding:8px">
+              <div class="feat-item">
+                <div class="feat-name">Product Catalog CRUD</div>
+                <div class="feat-brief">Create, read, update, delete products with full metadata and versioning support.</div>
+                <div class="feat-status"><span class="bdg ok"><span class="dot"></span>Complete</span><span style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">v1.0.0</span></div>
+              </div>
+              <div class="feat-item">
+                <div class="feat-name">Real-time Stock Events</div>
+                <div class="feat-brief">Event-driven stock level updates via Kafka using StockUpdated events.</div>
+                <div class="feat-status"><span class="bdg ok"><span class="dot"></span>Complete</span><span style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">v1.1.0</span></div>
+              </div>
+              <div class="feat-item">
+                <div class="feat-name">Analytics Reporting</div>
+                <div class="feat-brief">Scheduled and on-demand report generation via analytics-writer component.</div>
+                <div class="feat-status"><span class="bdg wn"><span class="dot"></span>In Progress</span><span style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">v1.2.0</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="ph"><span class="pt">Solution Metadata</span></div>
+            <div class="pb">
+              <div class="field-row"><span class="fk">id</span><span class="fv" style="font-size:9px">sol_4a9e2f83-bc12</span></div>
+              <div class="field-row"><span class="fk">type</span><span class="fv">Application</span></div>
+              <div class="field-row"><span class="fk">version</span><span class="fv">1.2.0</span></div>
+              <div class="field-row"><span class="fk">maturity</span><span class="fv" style="color:var(--teal)">TEST</span></div>
+              <div class="field-row"><span class="fk">owner</span><span class="fv">Jordan Chen</span></div>
+              <div class="field-row"><span class="fk">factory</span><span class="fv">alpha-factory-01</span></div>
+              <div class="field-row"><span class="fk">sde</span><span class="fv">sde-core-api</span></div>
+              <div class="field-row"><span class="fk">created</span><span class="fv">Mar 01, 2026</span></div>
+              <div class="field-row"><span class="fk">tags</span><span class="fv"><span class="tag">go</span><span class="tag">inventory</span><span class="tag">kafka</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</body></html>

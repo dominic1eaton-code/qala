@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qala — Settings</title><link rel="stylesheet" href="qala-shared.css"><style>
+.settings-nav{display:flex;flex-direction:column;gap:2px}
+.sn-item{padding:6px 10px;border-radius:4px;font-size:11.5px;color:var(--text-secondary);cursor:pointer;transition:all .1s;border-left:2px solid transparent}
+.sn-item:hover{background:var(--bg-overlay);color:var(--text-primary)}
+.sn-item.on{background:var(--bg-overlay);color:var(--gold);border-left-color:var(--gold)}
+.sn-section{font-size:8.5px;font-family:var(--mono);color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;padding:8px 10px 3px;margin-top:6px}
+.settings-section-title{font-family:var(--display);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:4px;letter-spacing:.02em}
+.settings-section-sub{font-size:10.5px;color:var(--text-muted);margin-bottom:16px}
+.form-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.form-label{width:160px;flex-shrink:0;padding-top:7px}
+.fl-name{font-size:11px;color:var(--text-primary);font-weight:500;margin-bottom:1px}
+.fl-desc{font-size:9.5px;color:var(--text-muted)}
+.form-field{flex:1}
+.input{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:4px;padding:6px 10px;color:var(--text-primary);font-size:11.5px;font-family:var(--ui);width:100%;outline:none;transition:border-color .15s}
+.input:focus{border-color:var(--border-bright)}
+.input.mono{font-family:var(--mono);font-size:11px}
+.select{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:4px;padding:6px 10px;color:var(--text-primary);font-size:11.5px;font-family:var(--ui);width:100%;outline:none;cursor:pointer;appearance:none}
+.toggle-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-dim)}
+.toggle-row:last-child{border-bottom:none}
+.tr-info{flex:1}
+.tr-name{font-size:11px;color:var(--text-primary);font-weight:500;margin-bottom:1px}
+.tr-desc{font-size:9.5px;color:var(--text-muted)}
+.toggle{width:34px;height:18px;background:var(--bg-overlay);border:1px solid var(--border-mid);border-radius:9px;cursor:pointer;position:relative;flex-shrink:0;transition:background .2s}
+.toggle.on{background:var(--gold);border-color:var(--gold-dim)}
+.toggle::after{content:'';position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:white;transition:transform .2s}
+.toggle.on::after{transform:translateX(16px)}
+.avatar-big{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--teal-dim),var(--blue-dim));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;font-family:var(--display);color:white;cursor:pointer;flex-shrink:0;border:2px solid var(--border-bright)}
+.role-badge{display:inline-flex;align-items:center;gap:4px;background:var(--gold-glow);border:1px solid var(--gold-dim);color:var(--gold);font-size:9px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;padding:2px 7px;border-radius:3px}
+.divider-heading{font-size:9.5px;font-family:var(--mono);color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;padding:12px 0 8px;border-bottom:1px solid var(--border-dim);margin-bottom:12px}
+</style></head><body>
+<div class="shell">
+<nav class="nav">
+  <div class="nav-logo"><span class="logo-word">qala</span><span class="logo-badge">SFOS</span></div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Factory</div>
+    <a class="nav-item" href="qala-01-dashboard.html"><span class="nav-ic">⬡</span>Dashboard</a>
+    <a class="nav-item" href="qala-02-solution-factory.html"><span class="nav-ic">◈</span>Solution Factory</a>
+    <a class="nav-item" href="qala-03-sde-manager.html"><span class="nav-ic">⬕</span>SDE Manager<span class="nav-ct">5</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Solutions</div>
+    <a class="nav-item" href="qala-04-solution-registry.html"><span class="nav-ic">◫</span>Registry<span class="nav-ct">12</span></a>
+    <a class="nav-item" href="qala-05-workspace.html"><span class="nav-ic">⬜</span>Workspace</a>
+    <a class="nav-item" href="qala-07-artifacts.html"><span class="nav-ic">⬡</span>Artifacts<span class="nav-ct">34</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Execution</div>
+    <a class="nav-item" href="qala-06-cicd.html"><span class="nav-ic">▷</span>CI/CD Pipelines</a>
+    <a class="nav-item" href="qala-12-data-platform.html"><span class="nav-ic">∿</span>Data Platform</a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Intelligence</div>
+    <a class="nav-item" href="qala-08-ai-insights.html"><span class="nav-ic">✦</span>AI Insights<span class="nav-ct">7</span></a>
+    <a class="nav-item" href="qala-09-security.html"><span class="nav-ic">⛨</span>Security<span class="nav-ct">3</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Account</div>
+    <a class="nav-item" href="qala-13-notifications.html"><span class="nav-ic">◯</span>Notifications<span class="nav-ct">9</span></a>
+    <a class="nav-item" href="qala-14-governance.html"><span class="nav-ic">◧</span>Governance</a>
+    <a class="nav-item on" href="qala-16-settings.html"><span class="nav-ic">⚙</span>Settings</a>
+  </div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Settings</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>jordan.chen</span></div>
+    <div class="tb-right">
+      <button class="btn btn-g btn-sm">Discard</button>
+      <button class="btn btn-p btn-sm">Save Changes</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div style="display:grid;grid-template-columns:180px 1fr;gap:16px">
+      <!-- Settings sidebar -->
+      <div>
+        <div class="panel">
+          <div class="pb" style="padding:8px">
+            <div class="settings-nav">
+              <div class="sn-section">Profile</div>
+              <div class="sn-item on">User Profile</div>
+              <div class="sn-item">Authentication & MFA</div>
+              <div class="sn-item">API Keys</div>
+              <div class="sn-section">Factory</div>
+              <div class="sn-item">Factory Settings</div>
+              <div class="sn-item">SDE Defaults</div>
+              <div class="sn-item">Build Preferences</div>
+              <div class="sn-section">Platform</div>
+              <div class="sn-item">Notifications</div>
+              <div class="sn-item">Integrations</div>
+              <div class="sn-item">Appearance</div>
+              <div class="sn-section">Admin</div>
+              <div class="sn-item">Users & RBAC</div>
+              <div class="sn-item">Audit Log</div>
+              <div class="sn-item">Billing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings content -->
+      <div>
+        <!-- Profile section -->
+        <div class="panel" style="margin-bottom:14px">
+          <div class="ph"><span class="pt">User Profile</span><div class="pa"><button class="btn btn-g btn-sm">Change Avatar</button></div></div>
+          <div class="pb">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border-dim)">
+              <div class="avatar-big">JC</div>
+              <div>
+                <div style="font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:3px">Jordan Chen</div>
+                <div style="font-size:10.5px;color:var(--text-muted);margin-bottom:6px;font-family:var(--mono)">jordan.chen@company.com</div>
+                <div style="display:flex;gap:6px"><span class="role-badge">Factory Owner</span><span class="role-badge" style="background:var(--teal-glow);border-color:var(--teal-dim);color:var(--teal)">Developer</span></div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-label"><div class="fl-name">Display Name</div><div class="fl-desc">Shown across the platform</div></div>
+              <div class="form-field"><input class="input" value="Jordan Chen"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label"><div class="fl-name">Email</div><div class="fl-desc">Primary contact address</div></div>
+              <div class="form-field"><input class="input" value="jordan.chen@company.com"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label"><div class="fl-name">Username</div><div class="fl-desc">Platform handle</div></div>
+              <div class="form-field"><input class="input mono" value="jordan.chen"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label"><div class="fl-name">Timezone</div><div class="fl-desc">For scheduling and display</div></div>
+              <div class="form-field"><select class="select"><option>America/New_York (EST −5)</option><option>America/Chicago</option><option>UTC</option></select></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SDE Defaults -->
+        <div class="panel" style="margin-bottom:14px">
+          <div class="ph"><span class="pt">SDE Defaults</span></div>
+          <div class="pb">
+            <div class="form-row">
+              <div class="form-label"><div class="fl-name">Default Language</div><div class="fl-desc">Pre-selected when creating an SDE</div></div>
+              <div class="form-field"><select class="select"><option>Go</option><option>Rust</option><option>TypeScript</option><option>Scala</option><option>Python</option></select></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label"><div class="fl-name">Default Toolkit</div><div class="fl-desc">Toolkit applied to new SDEs</div></div>
+              <div class="form-field"><select class="select"><option>Backend Development Toolkit</option><option>Container & Orchestration Toolkit</option><option>ML Research Toolkit</option></select></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label"><div class="fl-name">Build Mode</div><div class="fl-desc">Isolation mode for new build envs</div></div>
+              <div class="form-field"><select class="select"><option>Hermetic (recommended)</option><option>Isolated</option><option>Standard</option></select></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label"><div class="fl-name">Auto Snapshot</div><div class="fl-desc">Snapshot SDE on successful build</div></div>
+              <div class="form-field" style="padding-top:6px">
+                <div class="toggle on"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Platform toggles -->
+        <div class="panel" style="margin-bottom:14px">
+          <div class="ph"><span class="pt">Platform Preferences</span></div>
+          <div class="pb">
+            <div class="toggle-row">
+              <div class="tr-info"><div class="tr-name">AI Insights — Auto Analysis</div><div class="tr-desc">Automatically run AI analysis on SDEs after each build</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="toggle-row">
+              <div class="tr-info"><div class="tr-name">AI Insights — High Confidence Only</div><div class="tr-desc">Only show recommendations with ≥80% confidence</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="toggle-row">
+              <div class="tr-info"><div class="tr-name">Build Attestation</div><div class="tr-desc">Sign all artifacts with cosign and record in Rekor</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="toggle-row">
+              <div class="tr-info"><div class="tr-name">Automatic Dependency Updates</div><div class="tr-desc">Apply patch updates automatically on new SDE provision</div></div>
+              <div class="toggle"></div>
+            </div>
+            <div class="toggle-row">
+              <div class="tr-info"><div class="tr-name">Dark Mode</div><div class="tr-desc">Use the dark theme (currently active)</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="toggle-row">
+              <div class="tr-info"><div class="tr-name">Compact View</div><div class="tr-desc">Reduce padding in tables and lists for data-dense layout</div></div>
+              <div class="toggle on"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- API Keys -->
+        <div class="panel">
+          <div class="ph"><span class="pt">API Keys</span><div class="pa"><button class="btn btn-p btn-sm">+ Generate Key</button></div></div>
+          <table class="dt">
+            <thead><tr><th>Name</th><th>Key (masked)</th><th>Scopes</th><th>Created</th><th>Last Used</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="pri">CI/CD Bot</td><td class="mono">qala_sk_••••3a9f</td><td class="mono">build, artifact</td><td class="mono">Mar 1</td><td class="mono">2m ago</td><td><button class="btn btn-xs btn-d">Revoke</button></td></tr>
+              <tr><td class="pri">Local Dev</td><td class="mono">qala_sk_••••b71c</td><td class="mono">read, sde</td><td class="mono">Feb 14</td><td class="mono">4h ago</td><td><button class="btn btn-xs btn-d">Revoke</button></td></tr>
+              <tr><td class="pri">Analytics Export</td><td class="mono">qala_sk_••••e22d</td><td class="mono">analytics:read</td><td class="mono">Jan 20</td><td class="mono">1d ago</td><td><button class="btn btn-xs btn-d">Revoke</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</body></html>

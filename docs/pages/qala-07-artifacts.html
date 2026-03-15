@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qala — Artifacts</title><link rel="stylesheet" href="qala-shared.css"><style>
+.art-icon{width:32px;height:32px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.art-icon.go{background:rgba(0,173,216,.12);border:1px solid rgba(0,173,216,.2)}
+.art-icon.ts{background:rgba(49,120,198,.12);border:1px solid rgba(49,120,198,.2)}
+.art-icon.rust{background:rgba(222,92,43,.12);border:1px solid rgba(222,92,43,.2)}
+.art-icon.scala{background:rgba(220,50,50,.12);border:1px solid rgba(220,50,50,.2)}
+.art-icon.hcl{background:rgba(91,77,175,.12);border:1px solid rgba(91,77,175,.2)}
+.art-card{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:5px;padding:11px 13px;display:flex;align-items:center;gap:11px;margin-bottom:7px;cursor:pointer;transition:all .12s}
+.art-card:hover{border-color:var(--border-bright)}
+.art-card.sel{border-color:var(--gold-dim);background:var(--gold-glow)}
+.art-card-info{flex:1}
+.art-name{font-size:11.5px;font-weight:500;color:var(--text-primary);margin-bottom:2px}
+.art-meta{font-size:9.5px;font-family:var(--mono);color:var(--text-muted);display:flex;gap:8px}
+.art-meta span{color:var(--text-secondary)}
+.art-detail-prop{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border-dim)}
+.art-detail-prop:last-child{border-bottom:none}
+.adp-k{font-size:9.5px;font-family:var(--mono);color:var(--text-muted);width:130px;flex-shrink:0}
+.adp-v{font-size:10.5px;font-family:var(--mono);color:var(--text-primary)}
+.sig-row{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:4px;padding:8px 10px;margin-bottom:6px}
+.sig-title{font-size:9.5px;font-family:var(--mono);color:var(--text-muted);margin-bottom:3px;text-transform:uppercase;letter-spacing:.08em}
+.sig-val{font-size:9px;font-family:var(--mono);color:var(--text-secondary);word-break:break-all;line-height:1.4}
+</style></head><body>
+<div class="shell">
+<nav class="nav">
+  <div class="nav-logo"><span class="logo-word">qala</span><span class="logo-badge">SFOS</span></div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Factory</div>
+    <a class="nav-item" href="qala-01-dashboard.html"><span class="nav-ic">⬡</span>Dashboard</a>
+    <a class="nav-item" href="qala-02-solution-factory.html"><span class="nav-ic">◈</span>Solution Factory</a>
+    <a class="nav-item" href="qala-03-sde-manager.html"><span class="nav-ic">⬕</span>SDE Manager<span class="nav-ct">5</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Solutions</div>
+    <a class="nav-item" href="qala-04-solution-registry.html"><span class="nav-ic">◫</span>Registry<span class="nav-ct">12</span></a>
+    <a class="nav-item" href="qala-05-workspace.html"><span class="nav-ic">⬜</span>Workspace</a>
+    <a class="nav-item on" href="qala-07-artifacts.html"><span class="nav-ic">⬡</span>Artifacts<span class="nav-ct">34</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Execution</div>
+    <a class="nav-item" href="qala-06-cicd.html"><span class="nav-ic">▷</span>CI/CD Pipelines</a>
+    <a class="nav-item" href="#"><span class="nav-ic">∿</span>Data Platform</a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Intelligence</div>
+    <a class="nav-item" href="qala-08-ai-insights.html"><span class="nav-ic">✦</span>AI Insights<span class="nav-ct">7</span></a>
+    <a class="nav-item" href="qala-09-security.html"><span class="nav-ic">⛨</span>Security<span class="nav-ct">3</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Account</div>
+    <a class="nav-item" href="#"><span class="nav-ic">◯</span>Notifications<span class="nav-ct">9</span></a>
+    <a class="nav-item" href="#"><span class="nav-ic">⚙</span>Settings</a>
+  </div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Artifact Registry</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>alpha-factory-01</span><span class="sep">/</span><span>artifacts</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search artifacts…">
+      <button class="btn btn-g btn-sm">Filter</button>
+      <button class="btn btn-p btn-sm">↑ Upload</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sr g4" style="margin-bottom:14px">
+      <div class="sc"><div class="sc-lbl">Total Artifacts</div><div class="sc-val">34</div><div class="sc-sub">across 5 SDEs</div></div>
+      <div class="sc"><div class="sc-lbl">Published</div><div class="sc-val g">18</div><div class="sc-sub">available for download</div></div>
+      <div class="sc"><div class="sc-lbl">Signed & Attested</div><div class="sc-val t">18</div><div class="sc-sub">100% of published</div></div>
+      <div class="sc"><div class="sc-lbl">Total Size</div><div class="sc-val b">4.2 GB</div><div class="sc-sub">7 published this week</div></div>
+    </div>
+
+    <div class="gs">
+      <!-- Left: artifact list -->
+      <div>
+        <div class="panel">
+          <div class="ph"><span class="pt">Artifacts</span><div class="pa"><span class="ps">34 total · 18 published</span></div></div>
+          <div class="pb" style="padding:8px">
+            <div class="art-card sel">
+              <div class="art-icon go">🔷</div>
+              <div class="art-card-info">
+                <div class="art-name">core-api-linux-amd64</div>
+                <div class="art-meta">v <span>1.2.1</span> · SDE <span>sde-core-api</span> · <span>12.4 MB</span></div>
+              </div>
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+            </div>
+            <div class="art-card">
+              <div class="art-icon go">🔷</div>
+              <div class="art-card-info">
+                <div class="art-name">core-api-linux-arm64</div>
+                <div class="art-meta">v <span>1.2.1</span> · SDE <span>sde-core-api</span> · <span>11.8 MB</span></div>
+              </div>
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+            </div>
+            <div class="art-card">
+              <div class="art-icon ts">🔹</div>
+              <div class="art-card-info">
+                <div class="art-name">admin-dashboard-dist</div>
+                <div class="art-meta">v <span>3.0.1</span> · SDE <span>sde-frontend</span> · <span>2.1 MB</span></div>
+              </div>
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+            </div>
+            <div class="art-card">
+              <div class="art-icon rust">🦀</div>
+              <div class="art-card-info">
+                <div class="art-name">ml-inference-linux-amd64</div>
+                <div class="art-meta">v <span>0.9.3</span> · SDE <span>sde-ml-research</span> · <span>48.7 MB</span></div>
+              </div>
+              <span class="bdg wn"><span class="dot"></span>Draft</span>
+            </div>
+            <div class="art-card">
+              <div class="art-icon scala">◆</div>
+              <div class="art-card-info">
+                <div class="art-name">data-pipeline-fat-jar</div>
+                <div class="art-meta">v <span>2.0.0</span> · SDE <span>sde-data-pipeline</span> · <span>88.2 MB</span></div>
+              </div>
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+            </div>
+            <div class="art-card">
+              <div class="art-icon hcl">⬡</div>
+              <div class="art-card-info">
+                <div class="art-name">infra-terraform-bundle</div>
+                <div class="art-meta">v <span>1.0.0</span> · SDE <span>sde-infra</span> · <span>340 KB</span></div>
+              </div>
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+            </div>
+            <div class="art-card">
+              <div class="art-icon go">🔷</div>
+              <div class="art-card-info">
+                <div class="art-name">auth-service-linux-amd64</div>
+                <div class="art-meta">v <span>2.1.0</span> · SDE <span>sde-core-api</span> · <span>8.9 MB</span></div>
+              </div>
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: artifact detail -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph">
+            <span class="pt">core-api-linux-amd64</span>
+            <div class="pa">
+              <button class="btn btn-g btn-sm">↓ Download</button>
+              <button class="btn btn-d btn-sm">Delete</button>
+            </div>
+          </div>
+          <div class="pb">
+            <div class="art-detail-prop"><span class="adp-k">artifact id</span><span class="adp-v">art_3f9a2c14ee</span></div>
+            <div class="art-detail-prop"><span class="adp-k">name</span><span class="adp-v">core-api-linux-amd64</span></div>
+            <div class="art-detail-prop"><span class="adp-k">version</span><span class="adp-v">1.2.1</span></div>
+            <div class="art-detail-prop"><span class="adp-k">platform</span><span class="adp-v">linux/amd64</span></div>
+            <div class="art-detail-prop"><span class="adp-k">size</span><span class="adp-v">12.4 MB</span></div>
+            <div class="art-detail-prop"><span class="adp-k">solution</span><span class="adp-v">inventory-tracker v1.2.0</span></div>
+            <div class="art-detail-prop"><span class="adp-k">sde</span><span class="adp-v">sde-core-api</span></div>
+            <div class="art-detail-prop"><span class="adp-k">pipeline run</span><span class="adp-v">build-core-api #88</span></div>
+            <div class="art-detail-prop"><span class="adp-k">created</span><span class="adp-v">2026-03-14 09:43:22</span></div>
+            <div class="art-detail-prop"><span class="adp-k">status</span><span class="adp-v" style="color:var(--ok)">Published</span></div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Build Provenance & Attestation</span></div>
+          <div class="pb">
+            <div class="sig-row">
+              <div class="sig-title">SHA-256 Digest</div>
+              <div class="sig-val">sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</div>
+            </div>
+            <div class="sig-row">
+              <div class="sig-title">Cosign Signature</div>
+              <div class="sig-val">MEYCIQDf7k+... (rekor entry: https://rekor.sigstore.dev/api/v1/log/entries?logIndex=78492)</div>
+            </div>
+            <div class="sig-row">
+              <div class="sig-title">SBOM (CycloneDX)</div>
+              <div class="sig-val">sbom-core-api-1.2.1.cdx.json · 142 components · generated by syft</div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+              <span class="chip" style="color:var(--ok)">✓ hermetic build</span>
+              <span class="chip" style="color:var(--ok)">✓ signed</span>
+              <span class="chip" style="color:var(--ok)">✓ rekor verified</span>
+              <span class="chip" style="color:var(--ok)">✓ sbom attached</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Version History</span></div>
+          <table class="dt">
+            <thead><tr><th>Version</th><th>Pipeline</th><th>Size</th><th>Date</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="mono" style="color:var(--gold)">1.2.1</td><td class="mono">#88</td><td class="mono">12.4 MB</td><td class="mono">Mar 14</td><td><button class="btn btn-xs btn-g">↓</button></td></tr>
+              <tr><td class="mono">1.2.0</td><td class="mono">#84</td><td class="mono">12.1 MB</td><td class="mono">Mar 12</td><td><button class="btn btn-xs btn-g">↓</button></td></tr>
+              <tr><td class="mono">1.1.3</td><td class="mono">#79</td><td class="mono">11.9 MB</td><td class="mono">Mar 10</td><td><button class="btn btn-xs btn-g">↓</button></td></tr>
+              <tr><td class="mono">1.1.0</td><td class="mono">#71</td><td class="mono">11.4 MB</td><td class="mono">Mar 7</td><td><button class="btn btn-xs btn-g">↓</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</body></html>

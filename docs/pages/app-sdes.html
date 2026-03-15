@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>qala — SDEs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A0A0F;--paper:#F5F3EE;--paper2:#EDEBE4;--accent:#1A3EFF;--red:#FF3B1A;--green:#00C48C;--amber:#F5A623;--purple:#9B5DE5;--muted:#7A7870;--rule:#D8D5CC;--mono:'DM Mono',monospace;--display:'Syne',sans-serif;--serif:'Instrument Serif',serif;--sidebar:220px;--bar:52px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:var(--display);cursor:none;display:flex;height:100vh;overflow:hidden;}
+#cur{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .12s,height .12s;mix-blend-mode:multiply;}
+#curR{position:fixed;width:28px;height:28px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.35;transition:width .2s,height .2s;}
+.sidebar{width:var(--sidebar);height:100vh;background:var(--ink);display:flex;flex-direction:column;flex-shrink:0;border-right:1px solid rgba(255,255,255,.05);}
+.sb-logo{padding:1.1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:.6rem;flex-shrink:0;}
+.sb-mark{width:26px;height:26px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:.8rem;color:#fff;flex-shrink:0;}
+.sb-wordmark{font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:-.04em;color:#fff;}.sb-wordmark span{color:var(--accent);}
+.sb-section{font-family:var(--mono);font-size:.53rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:.9rem 1.25rem .3rem;}
+.sb-link{display:flex;align-items:center;gap:.7rem;padding:.5rem 1.25rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.03em;color:rgba(255,255,255,.38);text-decoration:none;cursor:none;transition:color .15s,background .15s;position:relative;}
+.sb-link:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.04);}
+.sb-link.active{color:#fff;background:rgba(26,62,255,.22);}
+.sb-link.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);}
+.sb-icon{width:13px;height:13px;opacity:.55;flex-shrink:0;}.sb-link.active .sb-icon{opacity:1;}
+.sb-pill{margin-left:auto;font-family:var(--mono);font-size:.5rem;background:var(--red);color:#fff;padding:.12rem .38rem;}
+.sb-bottom{margin-top:auto;padding:.9rem 1.25rem;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:.6rem;}
+.sb-avatar{width:26px;height:26px;background:linear-gradient(135deg,var(--accent),#6B7CFF);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.55rem;color:#fff;flex-shrink:0;}
+.sb-user{flex:1;min-width:0;}.sb-name{font-family:var(--mono);font-size:.63rem;color:rgba(255,255,255,.75);}.sb-role{font-family:var(--mono);font-size:.52rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.06em;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{height:var(--bar);background:rgba(245,243,238,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);display:flex;align-items:center;padding:0 1.75rem;gap:1rem;flex-shrink:0;}
+.tb-crumb{font-family:var(--mono);font-size:.65rem;color:var(--muted);display:flex;align-items:center;gap:.4rem;}
+.tb-crumb b{color:var(--ink);font-weight:500;}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:.6rem;}
+.tb-btn{font-family:var(--mono);font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;padding:.38rem .85rem;border:1.5px solid var(--rule);background:transparent;color:var(--ink);cursor:none;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.35rem;}
+.tb-btn:hover{border-color:var(--accent);color:var(--accent);}
+.tb-btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.tb-btn.primary:hover{background:var(--accent);border-color:var(--accent);}
+.tb-notif{position:relative;width:26px;height:26px;border:1.5px solid var(--rule);display:flex;align-items:center;justify-content:center;cursor:none;}
+.tb-notif::after{content:'';position:absolute;top:4px;right:4px;width:5px;height:5px;border-radius:50%;background:var(--red);}
+.scroll{flex:1;overflow-y:auto;}.scroll::-webkit-scrollbar{width:4px;}.scroll::-webkit-scrollbar-thumb{background:var(--rule);}
+.content{padding:1.75rem;}
+.pg-eye{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem;}
+.pg-eye::before{content:'';width:1.2rem;height:1px;background:var(--accent);display:inline-block;}
+.pg-title{font-size:1.55rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:1.5rem;}
+.pg-title em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);}
+.fbar{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem;flex-wrap:wrap;}
+.f-inp{font-family:var(--mono);font-size:.62rem;padding:.38rem .75rem;border:1.5px solid var(--rule);background:transparent;color:var(--ink);outline:none;width:200px;transition:border-color .2s;}
+.f-inp:focus{border-color:var(--accent);}
+.f-inp::placeholder{color:var(--muted);}
+.f-btn{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:.35rem .8rem;border:1.5px solid var(--rule);background:transparent;color:var(--muted);cursor:none;transition:all .15s;}
+.f-btn:hover,.f-btn.on{border-color:var(--accent);color:var(--accent);background:rgba(26,62,255,.04);}
+
+/* 2-panel layout: list + detail */
+.sde-layout{display:grid;grid-template-columns:1fr 340px;gap:1.25rem;}
+.sde-list-panel{border:1px solid var(--rule);}
+
+/* SDE card rows */
+.sde-card{border-bottom:1px solid var(--rule);cursor:none;transition:background .15s;}
+.sde-card:last-child{border-bottom:none;}
+.sde-card.selected{background:rgba(26,62,255,.05);}
+.sde-card-top{display:flex;align-items:center;gap:.85rem;padding:.9rem 1.1rem;}
+.sde-card:hover .sde-card-top{background:var(--paper2);}
+.sde-card.selected .sde-card-top{background:rgba(26,62,255,.05);}
+.sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.sdot-run{background:var(--green);box-shadow:0 0 0 3px rgba(0,196,140,.14);}
+.sdot-build{background:var(--amber);box-shadow:0 0 0 3px rgba(245,166,35,.14);}
+.sdot-err{background:var(--red);box-shadow:0 0 0 3px rgba(255,59,26,.14);}
+.sdot-idle{background:var(--muted);}
+.sde-info{flex:1;min-width:0;}
+.sde-name{font-family:var(--mono);font-size:.68rem;color:var(--ink);}
+.sde-meta{font-family:var(--mono);font-size:.55rem;color:var(--muted);margin-top:.1rem;}
+.stag{font-family:var(--mono);font-size:.52rem;letter-spacing:.05em;text-transform:uppercase;padding:.15rem .42rem;border:1px solid var(--rule);color:var(--muted);flex-shrink:0;}
+.stag-g{border-color:rgba(0,196,140,.3);color:var(--green);}
+.stag-a{border-color:rgba(245,166,35,.3);color:var(--amber);}
+.stag-r{border-color:rgba(255,59,26,.3);color:var(--red);}
+.sde-actions-row{display:flex;gap:.4rem;padding:.5rem 1.1rem .7rem 2.8rem;}
+.a-btn{font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .5rem;border:1px solid var(--rule);background:transparent;color:var(--muted);cursor:none;transition:all .15s;}
+.a-btn:hover{border-color:var(--accent);color:var(--accent);}
+.a-btn.danger:hover{border-color:var(--red);color:var(--red);}
+
+/* detail panel */
+.sde-detail{border:1px solid var(--rule);background:var(--paper);overflow:hidden;display:flex;flex-direction:column;}
+.detail-header{padding:.9rem 1.1rem;border-bottom:1px solid var(--rule);background:var(--ink);}
+.dh-name{font-family:var(--mono);font-size:.75rem;color:#fff;margin-bottom:.2rem;}
+.dh-id{font-family:var(--mono);font-size:.55rem;color:rgba(255,255,255,.3);}
+.detail-scroll{flex:1;overflow-y:auto;}
+.detail-scroll::-webkit-scrollbar{width:3px;}
+.d-section{border-bottom:1px solid var(--rule);}
+.d-section-hd{padding:.6rem .9rem;font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--paper2);border-bottom:1px solid var(--rule);}
+/* env table */
+.env-tbl{width:100%;border-collapse:collapse;}
+.env-tbl td{font-family:var(--mono);font-size:.6rem;padding:.42rem .85rem;border-bottom:1px solid var(--rule);}
+.env-tbl tr:last-child td{border-bottom:none;}
+.env-key{color:var(--muted);}
+.env-val{color:var(--accent);}
+/* snapshot list */
+.snap-row{display:flex;align-items:center;gap:.65rem;padding:.55rem .85rem;border-bottom:1px solid var(--rule);}
+.snap-row:last-child{border-bottom:none;}
+.snap-num{font-family:var(--mono);font-size:.65rem;font-weight:500;color:var(--ink);flex-shrink:0;width:52px;}
+.snap-date{font-family:var(--mono);font-size:.57rem;color:var(--muted);flex:1;}
+.snap-hash{font-family:var(--mono);font-size:.57rem;color:var(--accent);flex-shrink:0;}
+.snap-btn{font-family:var(--mono);font-size:.52rem;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .42rem;border:1px solid var(--rule);background:transparent;color:var(--muted);cursor:none;transition:all .15s;}
+.snap-btn:hover{border-color:var(--accent);color:var(--accent);}
+/* toolkit chips */
+.toolkit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);}
+.tk-cell{background:var(--paper);padding:.6rem .85rem;}
+.tk-name{font-family:var(--mono);font-size:.6rem;color:var(--ink);margin-bottom:.15rem;}
+.tk-meta{font-family:var(--mono);font-size:.53rem;color:var(--muted);}
+/* solutions in SDE */
+.sol-chip-row{display:flex;align-items:center;justify-content:space-between;padding:.52rem .85rem;border-bottom:1px solid var(--rule);}
+.sol-chip-row:last-child{border-bottom:none;}
+.sol-chip-n{font-family:var(--mono);font-size:.62rem;color:var(--ink);}
+.mat-chip{font-family:var(--mono);font-size:.5rem;letter-spacing:.07em;text-transform:uppercase;padding:.12rem .38rem;}
+.mc-in{background:rgba(26,62,255,.1);color:var(--accent);}
+.mc-dv{background:rgba(245,166,35,.1);color:var(--amber);}
+.mc-cm{background:rgba(0,196,140,.1);color:var(--green);}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="curR"></div>
+<aside class="sidebar">
+  <div class="sb-logo"><div class="sb-mark">q</div><div class="sb-wordmark">qa<span>la</span></div></div>
+  <div class="sb-section">Workspace</div>
+  <a href="app-dashboard.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="4.5" height="4.5" stroke="currentColor" stroke-width="1.1"/><rect x="7.5" y="1" width="4.5" height="4.5" stroke="currentColor" stroke-width="1.1"/><rect x="1" y="7.5" width="4.5" height="4.5" stroke="currentColor" stroke-width="1.1"/><rect x="7.5" y="7.5" width="4.5" height="4.5" stroke="currentColor" stroke-width="1.1"/></svg>Dashboard</a>
+  <a href="app-solutions.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.1"/><circle cx="6.5" cy="6.5" r="2" stroke="currentColor" stroke-width="1.1"/></svg>Solutions</a>
+  <a href="app-factories.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><path d="M1 10.5V7L4 4l3 3 2.5-3.5L13 7v3.5H1Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>Factories</a>
+  <a href="app-sdes.html" class="sb-link active"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><rect x="1" y="3" width="11" height="7.5" rx=".75" stroke="currentColor" stroke-width="1.1"/><path d="M3.5 5.5l2 2-2 2M7 9h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>SDEs<span class="sb-pill">12</span></a>
+  <a href="app-workspaces.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><path d="M1 3h4.5l1.5 2H12v6.5H1V3Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>Workspaces</a>
+  <div class="sb-section">Execution</div>
+  <a href="app-pipelines.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><circle cx="2" cy="6.5" r="1.25" stroke="currentColor" stroke-width="1.1"/><circle cx="6.5" cy="6.5" r="1.25" stroke="currentColor" stroke-width="1.1"/><circle cx="11" cy="6.5" r="1.25" stroke="currentColor" stroke-width="1.1"/><path d="M3.25 6.5h2M7.75 6.5H9.75" stroke="currentColor" stroke-width="1.1"/></svg>Pipelines</a>
+  <a href="app-artifacts.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><path d="M6.5 1L12 4v5L6.5 12 1 9V4L6.5 1Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>Artifacts</a>
+  <div class="sb-section">Intelligence</div>
+  <a href="app-security.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><path d="M6.5 1l5 2v3.5c0 2.6-2 4.5-5 5.5-3-1-5-2.9-5-5.5V3L6.5 1Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>Security<span class="sb-pill">3</span></a>
+  <div class="sb-bottom"><div class="sb-avatar">JD</div><div class="sb-user"><div class="sb-name">Jordan Dev</div><div class="sb-role">Admin</div></div></div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <div class="tb-crumb">qala <span style="opacity:.35">/</span> <b>SDEs</b></div>
+    <div class="tb-right">
+      <div class="tb-notif"></div>
+      <button class="tb-btn primary" onclick="alert('New SDE — select factory, template, language, configure')">+ New SDE</button>
+    </div>
+  </header>
+  <div class="scroll">
+    <div class="content">
+      <div class="pg-eye">Control Plane</div>
+      <div class="pg-title">Solution Development <em>Environments</em></div>
+      <div class="fbar">
+        <input class="f-inp" type="text" placeholder="Search SDEs…">
+        <button class="f-btn on">All (12)</button>
+        <button class="f-btn">Running</button>
+        <button class="f-btn">Building</button>
+        <button class="f-btn">Error</button>
+        <button class="f-btn">Idle</button>
+      </div>
+
+      <div class="sde-layout">
+        <!-- LEFT: SDE LIST -->
+        <div class="sde-list-panel">
+
+          <div class="sde-card selected" onclick="selectSde(this,'payments-factory-sde-01','sde_4f2a1b93','go · Factory: payments-sf · snap #14','running')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-run"></div>
+              <div class="sde-info"><div class="sde-name">payments-factory-sde-01</div><div class="sde-meta">Go · payments-sf · snap #14</div></div>
+              <span class="stag stag-g">Running</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+              <button class="a-btn">Workspace</button>
+              <button class="a-btn danger">Stop</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'identity-sde-03','sde_9c3d8e41','Go · core-sf · snap #6','building')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-build"></div>
+              <div class="sde-info"><div class="sde-name">identity-sde-03</div><div class="sde-meta">Go · core-sf · snap #6</div></div>
+              <span class="stag stag-a">Building</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'analytics-platform-sde','sde_2b8e6c77','Scala · data-sf · snap #9','running')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-run"></div>
+              <div class="sde-info"><div class="sde-name">analytics-platform-sde</div><div class="sde-meta">Scala · data-sf · snap #9</div></div>
+              <span class="stag stag-g">Running</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+              <button class="a-btn danger">Stop</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'security-sem-sde-02','sde_7a1c4f28','Rust · sec-sf · snap #3','error')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-err"></div>
+              <div class="sde-info"><div class="sde-name">security-sem-sde-02</div><div class="sde-meta">Rust · sec-sf · snap #3 · ⚠ quarantined</div></div>
+              <span class="stag stag-r">Error</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Rollback</button>
+              <button class="a-btn">Diagnose</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'notifications-sde-01','sde_5e9d3a12','Scala · exec-sf · snap #7','idle')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-idle"></div>
+              <div class="sde-info"><div class="sde-name">notifications-sde-01</div><div class="sde-meta">Scala · exec-sf · snap #7</div></div>
+              <span class="stag">Idle</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Start</button>
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'workflow-cicd-sde-01','sde_c2f1e8a5','Scala · exec-sf · snap #11','running')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-run"></div>
+              <div class="sde-info"><div class="sde-name">workflow-cicd-sde-01</div><div class="sde-meta">Scala · exec-sf · snap #11 · hermetic</div></div>
+              <span class="stag stag-g">Running</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: DETAIL PANEL -->
+        <div class="sde-detail" id="detailPanel">
+          <div class="detail-header">
+            <div class="dh-name" id="dh-name">payments-factory-sde-01</div>
+            <div class="dh-id" id="dh-id">sde_4f2a1b93 · Go · payments-sf</div>
+          </div>
+          <div class="detail-scroll">
+
+            <div class="d-section">
+              <div class="d-section-hd">Environment Variables</div>
+              <table class="env-tbl">
+                <tr><td class="env-key">APP_ENV</td><td class="env-val">production</td></tr>
+                <tr><td class="env-key">DB_HOST</td><td class="env-val">postgres-primary.internal</td></tr>
+                <tr><td class="env-key">DB_PORT</td><td class="env-val">5432</td></tr>
+                <tr><td class="env-key">KAFKA_BROKERS</td><td class="env-val">kafka-01:9092,kafka-02:9092</td></tr>
+                <tr><td class="env-key">LOG_LEVEL</td><td class="env-val">info</td></tr>
+                <tr><td class="env-key">HERMETIC_BUILD</td><td class="env-val">true</td></tr>
+                <tr><td class="env-key">KERNEL_ENDPOINT</td><td class="env-val">http://kernel:7000</td></tr>
+              </table>
+            </div>
+
+            <div class="d-section">
+              <div class="d-section-hd">Toolkits</div>
+              <div class="toolkit-grid">
+                <div class="tk-cell"><div class="tk-name">go-toolchain-1.22</div><div class="tk-meta">Build · 4 tools · hermetic</div></div>
+                <div class="tk-cell"><div class="tk-name">gotest-suite-v3</div><div class="tk-meta">Test · 8 tools · CI-linked</div></div>
+                <div class="tk-cell"><div class="tk-name">k8s-helm-v4</div><div class="tk-meta">Deploy · 6 tools · k8s</div></div>
+                <div class="tk-cell"><div class="tk-name">docker-buildkit</div><div class="tk-meta">Container · 3 tools</div></div>
+              </div>
+            </div>
+
+            <div class="d-section">
+              <div class="d-section-hd">Snapshots</div>
+              <div class="snap-row"><div class="snap-num">snap #14</div><div class="snap-date">Mar 14 09:30 UTC</div><div class="snap-hash">4f2a1b</div><button class="snap-btn">restore</button></div>
+              <div class="snap-row"><div class="snap-num">snap #13</div><div class="snap-date">Mar 13 18:12 UTC</div><div class="snap-hash">9c3d8e</div><button class="snap-btn">restore</button></div>
+              <div class="snap-row"><div class="snap-num">snap #12</div><div class="snap-date">Mar 13 09:44 UTC</div><div class="snap-hash">7a1c4f</div><button class="snap-btn">restore</button></div>
+              <div class="snap-row"><div class="snap-num">snap #11</div><div class="snap-date">Mar 12 22:03 UTC</div><div class="snap-hash">2b8e6c</div><button class="snap-btn">restore</button></div>
+            </div>
+
+            <div class="d-section">
+              <div class="d-section-hd">Solutions</div>
+              <div class="sol-chip-row"><div class="sol-chip-n">payments-platform</div><span class="mat-chip mc-in">INT</span></div>
+              <div class="sol-chip-row"><div class="sol-chip-n">payments-auth</div><span class="mat-chip mc-dv">DEV</span></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const c=document.getElementById('cur'),r=document.getElementById('curR');
+document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';setTimeout(()=>{r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';},70);});
+document.querySelectorAll('a,button,.sde-card').forEach(el=>{el.addEventListener('mouseenter',()=>{c.style.width='16px';c.style.height='16px';r.style.width='40px';r.style.height='40px';r.style.opacity='.6';});el.addEventListener('mouseleave',()=>{c.style.width='8px';c.style.height='8px';r.style.width='28px';r.style.height='28px';r.style.opacity='.35';});});
+document.querySelectorAll('.f-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.f-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');}));
+function selectSde(card, name, id, meta, status){
+  document.querySelectorAll('.sde-card').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  document.getElementById('dh-name').textContent=name;
+  document.getElementById('dh-id').textContent=id+' · '+meta;
+}
+</script>
+</body>
+</html>

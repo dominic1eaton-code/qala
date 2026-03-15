@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>qala — Workspaces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A0A0F;--paper:#F5F3EE;--paper2:#EDEBE4;--accent:#1A3EFF;--red:#FF3B1A;--green:#00C48C;--amber:#F5A623;--muted:#7A7870;--rule:#D8D5CC;--mono:'DM Mono',monospace;--display:'Syne',sans-serif;--serif:'Instrument Serif',serif;--sidebar:220px;--bar:52px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--paper);color:var(--ink);font-family:var(--display);cursor:none;display:flex;height:100vh;overflow:hidden;}
+#cur{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .12s,height .12s;mix-blend-mode:multiply;}
+#curR{position:fixed;width:28px;height:28px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.35;transition:width .2s,height .2s;}
+.sidebar{width:var(--sidebar);height:100vh;background:var(--ink);display:flex;flex-direction:column;flex-shrink:0;border-right:1px solid rgba(255,255,255,.05);}
+.sb-logo{padding:1.1rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:.6rem;flex-shrink:0;}
+.sb-mark{width:26px;height:26px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:800;font-size:.8rem;color:#fff;flex-shrink:0;}
+.sb-wordmark{font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:-.04em;color:#fff;}.sb-wordmark span{color:var(--accent);}
+.sb-section{font-family:var(--mono);font-size:.53rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:.9rem 1.25rem .3rem;}
+.sb-link{display:flex;align-items:center;gap:.7rem;padding:.5rem 1.25rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.03em;color:rgba(255,255,255,.38);text-decoration:none;cursor:none;transition:color .15s,background .15s;position:relative;}
+.sb-link:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.04);}
+.sb-link.active{color:#fff;background:rgba(26,62,255,.22);}
+.sb-link.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);}
+.sb-icon{width:13px;height:13px;opacity:.55;flex-shrink:0;}.sb-link.active .sb-icon{opacity:1;}
+.sb-pill{margin-left:auto;font-family:var(--mono);font-size:.5rem;background:var(--red);color:#fff;padding:.12rem .38rem;}
+.sb-bottom{margin-top:auto;padding:.9rem 1.25rem;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:.6rem;}
+.sb-avatar{width:26px;height:26px;background:linear-gradient(135deg,var(--accent),#6B7CFF);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.55rem;color:#fff;flex-shrink:0;}
+.sb-user{flex:1;min-width:0;}.sb-name{font-family:var(--mono);font-size:.63rem;color:rgba(255,255,255,.75);}.sb-role{font-family:var(--mono);font-size:.52rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.06em;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{height:var(--bar);background:rgba(245,243,238,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);display:flex;align-items:center;padding:0 1.75rem;gap:1rem;flex-shrink:0;}
+.tb-crumb{font-family:var(--mono);font-size:.65rem;color:var(--muted);display:flex;align-items:center;gap:.4rem;}.tb-crumb b{color:var(--ink);font-weight:500;}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:.6rem;}
+.tb-btn{font-family:var(--mono);font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;padding:.38rem .85rem;border:1.5px solid var(--rule);background:transparent;color:var(--ink);cursor:none;transition:border-color .2s,color .2s;display:inline-flex;align-items:center;}
+.tb-btn:hover{border-color:var(--accent);color:var(--accent);}
+.tb-btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.tb-btn.primary:hover{background:var(--accent);border-color:var(--accent);}
+.tb-notif{position:relative;width:26px;height:26px;border:1.5px solid var(--rule);display:flex;align-items:center;justify-content:center;cursor:none;}
+.tb-notif::after{content:'';position:absolute;top:4px;right:4px;width:5px;height:5px;border-radius:50%;background:var(--red);}
+
+/* ── 3-panel layout ── */
+.ws-layout{display:flex;flex:1;overflow:hidden;}
+/* panel 1: workspace list */
+.ws-list{width:210px;border-right:1px solid var(--rule);display:flex;flex-direction:column;flex-shrink:0;background:var(--paper);}
+.ws-list-head{padding:.7rem .9rem;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;}
+.ws-list-title{font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.ws-list-add{font-family:var(--mono);font-size:.65rem;color:var(--accent);cursor:none;border:none;background:none;transition:opacity .2s;}
+.ws-list-add:hover{opacity:.6;}
+.ws-list-scroll{flex:1;overflow-y:auto;}.ws-list-scroll::-webkit-scrollbar{width:3px;}.ws-list-scroll::-webkit-scrollbar-thumb{background:var(--rule);}
+.ws-item{padding:.6rem .9rem;cursor:none;transition:background .15s;border-bottom:1px solid var(--rule);position:relative;}
+.ws-item:last-child{border-bottom:none;}
+.ws-item:hover{background:var(--paper2);}
+.ws-item.active{background:rgba(26,62,255,.05);}
+.ws-item.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);}
+.ws-name{font-family:var(--mono);font-size:.63rem;color:var(--ink);}
+.ws-meta{font-family:var(--mono);font-size:.53rem;color:var(--muted);margin-top:.1rem;}
+/* panel 2: file tree */
+.ws-tree{width:220px;border-right:1px solid var(--rule);display:flex;flex-direction:column;flex-shrink:0;}
+.ws-tree-head{padding:.7rem .9rem;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;}
+.wt-title{font-family:var(--mono);font-size:.6rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.wt-actions{display:flex;gap:.35rem;flex-shrink:0;}
+.wt-btn{font-family:var(--mono);font-size:.55rem;color:var(--muted);border:none;background:none;cursor:none;transition:color .15s;}
+.wt-btn:hover{color:var(--accent);}
+.ws-tree-scroll{flex:1;overflow-y:auto;padding:.5rem 0;}.ws-tree-scroll::-webkit-scrollbar{width:3px;}
+.tree-folder{padding:.25rem .7rem;display:flex;align-items:center;gap:.4rem;cursor:none;transition:background .15s;}
+.tree-folder:hover{background:var(--paper2);}
+.tree-folder.open .tree-folder-arrow{transform:rotate(90deg);}
+.tree-folder-arrow{font-size:.6rem;color:var(--muted);transition:transform .15s;flex-shrink:0;}
+.tree-folder-name{font-family:var(--mono);font-size:.6rem;color:var(--ink);}
+.tree-file{padding:.22rem .7rem .22rem 1.7rem;display:flex;align-items:center;gap:.4rem;cursor:none;transition:background .15s;}
+.tree-file:hover{background:var(--paper2);}
+.tree-file.active{background:rgba(26,62,255,.07);}
+.tree-file-icon{width:10px;height:10px;flex-shrink:0;opacity:.5;}
+.tree-file-name{font-family:var(--mono);font-size:.58rem;color:var(--muted);}
+.tree-file.active .tree-file-name{color:var(--accent);}
+/* panel 3: file viewer */
+.ws-viewer{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.wv-head{padding:.7rem 1.25rem;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:.75rem;background:var(--paper2);}
+.wv-path{font-family:var(--mono);font-size:.6rem;color:var(--muted);}
+.wv-path b{color:var(--ink);}
+.wv-acts{margin-left:auto;display:flex;gap:.4rem;}
+.wv-btn{font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;padding:.22rem .52rem;border:1px solid var(--rule);background:transparent;color:var(--muted);cursor:none;transition:all .15s;}
+.wv-btn:hover{border-color:var(--accent);color:var(--accent);}
+.wv-scroll{flex:1;overflow-y:auto;padding:1.5rem;background:var(--paper);}
+.wv-scroll::-webkit-scrollbar{width:4px;}.wv-scroll::-webkit-scrollbar-thumb{background:var(--rule);}
+.wv-code{font-family:var(--mono);font-size:.67rem;line-height:1.75;color:var(--ink);}
+.wv-code .cm{color:var(--muted);font-style:italic;}
+.wv-code .kw{color:var(--accent);}
+.wv-code .st{color:var(--green);}
+.wv-code .nm{color:var(--amber);}
+.ln{display:inline-block;width:28px;color:var(--rule);user-select:none;text-align:right;margin-right:1rem;}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="curR"></div>
+<aside class="sidebar">
+  <div class="sb-logo"><div class="sb-mark">q</div><div class="sb-wordmark">qa<span>la</span></div></div>
+  <div class="sb-section">Workspace</div>
+  <a href="app-dashboard.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><rect x="1" y="1" width="4.5" height="4.5" stroke="currentColor" stroke-width="1.1"/><rect x="7.5" y="1" width="4.5" height="4.5" stroke="currentColor" stroke-width="1.1"/><rect x="1" y="7.5" width="4.5" height="4.5" stroke="currentColor" stroke-width="1.1"/><rect x="7.5" y="7.5" width="4.5" height="4.5" stroke="currentColor" stroke-width="1.1"/></svg>Dashboard</a>
+  <a href="app-solutions.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.1"/><circle cx="6.5" cy="6.5" r="2" stroke="currentColor" stroke-width="1.1"/></svg>Solutions</a>
+  <a href="app-factories.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><path d="M1 10.5V7L4 4l3 3 2.5-3.5L13 7v3.5H1Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>Factories</a>
+  <a href="app-sdes.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><rect x="1" y="3" width="11" height="7.5" rx=".75" stroke="currentColor" stroke-width="1.1"/><path d="M3.5 5.5l2 2-2 2M7 9h3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>SDEs<span class="sb-pill">12</span></a>
+  <a href="app-workspaces.html" class="sb-link active"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><path d="M1 3h4.5l1.5 2H12v6.5H1V3Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>Workspaces</a>
+  <div class="sb-section">Execution</div>
+  <a href="app-pipelines.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><circle cx="2" cy="6.5" r="1.25" stroke="currentColor" stroke-width="1.1"/><circle cx="6.5" cy="6.5" r="1.25" stroke="currentColor" stroke-width="1.1"/><circle cx="11" cy="6.5" r="1.25" stroke="currentColor" stroke-width="1.1"/><path d="M3.25 6.5h2M7.75 6.5H9.75" stroke="currentColor" stroke-width="1.1"/></svg>Pipelines</a>
+  <a href="app-artifacts.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><path d="M6.5 1L12 4v5L6.5 12 1 9V4L6.5 1Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>Artifacts</a>
+  <div class="sb-section">Intelligence</div>
+  <a href="app-security.html" class="sb-link"><svg class="sb-icon" viewBox="0 0 13 13" fill="none"><path d="M6.5 1l5 2v3.5c0 2.6-2 4.5-5 5.5-3-1-5-2.9-5-5.5V3L6.5 1Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>Security<span class="sb-pill">3</span></a>
+  <div class="sb-bottom"><div class="sb-avatar">JD</div><div class="sb-user"><div class="sb-name">Jordan Dev</div><div class="sb-role">Admin</div></div></div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <div class="tb-crumb">qala <span style="opacity:.35">/</span> <b>Workspaces</b> <span style="opacity:.35">/</span> payments-workspace</div>
+    <div class="tb-right">
+      <div class="tb-notif"></div>
+      <button class="tb-btn primary">+ New Workspace</button>
+    </div>
+  </header>
+
+  <div class="ws-layout">
+
+    <!-- PANEL 1: WORKSPACE LIST -->
+    <div class="ws-list">
+      <div class="ws-list-head">
+        <div class="ws-list-title">Workspaces</div>
+        <button class="ws-list-add">+</button>
+      </div>
+      <div class="ws-list-scroll">
+        <div class="ws-item active">
+          <div class="ws-name">payments-workspace</div>
+          <div class="ws-meta">payments-sde-01 · 14 files</div>
+        </div>
+        <div class="ws-item">
+          <div class="ws-name">identity-workspace</div>
+          <div class="ws-meta">identity-sde-03 · 9 files</div>
+        </div>
+        <div class="ws-item">
+          <div class="ws-name">analytics-workspace</div>
+          <div class="ws-meta">analytics-sde · 22 files</div>
+        </div>
+        <div class="ws-item">
+          <div class="ws-name">notifications-ws</div>
+          <div class="ws-meta">notifications-sde · 7 files</div>
+        </div>
+        <div class="ws-item">
+          <div class="ws-name">security-workspace</div>
+          <div class="ws-meta">sec-sde-02 · 11 files</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2: FILE TREE -->
+    <div class="ws-tree">
+      <div class="ws-tree-head">
+        <div class="wt-title">payments-workspace</div>
+        <div class="wt-actions">
+          <button class="wt-btn" title="New file">+</button>
+          <button class="wt-btn" title="New folder">📁</button>
+        </div>
+      </div>
+      <div class="ws-tree-scroll">
+        <div class="tree-folder open" onclick="this.classList.toggle('open')">
+          <span class="tree-folder-arrow">▶</span>
+          <span class="tree-folder-name">docs/</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'docs/charter.md')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"/></svg>
+          <span class="tree-file-name">charter.md</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'docs/solution-book.md')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"/></svg>
+          <span class="tree-file-name">solution-book.md</span>
+        </div>
+        <div class="tree-file active" onclick="openFile(this,'docs/api-spec.yaml')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"/></svg>
+          <span class="tree-file-name">api-spec.yaml</span>
+        </div>
+        <div class="tree-folder open" onclick="this.classList.toggle('open')">
+          <span class="tree-folder-arrow">▶</span>
+          <span class="tree-folder-name">config/</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'config/sde.env')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"/></svg>
+          <span class="tree-file-name">sde.env</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'config/toolchain.toml')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"/></svg>
+          <span class="tree-file-name">toolchain.toml</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'config/hermetic.lock')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"/></svg>
+          <span class="tree-file-name">hermetic.lock</span>
+        </div>
+        <div class="tree-folder" onclick="this.classList.toggle('open')">
+          <span class="tree-folder-arrow">▶</span>
+          <span class="tree-folder-name">playbooks/</span>
+        </div>
+        <div class="tree-folder" onclick="this.classList.toggle('open')">
+          <span class="tree-folder-arrow">▶</span>
+          <span class="tree-folder-name">solution-models/</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: VIEWER -->
+    <div class="ws-viewer">
+      <div class="wv-head">
+        <div class="wv-path">payments-workspace / docs / <b id="vpath">api-spec.yaml</b></div>
+        <div class="wv-acts">
+          <button class="wv-btn">Edit</button>
+          <button class="wv-btn">Download</button>
+          <button class="wv-btn">History</button>
+        </div>
+      </div>
+      <div class="wv-scroll">
+        <pre class="wv-code" id="vcode"><span class="ln">1</span><span class="cm"># payments-platform API specification</span>
+<span class="ln">2</span><span class="cm"># qala workspace: payments-workspace</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="kw">openapi</span>: <span class="st">"3.1.0"</span>
+<span class="ln">5</span><span class="kw">info</span>:
+<span class="ln">6</span>  <span class="kw">title</span>: <span class="st">payments-platform API</span>
+<span class="ln">7</span>  <span class="kw">version</span>: <span class="st">"1.0.0"</span>
+<span class="ln">8</span>  <span class="kw">description</span>: <span class="st">Core payments solution REST API</span>
+<span class="ln">9</span>
+<span class="ln">10</span><span class="kw">paths</span>:
+<span class="ln">11</span>  <span class="nm">/payments</span>:
+<span class="ln">12</span>    <span class="kw">post</span>:
+<span class="ln">13</span>      <span class="kw">summary</span>: Initiate a payment
+<span class="ln">14</span>      <span class="kw">requestBody</span>:
+<span class="ln">15</span>        <span class="kw">content</span>:
+<span class="ln">16</span>          <span class="st">application/json</span>:
+<span class="ln">17</span>            <span class="kw">schema</span>:
+<span class="ln">18</span>              <span class="kw">$ref</span>: <span class="st">'#/components/schemas/PaymentRecord'</span>
+<span class="ln">19</span>
+<span class="ln">20</span><span class="kw">components</span>:
+<span class="ln">21</span>  <span class="kw">schemas</span>:
+<span class="ln">22</span>    <span class="nm">PaymentRecord</span>:
+<span class="ln">23</span>      <span class="kw">type</span>: <span class="st">object</span>
+<span class="ln">24</span>      <span class="kw">properties</span>:
+<span class="ln">25</span>        <span class="nm">txn_id</span>:
+<span class="ln">26</span>          <span class="kw">type</span>: <span class="st">string</span>
+<span class="ln">27</span>        <span class="nm">amount</span>:
+<span class="ln">28</span>          <span class="kw">type</span>: <span class="st">number</span>
+<span class="ln">29</span>          <span class="kw">format</span>: <span class="st">double</span>
+<span class="ln">30</span>        <span class="nm">currency</span>:
+<span class="ln">31</span>          <span class="kw">type</span>: <span class="st">string</span>
+<span class="ln">32</span>          <span class="kw">enum</span>: [<span class="st">USD</span>, <span class="st">EUR</span>, <span class="st">GBP</span>]
+<span class="ln">33</span>        <span class="nm">recipient_id</span>:
+<span class="ln">34</span>          <span class="kw">type</span>: <span class="st">string</span>
+<span class="ln">35</span>      <span class="kw">required</span>: [txn_id, amount, currency, recipient_id]</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const c=document.getElementById('cur'),r=document.getElementById('curR');
+document.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';setTimeout(()=>{r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';},70);});
+document.querySelectorAll('a,button,.ws-item,.tree-folder,.tree-file,.wv-btn').forEach(el=>{el.addEventListener('mouseenter',()=>{c.style.width='16px';c.style.height='16px';r.style.width='40px';r.style.height='40px';r.style.opacity='.6';});el.addEventListener('mouseleave',()=>{c.style.width='8px';c.style.height='8px';r.style.width='28px';r.style.height='28px';r.style.opacity='.35';});});
+function openFile(el, path) {
+  document.querySelectorAll('.tree-file').forEach(f=>f.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('vpath').textContent = path.split('/').pop();
+  const nm = path.split('/').pop();
+  document.getElementById('vcode').innerHTML = `<span style="font-family:var(--mono);font-size:.65rem;color:var(--muted);line-height:1.75"><span style="display:inline-block;width:28px;color:var(--rule);text-align:right;margin-right:1rem">1</span><em style="color:var(--muted)"># ${nm}</em>\n<span style="display:inline-block;width:28px;color:var(--rule);text-align:right;margin-right:1rem">2</span><em style="color:var(--muted)"># workspace: payments-workspace</em>\n<span style="display:inline-block;width:28px;color:var(--rule);text-align:right;margin-right:1rem">3</span>\n<span style="display:inline-block;width:28px;color:var(--rule);text-align:right;margin-right:1rem">4</span>File content loaded from CMS endpoint...</span>`;
+}
+</script>
+</body>
+</html>

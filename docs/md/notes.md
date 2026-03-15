@@ -868,8 +868,26 @@ Legend:
 
 qala
 
-a platform for managing solutions and solution models. The platform allows for the creation of solution factories, which produce solution developmennt environments which allow for the development of solution models which are used to model and create solutions to problems and achieve goals+objectives+outcomes.
+a platform for managing solutions and solution models and solution factories+environments. The platform allows for the creation of solution factories, which produce solution developmennt environments which allow for the development of solution models which are used to model and create solutions to problems and achieve goals+objectives+outcomes. Solutions can have playbooks which are blueprints and designs for a given solution. solution books contains all of the documentations+files+content of/for a given solution. Solution development environments SDEs are distributable, delpoyable, releasable, composable, configurable, version controlled, have settings+configurations+parameters+options, have configuration files, have toolkits+toolsets+toolchains+tools+3rd party integrations, have asset+artifact+capital+resource repositories, have content mangement systems, have communications+networking modules and connections, are scalable. Users ranging from a single user wanting to organizing personal hobby project solutions to large enteprises with thousands of products and services can use the qala platform to manage their solutions, all through a single standardized interface/platform.  the qala platform itself is a solution factory, a/the root solution factory that can produced tiered/hierarchichal solutions factories+environments+models.
 
 
+solution models registry
+solution value chain + solution value chain management
+solution playbooks+plans+roadmaps+timelines+schedules+gantts
+solution resource management system
+solution ownership system
 
+---
+
+business solutions/plans, business solution+plan+play books
+business models, business models registry
+solution value proposition management
+
+---
+
+kogi manages inputs
+ume manages transformations
+qala manages outputs
+
+kogi+ume+qala manages outcomes in a systematic+determinstic way
 

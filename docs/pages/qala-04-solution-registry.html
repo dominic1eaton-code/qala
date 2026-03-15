@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qala — Solution Registry</title><link rel="stylesheet" href="qala-shared.css"><style>
+.sol-card{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:5px;padding:12px 14px;cursor:pointer;transition:all .12s;position:relative;overflow:hidden}
+.sol-card:hover{border-color:var(--border-bright)}
+.sol-type-bar{position:absolute;top:0;left:0;right:0;height:2px}
+.sol-type-bar.application{background:var(--teal)}
+.sol-type-bar.system{background:var(--blue)}
+.sol-type-bar.service{background:var(--ok)}
+.sol-type-bar.platform{background:var(--gold)}
+.sol-type-bar.product{background:var(--violet)}
+.sol-type-bar.good{background:var(--warn)}
+.sol-name{font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:4px;margin-top:4px;display:flex;align-items:center;gap:7px}
+.sol-meta{font-size:9.5px;font-family:var(--mono);color:var(--text-muted);display:flex;gap:10px;margin-bottom:8px}
+.sol-meta span{color:var(--text-secondary)}
+.sol-tags{display:flex;flex-wrap:wrap;gap:3px}
+.detail-panel{background:var(--bg-raised);border:1px solid var(--border-mid);border-radius:5px;padding:14px}
+.struct-tree{font-family:var(--mono);font-size:10.5px;line-height:1.8;color:var(--text-secondary)}
+.struct-tree .node{color:var(--text-primary)}
+.struct-tree .leaf{color:var(--teal)}
+.struct-tree .meta{color:var(--text-muted);font-size:9.5px}
+.type-filter{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tf-btn{background:var(--bg-surface);border:1px solid var(--border-dim);border-radius:3px;padding:3px 10px;font-size:10px;font-family:var(--mono);color:var(--text-secondary);cursor:pointer;transition:all .1s}
+.tf-btn:hover{border-color:var(--border-bright);color:var(--text-primary)}
+.tf-btn.sel{background:var(--gold-glow);border-color:var(--gold);color:var(--gold)}
+</style></head><body>
+<div class="shell">
+<nav class="nav">
+  <div class="nav-logo"><span class="logo-word">qala</span><span class="logo-badge">SFOS</span></div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Factory</div>
+    <a class="nav-item" href="qala-01-dashboard.html"><span class="nav-ic">⬡</span>Dashboard</a>
+    <a class="nav-item" href="qala-02-solution-factory.html"><span class="nav-ic">◈</span>Solution Factory</a>
+    <a class="nav-item" href="qala-03-sde-manager.html"><span class="nav-ic">⬕</span>SDE Manager<span class="nav-ct">5</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Solutions</div>
+    <a class="nav-item on" href="qala-04-solution-registry.html"><span class="nav-ic">◫</span>Registry<span class="nav-ct">12</span></a>
+    <a class="nav-item" href="qala-05-workspace.html"><span class="nav-ic">⬜</span>Workspace</a>
+    <a class="nav-item" href="qala-07-artifacts.html"><span class="nav-ic">⬡</span>Artifacts<span class="nav-ct">34</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Execution</div>
+    <a class="nav-item" href="qala-06-cicd.html"><span class="nav-ic">▷</span>CI/CD Pipelines</a>
+    <a class="nav-item" href="#"><span class="nav-ic">∿</span>Data Platform</a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Intelligence</div>
+    <a class="nav-item" href="qala-08-ai-insights.html"><span class="nav-ic">✦</span>AI Insights<span class="nav-ct">7</span></a>
+    <a class="nav-item" href="qala-09-security.html"><span class="nav-ic">⛨</span>Security<span class="nav-ct">3</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Account</div>
+    <a class="nav-item" href="#"><span class="nav-ic">◯</span>Notifications<span class="nav-ct">9</span></a>
+    <a class="nav-item" href="#"><span class="nav-ic">⚙</span>Settings</a>
+  </div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Solution Registry</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>alpha-factory-01</span><span class="sep">/</span><span>solutions</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search registry…">
+      <button class="btn btn-g btn-sm">Import</button>
+      <button class="btn btn-p btn-sm">+ New Solution</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sr g4" style="margin-bottom:14px">
+      <div class="sc"><div class="sc-lbl">Total Solutions</div><div class="sc-val">12</div><div class="sc-sub">across 6 types</div></div>
+      <div class="sc"><div class="sc-lbl">In Progress</div><div class="sc-val t">3</div><div class="sc-sub">active development</div></div>
+      <div class="sc"><div class="sc-lbl">Published</div><div class="sc-val g">7</div><div class="sc-sub">latest releases</div></div>
+      <div class="sc"><div class="sc-lbl">Deprecated</div><div class="sc-val b">2</div><div class="sc-sub">scheduled removal</div></div>
+    </div>
+
+    <div class="type-filter">
+      <button class="tf-btn sel">All</button>
+      <button class="tf-btn">Application</button>
+      <button class="tf-btn">System</button>
+      <button class="tf-btn">Service</button>
+      <button class="tf-btn">Platform</button>
+      <button class="tf-btn">Product</button>
+      <button class="tf-btn">Good</button>
+    </div>
+
+    <div class="gs">
+      <!-- LEFT: Grid of solutions -->
+      <div>
+        <div class="g2">
+          <div class="sol-card"><div class="sol-type-bar application"></div>
+            <div class="sol-name"><span class="bdg tl">Application</span>inventory-tracker</div>
+            <div class="sol-meta">v <span>1.2.0</span> · SDE <span>sde-core-api</span></div>
+            <div class="sol-tags"><span class="tag">go</span><span class="tag">rest</span><span class="tag">postgres</span></div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+              <span style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Mar 12</span>
+            </div>
+          </div>
+          <div class="sol-card"><div class="sol-type-bar service"></div>
+            <div class="sol-name"><span class="bdg ok">Service</span>auth-service</div>
+            <div class="sol-meta">v <span>2.1.0</span> · SDE <span>sde-core-api</span></div>
+            <div class="sol-tags"><span class="tag">jwt</span><span class="tag">rbac</span><span class="tag">oauth2</span></div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+              <span style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Mar 10</span>
+            </div>
+          </div>
+          <div class="sol-card"><div class="sol-type-bar system"></div>
+            <div class="sol-name"><span class="bdg inf">System</span>ml-inference-engine</div>
+            <div class="sol-meta">v <span>0.9.3</span> · SDE <span>sde-ml-research</span></div>
+            <div class="sol-tags"><span class="tag">rust</span><span class="tag">onnx</span><span class="tag">gpu</span></div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+              <span class="bdg wn"><span class="dot"></span>In Progress</span>
+              <span style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Mar 8</span>
+            </div>
+          </div>
+          <div class="sol-card"><div class="sol-type-bar platform"></div>
+            <div class="sol-name"><span class="bdg gd">Platform</span>infra-terraform-base</div>
+            <div class="sol-meta">v <span>1.0.0</span> · SDE <span>sde-infra</span></div>
+            <div class="sol-tags"><span class="tag">hcl</span><span class="tag">k8s</span><span class="tag">aws</span></div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+              <span style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Mar 7</span>
+            </div>
+          </div>
+          <div class="sol-card"><div class="sol-type-bar application"></div>
+            <div class="sol-name"><span class="bdg tl">Application</span>admin-dashboard</div>
+            <div class="sol-meta">v <span>3.0.1</span> · SDE <span>sde-frontend</span></div>
+            <div class="sol-tags"><span class="tag">react</span><span class="tag">ts</span><span class="tag">tailwind</span></div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+              <span class="bdg ok"><span class="dot"></span>Published</span>
+              <span style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Mar 11</span>
+            </div>
+          </div>
+          <div class="sol-card"><div class="sol-type-bar service"></div>
+            <div class="sol-name"><span class="bdg ok">Service</span>notification-service</div>
+            <div class="sol-meta">v <span>1.0.5</span> · SDE <span>sde-core-api</span></div>
+            <div class="sol-tags"><span class="tag">kafka</span><span class="tag">email</span><span class="tag">sms</span></div>
+            <div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+              <span class="bdg wn"><span class="dot"></span>In Progress</span>
+              <span style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Mar 13</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Detail of selected solution -->
+      <div>
+        <div class="panel">
+          <div class="ph"><span class="pt" style="color:var(--teal)">inventory-tracker</span><div class="pa"><button class="btn btn-g btn-sm">Edit</button><button class="btn btn-p btn-sm">Deploy</button></div></div>
+          <div class="pb">
+            <div class="lrow" style="margin-bottom:10px">
+              <div><div class="sc-lbl" style="margin-bottom:3px">Type</div><span class="bdg tl">Application</span></div>
+              <div><div class="sc-lbl" style="margin-bottom:3px">Version</div><div style="font-family:var(--mono);font-size:13px;color:var(--text-primary)">v1.2.0</div></div>
+              <div><div class="sc-lbl" style="margin-bottom:3px">State</div><span class="bdg ok"><span class="dot"></span>Published</span></div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="sh">Solution Structure</div>
+            <div class="struct-tree">
+              <div><span class="node">System</span> <span class="meta">→ inventory-system</span></div>
+              <div style="padding-left:14px">└ <span class="node">Application</span> <span class="meta">→ inventory-tracker</span></div>
+              <div style="padding-left:28px">├ <span class="node">Process</span> <span class="meta">→ product-management</span></div>
+              <div style="padding-left:42px">├ <span class="node">Component</span> <span class="meta">→ product-catalog</span></div>
+              <div style="padding-left:56px">└ <span class="leaf">Interface</span> <span class="meta">→ CatalogAPI</span></div>
+              <div style="padding-left:70px;color:var(--text-muted)">↑ Message: <span style="color:var(--gold)">ProductCreated</span> (event)</div>
+              <div style="padding-left:70px;color:var(--text-muted)">↓ Message: <span style="color:var(--blue)">ProductState</span> (state)</div>
+              <div style="padding-left:42px">└ <span class="node">Component</span> <span class="meta">→ stock-tracker</span></div>
+              <div style="padding-left:56px">└ <span class="leaf">Interface</span> <span class="meta">→ StockAPI</span></div>
+              <div style="padding-left:28px">└ <span class="node">Process</span> <span class="meta">→ reporting</span></div>
+              <div style="padding-left:42px">└ <span class="node">Component</span> <span class="meta">→ analytics-writer</span></div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="sh">Value Chain</div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">
+              <span class="chip">Inputs</span>
+              <span style="font-size:10px;font-family:var(--mono);color:var(--text-muted);align-self:center">→</span>
+              <span class="chip">Transform</span>
+              <span style="font-size:10px;font-family:var(--mono);color:var(--text-muted);align-self:center">→</span>
+              <span class="chip">Outputs</span>
+              <span style="font-size:10px;font-family:var(--mono);color:var(--text-muted);align-self:center">→</span>
+              <span class="chip" style="color:var(--ok)">Outcomes</span>
+            </div>
+
+            <div class="divider"></div>
+            <div class="sh">Metadata</div>
+            <div class="lrow"><span class="lk">owner</span><span class="lv">Jordan Chen</span></div>
+            <div class="lrow"><span class="lk">sde</span><span class="lv">sde-core-api</span></div>
+            <div class="lrow"><span class="lk">last build</span><span class="lv">2m ago · passed</span></div>
+            <div class="lrow"><span class="lk">artifacts</span><span class="lv">3 packages</span></div>
+            <div class="lrow"><span class="lk">test coverage</span><span class="lv" style="color:var(--ok)">82%</span></div>
+            <div class="lrow"><span class="lk">playbook</span><span class="lv" style="color:var(--teal)">inventory-playbook-v1</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</body></html>

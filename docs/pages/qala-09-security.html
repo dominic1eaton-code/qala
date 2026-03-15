@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qala — Security</title><link rel="stylesheet" href="qala-shared.css"><style>
+.threat-card{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:5px;padding:11px 13px;margin-bottom:7px;cursor:pointer;transition:all .12s;position:relative;overflow:hidden}
+.threat-card:hover{border-color:var(--border-bright)}
+.threat-card.crit::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--err)}
+.threat-card.high::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--warn)}
+.threat-card.med::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--blue)}
+.threat-card.low::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--text-muted)}
+.th-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.th-id{font-family:var(--mono);font-size:9px;color:var(--text-muted)}
+.th-title{font-size:12px;font-weight:500;color:var(--text-primary);flex:1}
+.th-body{font-size:11px;color:var(--text-secondary);line-height:1.45;margin-bottom:6px}
+.th-footer{display:flex;align-items:center;gap:8px;font-size:9.5px;font-family:var(--mono);color:var(--text-muted)}
+.policy-row{display:flex;align-items:center;gap:10px;padding:7px 11px;border-bottom:1px solid var(--border-dim)}
+.policy-row:last-child{border-bottom:none}
+.pr-name{font-size:11.5px;color:var(--text-primary);flex:1}
+.pr-meta{font-size:9.5px;font-family:var(--mono);color:var(--text-muted);min-width:80px}
+.cve-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border-dim)}
+.cve-row:last-child{border-bottom:none}
+.cve-id{font-family:var(--mono);font-size:10.5px;color:var(--err);min-width:120px}
+.cve-pkg{font-size:10.5px;color:var(--text-secondary);flex:1}
+.vault-item{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border-dim)}
+.vault-item:last-child{border-bottom:none}
+.vi-name{font-family:var(--mono);font-size:10px;color:var(--teal);flex:1}
+.vi-type{font-size:9px;font-family:var(--mono);color:var(--text-muted);min-width:60px}
+</style></head><body>
+<div class="shell">
+<nav class="nav">
+  <div class="nav-logo"><span class="logo-word">qala</span><span class="logo-badge">SFOS</span></div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Factory</div>
+    <a class="nav-item" href="qala-01-dashboard.html"><span class="nav-ic">⬡</span>Dashboard</a>
+    <a class="nav-item" href="qala-02-solution-factory.html"><span class="nav-ic">◈</span>Solution Factory</a>
+    <a class="nav-item" href="qala-03-sde-manager.html"><span class="nav-ic">⬕</span>SDE Manager<span class="nav-ct">5</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Solutions</div>
+    <a class="nav-item" href="qala-04-solution-registry.html"><span class="nav-ic">◫</span>Registry<span class="nav-ct">12</span></a>
+    <a class="nav-item" href="qala-05-workspace.html"><span class="nav-ic">⬜</span>Workspace</a>
+    <a class="nav-item" href="qala-07-artifacts.html"><span class="nav-ic">⬡</span>Artifacts<span class="nav-ct">34</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Execution</div>
+    <a class="nav-item" href="qala-06-cicd.html"><span class="nav-ic">▷</span>CI/CD Pipelines</a>
+    <a class="nav-item" href="#"><span class="nav-ic">∿</span>Data Platform</a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Intelligence</div>
+    <a class="nav-item" href="qala-08-ai-insights.html"><span class="nav-ic">✦</span>AI Insights<span class="nav-ct">7</span></a>
+    <a class="nav-item on" href="qala-09-security.html"><span class="nav-ic">⛨</span>Security<span class="nav-ct">3</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Account</div>
+    <a class="nav-item" href="#"><span class="nav-ic">◯</span>Notifications<span class="nav-ct">9</span></a>
+    <a class="nav-item" href="#"><span class="nav-ic">⚙</span>Settings</a>
+  </div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Security & SEM</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>alpha-factory-01</span><span class="sep">/</span><span>security</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search threats…">
+      <button class="btn btn-g btn-sm">Update Policies</button>
+      <button class="btn btn-d btn-sm">⛨ Scan All SDEs</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sr g4" style="margin-bottom:14px">
+      <div class="sc"><div class="sc-lbl">Active Threats</div><div class="sc-val" style="color:var(--err)">3</div><div class="sc-sub">1 high · 2 medium</div></div>
+      <div class="sc"><div class="sc-lbl">CVEs Detected</div><div class="sc-val" style="color:var(--warn)">5</div><div class="sc-sub">in dependency trees</div></div>
+      <div class="sc"><div class="sc-lbl">Policies Active</div><div class="sc-val g">12</div><div class="sc-sub">enterprise-baseline-v2</div></div>
+      <div class="sc"><div class="sc-lbl">Last Full Scan</div><div class="sc-val b" style="font-size:14px;font-family:var(--mono)">1h ago</div><div class="sc-sub">all SDEs — 3 findings</div></div>
+    </div>
+
+    <div class="g2">
+      <!-- Left -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Active Threats</span><div class="pa"><span class="ps">3 open</span></div></div>
+          <div class="pb" style="padding:8px">
+            <div class="threat-card high">
+              <div class="th-header"><span class="bdg er">High</span><span class="th-id">THR-0041</span><span class="th-title">CVE-2024-44000 in go-jose library</span></div>
+              <div class="th-body">Authentication bypass vulnerability in go-jose v3.0.1 used by auth-service. JWT validation can be bypassed via malformed headers in edge cases.</div>
+              <div class="th-footer"><span>sde-core-api</span><span>·</span><span>CVE-2024-44000</span><span>·</span><span>CVSS 8.2</span><div style="margin-left:auto;display:flex;gap:4px"><button class="btn btn-xs btn-d">Quarantine</button><button class="btn btn-xs btn-g">Patch</button></div></div>
+            </div>
+            <div class="threat-card med">
+              <div class="th-header"><span class="bdg wn">Medium</span><span class="th-id">THR-0042</span><span class="th-title">CVE-2024-39293 in net/http stdlib</span></div>
+              <div class="th-body">HTTP request smuggling vulnerability under specific proxy configurations. Not confirmed exploitable in current deployment topology.</div>
+              <div class="th-footer"><span>sde-core-api</span><span>·</span><span>CVE-2024-39293</span><span>·</span><span>CVSS 6.1</span><div style="margin-left:auto;display:flex;gap:4px"><button class="btn btn-xs btn-g">Review</button></div></div>
+            </div>
+            <div class="threat-card med">
+              <div class="th-header"><span class="bdg wn">Medium</span><span class="th-id">THR-0043</span><span class="th-title">Unencrypted env variable in sde-ml-research</span></div>
+              <div class="th-body">API_KEY_OPENAI stored in plaintext environment variable rather than Vault secret path. Recommend migration to secrets store.</div>
+              <div class="th-footer"><span>sde-ml-research</span><span>·</span><span>Config Risk</span><span>·</span><span>CVSS 5.3</span><div style="margin-left:auto;display:flex;gap:4px"><button class="btn btn-xs btn-g">Migrate to Vault</button></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">CVE Dependency Scan</span><div class="pa"><button class="btn btn-g btn-sm">Full Report</button></div></div>
+          <div class="pb">
+            <div class="cve-row"><span class="cve-id">CVE-2024-44000</span><span class="cve-pkg">github.com/go-jose/go-jose@v3.0.1</span><span class="bdg er">High 8.2</span></div>
+            <div class="cve-row"><span class="cve-id">CVE-2024-39293</span><span class="cve-pkg">golang.org/x/net@v0.22.0</span><span class="bdg wn">Med 6.1</span></div>
+            <div class="cve-row"><span class="cve-id">CVE-2024-38521</span><span class="cve-pkg">github.com/grpc-ecosystem/grpc-gateway@v2.19</span><span class="bdg wn">Med 5.8</span></div>
+            <div class="cve-row"><span class="cve-id">CVE-2024-31228</span><span class="cve-pkg">github.com/redis/go-redis@v9.3.0</span><span class="bdg inf">Low 3.4</span></div>
+            <div class="cve-row"><span class="cve-id">CVE-2024-27304</span><span class="cve-pkg">github.com/jackc/pgx@v5.5.0</span><span class="bdg inf">Low 2.9</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Active Policies</span><div class="pa"><button class="btn btn-p btn-sm">+ Add Policy</button></div></div>
+          <div>
+            <div class="policy-row"><span class="pr-name">enterprise-baseline-v2</span><span class="pr-meta">All SDEs</span><span class="bdg ok"><span class="dot"></span>Active</span></div>
+            <div class="policy-row"><span class="pr-name">hermetic-build-required</span><span class="pr-meta">All SDEs</span><span class="bdg ok"><span class="dot"></span>Active</span></div>
+            <div class="policy-row"><span class="pr-name">sast-on-every-build</span><span class="pr-meta">All SDEs</span><span class="bdg ok"><span class="dot"></span>Active</span></div>
+            <div class="policy-row"><span class="pr-name">no-plain-secrets-in-env</span><span class="pr-meta">All SDEs</span><span class="bdg er"><span class="dot"></span>Violation</span></div>
+            <div class="policy-row"><span class="pr-name">artifact-signing-required</span><span class="pr-meta">All SDEs</span><span class="bdg ok"><span class="dot"></span>Active</span></div>
+            <div class="policy-row"><span class="pr-name">cve-high-block-deploy</span><span class="pr-meta">Prod SDEs</span><span class="bdg wn"><span class="dot"></span>Alerting</span></div>
+            <div class="policy-row"><span class="pr-name">mfa-required-admin</span><span class="pr-meta">Users</span><span class="bdg ok"><span class="dot"></span>Active</span></div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Secrets Vault</span><div class="pa"><span class="ps">hashicorp-vault v1.14</span><button class="btn btn-g btn-sm">+ New Secret</button></div></div>
+          <div class="pb">
+            <div class="vault-item"><span class="vi-name">secret/sde-core-api/db-password</span><span class="vi-type">database</span><span class="bdg ok">active</span></div>
+            <div class="vault-item"><span class="vi-name">secret/sde-core-api/jwt-signing-key</span><span class="vi-type">auth</span><span class="bdg ok">active</span></div>
+            <div class="vault-item"><span class="vi-name">secret/sde-core-api/kafka-creds</span><span class="vi-type">broker</span><span class="bdg ok">active</span></div>
+            <div class="vault-item"><span class="vi-name">secret/sde-frontend/cdn-api-key</span><span class="vi-type">api key</span><span class="bdg ok">active</span></div>
+            <div class="vault-item"><span class="vi-name">secret/sde-infra/aws-access-key</span><span class="vi-type">cloud</span><span class="bdg ok">active</span></div>
+            <div class="vault-item" style="border-left:2px solid var(--err);padding-left:8px"><span class="vi-name">env/sde-ml-research/OPENAI_API_KEY</span><span class="vi-type" style="color:var(--err)">⚠ plaintext</span><span class="bdg er">migrate</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Scan History</span></div>
+          <table class="dt">
+            <thead><tr><th>SDE</th><th>Scan Type</th><th>Findings</th><th>Time</th></tr></thead>
+            <tbody>
+              <tr><td class="pri">sde-core-api</td><td class="mono">SAST + CVE</td><td><span class="bdg er">2 findings</span></td><td class="mono">1h ago</td></tr>
+              <tr><td class="pri">sde-ml-research</td><td class="mono">Config + CVE</td><td><span class="bdg wn">1 finding</span></td><td class="mono">1h ago</td></tr>
+              <tr><td class="pri">sde-frontend</td><td class="mono">SAST + CVE</td><td><span class="bdg ok">Clean</span></td><td class="mono">1h ago</td></tr>
+              <tr><td class="pri">sde-data-pipeline</td><td class="mono">CVE</td><td><span class="bdg ok">Clean</span></td><td class="mono">1h ago</td></tr>
+              <tr><td class="pri">sde-infra</td><td class="mono">Config + SAST</td><td><span class="bdg ok">Clean</span></td><td class="mono">1h ago</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</body></html>

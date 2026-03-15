@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>qala — Data Platform</title><link rel="stylesheet" href="qala-shared.css"><style>
+.metric-tile{background:var(--bg-raised);border:1px solid var(--border-dim);border-radius:5px;padding:12px 14px;text-align:center}
+.mt-val{font-family:var(--display);font-size:26px;font-weight:700;line-height:1;margin-bottom:3px}
+.mt-lbl{font-size:9px;font-family:var(--mono);color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.mt-trend{font-size:9.5px;font-family:var(--mono)}
+.mt-trend.up{color:var(--ok)}.mt-trend.dn{color:var(--err)}.mt-trend.flat{color:var(--text-muted)}
+.sparkline{display:flex;align-items:flex-end;gap:2px;height:28px;margin-top:8px}
+.spark-bar{flex:1;background:var(--teal);border-radius:1px;opacity:.7;transition:opacity .1s;cursor:pointer}
+.spark-bar:hover{opacity:1}
+.spark-bar.warn{background:var(--warn)}.spark-bar.err{background:var(--err)}.spark-bar.gold{background:var(--gold)}
+.pipeline-flow{display:flex;align-items:center;gap:0;overflow-x:auto;padding:8px 0}
+.pf-stage{background:var(--bg-overlay);border:1px solid var(--border-dim);border-radius:4px;padding:8px 11px;min-width:100px;text-align:center;flex-shrink:0;position:relative}
+.pf-name{font-size:9.5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--text-secondary);margin-bottom:3px}
+.pf-count{font-family:var(--display);font-size:16px;font-weight:700;color:var(--text-primary)}
+.pf-sub{font-size:8.5px;font-family:var(--mono);color:var(--text-muted);margin-top:2px}
+.pf-arrow{font-size:14px;color:var(--text-dim);flex-shrink:0;margin:0 4px}
+.pf-stage.ok-stage{border-color:var(--teal-dim)}
+.pf-stage.ok-stage .pf-count{color:var(--teal)}
+.pf-stage.warn-stage{border-color:var(--gold-dim)}
+.pf-stage.warn-stage .pf-count{color:var(--gold)}
+.pf-stage.err-stage{border-color:rgba(248,113,113,.25)}
+.pf-stage.err-stage .pf-count{color:var(--err)}
+.log-stream{font-family:var(--mono);font-size:10px;line-height:1.7;max-height:220px;overflow-y:auto;background:var(--bg-void);border-radius:3px;padding:8px}
+.ls-row{display:flex;gap:8px;border-bottom:1px solid rgba(255,255,255,.03);padding:1px 0}
+.ls-time{color:var(--text-muted);flex-shrink:0;width:90px}
+.ls-src{color:var(--gold);flex-shrink:0;width:70px}
+.ls-msg{color:var(--text-secondary);flex:1}
+.ls-msg.ok{color:var(--ok)}.ls-msg.err{color:var(--err)}.ls-msg.warn{color:var(--warn)}
+.kv-metric{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border-dim)}
+.kv-metric:last-child{border-bottom:none}
+.kv-k{font-size:10.5px;color:var(--text-secondary);flex:1}
+.kv-v{font-family:var(--mono);font-size:11px;font-weight:600;min-width:60px;text-align:right}
+.kv-v.ok{color:var(--ok)}.kv-v.warn{color:var(--warn)}.kv-v.err{color:var(--err)}.kv-v.gold{color:var(--gold)}
+</style></head><body>
+<div class="shell">
+<nav class="nav">
+  <div class="nav-logo"><span class="logo-word">qala</span><span class="logo-badge">SFOS</span></div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Factory</div>
+    <a class="nav-item" href="qala-01-dashboard.html"><span class="nav-ic">⬡</span>Dashboard</a>
+    <a class="nav-item" href="qala-02-solution-factory.html"><span class="nav-ic">◈</span>Solution Factory</a>
+    <a class="nav-item" href="qala-03-sde-manager.html"><span class="nav-ic">⬕</span>SDE Manager<span class="nav-ct">5</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Solutions</div>
+    <a class="nav-item" href="qala-04-solution-registry.html"><span class="nav-ic">◫</span>Registry<span class="nav-ct">12</span></a>
+    <a class="nav-item" href="qala-05-workspace.html"><span class="nav-ic">⬜</span>Workspace</a>
+    <a class="nav-item" href="qala-07-artifacts.html"><span class="nav-ic">⬡</span>Artifacts<span class="nav-ct">34</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Execution</div>
+    <a class="nav-item" href="qala-06-cicd.html"><span class="nav-ic">▷</span>CI/CD Pipelines</a>
+    <a class="nav-item on" href="qala-12-data-platform.html"><span class="nav-ic">∿</span>Data Platform</a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Intelligence</div>
+    <a class="nav-item" href="qala-08-ai-insights.html"><span class="nav-ic">✦</span>AI Insights<span class="nav-ct">7</span></a>
+    <a class="nav-item" href="qala-09-security.html"><span class="nav-ic">⛨</span>Security<span class="nav-ct">3</span></a>
+  </div>
+  <div class="nav-sec"><div class="nav-sec-lbl">Account</div>
+    <a class="nav-item" href="qala-13-notifications.html"><span class="nav-ic">◯</span>Notifications<span class="nav-ct">9</span></a>
+    <a class="nav-item" href="qala-16-settings.html"><span class="nav-ic">⚙</span>Settings</a>
+  </div>
+</nav>
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Data Platform</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>alpha-factory-01</span><span class="sep">/</span><span style="color:var(--teal)">data-platform</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search metrics…">
+      <button class="btn btn-g btn-sm">Export</button>
+      <button class="btn btn-p btn-sm">▷ Run Pipeline</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <!-- KPI row -->
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px">
+      <div class="metric-tile">
+        <div class="mt-lbl">Build Success</div>
+        <div class="mt-val" style="color:var(--ok)">88.9%</div>
+        <div class="mt-trend up">↑ +2.1% vs yesterday</div>
+        <div class="sparkline">
+          <div class="spark-bar" style="height:60%"></div><div class="spark-bar" style="height:75%"></div><div class="spark-bar" style="height:55%"></div><div class="spark-bar" style="height:90%"></div><div class="spark-bar" style="height:80%"></div><div class="spark-bar" style="height:100%"></div><div class="spark-bar" style="height:89%"></div>
+        </div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-lbl">Avg Build Time</div>
+        <div class="mt-val" style="color:var(--teal)">2m 04s</div>
+        <div class="mt-trend up">↓ −18s vs yesterday</div>
+        <div class="sparkline">
+          <div class="spark-bar gold" style="height:90%"></div><div class="spark-bar gold" style="height:80%"></div><div class="spark-bar gold" style="height:95%"></div><div class="spark-bar gold" style="height:70%"></div><div class="spark-bar gold" style="height:65%"></div><div class="spark-bar gold" style="height:60%"></div><div class="spark-bar gold" style="height:55%"></div>
+        </div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-lbl">Test Coverage</div>
+        <div class="mt-val" style="color:var(--gold)">72.5%</div>
+        <div class="mt-trend flat">→ +0.3% vs yesterday</div>
+        <div class="sparkline">
+          <div class="spark-bar gold" style="height:50%"></div><div class="spark-bar gold" style="height:55%"></div><div class="spark-bar gold" style="height:60%"></div><div class="spark-bar gold" style="height:65%"></div><div class="spark-bar gold" style="height:68%"></div><div class="spark-bar gold" style="height:70%"></div><div class="spark-bar gold" style="height:72%"></div>
+        </div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-lbl">Open Defects</div>
+        <div class="mt-val" style="color:var(--warn)">14</div>
+        <div class="mt-trend dn">↑ +2 vs yesterday</div>
+        <div class="sparkline">
+          <div class="spark-bar warn" style="height:40%"></div><div class="spark-bar warn" style="height:45%"></div><div class="spark-bar warn" style="height:50%"></div><div class="spark-bar warn" style="height:55%"></div><div class="spark-bar warn" style="height:60%"></div><div class="spark-bar warn" style="height:65%"></div><div class="spark-bar warn" style="height:70%"></div>
+        </div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-lbl">Deploy Freq</div>
+        <div class="mt-val" style="color:var(--blue)">3.2/d</div>
+        <div class="mt-trend up">↑ +0.4 vs last week</div>
+        <div class="sparkline">
+          <div class="spark-bar" style="height:40%;background:var(--blue)"></div><div class="spark-bar" style="height:55%;background:var(--blue)"></div><div class="spark-bar" style="height:30%;background:var(--blue)"></div><div class="spark-bar" style="height:80%;background:var(--blue)"></div><div class="spark-bar" style="height:70%;background:var(--blue)"></div><div class="spark-bar" style="height:90%;background:var(--blue)"></div><div class="spark-bar" style="height:85%;background:var(--blue)"></div>
+        </div>
+      </div>
+      <div class="metric-tile">
+        <div class="mt-lbl">MTTR</div>
+        <div class="mt-val" style="color:var(--ok)">1h 12m</div>
+        <div class="mt-trend up">↓ −14m vs last week</div>
+        <div class="sparkline">
+          <div class="spark-bar" style="height:90%"></div><div class="spark-bar" style="height:80%"></div><div class="spark-bar" style="height:95%"></div><div class="spark-bar" style="height:75%"></div><div class="spark-bar" style="height:70%"></div><div class="spark-bar" style="height:60%"></div><div class="spark-bar" style="height:55%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="g2">
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Data Pipeline Flow</span><div class="pa"><button class="btn btn-g btn-sm">Configure</button><button class="btn btn-p btn-sm">▷ Run</button></div></div>
+          <div class="pb">
+            <div class="pipeline-flow">
+              <div class="pf-stage ok-stage"><div class="pf-name">Ingest</div><div class="pf-count">1.2M</div><div class="pf-sub">events / hr</div></div>
+              <span class="pf-arrow">→</span>
+              <div class="pf-stage ok-stage"><div class="pf-name">Validate</div><div class="pf-count">99.4%</div><div class="pf-sub">pass rate</div></div>
+              <span class="pf-arrow">→</span>
+              <div class="pf-stage warn-stage"><div class="pf-name">Transform</div><div class="pf-count">8m 24s</div><div class="pf-sub">avg latency ⚠</div></div>
+              <span class="pf-arrow">→</span>
+              <div class="pf-stage ok-stage"><div class="pf-name">Warehouse</div><div class="pf-count">4.8TB</div><div class="pf-sub">total stored</div></div>
+              <span class="pf-arrow">→</span>
+              <div class="pf-stage ok-stage"><div class="pf-name">Serve</div><div class="pf-count">340ms</div><div class="pf-sub">p99 query</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Active Pipelines</span></div>
+          <table class="dt">
+            <thead><tr><th>Pipeline</th><th>SDE</th><th>Schedule</th><th>Last Run</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="pri">sde-metrics-agg</td><td class="mono">sde-data-pipeline</td><td class="mono">*/5 * * * *</td><td class="mono">2m ago</td><td><span class="bdg ok"><span class="dot"></span>OK</span></td></tr>
+              <tr><td class="pri">build-events-etl</td><td class="mono">sde-data-pipeline</td><td class="mono">*/1 * * * *</td><td class="mono">45s ago</td><td><span class="bdg ok"><span class="dot"></span>OK</span></td></tr>
+              <tr><td class="pri">security-events-etl</td><td class="mono">sde-data-pipeline</td><td class="mono">*/2 * * * *</td><td class="mono">1m ago</td><td><span class="bdg ok"><span class="dot"></span>OK</span></td></tr>
+              <tr><td class="pri">daily-report-gen</td><td class="mono">sde-data-pipeline</td><td class="mono">0 6 * * *</td><td class="mono">18h ago</td><td><span class="bdg wn"><span class="dot"></span>Slow</span></td></tr>
+              <tr><td class="pri">solution-analytics</td><td class="mono">sde-core-api</td><td class="mono">*/10 * * * *</td><td class="mono">7m ago</td><td><span class="bdg ok"><span class="dot"></span>OK</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Live Event Stream Log</span><div class="pa"><span class="bdg ok"><span class="dot"></span>streaming</span></div></div>
+          <div class="pb" style="padding:8px">
+            <div class="log-stream">
+              <div class="ls-row"><span class="ls-time">09:43:22.014</span><span class="ls-src">BUILD</span><span class="ls-msg ok">Pipeline #88 passed — core-api · 1m 42s</span></div>
+              <div class="ls-row"><span class="ls-time">09:43:21.880</span><span class="ls-src">ARTIFACT</span><span class="ls-msg">Artifact uploaded: core-api-linux-amd64 v1.2.1 · 12.4MB</span></div>
+              <div class="ls-row"><span class="ls-time">09:43:19.441</span><span class="ls-src">BUILD</span><span class="ls-msg">Cosign attestation recorded — rekor index 78492</span></div>
+              <div class="ls-row"><span class="ls-time">09:43:17.200</span><span class="ls-src">SECURITY</span><span class="ls-msg warn">SAST: 3 low-severity findings · core-api</span></div>
+              <div class="ls-row"><span class="ls-time">09:43:04.890</span><span class="ls-src">BUILD</span><span class="ls-msg ok">48 tests passed · coverage 82.4%</span></div>
+              <div class="ls-row"><span class="ls-time">09:43:02.110</span><span class="ls-src">SDE</span><span class="ls-msg">Snapshot v4 created — sde-core-api</span></div>
+              <div class="ls-row"><span class="ls-time">09:42:43.001</span><span class="ls-src">BUILD</span><span class="ls-msg ok">Build successful — bin/api-server-linux-amd64</span></div>
+              <div class="ls-row"><span class="ls-time">09:42:01.330</span><span class="ls-src">BUILD</span><span class="ls-msg">Pipeline #88 started — main@a3f2c19</span></div>
+              <div class="ls-row"><span class="ls-time">09:41:55.004</span><span class="ls-src">SDE</span><span class="ls-msg">sde-data-pipeline transform stage latency warning: 8m 24s</span></div>
+              <div class="ls-row"><span class="ls-time">09:41:10.221</span><span class="ls-src">AI</span><span class="ls-msg" style="color:var(--teal)">Recommendation generated: pipeline bottleneck · confidence 94%</span></div>
+              <div class="ls-row"><span class="ls-time">09:40:22.900</span><span class="ls-src">SECURITY</span><span class="ls-msg err">CVE-2024-44000 detected in go-jose@v3.0.1 — sde-core-api</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: analytics -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Factory Analytics</span><div class="pa"><button class="btn btn-g btn-sm">Full Report</button></div></div>
+          <div class="pb">
+            <div class="sh">Solutions by Maturity</div>
+            <div style="margin-bottom:12px">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:10px;font-family:var(--mono);color:var(--text-muted);width:70px">SANDBOX</span><div class="pbar" style="flex:1"><div class="pfill" style="width:8%;background:var(--text-muted)"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--text-muted);min-width:20px">1</span></div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:10px;font-family:var(--mono);color:var(--blue);width:70px">DEV</span><div class="pbar" style="flex:1"><div class="pfill b" style="width:25%"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--blue);min-width:20px">3</span></div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:10px;font-family:var(--mono);color:var(--warn);width:70px">NIGHTLY</span><div class="pbar" style="flex:1"><div class="pfill" style="width:17%;background:var(--warn)"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--warn);min-width:20px">2</span></div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:10px;font-family:var(--mono);color:var(--teal);width:70px">TEST</span><div class="pbar" style="flex:1"><div class="pfill" style="width:33%"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--teal);min-width:20px">4</span></div>
+              <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10px;font-family:var(--mono);color:var(--gold);width:70px">CM</span><div class="pbar" style="flex:1"><div class="pfill g" style="width:17%"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--gold);min-width:20px">2</span></div>
+            </div>
+
+            <div class="sh">SDE Resource Utilization</div>
+            <div class="kv-metric"><span class="kv-k">sde-core-api — CPU</span><div class="pbar" style="width:80px"><div class="pfill" style="width:34%"></div></div><span class="kv-v ok">34%</span></div>
+            <div class="kv-metric"><span class="kv-k">sde-data-pipeline — CPU</span><div class="pbar" style="width:80px"><div class="pfill" style="width:87%;background:var(--warn)"></div></div><span class="kv-v warn">87% ⚠</span></div>
+            <div class="kv-metric"><span class="kv-k">sde-ml-research — RAM</span><div class="pbar" style="width:80px"><div class="pfill e" style="width:91%"></div></div><span class="kv-v err">14.2 GB ⚠</span></div>
+            <div class="kv-metric"><span class="kv-k">sde-frontend — CPU</span><div class="pbar" style="width:80px"><div class="pfill" style="width:18%"></div></div><span class="kv-v ok">18%</span></div>
+            <div class="kv-metric"><span class="kv-k">sde-infra — CPU</span><div class="pbar" style="width:80px"><div class="pfill" style="width:5%"></div></div><span class="kv-v ok">5%</span></div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Kafka Topic Metrics</span></div>
+          <table class="dt">
+            <thead><tr><th>Topic</th><th>Msgs/min</th><th>Lag</th><th>Consumers</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">SDE_EVENTS</td><td class="mono" style="color:var(--teal)">2,340</td><td class="mono">0</td><td class="mono">3</td></tr>
+              <tr><td class="mono">BUILD_EVENTS</td><td class="mono" style="color:var(--teal)">1,460</td><td class="mono">0</td><td class="mono">4</td></tr>
+              <tr><td class="mono">ARTIFACT_EVENTS</td><td class="mono">367</td><td class="mono">0</td><td class="mono">2</td></tr>
+              <tr><td class="mono">SECURITY_EVENTS</td><td class="mono" style="color:var(--warn)">284</td><td class="mono" style="color:var(--warn)">142</td><td class="mono">2</td></tr>
+              <tr><td class="mono">AI_RECOMMENDATIONS</td><td class="mono" style="color:var(--teal)">566</td><td class="mono">0</td><td class="mono">5</td></tr>
+              <tr><td class="mono">NOTIFICATIONS</td><td class="mono">189</td><td class="mono">0</td><td class="mono">2</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Master Data Catalog</span><div class="pa"><button class="btn btn-g btn-sm">Browse</button></div></div>
+          <div class="pb">
+            <div class="kv-metric"><span class="kv-k">Solutions</span><span class="kv-v gold">12</span></div>
+            <div class="kv-metric"><span class="kv-k">SDEs</span><span class="kv-v gold">5</span></div>
+            <div class="kv-metric"><span class="kv-k">Artifacts</span><span class="kv-v gold">34</span></div>
+            <div class="kv-metric"><span class="kv-k">Build runs (30d)</span><span class="kv-v">487</span></div>
+            <div class="kv-metric"><span class="kv-k">Data pipeline runs (30d)</span><span class="kv-v">8,640</span></div>
+            <div class="kv-metric"><span class="kv-k">Total events ingested (30d)</span><span class="kv-v" style="color:var(--teal)">52.4M</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+</body></html>

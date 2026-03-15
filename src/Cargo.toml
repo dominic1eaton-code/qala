@@ -1,0 +1,53 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "qala-shared",
+    "qala-kernel",
+    "ai-agents-service",
+    "security-sem-service",
+]
+
+[workspace.package]
+version     = "0.1.0"
+edition     = "2021"
+authors     = ["qala Platform Team"]
+license     = "MIT"
+repository  = "https://github.com/qala-platform/qala"
+
+# Shared dependency versions pinned once for the whole workspace
+[workspace.dependencies]
+# async runtime
+tokio          = { version = "1.37", features = ["full"] }
+
+# HTTP server + routing
+axum           = { version = "0.7", features = ["json", "macros"] }
+tower          = { version = "0.4" }
+tower-http     = { version = "0.5", features = ["cors", "trace", "timeout"] }
+
+# HTTP client (for inter-service calls)
+reqwest        = { version = "0.12", features = ["json"] }
+
+# Serialisation
+serde          = { version = "1", features = ["derive"] }
+serde_json     = { version = "1" }
+
+# IDs
+uuid           = { version = "1", features = ["v4", "serde"] }
+
+# Timestamps
+chrono         = { version = "0.4", features = ["serde"] }
+
+# Error handling
+thiserror      = "1"
+anyhow         = "1"
+
+# Tracing / observability
+tracing            = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Config / env
+dotenvy        = "0.15"
+
+# Internal crate
+qala-shared    = { path = "qala-shared" }

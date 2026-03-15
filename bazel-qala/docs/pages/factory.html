@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>qala — Factory & SDE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A0A0F;--paper:#F5F3EE;--paper2:#EDEBE4;--accent:#1A3EFF;--accent2:#FF3B1A;--muted:#7A7870;--rule:#D8D5CC;--green:#00C8A0;--amber:#F5A623;--purple:#BD5FFF;--mono:'DM Mono',monospace;--display:'Syne',sans-serif;--serif:'Instrument Serif',serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--display);overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.08s ease,width 0.2s,height 0.2s;mix-blend-mode:multiply;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.18s ease,width 0.3s,height 0.3s;opacity:0.5;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,15,0.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-logo{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-0.04em;color:var(--paper);text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-links a{font-family:var(--mono);font-size:0.75rem;color:rgba(245,243,238,0.35);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s;cursor:none;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-badge{font-family:var(--mono);font-size:0.65rem;background:var(--accent);color:white;padding:0.25rem 0.6rem;letter-spacing:0.08em;text-transform:uppercase;}
+
+/* DARK HERO */
+.dark-hero{
+  background: var(--ink);
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 3rem 5rem;
+  gap: 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.dh-eyebrow{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;}
+.dh-eyebrow::before{content:'';display:inline-block;width:2rem;height:1px;background:var(--accent);}
+.dh-title{font-size:clamp(2.8rem,5vw,5rem);font-weight:800;letter-spacing:-0.04em;line-height:0.95;color:var(--paper);margin-bottom:1.5rem;}
+.dh-title em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);}
+.dh-desc{font-size:1rem;line-height:1.75;color:rgba(245,243,238,0.45);}
+
+/* FACTORY HIERARCHY VISUAL */
+.factory-tree{
+  position: relative;
+}
+.ft-node{
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 0.4rem;
+  transition: all 0.2s;
+  cursor: none;
+  position: relative;
+}
+.ft-node:hover{border-color:var(--accent);background:rgba(26,62,255,0.1);}
+.ft-node.indent1{margin-left:2rem;}
+.ft-node.indent2{margin-left:4rem;}
+.ft-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.ft-name{font-family:var(--mono);font-size:0.75rem;color:rgba(255,255,255,0.7);}
+.ft-tag{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-left:auto;}
+.ft-desc{font-size:0.7rem;color:rgba(255,255,255,0.3);margin-left:auto;max-width:18ch;text-align:right;line-height:1.3;}
+.fn-root  .ft-dot{background:#1A3EFF;box-shadow:0 0 8px #1A3EFF;}
+.fn-ent   .ft-dot{background:#00C8A0;box-shadow:0 0 8px #00C8A0;}
+.fn-team  .ft-dot{background:#F5A623;box-shadow:0 0 8px #F5A623;}
+.fn-pers  .ft-dot{background:#BD5FFF;box-shadow:0 0 8px #BD5FFF;}
+.fn-sde   .ft-dot{background:#FF3B1A;box-shadow:0 0 4px #FF3B1A;}
+.fn-root::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#1A3EFF;}
+.fn-ent::before {content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#00C8A0;}
+.fn-team::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#F5A623;}
+.fn-pers::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:#BD5FFF;}
+.fn-sde::before {content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:rgba(255,59,26,0.4);}
+
+/* FULL WIDTH DARK STRIP */
+.dark-strip{background:var(--ink);padding:0 3rem;}
+
+/* SDE ARCHITECTURE SECTION */
+.sde-section{
+  padding: 6rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.sde-grid{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: start;
+}
+h2.section-title{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;letter-spacing:-0.04em;line-height:1.05;margin-bottom:0.75rem;}
+h2.section-title em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);}
+.section-sub{font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
+.section-rule{height:1px;background:var(--rule);}
+
+/* SDE ENVIRONMENT CARDS */
+.env-cards{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.env-card{
+  padding: 1.5rem;
+  border: 1.5px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: none;
+}
+.env-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+}
+.env-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.08);transform:translateY(-3px);}
+.ec-sandbox::before{background:linear-gradient(to right,#94A3B8,#CBD5E1);}
+.ec-build::before  {background:linear-gradient(to right,#1A3EFF,#7BA7FF);}
+.ec-test::before   {background:linear-gradient(to right,#00C8A0,#5EEAD4);}
+.ec-release::before{background:linear-gradient(to right,#6366F1,#A5B4FC);}
+.env-tag{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;}
+.env-name{font-size:1rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.env-desc{font-size:0.78rem;color:var(--muted);line-height:1.55;margin-bottom:1rem;}
+.env-tags{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.env-chip{font-family:var(--mono);font-size:0.58rem;padding:0.2rem 0.5rem;border:1px solid var(--rule);color:var(--muted);letter-spacing:0.04em;}
+
+/* BUILD PIPELINE */
+.pipeline-section{
+  background: var(--paper2);
+  padding: 6rem 3rem;
+}
+.pipeline-inner{max-width:1400px;margin:0 auto;}
+.pipeline-header{margin-bottom:3.5rem;}
+.pipeline-stages{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  position: relative;
+}
+.pipeline-stages::before{
+  content:'';
+  position:absolute;
+  top:2.8rem;left:12%;right:12%;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--rule),var(--rule),transparent);
+}
+.ps-col{
+  padding: 0 1.2rem;
+  text-align: center;
+  position: relative;
+}
+.ps-icon{
+  width: 48px;height: 48px;
+  border: 1.5px solid var(--rule);
+  background: var(--paper);
+  display: flex;align-items:center;justify-content:center;
+  margin: 0 auto 1.2rem;
+  font-size:1rem;
+  position: relative;
+  z-index: 2;
+  transition: all 0.2s;
+  cursor:none;
+}
+.ps-col:hover .ps-icon{border-color:var(--accent);background:var(--accent);color:white;}
+.ps-col h3{font-size:0.95rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.ps-col .ps-trigger{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.06em;color:var(--accent);margin-bottom:0.6rem;text-transform:uppercase;}
+.ps-col p{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+.ps-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:0.3rem;margin-top:0.8rem;}
+.ps-tag{font-family:var(--mono);font-size:0.58rem;padding:0.2rem 0.5rem;background:var(--paper);border:1px solid var(--rule);color:var(--muted);}
+
+/* TOOLING HIERARCHY */
+.tool-section{
+  padding: 6rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.tool-levels{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+}
+.tool-level{
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: none;
+  transition: background 0.15s;
+}
+.tool-level:last-child{border-bottom:none;}
+.tool-level:hover{background:var(--paper2);padding-left:0.75rem;padding-right:0.75rem;margin:0 -0.75rem;}
+.tl-rank{
+  font-family:var(--mono);
+  font-size:0.62rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding-top:0.15rem;
+}
+.tl-rank strong{display:block;font-size:0.85rem;font-weight:700;letter-spacing:-0.02em;color:var(--ink);text-transform:none;margin-bottom:0.2rem;font-family:var(--display);}
+.tl-desc{font-size:0.85rem;color:var(--muted);line-height:1.6;}
+.tl-example{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.6rem;}
+.tl-ex-chip{font-family:var(--mono);font-size:0.62rem;padding:0.25rem 0.6rem;border:1px solid var(--rule);color:var(--muted);transition:all 0.15s;cursor:none;}
+.tl-ex-chip:hover{border-color:var(--accent);color:var(--accent);}
+
+/* SDE STATES */
+.states-section{
+  background:var(--ink);
+  padding:6rem 3rem;
+}
+.states-inner{max-width:1400px;margin:0 auto;}
+.states-track{
+  display:flex;
+  gap:0;
+  margin-top:3rem;
+  border:1px solid rgba(255,255,255,0.06);
+}
+.state-col{
+  flex:1;
+  padding:1.8rem 1.4rem;
+  border-right:1px solid rgba(255,255,255,0.06);
+  position:relative;
+  overflow:hidden;
+  cursor:none;
+  transition: background 0.2s;
+}
+.state-col:last-child{border-right:none;}
+.state-col:hover{background:rgba(255,255,255,0.03);}
+.state-col::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:2px;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.3s;
+}
+.state-col:hover::after{transform:scaleX(1);}
+.ss-prov::after{background:#94A3B8;}
+.ss-act::after {background:#22C55E;}
+.ss-snap::after{background:#1A3EFF;}
+.ss-susp::after{background:#F59E0B;}
+.ss-roll::after{background:#F97316;}
+.ss-arch::after{background:#6366F1;}
+.ss-term::after{background:#EF4444;}
+.state-trigger{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:0.5rem;}
+.state-name{font-size:0.92rem;font-weight:700;color:rgba(255,255,255,0.8);margin-bottom:0.4rem;letter-spacing:-0.02em;}
+.state-desc{font-size:0.72rem;color:rgba(255,255,255,0.3);line-height:1.55;}
+
+/* HERMETIC BUILD INFO */
+.hermetic-section{
+  padding: 6rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.hermetic-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-top: 2.5rem;
+}
+.hermetic-list{
+  display:flex;flex-direction:column;gap:0;
+}
+.hermetic-item{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1rem 0;
+  border-bottom:1px solid var(--rule);
+  cursor:none;
+  transition:padding-left 0.2s;
+}
+.hermetic-item:last-child{border-bottom:none;}
+.hermetic-item:hover{padding-left:0.75rem;}
+.hi-icon{
+  font-size:1rem;
+  flex-shrink:0;
+  margin-top:0.1rem;
+  color:var(--accent);
+}
+.hi-title{font-size:0.88rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.3rem;}
+.hi-desc{font-size:0.78rem;color:var(--muted);line-height:1.55;}
+.slsa-box{
+  background:var(--paper2);
+  padding:2rem;
+  border-left:3px solid var(--accent);
+}
+.slsa-box h3{font-size:1.1rem;font-weight:700;margin-bottom:0.75rem;letter-spacing:-0.02em;}
+.slsa-box p{font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:0.75rem;}
+.slsa-box p:last-child{margin-bottom:0;}
+.slsa-term{font-weight:700;color:var(--ink);}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s,transform 0.6s;}
+.reveal.visible{opacity:1;transform:none;}
+
+footer{background:var(--ink);color:rgba(245,243,238,0.3);padding:3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-logo{font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-0.04em;color:rgba(245,243,238,0.5);}
+.footer-logo span{color:var(--accent);}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,243,238,0.25);text-decoration:none;transition:color 0.2s;cursor:none;}
+.footer-links a:hover{color:var(--accent);}
+.footer-copy{font-family:var(--mono);font-size:0.65rem;}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">q<span>a</span>la</a>
+  <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="solution.html">Solution</a>
+    <a href="factory.html" class="active">Factory & SDE</a>
+    <a href="lifecycle.html">Lifecycle</a>
+    <span class="nav-badge">SFOS v2.0</span>
+  </div>
+</nav>
+
+<!-- DARK HERO -->
+<div style="background:var(--ink);">
+<div class="dark-hero">
+  <div>
+    <div class="dh-eyebrow">Section 07–08 — Production Infrastructure</div>
+    <h1 class="dh-title">Factory &amp;<br><em>SDE</em></h1>
+    <p class="dh-desc">A Solution Factory is a coordinated, networked collection of Solution Development Environments (SDEs) that produces Solutions in a consistent, repeatable, and scalable way — from hermetic builds to CM-qualified releases.</p>
+  </div>
+  <div class="factory-tree reveal">
+    <div class="ft-node fn-root">
+      <div class="ft-dot"></div>
+      <span class="ft-name">Root Factory (qala)</span>
+      <span class="ft-tag">platform</span>
+    </div>
+    <div class="ft-node fn-ent indent1">
+      <div class="ft-dot"></div>
+      <span class="ft-name">Enterprise Factory</span>
+      <span class="ft-desc">Multi-team, multi-product</span>
+    </div>
+    <div class="ft-node fn-sde indent2">
+      <div class="ft-dot"></div>
+      <span class="ft-name">SDE — Payments Team</span>
+      <span class="ft-tag">active</span>
+    </div>
+    <div class="ft-node fn-sde indent2">
+      <div class="ft-dot"></div>
+      <span class="ft-name">SDE — Auth Platform</span>
+      <span class="ft-tag">active</span>
+    </div>
+    <div class="ft-node fn-team indent1">
+      <div class="ft-dot"></div>
+      <span class="ft-name">Team Factory</span>
+      <span class="ft-desc">Single-team, product line</span>
+    </div>
+    <div class="ft-node fn-sde indent2">
+      <div class="ft-dot"></div>
+      <span class="ft-name">SDE — Mobile App v3</span>
+      <span class="ft-tag">nightly</span>
+    </div>
+    <div class="ft-node fn-pers indent1">
+      <div class="ft-dot"></div>
+      <span class="ft-name">Personal Factory</span>
+      <span class="ft-desc">Solo developer</span>
+    </div>
+    <div class="ft-node fn-sde indent2">
+      <div class="ft-dot"></div>
+      <span class="ft-name">SDE — Personal Project</span>
+      <span class="ft-tag">sandbox</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- SDE ARCHITECTURE -->
+<div class="sde-section">
+  <div class="sde-grid">
+    <div class="reveal">
+      <h2 class="section-title">The <em>SDE</em></h2>
+      <p class="section-sub">The Solution Development Environment is the atomic operational unit. SDEs are solution-agnostic — they define the conditions for creating, maintaining, and operating solutions, not the solutions themselves.</p>
+      <p class="section-sub">One SDE can support a collection of Solutions. SDEs are deployable, configurable, distributable, version-controlled, composable, releasable, and scalable.</p>
+    </div>
+    <div class="reveal">
+      <div class="env-cards">
+        <div class="env-card ec-sandbox">
+          <div class="env-tag">Environment 1</div>
+          <div class="env-name">Sandbox</div>
+          <div class="env-desc">Open exploration and experimentation. No stability guarantees. Ephemeral by default.</div>
+          <div class="env-tags">
+            <div class="env-chip">ephemeral</div>
+            <div class="env-chip">no governance</div>
+            <div class="env-chip">free-form</div>
+          </div>
+        </div>
+        <div class="env-card ec-build">
+          <div class="env-tag">Environment 2</div>
+          <div class="env-name">Build & Assembly</div>
+          <div class="env-desc">Hermetic build and solution assembly. Isolated, reproducible, attested outputs.</div>
+          <div class="env-tags">
+            <div class="env-chip">isolated</div>
+            <div class="env-chip">hermetic</div>
+            <div class="env-chip">attested</div>
+          </div>
+        </div>
+        <div class="env-card ec-test">
+          <div class="env-tag">Environment 3</div>
+          <div class="env-name">Test</div>
+          <div class="env-desc">Full verification and validation. Isolated clone of production topology, auto-provisioned per run.</div>
+          <div class="env-tags">
+            <div class="env-chip">auto-provisioned</div>
+            <div class="env-chip">prod-clone</div>
+            <div class="env-chip">gated</div>
+          </div>
+        </div>
+        <div class="env-card ec-release">
+          <div class="env-tag">Environment 4</div>
+          <div class="env-name">Release</div>
+          <div class="env-desc">Pre-release staging and CM sign-off. Production-equivalent, immutable after CM gate.</div>
+          <div class="env-tags">
+            <div class="env-chip">prod-equivalent</div>
+            <div class="env-chip">immutable</div>
+            <div class="env-chip">DAST-scanned</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- CI/CD PIPELINE -->
+<div class="pipeline-section">
+  <div class="pipeline-inner">
+    <div class="pipeline-header reveal">
+      <h2 class="section-title">CI/CD/<em>CM</em> Pipeline</h2>
+      <p class="section-sub" style="max-width:60ch;">All Solution builds within qala are executed in hermetic build environments — fully isolated, reproducible build contexts that guarantee consistent outputs regardless of when or where they run.</p>
+    </div>
+    <div class="pipeline-stages">
+      <div class="ps-col reveal">
+        <div class="ps-icon">⬡</div>
+        <h3>Continuous Integration</h3>
+        <div class="ps-trigger">every commit</div>
+        <p>Automated build, unit tests, SAST scan, artifact generation, and code quality gate enforcement.</p>
+        <div class="ps-tags">
+          <div class="ps-tag">build</div>
+          <div class="ps-tag">unit test</div>
+          <div class="ps-tag">SAST</div>
+          <div class="ps-tag">artifact</div>
+        </div>
+      </div>
+      <div class="ps-col reveal">
+        <div class="ps-icon">◎</div>
+        <h3>Continuous Delivery</h3>
+        <div class="ps-trigger">CI green + merge</div>
+        <p>Integration tests, system tests, DAST scan, and automated staging deployment for validation.</p>
+        <div class="ps-tags">
+          <div class="ps-tag">integration</div>
+          <div class="ps-tag">DAST</div>
+          <div class="ps-tag">staging</div>
+        </div>
+      </div>
+      <div class="ps-col reveal">
+        <div class="ps-icon">▲</div>
+        <h3>Continuous Deploy</h3>
+        <div class="ps-trigger">CD green + gate</div>
+        <p>Automated promotion to target environment via canary, blue/green, or rolling deployment strategies.</p>
+        <div class="ps-tags">
+          <div class="ps-tag">canary</div>
+          <div class="ps-tag">blue/green</div>
+          <div class="ps-tag">rolling</div>
+        </div>
+      </div>
+      <div class="ps-col reveal">
+        <div class="ps-icon">◈</div>
+        <h3>Config Management</h3>
+        <div class="ps-trigger">board approval</div>
+        <p>Immutable release tagging, tamper-evident audit trail, environment lock-down, and sign-off.</p>
+        <div class="ps-tags">
+          <div class="ps-tag">immutable</div>
+          <div class="ps-tag">audit</div>
+          <div class="ps-tag">sign-off</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- HERMETIC BUILD -->
+<div class="hermetic-section">
+  <h2 class="section-title reveal">Hermetic <em>Build</em> Environments</h2>
+  <p class="section-sub reveal" style="max-width:65ch;">Every Solution build in qala is executed in a hermetic environment — fully isolated, reproducible build contexts that guarantee consistent outputs regardless of when or where they run.</p>
+  <div class="hermetic-grid">
+    <div class="hermetic-list reveal">
+      <div class="hermetic-item">
+        <span class="hi-icon">⊗</span>
+        <div><div class="hi-title">Fully Isolated</div><div class="hi-desc">No access to external network, host filesystem, or ambient credentials during build execution.</div></div>
+      </div>
+      <div class="hermetic-item">
+        <span class="hi-icon">⊙</span>
+        <div><div class="hi-title">Reproducible</div><div class="hi-desc">Identical inputs — source, dependencies, environment — always produce byte-identical outputs.</div></div>
+      </div>
+      <div class="hermetic-item">
+        <span class="hi-icon">⊞</span>
+        <div><div class="hi-title">Environment-as-Code</div><div class="hi-desc">All build environment definitions are version-controlled and immutable at build time.</div></div>
+      </div>
+      <div class="hermetic-item">
+        <span class="hi-icon">⬡</span>
+        <div><div class="hi-title">Containerized</div><div class="hi-desc">Each build executes in a purpose-built, ephemeral container spun up and destroyed per run.</div></div>
+      </div>
+      <div class="hermetic-item">
+        <span class="hi-icon">⊡</span>
+        <div><div class="hi-title">Dependency Locking</div><div class="hi-desc">All dependency versions are pinned and cryptographically verified before build execution begins.</div></div>
+      </div>
+      <div class="hermetic-item">
+        <span class="hi-icon">◈</span>
+        <div><div class="hi-title">Build Attestation</div><div class="hi-desc">Every build produces a signed SLSA provenance record linking output to its verified inputs.</div></div>
+      </div>
+    </div>
+    <div class="slsa-box reveal">
+      <h3>SLSA Provenance</h3>
+      <p><span class="slsa-term">Supply chain Levels for Software Artifacts (SLSA)</span> is a security framework for build attestation and provenance. Every qala build output carries a signed SLSA record.</p>
+      <p>The attestation links the build artifact cryptographically to its exact source, build environment definition, dependency lockfile, and toolchain versions — creating an immutable chain of custody from source to deployment.</p>
+      <p>Before any artifact may be deployed to a TEST or CM environment, the Gateway verifies the attestation signature and rejects unverified artifacts.</p>
+      <p style="margin-top:1.2rem;font-family:var(--mono);font-size:0.72rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:1rem;">
+        source.commit → build.env → toolchain.lock → artifact.hash → signature ✓
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- TOOLING HIERARCHY -->
+<div style="background:var(--paper2);">
+<div class="tool-section">
+  <h2 class="section-title reveal">Solution <em>Tooling</em></h2>
+  <p class="section-sub reveal" style="max-width:60ch;">Every SDE contains a Solution Toolbox — a governed hierarchy of tools from atomic executables up through composed toolchains.</p>
+  <div class="tool-levels reveal">
+    <div class="tool-level">
+      <div class="tl-rank"><strong>Tool</strong>atomic unit</div>
+      <div>
+        <div class="tl-desc">A single executable, library, or service performing a specific function. Version-pinned, vendor-qualified, supply-chain verified.</div>
+        <div class="tl-example">
+          <div class="tl-ex-chip">rustc 1.78</div>
+          <div class="tl-ex-chip">gofmt 1.22</div>
+          <div class="tl-ex-chip">docker 26.1</div>
+          <div class="tl-ex-chip">terraform 1.8</div>
+          <div class="tl-ex-chip">golint</div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-level">
+      <div class="tl-rank"><strong>Toolset</strong>related collection</div>
+      <div>
+        <div class="tl-desc">A named collection of related Tools serving a common purpose. The Toolset is the unit of tool governance — approved or rejected as a unit.</div>
+        <div class="tl-example">
+          <div class="tl-ex-chip">Go Build Toolset</div>
+          <div class="tl-ex-chip">Rust Dev Toolset</div>
+          <div class="tl-ex-chip">Container Toolset</div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-level">
+      <div class="tl-rank"><strong>Toolkit</strong>domain coverage</div>
+      <div>
+        <div class="tl-desc">A curated collection of Toolsets covering a full domain of practice. Toolkits are approved for specific Solution types.</div>
+        <div class="tl-example">
+          <div class="tl-ex-chip">Backend Dev Toolkit</div>
+          <div class="tl-ex-chip">Security Scan Toolkit</div>
+          <div class="tl-ex-chip">Data Platform Toolkit</div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-level">
+      <div class="tl-rank"><strong>Toolchain</strong>ordered pipeline</div>
+      <div>
+        <div class="tl-desc">A linked, ordered sequence of Tools where each tool's output feeds the next. Version-controlled as code alongside Solution source.</div>
+        <div class="tl-example">
+          <div class="tl-ex-chip">compile → link → sign → package</div>
+          <div class="tl-ex-chip">lint → test → build → push</div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-level">
+      <div class="tl-rank"><strong>Tool Suite</strong>org standard</div>
+      <div>
+        <div class="tl-desc">A governed, platform-approved set of Toolkits for a given Solution type or organizational standard. Required for CM-stage Solutions.</div>
+        <div class="tl-example">
+          <div class="tl-ex-chip">Enterprise Go Suite</div>
+          <div class="tl-ex-chip">Rust Production Suite</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- SDE LIFECYCLE STATES -->
+<div class="states-section">
+  <div class="states-inner">
+    <h2 class="section-title reveal" style="color:var(--paper);">SDE <em>Lifecycle</em> States</h2>
+    <p class="section-sub reveal" style="color:rgba(245,243,238,0.4);max-width:60ch;">An SDE transitions through seven lifecycle states. The state determines what operations are permitted and what resources are provisioned.</p>
+    <div class="states-track reveal">
+      <div class="state-col ss-prov">
+        <div class="state-trigger">Creation request</div>
+        <div class="state-name">Provisioning</div>
+        <div class="state-desc">Environment being assembled from template or definition</div>
+      </div>
+      <div class="state-col ss-act">
+        <div class="state-trigger">Provisioning complete</div>
+        <div class="state-name">Active</div>
+        <div class="state-desc">Fully operational; all development and build activities occur here</div>
+      </div>
+      <div class="state-col ss-snap">
+        <div class="state-trigger">User or CI action</div>
+        <div class="state-name">Snapshotted</div>
+        <div class="state-desc">State captured; environment continues to run normally</div>
+      </div>
+      <div class="state-col ss-susp">
+        <div class="state-trigger">Inactivity / admin</div>
+        <div class="state-name">Suspended</div>
+        <div class="state-desc">Resources released; state preserved for resumption on demand</div>
+      </div>
+      <div class="state-col ss-roll">
+        <div class="state-trigger">Restore request</div>
+        <div class="state-name">Rolled Back</div>
+        <div class="state-desc">Environment restored to a prior snapshot version; CI/CD resumes</div>
+      </div>
+      <div class="state-col ss-arch">
+        <div class="state-trigger">Retention policy</div>
+        <div class="state-name">Archived</div>
+        <div class="state-desc">Moved to long-term storage; retrievable and reactivatable on demand</div>
+      </div>
+      <div class="state-col ss-term">
+        <div class="state-trigger">Explicit deletion</div>
+        <div class="state-name">Terminated</div>
+        <div class="state-desc">Permanently decommissioned; backups retained per policy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div style="background:var(--paper2);padding:3rem;display:flex;justify-content:space-between;border-top:1px solid var(--rule);">
+  <a href="solution.html" style="font-family:var(--mono);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:none;">← Solution Model</a>
+  <a href="lifecycle.html" style="font-family:var(--mono);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);text-decoration:none;cursor:none;">Next: Lifecycle & Governance →</a>
+</div>
+
+<footer>
+  <div class="footer-logo">q<span>a</span>la</div>
+  <div class="footer-links">
+    <a href="index.html">Overview</a>
+    <a href="solution.html">Solution</a>
+    <a href="factory.html">Factory & SDE</a>
+    <a href="lifecycle.html">Lifecycle</a>
+  </div>
+  <div class="footer-copy">SFOS v2.0 · Confidential</div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},80);});
+document.querySelectorAll('a,button,.env-card,.state-col,.ft-node,.ps-col,.tool-level,.hermetic-item,.tl-ex-chip').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';ring.style.width='50px';ring.style.height='50px';ring.style.opacity='0.8';});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='10px';cursor.style.height='10px';ring.style.width='36px';ring.style.height='36px';ring.style.opacity='0.5';});
+});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+</script>
+</body>
+</html>
