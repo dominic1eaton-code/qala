@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Qala OS — SDE Configuration</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Inter",sans-serif;
+}
+
+/* COLORS */
+
+:root{
+
+--navy:#0b1e3d;
+--deep:#07152c;
+--cream:#f4efe6;
+
+--purple:#7c4dff;
+--ruby:#d7263d;
+--rose:#ff8fa3;
+--blue:#5fa8ff;
+
+--soft:#b7c3d6;
+
+}
+
+body{
+
+background:linear-gradient(140deg,#07152c,#0b1e3d,#030b18);
+color:var(--cream);
+
+height:100vh;
+display:flex;
+overflow:hidden;
+
+}
+
+/* SIDEBAR */
+
+.sidebar{
+
+width:260px;
+background:#050f22;
+border-right:1px solid rgba(255,255,255,0.06);
+
+display:flex;
+flex-direction:column;
+
+}
+
+.logo{
+
+font-size:26px;
+font-weight:700;
+padding:26px;
+border-bottom:1px solid rgba(255,255,255,0.08);
+
+}
+
+.nav{
+
+padding:20px;
+
+}
+
+.nav-item{
+
+padding:12px 16px;
+margin-bottom:8px;
+border-radius:8px;
+color:var(--soft);
+cursor:pointer;
+
+}
+
+.nav-item:hover{
+
+background:rgba(244,239,230,0.08);
+color:white;
+
+}
+
+/* MAIN */
+
+.main{
+
+flex:1;
+display:flex;
+flex-direction:column;
+
+}
+
+/* TOPBAR */
+
+.topbar{
+
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+border-bottom:1px solid rgba(255,255,255,0.06);
+
+}
+
+.search{
+
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+padding:10px 14px;
+border-radius:6px;
+color:white;
+width:300px;
+
+}
+
+/* CONTENT */
+
+.content{
+
+padding:30px;
+overflow:auto;
+
+}
+
+/* GRID */
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:24px;
+
+}
+
+/* PANELS */
+
+.panel{
+
+background:rgba(255,255,255,0.03);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:16px;
+padding:22px;
+
+}
+
+.panel-purple{border-left:4px solid var(--purple);}
+.panel-blue{border-left:4px solid var(--blue);}
+.panel-rose{border-left:4px solid var(--rose);}
+.panel-ruby{border-left:4px solid var(--ruby);}
+
+.panel-title{
+
+font-size:14px;
+letter-spacing:.5px;
+margin-bottom:16px;
+color:var(--soft);
+
+}
+
+/* FORM */
+
+.field{
+
+margin-bottom:14px;
+
+}
+
+label{
+
+font-size:12px;
+color:var(--soft);
+display:block;
+margin-bottom:4px;
+
+}
+
+input,select{
+
+width:100%;
+padding:8px 10px;
+
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+
+border-radius:6px;
+
+color:white;
+
+}
+
+/* BUTTONS */
+
+.buttons{
+
+margin-top:20px;
+
+}
+
+button{
+
+padding:10px 16px;
+
+border:none;
+border-radius:8px;
+
+margin-right:10px;
+
+cursor:pointer;
+
+font-weight:500;
+
+}
+
+.save{
+
+background:var(--purple);
+color:white;
+
+}
+
+.deploy{
+
+background:var(--blue);
+color:white;
+
+}
+
+.reset{
+
+background:var(--ruby);
+color:white;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="logo">qala</div>
+
+<div class="nav">
+
+<div class="nav-item">Dashboard</div>
+<div class="nav-item">Workspace</div>
+<div class="nav-item">Solutions</div>
+<div class="nav-item">Factories</div>
+<div class="nav-item">Artifacts</div>
+<div class="nav-item">Registry</div>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<div class="topbar">
+
+<input class="search" placeholder="Search configuration...">
+
+<div>Solution Development Environment</div>
+
+</div>
+
+<div class="content">
+
+<div class="grid">
+
+<!-- SOLUTION CONFIG -->
+
+<div class="panel panel-purple">
+
+<div class="panel-title">Solution Configuration</div>
+
+<div class="field">
+<label>Solution Name</label>
+<input placeholder="Qala OS">
+</div>
+
+<div class="field">
+<label>Solution Version</label>
+<input placeholder="1.0.0">
+</div>
+
+<div class="field">
+<label>Maturity Level</label>
+
+<select>
+<option>Sandbox</option>
+<option>Development</option>
+<option>Testing</option>
+<option>Control Managed</option>
+<option>Release</option>
+</select>
+
+</div>
+
+</div>
+
+<!-- MODEL CONFIG -->
+
+<div class="panel panel-blue">
+
+<div class="panel-title">Solution Model</div>
+
+<div class="field">
+<label>Blueprint</label>
+<input placeholder="Blueprint ID">
+</div>
+
+<div class="field">
+<label>Architecture</label>
+<input placeholder="Architecture Model">
+</div>
+
+<div class="field">
+<label>Prototype Version</label>
+<input placeholder="Prototype Build">
+</div>
+
+</div>
+
+<!-- ENVIRONMENTS -->
+
+<div class="panel panel-rose">
+
+<div class="panel-title">Solution Environments</div>
+
+<div class="field">
+<label>Sandbox Environment</label>
+<input placeholder="sandbox-env">
+</div>
+
+<div class="field">
+<label>Development Environment</label>
+<input placeholder="dev-env">
+</div>
+
+<div class="field">
+<label>Test Environment</label>
+<input placeholder="test-env">
+</div>
+
+<div class="field">
+<label>Release Environment</label>
+<input placeholder="release-env">
+</div>
+
+</div>
+
+<!-- BUILD CONFIG -->
+
+<div class="panel panel-ruby">
+
+<div class="panel-title">Build Configuration</div>
+
+<div class="field">
+<label>Build Number</label>
+<input placeholder="build-302">
+</div>
+
+<div class="field">
+<label>Build Maturity</label>
+
+<select>
+<option>Nightly</option>
+<option>Integration</option>
+<option>Candidate</option>
+<option>Release</option>
+</select>
+
+</div>
+
+<div class="field">
+<label>Assembly Pipeline</label>
+<input placeholder="factory-alpha">
+</div>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button class="save">Save Configuration</button>
+<button class="deploy">Deploy Environment</button>
+<button class="reset">Reset</button>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

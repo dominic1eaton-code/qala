@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>qala — Solution Factory OS</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:"Inter",sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+linear-gradient(120deg,#0f172a,#020617,#111827);
+color:white;
+overflow:hidden;
+}
+
+/* animated grid background */
+
+body:before{
+content:"";
+position:absolute;
+width:200%;
+height:200%;
+background-image:
+linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+background-size:60px 60px;
+animation:gridmove 20s linear infinite;
+}
+
+@keyframes gridmove{
+0%{transform:translate(0,0)}
+100%{transform:translate(-60px,-60px)}
+}
+
+.container{
+display:flex;
+width:1100px;
+height:620px;
+backdrop-filter:blur(20px);
+background:rgba(255,255,255,0.05);
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 30px 80px rgba(0,0,0,0.6);
+z-index:2;
+}
+
+/* left info panel */
+
+.left{
+flex:1.1;
+padding:60px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+background:
+linear-gradient(160deg,#1e293b,#020617);
+}
+
+.logo{
+font-size:42px;
+font-weight:700;
+letter-spacing:2px;
+margin-bottom:10px;
+}
+
+.tagline{
+color:#94a3b8;
+margin-bottom:40px;
+font-size:15px;
+}
+
+.features{
+font-size:14px;
+line-height:28px;
+color:#cbd5f5;
+}
+
+.features div{
+margin-bottom:8px;
+}
+
+/* right login panel */
+
+.right{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(255,255,255,0.03);
+}
+
+.login-box{
+width:360px;
+}
+
+.login-title{
+font-size:24px;
+font-weight:600;
+margin-bottom:30px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:16px;
+border:none;
+border-radius:8px;
+background:rgba(255,255,255,0.06);
+color:white;
+font-size:14px;
+}
+
+input::placeholder{
+color:#94a3b8;
+}
+/* 
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:8px;
+background:linear-gradient(135deg,#6366f1,#4f46e5);
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+} */
+
+button{
+
+width:100%;
+padding:14px;
+
+border:none;
+border-radius:8px;
+
+background:#f4efe6;
+
+color:#0b1e3d;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:all 0.25s ease;
+
+}
+
+
+
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 30px rgba(99,102,241,0.5);
+}
+
+.divider{
+margin:26px 0;
+text-align:center;
+font-size:12px;
+color:#94a3b8;
+}
+
+.sso{
+display:flex;
+gap:10px;
+}
+
+.sso button{
+background:rgba(255,255,255,0.05);
+font-size:13px;
+}
+
+.footer{
+margin-top:30px;
+font-size:12px;
+color:#64748b;
+text-align:center;
+}
+
+.footer span{
+color:#94a3b8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="left">
+
+<div class="logo">qala</div>
+
+<div class="tagline">
+Solution Factory Operating System
+</div>
+
+<div class="features">
+
+<div>▸ Design, Build, Deploy Solutions</div>
+<div>▸ Hermetic Build Environments</div>
+<div>▸ CI/CD Factory Pipelines</div>
+<div>▸ Distributed Solution Registry</div>
+<div>▸ AI-Driven Development Intelligence</div>
+<div>▸ Multi-Tier Solution Factories</div>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="login-box">
+
+<div class="login-title">Access Factory</div>
+
+<input type="email" placeholder="Email address">
+
+<input type="password" placeholder="Password">
+
+<button>Login to Factory</button>
+
+<div class="divider">OR CONTINUE WITH</div>
+
+<div class="sso">
+<button>GitHub</button>
+<button>Google</button>
+<button>SSO</button>
+</div>
+
+<div class="footer">
+qala SFOS · Solution Factory Workspace<br>
+<span>v1.0</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

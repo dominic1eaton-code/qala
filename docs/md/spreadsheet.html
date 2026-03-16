@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>qala OS — Solution Spreadsheet</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Inter",sans-serif;
+}
+
+body{
+background:linear-gradient(145deg,#07152c,#0b1e3d,#030b18);
+color:#f4efe6;
+display:flex;
+height:100vh;
+overflow:hidden;
+}
+
+/* sidebar */
+
+.sidebar{
+width:260px;
+background:#050f22;
+border-right:1px solid rgba(244,239,230,0.08);
+display:flex;
+flex-direction:column;
+}
+
+.logo{
+font-size:28px;
+font-weight:700;
+padding:28px;
+border-bottom:1px solid rgba(244,239,230,0.08);
+}
+
+.nav{
+padding:20px;
+}
+
+.nav-item{
+padding:12px 16px;
+margin-bottom:8px;
+border-radius:8px;
+color:#b7c3d6;
+cursor:pointer;
+}
+
+.nav-item:hover{
+background:rgba(244,239,230,0.08);
+color:#faf6ee;
+}
+
+/* main */
+
+.main{
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+/* top bar */
+
+.topbar{
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 25px;
+border-bottom:1px solid rgba(244,239,230,0.08);
+}
+
+.search{
+background:rgba(255,255,255,0.05);
+border:none;
+padding:10px 14px;
+border-radius:6px;
+color:white;
+width:350px;
+}
+
+/* toolbar */
+
+.toolbar{
+padding:12px 25px;
+border-bottom:1px solid rgba(244,239,230,0.08);
+display:flex;
+gap:12px;
+}
+
+.tool{
+padding:8px 12px;
+background:rgba(244,239,230,0.08);
+border-radius:6px;
+font-size:13px;
+cursor:pointer;
+}
+
+/* spreadsheet */
+
+.spreadsheet{
+flex:1;
+overflow:auto;
+padding:20px;
+}
+
+/* table */
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:1200px;
+}
+
+th{
+text-align:left;
+padding:12px;
+font-size:13px;
+color:#b7c3d6;
+border-bottom:1px solid rgba(244,239,230,0.15);
+}
+
+td{
+padding:12px;
+border-bottom:1px solid rgba(244,239,230,0.05);
+font-size:13px;
+color:#d6e0f0;
+}
+
+tr:hover{
+background:rgba(244,239,230,0.05);
+}
+
+/* status tags */
+
+.tag{
+padding:4px 8px;
+border-radius:6px;
+font-size:11px;
+background:rgba(244,239,230,0.15);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">qala</div>
+
+<div class="nav">
+
+<div class="nav-item">Dashboard</div>
+<div class="nav-item">Workspace</div>
+<div class="nav-item">Solutions</div>
+<div class="nav-item">Factories</div>
+<div class="nav-item">Artifacts</div>
+<div class="nav-item">Registry</div>
+<div class="nav-item">Workflows</div>
+
+</div>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<input class="search" placeholder="Search solution rows, components, parts...">
+
+<div>Solution Spreadsheet</div>
+
+</div>
+
+<div class="toolbar">
+
+<div class="tool">New Solution</div>
+<div class="tool">Add Component</div>
+<div class="tool">Add Part</div>
+<div class="tool">Link Artifact</div>
+<div class="tool">Trigger Build</div>
+<div class="tool">Deploy</div>
+
+</div>
+
+<div class="spreadsheet">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Solution</th>
+<th>Component</th>
+<th>Part ID</th>
+<th>Part Name</th>
+<th>Vendor</th>
+<th>Material</th>
+<th>Version</th>
+<th>Maturity</th>
+<th>Environment</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>Qala OS</td>
+<td>Spreadsheet Engine</td>
+<td>P-1102</td>
+<td>Data Graph Core</td>
+<td>Internal</td>
+<td>Software</td>
+<td>1.2</td>
+<td><span class="tag">Dev</span></td>
+<td>Development</td>
+
+</tr>
+
+<tr>
+
+<td>SupplyChain Engine</td>
+<td>Logistics Core</td>
+<td>P-2103</td>
+<td>Routing Module</td>
+<td>TransitWorks</td>
+<td>Software</td>
+<td>0.9</td>
+<td><span class="tag">Testing</span></td>
+<td>Test</td>
+
+</tr>
+
+<tr>
+
+<td>Artifact Warehouse</td>
+<td>Storage Engine</td>
+<td>P-3101</td>
+<td>Binary Manager</td>
+<td>Internal</td>
+<td>Software</td>
+<td>2.1</td>
+<td><span class="tag">Stable</span></td>
+<td>Release</td>
+
+</tr>
+
+<tr>
+
+<td>Platform Energy Manager</td>
+<td>Power Monitor</td>
+<td>P-4112</td>
+<td>Energy Budget Controller</td>
+<td>EnergyNet</td>
+<td>Hardware</td>
+<td>1.0</td>
+<td><span class="tag">Nightly</span></td>
+<td>Sandbox</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
