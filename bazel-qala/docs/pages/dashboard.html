@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>qala — Factory Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0f172a; --primary-mid:#111e35; --primary-light:#1a2540;
+  --secondary:#E5E0D6; --tertiary:#CDC3BD; --quaternary:#B2998A; --quinary:#695242;
+  --border:rgba(205,195,189,0.08); --border-md:rgba(205,195,189,0.12);
+  --surface:rgba(229,224,214,0.03); --surface-md:rgba(229,224,214,0.06);
+  --blue:#2943c6; --blue-glow:rgba(41,67,198,0.3);
+  --green:#2d6b47; --green-text:#7fc4a0;
+  --red-text:#d98080; --yellow-text:#d4b97a;
+  --sidebar-w:220px;
+}
+*{ box-sizing:border-box; margin:0; padding:0; font-family:"Inter",sans-serif; }
+html,body{ height:100%; background:var(--primary); color:var(--secondary); overflow:hidden; }
+
+/* ── LAYOUT ── */
+.app{ display:flex; height:100vh; }
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sidebar-w); flex-shrink:0; height:100vh;
+  background:linear-gradient(180deg,#0c1628,#060e1e);
+  border-right:1px solid var(--border); display:flex; flex-direction:column;
+  overflow:hidden;
+}
+.sidebar-logo{
+  padding:22px 20px 18px; display:flex; align-items:center; gap:10px;
+  border-bottom:1px solid var(--border);
+}
+.logo-icon{
+  width:34px; height:34px; border-radius:8px;
+  background:linear-gradient(135deg,#2943c6,#1c295c);
+  display:flex; align-items:center; justify-content:center;
+  font-size:15px; font-weight:700; color:#d6e8ff;
+  box-shadow:0 0 0 1px rgba(46,46,180,0.25),0 0 12px rgba(46,51,180,0.3);
+  position:relative; flex-shrink:0;
+}
+.logo-icon::after{
+  content:""; position:absolute; inset:0; border-radius:8px;
+  background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent 60%);
+}
+.logo-name{ font-size:18px; font-weight:700; color:var(--secondary); letter-spacing:0.5px; }
+
+.factory-select{
+  margin:14px 12px 8px; padding:10px 12px;
+  background:var(--surface-md); border:1px solid var(--border-md); border-radius:8px;
+  display:flex; align-items:center; justify-content:space-between; cursor:pointer;
+  transition:background 0.2s;
+}
+.factory-select:hover{ background:rgba(229,224,214,0.08); }
+.factory-info .factory-label{ font-size:10px; color:var(--quinary); letter-spacing:0.06em; text-transform:uppercase; font-family:"JetBrains Mono",monospace; }
+.factory-info .factory-name{ font-size:13px; font-weight:600; color:var(--tertiary); margin-top:1px; }
+.factory-tier{
+  font-size:9px; font-family:"JetBrains Mono",monospace; padding:2px 7px; border-radius:4px;
+  background:rgba(41,67,198,0.2); color:#8aaaf5; border:1px solid rgba(41,67,198,0.3);
+}
+
+.nav{ flex:1; overflow-y:auto; padding:8px 0; }
+.nav::-webkit-scrollbar{ width:0; }
+.nav-section{ padding:6px 14px 4px; font-size:10px; color:var(--quinary); letter-spacing:0.1em; text-transform:uppercase; font-family:"JetBrains Mono",monospace; margin-top:10px; }
+.nav-item{
+  display:flex; align-items:center; gap:10px; padding:9px 14px;
+  font-size:13px; color:var(--quinary); cursor:pointer; border-radius:6px; margin:1px 8px;
+  transition:all 0.15s; text-decoration:none;
+}
+.nav-item:hover{ background:var(--surface-md); color:var(--tertiary); }
+.nav-item.active{ background:rgba(105,82,66,0.15); color:var(--secondary); border:1px solid rgba(105,82,66,0.2); }
+.nav-item .ico{ width:16px; text-align:center; font-size:13px; flex-shrink:0; }
+.nav-badge{ margin-left:auto; font-size:10px; font-family:"JetBrains Mono",monospace; padding:1px 6px; border-radius:10px; background:rgba(105,82,66,0.25); color:var(--quaternary); }
+
+.sidebar-bottom{
+  padding:12px; border-top:1px solid var(--border);
+  display:flex; align-items:center; gap:10px; cursor:pointer;
+}
+.avatar{
+  width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,var(--quinary),#3d2e1e);
+  display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--secondary);
+  flex-shrink:0;
+}
+.user-info .user-name{ font-size:12.5px; font-weight:600; color:var(--tertiary); }
+.user-info .user-role{ font-size:10.5px; color:var(--quinary); }
+
+/* ── MAIN ── */
+.main{ flex:1; display:flex; flex-direction:column; overflow:hidden; }
+
+/* Topbar */
+.topbar{
+  height:56px; border-bottom:1px solid var(--border); display:flex; align-items:center;
+  padding:0 28px; gap:16px; background:rgba(6,14,30,0.8); backdrop-filter:blur(10px); flex-shrink:0;
+}
+.topbar-title{ font-size:14px; font-weight:600; color:var(--secondary); flex:1; }
+.topbar-title span{ color:var(--quinary); font-weight:400; font-size:13px; margin-left:6px; }
+.search-bar{
+  display:flex; align-items:center; gap:8px; padding:7px 14px;
+  background:var(--surface-md); border:1px solid var(--border-md); border-radius:8px;
+  font-size:12.5px; color:var(--quinary); cursor:text; transition:border-color 0.2s;
+  width:200px;
+}
+.search-bar:hover{ border-color:rgba(178,153,138,0.25); }
+.topbar-actions{ display:flex; align-items:center; gap:8px; }
+.icon-btn{
+  width:34px; height:34px; border-radius:8px; border:1px solid var(--border-md);
+  background:var(--surface); display:flex; align-items:center; justify-content:center;
+  font-size:15px; cursor:pointer; transition:all 0.15s; position:relative;
+}
+.icon-btn:hover{ background:var(--surface-md); border-color:rgba(178,153,138,0.25); }
+.notif-dot{
+  width:7px; height:7px; border-radius:50%; background:#c4504a;
+  position:absolute; top:6px; right:6px; border:1px solid #0c1628;
+}
+
+/* Main body scroll */
+.main-body{ flex:1; overflow-y:auto; padding:24px 28px; display:flex; flex-direction:column; gap:20px; }
+.main-body::-webkit-scrollbar{ width:4px; }
+.main-body::-webkit-scrollbar-track{ background:transparent; }
+.main-body::-webkit-scrollbar-thumb{ background:rgba(205,195,189,0.15); border-radius:2px; }
+
+/* ── STAT CARDS ── */
+.stat-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.stat-card{
+  padding:18px 20px; background:var(--surface); border:1px solid var(--border); border-radius:12px;
+  transition:border-color 0.2s;
+}
+.stat-card:hover{ border-color:var(--border-md); }
+.stat-label{ font-size:11px; color:var(--quinary); letter-spacing:0.06em; text-transform:uppercase; font-family:"JetBrains Mono",monospace; margin-bottom:8px; }
+.stat-value{ font-size:28px; font-weight:700; color:var(--secondary); line-height:1; margin-bottom:6px; }
+.stat-sub{ font-size:11.5px; color:var(--quinary); display:flex; align-items:center; gap:5px; }
+.stat-up{ color:var(--green-text); }
+.stat-down{ color:var(--red-text); }
+.stat-bar{ height:2px; background:rgba(205,195,189,0.07); border-radius:1px; margin-top:12px; overflow:hidden; }
+.stat-bar-fill{ height:100%; border-radius:1px; }
+
+/* ── TWO-COL ── */
+.two-col{ display:grid; grid-template-columns:1fr 360px; gap:14px; }
+.two-col-wide{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+/* Panel */
+.panel{
+  background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden;
+}
+.panel-head{
+  padding:14px 18px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;
+}
+.panel-title{ font-size:13px; font-weight:600; color:var(--tertiary); flex:1; }
+.panel-action{ font-size:11.5px; color:var(--quinary); cursor:pointer; transition:color 0.15s; }
+.panel-action:hover{ color:var(--quaternary); }
+.panel-body{ padding:0; }
+
+/* Solutions table */
+.solution-row{
+  display:grid; grid-template-columns:1fr 90px 80px 80px 50px;
+  align-items:center; padding:11px 18px; border-bottom:1px solid rgba(205,195,189,0.05);
+  transition:background 0.15s; cursor:pointer; gap:10px;
+}
+.solution-row:last-child{ border-bottom:none; }
+.solution-row:hover{ background:rgba(229,224,214,0.03); }
+.sol-name{ font-size:13px; font-weight:500; color:var(--secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.sol-type{ font-size:10.5px; color:var(--quinary); margin-top:2px; }
+.maturity-badge{
+  font-size:9.5px; font-family:"JetBrains Mono",monospace; padding:2px 7px;
+  border-radius:4px; white-space:nowrap; text-align:center;
+}
+.mat-sandbox{ background:rgba(229,224,214,0.07); color:var(--quinary); border:1px solid rgba(229,224,214,0.1); }
+.mat-dev{ background:rgba(41,67,198,0.15); color:#8aaaf5; border:1px solid rgba(41,67,198,0.25); }
+.mat-nightly{ background:rgba(178,133,80,0.15); color:var(--yellow-text); border:1px solid rgba(178,133,80,0.25); }
+.mat-test{ background:rgba(105,82,66,0.2); color:var(--quaternary); border:1px solid rgba(105,82,66,0.3); }
+.mat-cm{ background:rgba(45,107,71,0.2); color:var(--green-text); border:1px solid rgba(45,107,71,0.35); }
+.status-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.dot-green{ background:#3a9e62; box-shadow:0 0 5px rgba(58,158,98,0.5); }
+.dot-yellow{ background:#c4944a; }
+.dot-red{ background:#c4504a; }
+.dot-grey{ background:rgba(205,195,189,0.2); }
+.sol-version{ font-size:11px; font-family:"JetBrains Mono",monospace; color:var(--quinary); }
+.sol-actions{ display:flex; gap:4px; justify-content:flex-end; }
+.sol-action-btn{
+  font-size:10px; padding:3px 8px; border-radius:4px; border:1px solid rgba(205,195,189,0.1);
+  background:transparent; color:var(--quinary); cursor:pointer; transition:all 0.15s;
+}
+.sol-action-btn:hover{ color:var(--tertiary); border-color:rgba(205,195,189,0.2); background:rgba(229,224,214,0.05); }
+
+/* Pipeline runs */
+.pipeline-row{
+  display:flex; align-items:center; gap:12px; padding:11px 18px;
+  border-bottom:1px solid rgba(205,195,189,0.05); transition:background 0.15s; cursor:pointer;
+}
+.pipeline-row:last-child{ border-bottom:none; }
+.pipeline-row:hover{ background:rgba(229,224,214,0.03); }
+.pipeline-status{
+  width:7px; height:7px; border-radius:50%; flex-shrink:0;
+}
+.ps-running{ background:#4a6fd4; box-shadow:0 0 6px rgba(74,111,212,0.6); animation:blink-dot 1.2s ease-in-out infinite; }
+.ps-pass{ background:#3a9e62; }
+.ps-fail{ background:#c4504a; }
+@keyframes blink-dot{ 0%,100%{opacity:1} 50%{opacity:0.3} }
+.pipeline-info{ flex:1; min-width:0; }
+.pipeline-name{ font-size:12.5px; font-weight:500; color:var(--secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.pipeline-meta{ font-size:11px; color:var(--quinary); font-family:"JetBrains Mono",monospace; margin-top:2px; }
+.pipeline-dur{ font-size:11px; font-family:"JetBrains Mono",monospace; color:var(--quinary); white-space:nowrap; }
+
+/* Maturity distribution */
+.maturity-chart{ padding:18px; display:flex; flex-direction:column; gap:10px; }
+.maturity-stage-row{ display:flex; align-items:center; gap:10px; }
+.maturity-stage-label{ font-size:11px; font-family:"JetBrains Mono",monospace; color:var(--quinary); width:60px; flex-shrink:0; }
+.maturity-bar-track{ flex:1; height:6px; background:rgba(205,195,189,0.06); border-radius:3px; overflow:hidden; }
+.maturity-bar-fill{ height:100%; border-radius:3px; transition:width 1s ease; }
+.maturity-count{ font-size:11px; font-family:"JetBrains Mono",monospace; color:var(--quinary); width:20px; text-align:right; }
+
+/* AI recommendations */
+.rec-item{
+  padding:12px 18px; border-bottom:1px solid rgba(205,195,189,0.05);
+  display:flex; gap:12px; align-items:flex-start; cursor:pointer; transition:background 0.15s;
+}
+.rec-item:last-child{ border-bottom:none; }
+.rec-item:hover{ background:rgba(229,224,214,0.03); }
+.rec-icon{
+  width:28px; height:28px; border-radius:7px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:13px;
+}
+.rec-opt{ background:rgba(45,107,71,0.15); }
+.rec-risk{ background:rgba(139,58,58,0.15); }
+.rec-info{ background:rgba(41,67,198,0.15); }
+.rec-body{ flex:1; min-width:0; }
+.rec-title{ font-size:12.5px; font-weight:500; color:var(--secondary); margin-bottom:3px; }
+.rec-desc{ font-size:11.5px; color:var(--quinary); line-height:1.5; }
+.rec-action{ font-size:11px; color:var(--quaternary); margin-top:4px; cursor:pointer; }
+
+/* Activity feed */
+.activity-item{
+  display:flex; gap:12px; padding:10px 18px; border-bottom:1px solid rgba(205,195,189,0.05);
+  align-items:flex-start;
+}
+.activity-item:last-child{ border-bottom:none; }
+.act-dot{ width:7px; height:7px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+.act-body{ flex:1; min-width:0; }
+.act-text{ font-size:12.5px; color:var(--tertiary); line-height:1.5; }
+.act-text strong{ color:var(--secondary); font-weight:500; }
+.act-time{ font-size:10.5px; font-family:"JetBrains Mono",monospace; color:var(--quinary); margin-top:2px; }
+
+/* Quick action buttons */
+.quick-actions{ display:flex; gap:10px; }
+.qa-btn{
+  flex:1; padding:12px 14px; border:1px solid var(--border-md); border-radius:10px;
+  background:var(--surface); cursor:pointer; transition:all 0.2s; text-align:left;
+  display:flex; align-items:center; gap:10px;
+}
+.qa-btn:hover{ background:var(--surface-md); border-color:rgba(178,153,138,0.25); transform:translateY(-1px); }
+.qa-icon{ font-size:18px; }
+.qa-text{ font-size:12.5px; font-weight:500; color:var(--tertiary); }
+.qa-sub{ font-size:11px; color:var(--quinary); margin-top:1px; }
+
+/* Value chain mini */
+.value-chain{
+  display:flex; align-items:center; padding:16px 18px; gap:0; overflow-x:auto;
+}
+.value-chain::-webkit-scrollbar{ height:0; }
+.vc-stage{
+  display:flex; flex-direction:column; align-items:center; gap:5px; flex:1; min-width:60px;
+}
+.vc-node{
+  width:32px; height:32px; border-radius:8px; border:1px solid var(--border);
+  background:var(--surface); display:flex; align-items:center; justify-content:center;
+  font-size:14px; transition:all 0.2s; cursor:pointer;
+}
+.vc-node:hover{ border-color:rgba(178,153,138,0.3); background:var(--surface-md); }
+.vc-node.vc-active{ border-color:rgba(41,67,198,0.4); background:rgba(41,67,198,0.12); box-shadow:0 0 10px rgba(41,67,198,0.2); }
+.vc-node.vc-done{ border-color:rgba(45,107,71,0.4); background:rgba(45,107,71,0.1); }
+.vc-label{ font-size:9.5px; font-family:"JetBrains Mono",monospace; color:var(--quinary); text-align:center; }
+.vc-arrow{ color:rgba(205,195,189,0.15); font-size:14px; flex-shrink:0; margin:0 -4px; margin-bottom:17px; }
+
+/* Section header */
+.section-hdr{ display:flex; align-items:center; justify-content:space-between; margin-bottom:0; }
+.section-hdr h2{ font-size:13px; font-weight:600; color:var(--tertiary); }
+.section-hdr a{ font-size:11.5px; color:var(--quinary); cursor:pointer; text-decoration:none; transition:color 0.15s; }
+.section-hdr a:hover{ color:var(--quaternary); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">Q</div>
+      <div class="logo-name">qala</div>
+    </div>
+
+    <div class="factory-select">
+      <div class="factory-info">
+        <div class="factory-label">Active Factory</div>
+        <div class="factory-name">Acme Engineering</div>
+      </div>
+      <span class="factory-tier">TEAM</span>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-section">Overview</div>
+      <a class="nav-item active"><span class="ico">⌂</span>Dashboard</a>
+      <a class="nav-item"><span class="ico">◫</span>Portfolio<span class="nav-badge">12</span></a>
+      <a class="nav-item"><span class="ico">◉</span>Value Chain</a>
+
+      <div class="nav-section">Build</div>
+      <a class="nav-item"><span class="ico">◈</span>Solutions<span class="nav-badge">8</span></a>
+      <a class="nav-item"><span class="ico">⬡</span>Environments</a>
+      <a class="nav-item"><span class="ico">⚙</span>Pipelines<span class="nav-badge">3</span></a>
+      <a class="nav-item"><span class="ico">⬡</span>Artifacts</a>
+
+      <div class="nav-section">Quality</div>
+      <a class="nav-item"><span class="ico">✓</span>Testbeds</a>
+      <a class="nav-item"><span class="ico">⚠</span>Defects<span class="nav-badge">4</span></a>
+      <a class="nav-item"><span class="ico">⬆</span>Releases</a>
+
+      <div class="nav-section">Govern</div>
+      <a class="nav-item"><span class="ico">⛊</span>Security<span class="nav-badge">1</span></a>
+      <a class="nav-item"><span class="ico">⬡</span>Registry</a>
+      <a class="nav-item"><span class="ico">⚡</span>AI Agents</a>
+      <a class="nav-item"><span class="ico">◇</span>Governance</a>
+
+      <div class="nav-section">Factory</div>
+      <a class="nav-item"><span class="ico">⬡</span>Benchmarking</a>
+      <a class="nav-item"><span class="ico">◈</span>Resources</a>
+      <a class="nav-item"><span class="ico">⬡</span>Team</a>
+      <a class="nav-item"><span class="ico">⚙</span>Settings</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="avatar">AJ</div>
+      <div class="user-info">
+        <div class="user-name">Alex Jordan</div>
+        <div class="user-role">Factory Admin</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-title">Dashboard <span>/ Acme Engineering</span></div>
+      <div class="search-bar">🔍 Search solutions, SDEs…</div>
+      <div class="topbar-actions">
+        <div class="icon-btn">⚡ <span style="font-size:11px;color:var(--quinary);margin-left:4px">New</span></div>
+        <div class="icon-btn">🔔 <div class="notif-dot"></div></div>
+        <div class="icon-btn">⚙</div>
+      </div>
+    </div>
+
+    <div class="main-body">
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <div class="qa-btn">
+          <span class="qa-icon">✦</span>
+          <div><div class="qa-text">New Solution</div><div class="qa-sub">Register &amp; configure</div></div>
+        </div>
+        <div class="qa-btn">
+          <span class="qa-icon">⬡</span>
+          <div><div class="qa-text">New SDE</div><div class="qa-sub">Provision environment</div></div>
+        </div>
+        <div class="qa-btn">
+          <span class="qa-icon">⚙</span>
+          <div><div class="qa-text">Run Pipeline</div><div class="qa-sub">Trigger CI/CD build</div></div>
+        </div>
+        <div class="qa-btn">
+          <span class="qa-icon">⬆</span>
+          <div><div class="qa-text">Release</div><div class="qa-sub">Promote to CM stage</div></div>
+        </div>
+        <div class="qa-btn">
+          <span class="qa-icon">◈</span>
+          <div><div class="qa-text">CM Review</div><div class="qa-sub">1 pending approval</div></div>
+        </div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-label">Solutions</div>
+          <div class="stat-value">12</div>
+          <div class="stat-sub"><span class="stat-up">↑ 2</span> this week</div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="width:60%;background:linear-gradient(90deg,#2943c6,#4a6fd4)"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Pipeline Runs</div>
+          <div class="stat-value">48</div>
+          <div class="stat-sub"><span class="stat-up">94%</span> pass rate</div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="width:94%;background:linear-gradient(90deg,var(--quinary),var(--quaternary))"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Open Defects</div>
+          <div class="stat-value">4</div>
+          <div class="stat-sub"><span class="stat-down">1 P1</span> · 3 P2</div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="width:30%;background:linear-gradient(90deg,#8b3a3a,#c4504a)"></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">SDEs Active</div>
+          <div class="stat-value">6</div>
+          <div class="stat-sub"><span class="stat-up">All healthy</span></div>
+          <div class="stat-bar"><div class="stat-bar-fill" style="width:100%;background:linear-gradient(90deg,#2d6b47,#3a9e62)"></div></div>
+        </div>
+      </div>
+
+      <!-- Value Chain -->
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">Value Chain — Current Sprint</div>
+          <span class="panel-action">View full chain →</span>
+        </div>
+        <div class="value-chain">
+          <div class="vc-stage"><div class="vc-node vc-done">💡</div><div class="vc-label">Ideation</div></div>
+          <div class="vc-arrow">›</div>
+          <div class="vc-stage"><div class="vc-node vc-done">✏</div><div class="vc-label">Design</div></div>
+          <div class="vc-arrow">›</div>
+          <div class="vc-stage"><div class="vc-node vc-active">⚙</div><div class="vc-label">Build</div></div>
+          <div class="vc-arrow">›</div>
+          <div class="vc-stage"><div class="vc-node">✓</div><div class="vc-label">Test</div></div>
+          <div class="vc-arrow">›</div>
+          <div class="vc-stage"><div class="vc-node">⬆</div><div class="vc-label">Release</div></div>
+          <div class="vc-arrow">›</div>
+          <div class="vc-stage"><div class="vc-node">🚀</div><div class="vc-label">Deploy</div></div>
+          <div class="vc-arrow">›</div>
+          <div class="vc-stage"><div class="vc-node">📊</div><div class="vc-label">Operate</div></div>
+          <div class="vc-arrow">›</div>
+          <div class="vc-stage"><div class="vc-node">◌</div><div class="vc-label">Retire</div></div>
+        </div>
+      </div>
+
+      <!-- Solutions + Maturity -->
+      <div class="two-col">
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Solutions</div>
+            <span class="panel-action">View all →</span>
+          </div>
+          <div class="panel-body">
+            <div style="display:grid;grid-template-columns:1fr 90px 80px 80px 50px;padding:8px 18px 6px;border-bottom:1px solid var(--border);gap:10px">
+              <span style="font-size:10px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em">Name</span>
+              <span style="font-size:10px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em">Maturity</span>
+              <span style="font-size:10px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em">Version</span>
+              <span style="font-size:10px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em">Status</span>
+              <span></span>
+            </div>
+            <div class="solution-row">
+              <div><div class="sol-name">Customer API</div><div class="sol-type">Application</div></div>
+              <div><span class="maturity-badge mat-cm">CM</span></div>
+              <div class="sol-version">2.4.1</div>
+              <div><span class="status-dot dot-green"></span></div>
+              <div class="sol-actions"><button class="sol-action-btn">Open</button></div>
+            </div>
+            <div class="solution-row">
+              <div><div class="sol-name">Analytics Dashboard</div><div class="sol-type">Application</div></div>
+              <div><span class="maturity-badge mat-test">TEST</span></div>
+              <div class="sol-version">1.2.0-rc2</div>
+              <div><span class="status-dot dot-yellow"></span></div>
+              <div class="sol-actions"><button class="sol-action-btn">Open</button></div>
+            </div>
+            <div class="solution-row">
+              <div><div class="sol-name">Notification Service</div><div class="sol-type">Service</div></div>
+              <div><span class="maturity-badge mat-nightly">NIGHTLY</span></div>
+              <div class="sol-version">0.9.4</div>
+              <div><span class="status-dot dot-green"></span></div>
+              <div class="sol-actions"><button class="sol-action-btn">Open</button></div>
+            </div>
+            <div class="solution-row">
+              <div><div class="sol-name">Auth Platform</div><div class="sol-type">Platform</div></div>
+              <div><span class="maturity-badge mat-dev">DEV</span></div>
+              <div class="sol-version">0.3.0</div>
+              <div><span class="status-dot dot-green"></span></div>
+              <div class="sol-actions"><button class="sol-action-btn">Open</button></div>
+            </div>
+            <div class="solution-row">
+              <div><div class="sol-name">Data Ingestion Pipeline</div><div class="sol-type">System</div></div>
+              <div><span class="maturity-badge mat-dev">DEV</span></div>
+              <div class="sol-version">0.1.2</div>
+              <div><span class="status-dot dot-yellow"></span></div>
+              <div class="sol-actions"><button class="sol-action-btn">Open</button></div>
+            </div>
+            <div class="solution-row">
+              <div><div class="sol-name">Mobile Companion App</div><div class="sol-type">Application</div></div>
+              <div><span class="maturity-badge mat-sandbox">SANDBOX</span></div>
+              <div class="sol-version">0.0.1</div>
+              <div><span class="status-dot dot-grey"></span></div>
+              <div class="sol-actions"><button class="sol-action-btn">Open</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+
+          <!-- Maturity dist -->
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">Portfolio Maturity</div>
+              <span class="panel-action">12 solutions</span>
+            </div>
+            <div class="maturity-chart">
+              <div class="maturity-stage-row">
+                <span class="maturity-stage-label">SANDBOX</span>
+                <div class="maturity-bar-track"><div class="maturity-bar-fill" style="width:25%;background:rgba(229,224,214,0.2)"></div></div>
+                <span class="maturity-count">3</span>
+              </div>
+              <div class="maturity-stage-row">
+                <span class="maturity-stage-label">DEV</span>
+                <div class="maturity-bar-track"><div class="maturity-bar-fill" style="width:33%;background:rgba(41,67,198,0.5)"></div></div>
+                <span class="maturity-count">4</span>
+              </div>
+              <div class="maturity-stage-row">
+                <span class="maturity-stage-label">NIGHTLY</span>
+                <div class="maturity-bar-track"><div class="maturity-bar-fill" style="width:17%;background:rgba(196,148,74,0.6)"></div></div>
+                <span class="maturity-count">2</span>
+              </div>
+              <div class="maturity-stage-row">
+                <span class="maturity-stage-label">TEST</span>
+                <div class="maturity-bar-track"><div class="maturity-bar-fill" style="width:8%;background:rgba(178,153,138,0.6)"></div></div>
+                <span class="maturity-count">1</span>
+              </div>
+              <div class="maturity-stage-row">
+                <span class="maturity-stage-label">CM</span>
+                <div class="maturity-bar-track"><div class="maturity-bar-fill" style="width:17%;background:rgba(45,107,71,0.7)"></div></div>
+                <span class="maturity-count">2</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pipeline runs -->
+          <div class="panel">
+            <div class="panel-head">
+              <div class="panel-title">Pipeline Activity</div>
+              <span class="panel-action">View all →</span>
+            </div>
+            <div class="panel-body">
+              <div class="pipeline-row">
+                <div class="pipeline-status ps-running"></div>
+                <div class="pipeline-info">
+                  <div class="pipeline-name">Customer API · CI build</div>
+                  <div class="pipeline-meta">main · commit a3f9c2</div>
+                </div>
+                <div class="pipeline-dur">0:43</div>
+              </div>
+              <div class="pipeline-row">
+                <div class="pipeline-status ps-pass"></div>
+                <div class="pipeline-info">
+                  <div class="pipeline-name">Analytics Dashboard · TEST</div>
+                  <div class="pipeline-meta">release/1.2 · staging deploy</div>
+                </div>
+                <div class="pipeline-dur">4:12</div>
+              </div>
+              <div class="pipeline-row">
+                <div class="pipeline-status ps-pass"></div>
+                <div class="pipeline-info">
+                  <div class="pipeline-name">Notification Service · nightly</div>
+                  <div class="pipeline-meta">main · all tests pass</div>
+                </div>
+                <div class="pipeline-dur">2:08</div>
+              </div>
+              <div class="pipeline-row">
+                <div class="pipeline-status ps-fail"></div>
+                <div class="pipeline-info">
+                  <div class="pipeline-name">Data Ingestion · integration</div>
+                  <div class="pipeline-meta">feat/schema-v2 · SAST failed</div>
+                </div>
+                <div class="pipeline-dur">1:35</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI + Activity -->
+      <div class="two-col-wide">
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">⚡ AI Recommendations</div>
+            <span class="panel-action">View all →</span>
+          </div>
+          <div class="panel-body">
+            <div class="rec-item">
+              <div class="rec-icon rec-risk">⚠</div>
+              <div class="rec-body">
+                <div class="rec-title">P1 Vulnerability: Data Ingestion Pipeline</div>
+                <div class="rec-desc">CVE-2024-3094 detected in libxz dependency. SAST scan blocked CI. Update to 5.6.2+.</div>
+                <div class="rec-action">View in Security → SAST findings</div>
+              </div>
+            </div>
+            <div class="rec-item">
+              <div class="rec-icon rec-opt">✦</div>
+              <div class="rec-body">
+                <div class="rec-title">Pipeline bottleneck detected — Customer API</div>
+                <div class="rec-desc">Integration test stage averaging 4.2 min (2.1× baseline). Parallelizing 3 suites could reduce to ~2 min.</div>
+                <div class="rec-action">Apply optimization suggestion →</div>
+              </div>
+            </div>
+            <div class="rec-item">
+              <div class="rec-icon rec-info">◈</div>
+              <div class="rec-body">
+                <div class="rec-title">Analytics Dashboard ready for CM promotion</div>
+                <div class="rec-desc">All gate criteria satisfied: tests passing, DAST clean, benchmarks met. CM board sign-off pending.</div>
+                <div class="rec-action">Submit CM promotion request →</div>
+              </div>
+            </div>
+            <div class="rec-item">
+              <div class="rec-icon rec-opt">♻</div>
+              <div class="rec-body">
+                <div class="rec-title">3 idle SDEs detected (>48h inactive)</div>
+                <div class="rec-desc">sde-sandbox-02, sde-dev-legacy, sde-test-old consuming ~$12/day. Consider suspending or archiving.</div>
+                <div class="rec-action">Review SDE resources →</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <div class="panel-title">Recent Activity</div>
+            <span class="panel-action">View audit log →</span>
+          </div>
+          <div class="panel-body">
+            <div class="activity-item">
+              <div class="act-dot" style="background:#4a6fd4"></div>
+              <div class="act-body">
+                <div class="act-text"><strong>Customer API v2.4.1</strong> deployed to production via blue/green strategy</div>
+                <div class="act-time">2 min ago · Alex Jordan</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="act-dot" style="background:#c4504a"></div>
+              <div class="act-body">
+                <div class="act-text"><strong>Data Ingestion Pipeline</strong> CI build failed — SAST vulnerability in feat/schema-v2</div>
+                <div class="act-time">14 min ago · CI System</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="act-dot" style="background:#3a9e62"></div>
+              <div class="act-body">
+                <div class="act-text"><strong>Analytics Dashboard</strong> promoted to TEST maturity — all integration gates passed</div>
+                <div class="act-time">1 hr ago · Sara Mitchell</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="act-dot" style="background:var(--quinary)"></div>
+              <div class="act-body">
+                <div class="act-text"><strong>SDE sde-api-prod</strong> snapshot captured before maintenance window</div>
+                <div class="act-time">2 hr ago · ops-automation</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="act-dot" style="background:#8aaaf5"></div>
+              <div class="act-body">
+                <div class="act-text">New team member <strong>Jamie Okafor</strong> invited as Developer — RBAC applied</div>
+                <div class="act-time">3 hr ago · Alex Jordan</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="act-dot" style="background:var(--quaternary)"></div>
+              <div class="act-body">
+                <div class="act-text"><strong>Notification Service</strong> nightly build passed — 214 tests, 97% coverage</div>
+                <div class="act-time">6 hr ago · CI System</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /main-body -->
+  </main>
+</div>
+</body>
+</html>

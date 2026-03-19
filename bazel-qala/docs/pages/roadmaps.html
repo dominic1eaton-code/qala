@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><title>qala — Roadmaps</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#0f172a;--secondary:#E5E0D6;--tertiary:#CDC3BD;--quaternary:#B2998A;--quinary:#695242;--border:rgba(205,195,189,0.08);--border-md:rgba(205,195,189,0.12);--surface:rgba(229,224,214,0.03);--surface-md:rgba(229,224,214,0.06);--sidebar-w:220px;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Inter",sans-serif;}
+html,body{height:100%;background:var(--primary);color:var(--secondary);overflow:hidden;}
+.app{display:flex;height:100vh;}
+.sidebar{width:var(--sidebar-w);flex-shrink:0;height:100vh;background:linear-gradient(180deg,#0c1628,#060e1e);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+.sidebar-logo{padding:22px 20px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);}
+.logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#2943c6,#1c295c);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#d6e8ff;box-shadow:0 0 0 1px rgba(46,46,180,0.25),0 0 12px rgba(46,51,180,0.3);position:relative;flex-shrink:0;}
+.logo-icon::after{content:"";position:absolute;inset:0;border-radius:8px;background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent 60%);}
+.logo-name{font-size:18px;font-weight:700;color:var(--secondary);}
+.factory-select{margin:14px 12px 8px;padding:10px 12px;background:var(--surface-md);border:1px solid var(--border-md);border-radius:8px;display:flex;align-items:center;justify-content:space-between;}
+.fl{font-size:10px;color:var(--quinary);letter-spacing:0.06em;text-transform:uppercase;font-family:"JetBrains Mono",monospace;}
+.fn{font-size:13px;font-weight:600;color:var(--tertiary);margin-top:1px;}
+.ftier{font-size:9px;font-family:"JetBrains Mono",monospace;padding:2px 7px;border-radius:4px;background:rgba(41,67,198,0.2);color:#8aaaf5;border:1px solid rgba(41,67,198,0.3);}
+.nav{flex:1;overflow-y:auto;padding:8px 0;}.nav::-webkit-scrollbar{width:0;}
+.ns{padding:6px 14px 4px;font-size:10px;color:var(--quinary);letter-spacing:0.1em;text-transform:uppercase;font-family:"JetBrains Mono",monospace;margin-top:10px;}
+.ni{display:flex;align-items:center;gap:10px;padding:9px 14px;font-size:13px;color:var(--quinary);cursor:pointer;border-radius:6px;margin:1px 8px;transition:all 0.15s;text-decoration:none;}
+.ni:hover{background:var(--surface-md);color:var(--tertiary);}
+.ni.active{background:rgba(105,82,66,0.15);color:var(--secondary);border:1px solid rgba(105,82,66,0.2);}
+.ni .ico{width:16px;text-align:center;font-size:13px;flex-shrink:0;}
+.nb{margin-left:auto;font-size:10px;font-family:"JetBrains Mono",monospace;padding:1px 6px;border-radius:10px;background:rgba(105,82,66,0.25);color:var(--quaternary);}
+.sidebar-bottom{padding:12px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--quinary),#3d2e1e);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--secondary);flex-shrink:0;}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{height:56px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:12px;background:rgba(6,14,30,0.8);backdrop-filter:blur(10px);flex-shrink:0;}
+.topbar-title{font-size:14px;font-weight:600;color:var(--secondary);flex:1;}
+.topbar-title span{color:var(--quinary);font-weight:400;font-size:13px;margin-left:6px;}
+.tb-btn{padding:6px 13px;border:1px solid var(--border-md);border-radius:7px;background:var(--surface);color:var(--tertiary);font-size:12px;cursor:pointer;white-space:nowrap;}
+.tb-btn.primary{background:var(--secondary);color:var(--primary);border-color:var(--secondary);font-weight:600;}
+.icon-btn{width:32px;height:32px;border-radius:7px;border:1px solid var(--border-md);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;position:relative;}
+.notif-dot{width:6px;height:6px;border-radius:50%;background:#c4504a;position:absolute;top:5px;right:5px;border:1px solid #0c1628;}
+
+/* VIEW TABS */
+.view-bar{border-bottom:1px solid var(--border);padding:0 24px;display:flex;gap:0;background:rgba(6,14,30,0.4);flex-shrink:0;}
+.vt{padding:10px 16px;font-size:12.5px;color:var(--quinary);cursor:pointer;border-bottom:2px solid transparent;}
+.vt.active{color:var(--secondary);border-bottom-color:var(--quinary);}
+
+/* SCROLL AREA */
+.scroll{flex:1;overflow:auto;padding:0;}
+.scroll::-webkit-scrollbar{width:6px;height:6px;}
+.scroll::-webkit-scrollbar-thumb{background:rgba(205,195,189,0.15);border-radius:3px;}
+
+/* ROADMAP TABLE */
+.roadmap-table{min-width:1000px;display:flex;flex-direction:column;}
+/* Quarter header */
+.rm-header{display:flex;position:sticky;top:0;z-index:10;background:rgba(10,18,35,0.97);border-bottom:1px solid var(--border);}
+.rm-label-header{width:180px;flex-shrink:0;padding:10px 16px;font-size:10px;color:var(--quinary);font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:0.06em;border-right:1px solid var(--border);}
+.rm-label-header2{width:130px;flex-shrink:0;border-right:1px solid var(--border);}
+.q-header{flex:1;padding:0;border-right:1px solid var(--border);display:flex;flex-direction:column;}
+.q-title{padding:8px 14px;font-size:13px;font-weight:700;letter-spacing:0.5px;}
+.q-months{display:flex;}
+.q-month{flex:1;padding:5px 6px;font-size:10px;font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:0.06em;border-top:1px solid rgba(205,195,189,0.06);border-right:1px solid rgba(205,195,189,0.04);text-align:center;}
+.q-month:last-child{border-right:none;}
+/* Row */
+.rm-section{border-bottom:1px solid var(--border);}
+.rm-section-header{display:flex;align-items:center;background:rgba(6,14,30,0.5);border-bottom:1px solid var(--border);}
+.rm-sh-label{width:180px;flex-shrink:0;padding:10px 16px;display:flex;align-items:center;gap:8px;border-right:1px solid var(--border);}
+.rm-sh-color{width:4px;height:24px;border-radius:2px;flex-shrink:0;}
+.rm-sh-name{font-size:13px;font-weight:700;color:var(--secondary);}
+.rm-sh-cols{flex:1;display:flex;}
+.rm-sh-col{flex:1;border-right:1px solid rgba(205,195,189,0.04);}
+/* Sub-rows */
+.rm-row{display:flex;min-height:36px;border-bottom:1px solid rgba(205,195,189,0.04);}
+.rm-row:hover{background:rgba(229,224,214,0.02);}
+.rm-row-type{width:180px;flex-shrink:0;border-right:1px solid var(--border);padding:6px 16px 6px 24px;display:flex;align-items:center;}
+.rm-type-label{font-size:11.5px;color:var(--quinary);}
+.rm-cells{flex:1;display:flex;position:relative;}
+.rm-cell{flex:1;border-right:1px solid rgba(205,195,189,0.04);padding:4px 4px;display:flex;flex-wrap:wrap;gap:3px;align-content:flex-start;}
+.rm-cell:last-child{border-right:none;}
+/* Feature chips */
+.chip{padding:4px 10px;border-radius:5px;font-size:11px;font-weight:500;cursor:pointer;transition:filter 0.15s;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis;}
+.chip:hover{filter:brightness(1.15);}
+.chip-high{background:rgba(196,80,74,0.25);color:#e89090;border:1px solid rgba(196,80,74,0.4);}
+.chip-mid{background:rgba(196,148,74,0.25);color:#d4b97a;border:1px solid rgba(196,148,74,0.4);}
+.chip-low{background:rgba(45,107,71,0.25);color:#7fc4a0;border:1px solid rgba(45,107,71,0.35);}
+.chip-blue{background:rgba(41,67,198,0.25);color:#8aaaf5;border:1px solid rgba(41,67,198,0.35);}
+.chip-brown{background:rgba(105,82,66,0.3);color:var(--quaternary);border:1px solid rgba(105,82,66,0.45);}
+/* Milestone marker */
+.rm-milestone{display:flex;align-items:center;gap:6px;padding:4px 8px;font-size:10.5px;font-family:"JetBrains Mono",monospace;}
+.ms-diamond{width:10px;height:10px;transform:rotate(45deg);flex-shrink:0;}
+.ms-star::before{content:"★";font-size:14px;flex-shrink:0;}
+/* Priority legend */
+.legend{display:flex;gap:14px;padding:10px 24px;border-top:1px solid var(--border);flex-shrink:0;background:rgba(6,14,30,0.3);}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--quinary);}
+.ld{width:10px;height:10px;border-radius:3px;}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="sidebar-logo"><div class="logo-icon">Q</div><div class="logo-name">qala</div></div>
+  <div class="factory-select"><div><div class="fl">Active Factory</div><div class="fn">Acme Engineering</div></div><span class="ftier">TEAM</span></div>
+  <nav class="nav">
+    <div class="ns">Planning</div>
+    <a class="ni" href="solution_schedules.html"><span class="ico">📅</span>Schedules</a>
+    <a class="ni" href="timelines_gantt.html"><span class="ico">⬥</span>Timelines &amp; Gantt</a>
+    <a class="ni active"><span class="ico">◉</span>Roadmaps</a>
+    <a class="ni" href="multi_solution_tracking.html"><span class="ico">◫</span>Multi-Tracking</a>
+    <a class="ni" href="solution_boards.html"><span class="ico">⬡</span>Boards</a>
+    <a class="ni" href="releases_schedule.html"><span class="ico">⬆</span>Release Schedule</a>
+    <div class="ns">Build</div>
+    <a class="ni" href="solutions.html"><span class="ico">◈</span>Solutions</a>
+    <a class="ni" href="environments.html"><span class="ico">⬡</span>Environments</a>
+    <a class="ni" href="pipelines.html"><span class="ico">⚙</span>Pipelines</a>
+    <div class="ns">Solution</div>
+    <a class="ni" href="solution_book.html"><span class="ico">📖</span>Solution Book</a>
+    <a class="ni" href="version_control_cm.html"><span class="ico">🔀</span>Version Control</a>
+    <a class="ni" href="releases.html"><span class="ico">⬆</span>Releases</a>
+    <div class="ns">Govern</div>
+    <a class="ni" href="solution_registry.html"><span class="ico">⬡</span>Registry</a>
+    <a class="ni" href="tools.html"><span class="ico">🔧</span>Tools</a>
+  </nav>
+  <div class="sidebar-bottom"><div class="avatar">AJ</div><div><div style="font-size:12.5px;font-weight:600;color:var(--tertiary)">Alex Jordan</div><div style="font-size:10.5px;color:var(--quinary)">Factory Admin</div></div></div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Roadmaps <span>/ Acme Engineering · FY2026</span></div>
+    <button class="tb-btn">Quarter ▾</button>
+    <button class="tb-btn">All Teams ▾</button>
+    <button class="tb-btn">Priority ▾</button>
+    <button class="tb-btn">Export</button>
+    <button class="tb-btn primary">+ Add Feature</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="view-bar">
+    <span class="vt active">Timeline</span>
+    <span class="vt">By Team</span>
+    <span class="vt">By Solution</span>
+    <span class="vt">Compact</span>
+  </div>
+
+  <div class="scroll" style="flex:1;overflow:auto;">
+  <div class="roadmap-table">
+
+    <!-- HEADER -->
+    <div class="rm-header">
+      <div class="rm-label-header" style="width:310px">Team / Domain</div>
+      <div class="q-header" style="background:rgba(41,67,198,0.06)">
+        <div class="q-title" style="color:#8aaaf5">Q1 2026</div>
+        <div class="q-months">
+          <div class="q-month" style="color:#8aaaf5">JAN</div>
+          <div class="q-month" style="color:#8aaaf5">FEB</div>
+          <div class="q-month" style="color:#8aaaf5;background:rgba(41,67,198,0.1)">MAR ▲</div>
+        </div>
+      </div>
+      <div class="q-header">
+        <div class="q-title" style="color:var(--tertiary)">Q2 2026</div>
+        <div class="q-months">
+          <div class="q-month">APR</div>
+          <div class="q-month">MAY</div>
+          <div class="q-month">JUN</div>
+        </div>
+      </div>
+      <div class="q-header">
+        <div class="q-title" style="color:var(--quinary)">Q3 2026</div>
+        <div class="q-months">
+          <div class="q-month">JUL</div>
+          <div class="q-month">AUG</div>
+          <div class="q-month">SEP</div>
+        </div>
+      </div>
+      <div class="q-header">
+        <div class="q-title" style="color:var(--quinary)">Q4 2026</div>
+        <div class="q-months">
+          <div class="q-month">OCT</div>
+          <div class="q-month">NOV</div>
+          <div class="q-month">DEC</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MILESTONES / RELEASES ROW -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:var(--quinary)"></div>
+          <div class="rm-sh-name">Releases &amp; Milestones</div>
+        </div>
+        <div class="rm-sh-cols"><div class="rm-sh-col" style="flex:3"></div></div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><span class="rm-type-label">Key Deliverables</span></div>
+        <div class="rm-cells">
+          <!-- Q1 -->
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#4a6fd4"></div><span style="font-size:10px;color:#8aaaf5">Analytics 1.2.0 GA</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <!-- Q2 -->
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#3a9e62"></div><span style="font-size:10px;color:#7fc4a0">Customer API v3.0</span></div></div>
+          <div class="rm-cell"></div>
+          <!-- Q3 -->
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:var(--quinary)"></div><span style="font-size:10px;color:var(--quaternary)">Auth Platform v1.0</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <!-- Q4 -->
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#c4944a"></div><span style="font-size:10px;color:#d4b97a">Customer API v3.5</span></div></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLATFORM ENGINEERING SECTION -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:#4a6fd4"></div>
+          <div><div class="rm-sh-name">Platform Engineering</div><div style="font-size:10.5px;color:var(--quinary);margin-top:2px">Customer API · Auth Platform · Reporting</div></div>
+        </div>
+      </div>
+      <!-- Releases row -->
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Releases</div><div style="font-size:10.5px;color:var(--quinary)">Customer API</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#4a6fd4"></div><span style="font-size:10px;color:#8aaaf5">v2.4.1 ✓</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#3a9e62"></div><span style="font-size:10px;color:#7fc4a0">v3.0 GA</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#c4944a"></div><span style="font-size:10px;color:#d4b97a">v3.5 Public API</span></div></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+      <!-- API row -->
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">API &amp; Backend</div></div></div>
+        <div class="rm-cells">
+          <!-- Q1 - now: design phase, crypto fix -->
+          <div class="rm-cell"><div class="chip chip-high">Crypto Fix</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-blue">v3.0 Design</div></div>
+          <!-- Q2 -->
+          <div class="rm-cell"><div class="chip chip-blue">Federation Gateway</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Resolver Layer</div></div>
+          <div class="rm-cell"><div class="chip chip-low">OTel Tracing</div></div>
+          <!-- Q3 -->
+          <div class="rm-cell"><div class="chip chip-low">Perf Tuning</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <!-- Q4 -->
+          <div class="rm-cell"><div class="chip chip-mid">Public API Portal</div></div>
+          <div class="rm-cell"><div class="chip chip-low">API Keys + Metering</div></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+      <!-- Auth Platform row -->
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Auth Platform</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"><div class="chip chip-high">Core Auth Engine</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-high">RBAC Integration</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-mid">SSO + OAuth 2.0</div></div>
+          <div class="rm-cell"><div class="chip chip-low">MFA</div></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:var(--quinary)"></div><span style="font-size:10px;color:var(--quaternary)">v1.0 CM</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATA & ANALYTICS -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:#c4944a"></div>
+          <div><div class="rm-sh-name">Data &amp; Analytics</div><div style="font-size:10.5px;color:var(--quinary);margin-top:2px">Analytics Dashboard · Data Ingestion · Event Streaming</div></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Analytics Dashboard</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-high">CM Gate</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Cross-Portfolio Compare</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Factory Heatmap</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-mid">AI-Driven Insights</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-low">Custom Dashboards</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Data Ingestion Pipeline</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-high">CVE Remediation</div></div>
+          <div class="rm-cell"><div class="chip chip-high">Schema Migration</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Kafka Integration</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Backpressure Handling</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONSUMER PRODUCTS -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:#3a9e62"></div>
+          <div><div class="rm-sh-name">Consumer Products</div><div style="font-size:10.5px;color:var(--quinary);margin-top:2px">Mobile App · Search Platform · Pricing Engine</div></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Mobile Companion App</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-blue">UX Discovery</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">App Architecture</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Core Features</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Beta Build</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Alpha Testing</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Beta Launch</div></div>
+          <div class="rm-cell"><div class="chip chip-low">v1.0 DEV gate</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Search Platform</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"><div class="chip chip-high">Search Index</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-mid">Full-text Search</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Faceted Filters</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Relevance Tuning</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Analytics Integration</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:#c4504a"></div>
+          <div><div class="rm-sh-name">Security &amp; Infrastructure</div><div style="font-size:10.5px;color:var(--quinary);margin-top:2px">Factory-wide · All teams</div></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Security Program</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-high">SDE Compliance Audit</div></div>
+          <div class="rm-cell"><div class="chip chip-high">BSL License Review</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Pentest — API v3.0</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-mid">Annual Security Review</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="legend">
+    <span style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace;margin-right:6px">PRIORITY:</span>
+    <div class="legend-item"><div class="ld" style="background:rgba(196,80,74,0.5)"></div>High</div>
+    <div class="legend-item"><div class="ld" style="background:rgba(196,148,74,0.5)"></div>Mid</div>
+    <div class="legend-item"><div class="ld" style="background:rgba(45,107,71,0.5)"></div>Low</div>
+    <div class="legend-item"><div class="ld" style="background:rgba(41,67,198,0.5)"></div>Strategic</div>
+    <div class="legend-item" style="margin-left:16px"><div style="width:10px;height:10px;transform:rotate(45deg);background:var(--quinary)"></div> Milestone / Release</div>
+    <div class="legend-item" style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">▲ = Current month</div>
+  </div>
+</main>
+</div>
+</body>
+</html>

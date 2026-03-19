@@ -1,0 +1,10 @@
+/* shared base — embedded into every page */
+:root{
+  --primary:#0f172a; --primary-mid:#111e35; --primary-light:#1a2540;
+  --secondary:#E5E0D6; --tertiary:#CDC3BD; --quaternary:#B2998A; --quinary:#695242;
+  --border:rgba(205,195,189,0.08); --border-md:rgba(205,195,189,0.12);
+  --surface:rgba(229,224,214,0.03); --surface-md:rgba(229,224,214,0.06);
+  --blue:#2943c6; --blue-light:#4a6fd4; --blue-glow:rgba(41,67,198,0.3);
+  --green-text:#7fc4a0; --red-text:#d98080; --yellow-text:#d4b97a;
+  --sidebar-w:220px;
+}
