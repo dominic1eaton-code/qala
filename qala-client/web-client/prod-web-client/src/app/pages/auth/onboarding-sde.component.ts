@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -12,7 +12,8 @@ interface SdeTemplate {
   selector: 'app-onboarding-sde',
   standalone: true,
   imports: [NgFor, RouterLink],
-  templateUrl: './onboarding-sde.component.html'
+  templateUrl: './onboarding-sde.component.html',
+  styleUrl: './auth.styles.css'
 })
 export class OnboardingSdeComponent {
   templates: SdeTemplate[] = [
@@ -27,3 +28,5 @@ export class OnboardingSdeComponent {
     this.selectedTemplate = id;
   }
 }
+
+

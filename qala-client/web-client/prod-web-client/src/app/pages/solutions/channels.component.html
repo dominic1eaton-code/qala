@@ -1,0 +1,514 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Channels &amp; Distribution <span>/ Comms · Logistics · Supply Chain · SAMS · SRMS</span></div>
+    <button class="tb-btn">Export</button>
+    <button class="tb-btn primary">+ Configure Channel</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="body">
+    <div class="tab-rail">
+      <div class="tr-sec">Channels</div>
+      <div class="ti active" onclick="sw('comms')"><span class="ti-ico">📡</span>Communication<span class="ti-count">6</span></div>
+      <div class="ti" onclick="sw('dist-ch')"><span class="ti-ico">📦</span>Distribution<span class="ti-count">5</span></div>
+      <div class="tr-sec">Distribution</div>
+      <div class="ti" onclick="sw('logistics')"><span class="ti-ico">🚚</span>Logistics</div>
+      <div class="ti" onclick="sw('supplychain')"><span class="ti-ico">🔗</span>Supply Chain</div>
+      <div class="ti" onclick="sw('inventory')"><span class="ti-ico">📋</span>Inventory</div>
+      <div class="tr-sec">Management</div>
+      <div class="ti" onclick="sw('sams')"><span class="ti-ico">⬡</span>SAMS</div>
+      <div class="ti" onclick="sw('srms')"><span class="ti-ico">◈</span>SRMS</div>
+      <div class="tr-sec">Comms</div>
+      <div class="ti" onclick="sw('rooms')"><span class="ti-ico">💬</span>Rooms</div>
+      <div class="ti" onclick="sw('notifications')"><span class="ti-ico">🔔</span>Notifications<span class="ti-count warn">2</span></div>
+    </div>
+
+    <div class="tc">
+
+      <!-- ═══ COMMUNICATION CHANNELS ═══ -->
+      <div class="tp active" id="tp-comms">
+        <div class="stat-row stat-row-4">
+          <div class="sc"><div class="sl">Active Channels</div><div class="sv">6</div><div class="ss">All configured</div></div>
+          <div class="sc"><div class="sl">Messages / Day</div><div class="sv">142</div><div class="ss">Avg last 7 days</div></div>
+          <div class="sc"><div class="sl">Alerts Sent</div><div class="sv">12</div><div class="ss">This week</div></div>
+          <div class="sc"><div class="sl">Unacknowledged</div><div class="sv" style="color:#d4b97a">2</div><div class="ss">Require attention</div></div>
+        </div>
+        <div class="ch-grid">
+          <div class="ch-card comm">
+            <div class="ch-header"><div><div class="ch-name">#api-platform-alerts</div><div class="ch-type">Internal · Slack Webhook</div></div><span class="badge b-green">Active</span></div>
+            <div class="ch-desc">Automated CI/CD events, deployment completions, error rate spikes, pipeline failures, and security alerts for the Platform Engineering team. Delivers immediately on event trigger.</div>
+            <div class="ch-meta"><span class="badge b-grey">Push · immediate</span><span class="badge b-blue">Build events</span><span class="badge b-red">Security events</span></div>
+            <div class="ch-footer"><button class="ch-btn prim">Configure</button><button class="ch-btn">Test</button><button class="ch-btn">View Logs</button></div>
+          </div>
+          <div class="ch-card comm">
+            <div class="ch-header"><div><div class="ch-name">api-release@acme.io</div><div class="ch-type">Email Distribution List</div></div><span class="badge b-green">Active</span></div>
+            <div class="ch-desc">Release announcements, changelogs, and stakeholder-facing communication for all solution releases. Sent to 14 subscribers on release trigger or CM gate.</div>
+            <div class="ch-meta"><span class="badge b-grey">Scheduled broadcast</span><span class="badge b-amber">Release events</span></div>
+            <div class="ch-footer"><button class="ch-btn prim">Configure</button><button class="ch-btn">Subscribers</button><button class="ch-btn">View Archive</button></div>
+          </div>
+          <div class="ch-card emrg">
+            <div class="ch-header"><div><div class="ch-name">PagerDuty On-Call</div><div class="ch-type">Alert / Escalation</div></div><span class="badge b-green">Active</span></div>
+            <div class="ch-desc">P0/P1 incident escalation. Multi-channel delivery until acknowledged — SMS, phone call, app push. Rotates weekly between Alex Jordan and Sara Mitchell.</div>
+            <div class="ch-meta"><span class="badge b-red">Emergency</span><span class="badge b-grey">Multi-channel escalation</span></div>
+            <div class="ch-footer"><button class="ch-btn prim">Configure</button><button class="ch-btn">On-Call Schedule</button></div>
+          </div>
+          <div class="ch-card dist">
+            <div class="ch-header"><div><div class="ch-name">api-status.acme.io</div><div class="ch-type">Status Page · External</div></div><span class="badge b-green">Active</span></div>
+            <div class="ch-desc">Public-facing uptime and incident status page. Automatically updated by the monitoring system. Current status: 99.4% uptime displayed. Last incident: none this month.</div>
+            <div class="ch-meta"><span class="badge b-grey">External</span><span class="badge b-blue">Auto-updated</span></div>
+            <div class="ch-footer"><button class="ch-btn prim">Configure</button><button class="ch-btn">View Page</button></div>
+          </div>
+          <div class="ch-card int">
+            <div class="ch-header"><div><div class="ch-name">Factory Kafka Event Bus</div><div class="ch-type">Internal · Apache Kafka</div></div><span class="badge b-green">Active</span></div>
+            <div class="ch-desc">Platform-internal event bus. Topics: SOLUTION_EVENTS, BUILD_EVENTS, SECURITY_EVENTS, ARTIFACT_EVENTS, USER_EVENTS, AI_RECOMMENDATIONS, NOTIFICATIONS. 7-day log compaction.</div>
+            <div class="ch-meta"><span class="badge b-grey">Internal</span><span class="badge b-blue">Event streaming</span><span class="badge b-blue">Kafka</span></div>
+            <div class="ch-footer"><button class="ch-btn prim">Configure</button><button class="ch-btn">Topics</button><button class="ch-btn">Consumer Groups</button></div>
+          </div>
+          <div class="ch-card int">
+            <div class="ch-header"><div><div class="ch-name">GitHub Discussions</div><div class="ch-type">Community · Internal</div></div><span class="badge b-green">Active</span></div>
+            <div class="ch-desc">RFC proposals, API design discussions, architecture reviews. All linked to solution repositories and auto-threaded with build events on merge.</div>
+            <div class="ch-meta"><span class="badge b-grey">Community</span><span class="badge b-blue">Developer forums</span></div>
+            <div class="ch-footer"><button class="ch-btn prim">Configure</button><button class="ch-btn">Open Discussions</button></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">Channel Registry</div><span class="pa">+ Add Channel</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Channel</th><th>Category</th><th>Message Types</th><th>Routing Rule</th><th>Archival</th><th>Status</th></tr>
+            <tr><td>#api-platform-alerts</td><td>Internal</td><td>Alert, Event Notification</td><td>All BUILD_EVENTS + SECURITY_EVENTS</td><td>90 days</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>api-release@acme.io</td><td>Communication</td><td>Announcement, Digest</td><td>Release trigger → CM gate approved</td><td>Forever</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>PagerDuty On-Call</td><td>Emergency</td><td>Alert (escalation)</td><td>P0/P1 incidents only · severity ≥ CRITICAL</td><td>1 year</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>api-status.acme.io</td><td>External</td><td>Announcement</td><td>Uptime monitor → auto-publish on incident</td><td>2 years</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>Factory Kafka Bus</td><td>Internal</td><td>Event Notification</td><td>All platform events — all topics</td><td>7d log compaction</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>GitHub Discussions</td><td>Internal</td><td>Group Message</td><td>RFC templates · merge events</td><td>Permanent</td><td><span class="badge b-green">Active</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- ═══ DISTRIBUTION CHANNELS ═══ -->
+      <div class="tp" id="tp-dist-ch">
+        <div class="panel">
+          <div class="ph"><div class="pt">Distribution Channels — How Artifacts Reach Consumers</div><span class="pa">+ Add Channel</span></div>
+          <div style="padding:14px 18px;font-size:12.5px;color:var(--quinary);line-height:1.7;border-bottom:1px solid var(--border)">Distribution Channels are the defined delivery pathways through which Solution artifacts, packages, and releases flow to consumers and deployment targets. qala distinguishes them from Communication Channels, which carry information rather than artifacts.</div>
+          <table class="tbl">
+            <tbody><tr><th>Channel</th><th>Category</th><th>Type</th><th>Solutions Served</th><th>Delivery Confirmation</th><th>Status</th></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Internal OCI Registry</div><div class="mono">registry.acme-engineering.qala.io</div></td><td>Internal</td><td>Container Registry</td><td>All containerized solutions</td><td>Digest + cosign signature verified</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">CD Pipeline → Kubernetes</div><div class="mono">k8s prod namespace · blue/green</div></td><td>Internal</td><td>Direct Deploy</td><td>Customer API, Reporting Svc, Notif Svc</td><td>Post-deploy health check · liveness probe</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">S3 Artifact Store</div><div class="mono">s3://acme-artifacts-prod</div></td><td>Internal</td><td>Package Registry</td><td>All packaged artifacts · 184 items</td><td>ETag + SHA-256 hash verification</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">CDN (CloudFront)</div><div class="mono">cdn.acme.io → analytics dashboard</div></td><td>External</td><td>CDN</td><td>Analytics Dashboard (frontend assets)</td><td>Cache invalidation + origin health check</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Public Package Registry</div><div class="mono">Planned for v3.5 (Public API Program)</div></td><td>External</td><td>Package Registry</td><td>Future: Customer API SDK</td><td>N/A — not yet active</td><td><span class="badge b-grey">Planned v3.5</span></td></tr>
+          </tbody></table>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">Distribution Flow — Customer API v2.4.1</div></div>
+          <div class="sc-flow">
+            <div class="sc-node sc-build">Build<div class="sc-node-sub">Hermetic · #142</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-attest">SLSA L3<div class="sc-node-sub">cosign · sigstore</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-build">OCI Registry<div class="sc-node-sub">customer-api:2.4.1</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-dist">CD Pipeline<div class="sc-node-sub">Blue/green trigger</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-dist">K8s Blue Swap<div class="sc-node-sub">Traffic 0→100%</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-prod">Production ✓<div class="sc-node-sub">Health verified</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ LOGISTICS ═══ -->
+      <div class="tp" id="tp-logistics">
+        <div class="panel">
+          <div class="ph"><div class="pt">Release Logistics — Delivery Mechanics</div></div>
+          <div style="padding:14px 18px;font-size:12.5px;color:var(--quinary);line-height:1.7;border-bottom:1px solid var(--border)">Orchestration of packaging, signing, routing, delivery confirmation, and recipient verification for all solution releases. Every delivery event is logged and traceable to its source.</div>
+          <table class="tbl">
+            <tbody><tr><th>Solution</th><th>Version</th><th>Strategy</th><th>Route</th><th>Delivered</th><th>Rollback</th></tr>
+            <tr><td>Customer API</td><td class="mono">2.4.1</td><td>Blue/Green</td><td>OCI → K8s prod · blue→green swap at 02:14 UTC</td><td><span class="badge b-green">2026-03-19 02:16</span></td><td><span class="badge b-green">v2.3.0 retained</span></td></tr>
+            <tr><td>Reporting Service</td><td class="mono">1.1.0</td><td>Rolling</td><td>OCI → K8s prod · 3-instance rolling replace</td><td><span class="badge b-green">2026-02-12 15:01</span></td><td><span class="badge b-green">v1.0.3 retained</span></td></tr>
+            <tr><td>Analytics Dashboard</td><td class="mono">1.2.0-rc2</td><td>Canary (pending)</td><td>OCI → K8s staging · awaiting CM gate</td><td><span class="badge b-amber">Pending CM</span></td><td><span class="badge b-green">v1.1.2 retained</span></td></tr>
+            <tr><td>Analytics Dashboard</td><td class="mono">1.1.2</td><td>Blue/Green (archived)</td><td>CDN invalidation + K8s blue/green</td><td><span class="badge b-grey">2026-01-20 · archived</span></td><td>N/A — superseded</td></tr>
+          </tbody></table>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">Delivery Confirmation Log</div><span class="pa">Full audit →</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Timestamp</th><th>Event</th><th>Solution</th><th>Confirmed By</th><th>Status</th></tr>
+            <tr><td class="mono">2026-03-19T09:58:44Z</td><td>Production deployment confirmed · post-deploy health check passed · p99 94ms</td><td>Customer API 2.4.1</td><td>k8s-liveness-probe</td><td><span class="badge b-green">Confirmed</span></td></tr>
+            <tr><td class="mono">2026-03-19T09:42:11Z</td><td>OCI image pushed and signed · digest confirmed · SLSA L3 attestation on record</td><td>Customer API 2.4.1</td><td>cosign-verifier</td><td><span class="badge b-green">Verified</span></td></tr>
+            <tr><td class="mono">2026-03-18T16:04:22Z</td><td>Staging deploy confirmed · Analytics Dashboard 1.2.0-rc2 · all e2e tests passed</td><td>Analytics Dashboard 1.2.0-rc2</td><td>CD Pipeline</td><td><span class="badge b-green">Confirmed</span></td></tr>
+            <tr><td class="mono">2026-02-12T15:01:08Z</td><td>Rolling deployment complete · 3 instances replaced · zero errors during rollout</td><td>Reporting Service 1.1.0</td><td>k8s-rollout-controller</td><td><span class="badge b-green">Confirmed</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- ═══ SUPPLY CHAIN ═══ -->
+      <div class="tp" id="tp-supplychain">
+        <div class="stat-row stat-row-4">
+          <div class="sc"><div class="sl">Vendors</div><div class="sv">4</div><div class="ss">All approved</div></div>
+          <div class="sc"><div class="sl">Dependencies</div><div class="sv">48</div><div class="ss">SHA-256 verified</div></div>
+          <div class="sc"><div class="sl">SBOM Files</div><div class="sv">8</div><div class="ss">CycloneDX JSON</div></div>
+          <div class="sc"><div class="sl">CVEs Active</div><div class="sv" style="color:#d4b97a">1</div><div class="ss">1 remediation open</div></div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">End-to-End Supply Chain — Customer API v2.4.1</div></div>
+          <div class="sc-flow">
+            <div class="sc-node sc-vendor">Vendor Parts<div class="sc-node-sub">4 vendors · 48 pkgs</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-build">Dep Lock<div class="sc-node-sub">go.sum · SHA each</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-build">Mirror Fetch<div class="sc-node-sub">Internal mirror</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-build">Hermetic Build<div class="sc-node-sub">Isolated · no net</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-attest">SBOM<div class="sc-node-sub">syft · CycloneDX</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-attest">Provenance<div class="sc-node-sub">SLSA L3 · cosign</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-dist">Warehouse<div class="sc-node-sub">OCI + S3</div></div><div class="sc-arrow">→</div>
+            <div class="sc-node sc-prod">Production<div class="sc-node-sub">Verified at deploy</div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">SBOM — Software Bill of Materials · Customer API v2.4.1</div><span class="pa">Download CycloneDX JSON →</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Component</th><th>Type</th><th>Version</th><th>License</th><th>Supplier</th><th>Hash</th><th>CVEs</th></tr>
+            <tr><td>github.com/gin-gonic/gin</td><td>library</td><td class="mono">v1.9.1</td><td>MIT</td><td>gin-gonic OSS</td><td class="mono">4a2b3c9d…</td><td><span class="badge b-green">0</span></td></tr>
+            <tr><td>github.com/golang-jwt/jwt/v5</td><td>library</td><td class="mono">v5.2.0</td><td>MIT</td><td>golang-jwt OSS</td><td class="mono">7f8a1e3c…</td><td><span class="badge b-green">0</span></td></tr>
+            <tr><td>github.com/redis/go-redis/v9</td><td>library</td><td class="mono">v9.4.0</td><td>BSD-2</td><td>Redis Ltd.</td><td class="mono">9b1c4e7a…</td><td><span class="badge b-green">0</span></td></tr>
+            <tr><td>github.com/jackc/pgx/v5</td><td>library</td><td class="mono">v5.5.3</td><td>MIT</td><td>jackc OSS</td><td class="mono">3f7d9a2c…</td><td><span class="badge b-green">0</span></td></tr>
+            <tr><td>go.opentelemetry.io/otel</td><td>library</td><td class="mono">v1.24.0</td><td>Apache 2.0</td><td>CNCF</td><td class="mono">e4c2a8f1…</td><td><span class="badge b-green">0</span></td></tr>
+            <tr><td>github.com/prometheus/client_golang</td><td>library</td><td class="mono">v1.19.0</td><td>Apache 2.0</td><td>Prometheus OSS</td><td class="mono">a1b3c5d7…</td><td><span class="badge b-green">0</span></td></tr>
+            <tr><td style="color:var(--quinary)" colspan="7">+ 42 more · All SHA-256 verified · No critical CVEs in this artifact</td></tr>
+          </tbody></table>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">Vendor Supply Chain Registry</div></div>
+          <table class="tbl">
+            <tbody><tr><th>Vendor</th><th>Type</th><th>Parts Supplied</th><th>Lead Time</th><th>CVEs</th><th>License</th><th>Status</th></tr>
+            <tr><td>gin-gonic OSS</td><td>Open Source</td><td>gin v1.9.1</td><td>N/A</td><td>0</td><td>MIT</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td>Redis Ltd.</td><td>SaaS Provider</td><td>go-redis v9.4.0</td><td>Instant</td><td>0</td><td>BSD-2</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td>PostgreSQL Dev Group</td><td>Open Source</td><td>pgx v5.5.3</td><td>N/A</td><td>0</td><td>MIT</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td>Sigstore / CNCF</td><td>Open Source</td><td>cosign, slsa-verifier</td><td>N/A</td><td>0</td><td>Apache 2.0</td><td><span class="badge b-green">Approved</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- ═══ INVENTORY ═══ -->
+      <div class="tp" id="tp-inventory">
+        <div class="stat-row stat-row-5">
+          <div class="sc"><div class="sl">Total Artifacts</div><div class="sv">184</div><div class="ss">In warehouse</div></div>
+          <div class="sc"><div class="sl">In Production</div><div class="sv" style="color:#7fc4a0">3</div><div class="ss">Active instances</div></div>
+          <div class="sc"><div class="sl">In Staging</div><div class="sv" style="color:#8aaaf5">2</div><div class="ss">Pending CM</div></div>
+          <div class="sc"><div class="sl">Warehouse Size</div><div class="sv">48.2 GB</div><div class="ss">OCI + S3</div></div>
+          <div class="sc"><div class="sl">Expiring Soon</div><div class="sv" style="color:#d4b97a">3</div><div class="ss">Next 30 days</div></div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">Real-Time Artifact Inventory</div><span class="pa">SAMS →</span></div>
+          <div class="inv-row">
+            <span class="inv-icon">🟢</span>
+            <div class="inv-body"><div class="inv-name">customer-api:2.4.1</div><div class="inv-meta">OCI image · Production · sde-api-main · SLSA L3 · 24.8 MB</div></div>
+            <span class="inv-qty">1</span><span class="inv-unit">instance</span>
+          </div>
+          <div class="inv-row">
+            <span class="inv-icon">🟢</span>
+            <div class="inv-body"><div class="inv-name">reporting-service:1.1.0</div><div class="inv-meta">OCI image · Production · sde-api-main · SLSA L3 · 18.2 MB</div></div>
+            <span class="inv-qty">1</span><span class="inv-unit">instance</span>
+          </div>
+          <div class="inv-row">
+            <span class="inv-icon">🔵</span>
+            <div class="inv-body"><div class="inv-name">analytics-dashboard:1.2.0-rc2</div><div class="inv-meta">OCI image · Staging · sde-analytics-01 · SLSA L2 · 31.5 MB · Pending CM</div></div>
+            <span class="inv-qty">1</span><span class="inv-unit">instance</span>
+          </div>
+          <div class="inv-row">
+            <span class="inv-icon">🟢</span>
+            <div class="inv-body"><div class="inv-name">notification-service:0.9.4</div><div class="inv-meta">OCI image · Integration · sde-notif-main · SLSA L2 · 12.1 MB</div></div>
+            <span class="inv-qty">1</span><span class="inv-unit">instance</span>
+          </div>
+          <div class="inv-row">
+            <span class="inv-icon">🗄</span>
+            <div class="inv-body"><div class="inv-name">Artifact Warehouse — Full Index</div><div class="inv-meta">184 artifacts · 14 version tags retained · retention policy: 180 days</div></div>
+            <span class="inv-qty">184</span><span class="inv-unit">total</span>
+          </div>
+          <div class="inv-row">
+            <span class="inv-icon">📋</span>
+            <div class="inv-body"><div class="inv-name">SBOM Files</div><div class="inv-meta">CycloneDX JSON · All TEST+ artifacts · syft-generated · 8 files on record</div></div>
+            <span class="inv-qty">8</span><span class="inv-unit">SBOMs</span>
+          </div>
+          <div class="inv-row">
+            <span class="inv-icon">⚠</span>
+            <div class="inv-body"><div class="inv-name">Expiring Artifacts (next 30d)</div><div class="inv-meta">customer-api:2.2.1 · 2026-04-01 · customer-api:2.1.0 · 2026-04-08 · reporting-service:1.0.2 · 2026-04-15</div></div>
+            <span class="inv-qty" style="color:#d4b97a">3</span><span class="inv-unit">expiring</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SAMS ═══ -->
+      <div class="tp" id="tp-sams">
+        <div class="stat-row stat-row-4">
+          <div class="sc"><div class="sl">Total Artifacts</div><div class="sv">184</div><div class="ss">All tracked</div></div>
+          <div class="sc"><div class="sl">Production</div><div class="sv" style="color:#7fc4a0">3</div><div class="ss">Live instances</div></div>
+          <div class="sc"><div class="sl">Capital Assets</div><div class="sv">12</div><div class="ss">Tools, licenses, infra</div></div>
+          <div class="sc"><div class="sl">Warehouse</div><div class="sv">48.2 GB</div><div class="ss">OCI + S3</div></div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">SAMS — Solution Artifact Management System</div></div>
+          <div style="padding:14px 18px;font-size:12.5px;color:var(--quinary);line-height:1.7;border-bottom:1px solid var(--border)">SAMS is the platform subsystem responsible for inventory management, binary management, and capital &amp; asset management across the full artifact lifecycle. Every artifact is tracked from production through distribution, deployment, operation, and retirement.</div>
+          <div class="sams-grid">
+            <div class="sams-card">
+              <div class="sams-title">📋 Inventory Management</div>
+              <div class="sams-desc">Real-time versioned inventory of all artifacts across all environments, tiers, warehouses, and channels. Supports quantity tracking, location management, and status auditing.</div>
+              <div class="sams-stats">
+                <div class="sams-stat"><span class="sams-k">Total artifacts</span><span class="sams-v">184</span></div>
+                <div class="sams-stat"><span class="sams-k">Environments tracked</span><span class="sams-v">dev · int · staging · prod</span></div>
+                <div class="sams-stat"><span class="sams-k">Retention policy</span><span class="sams-v">180 days standard</span></div>
+              </div>
+            </div>
+            <div class="sams-card">
+              <div class="sams-title">⬡ Binary Management</div>
+              <div class="sams-desc">Governs storage, versioning, signing, verification, promotion, and retirement of all compiled binary artifacts. Enforces immutability after publication — new version always required for changes.</div>
+              <div class="sams-stats">
+                <div class="sams-stat"><span class="sams-k">Signed artifacts</span><span class="sams-v">3 SLSA L3 · 5 SLSA L2</span></div>
+                <div class="sams-stat"><span class="sams-k">Immutability</span><span class="sams-v">Enforced post-publish</span></div>
+                <div class="sams-stat"><span class="sams-k">Registry</span><span class="sams-v">OCI + S3 · cosign verified</span></div>
+              </div>
+            </div>
+            <div class="sams-card">
+              <div class="sams-title">💼 Capital &amp; Asset Management</div>
+              <div class="sams-desc">Tracks all platform assets — licenses, tools, physical components, infrastructure, and subscriptions — as first-class inventory items with ownership, cost attribution, and lifecycle state.</div>
+              <div class="sams-stats">
+                <div class="sams-stat"><span class="sams-k">Tool licenses</span><span class="sams-v">8 tracked</span></div>
+                <div class="sams-stat"><span class="sams-k">SaaS subscriptions</span><span class="sams-v">4 (Redis, PagerDuty…)</span></div>
+                <div class="sams-stat"><span class="sams-k">Monthly cost tracked</span><span class="sams-v">$4,280 compute</span></div>
+              </div>
+            </div>
+            <div class="sams-card">
+              <div class="sams-title">⬆ Artifact Promotion</div>
+              <div class="sams-desc">Controlled movement of artifacts through environment tiers with gate validation at each boundary. Dev → Integration → Staging → Production. Gate failures halt promotion.</div>
+              <div class="sams-stats">
+                <div class="sams-stat"><span class="sams-k">Promotions this month</span><span class="sams-v">6</span></div>
+                <div class="sams-stat"><span class="sams-k">Blocked promotions</span><span class="sams-v">1 (SAST — data ingestion)</span></div>
+                <div class="sams-stat"><span class="sams-k">Rollback available</span><span class="sams-v">All CM artifacts</span></div>
+              </div>
+            </div>
+            <div class="sams-card">
+              <div class="sams-title">📄 SBOM Generation</div>
+              <div class="sams-desc">Automatically generates a Software Bill of Materials for every artifact at TEST+ maturity. CycloneDX and SPDX formats. All components, dependencies, versions, and verified hashes.</div>
+              <div class="sams-stats">
+                <div class="sams-stat"><span class="sams-k">SBOMs generated</span><span class="sams-v">8 (all TEST+ artifacts)</span></div>
+                <div class="sams-stat"><span class="sams-k">Format</span><span class="sams-v">CycloneDX JSON</span></div>
+                <div class="sams-stat"><span class="sams-k">Tool</span><span class="sams-v">syft v1.0.1</span></div>
+              </div>
+            </div>
+            <div class="sams-card">
+              <div class="sams-title">♻ Artifact Expiry &amp; Retention</div>
+              <div class="sams-desc">Enforces configurable retention policies. Expires artifacts past their retention window. Archives to long-term storage or purges per governance policy. 3 artifacts expiring next 30 days.</div>
+              <div class="sams-stats">
+                <div class="sams-stat"><span class="sams-k">Standard retention</span><span class="sams-v">180 days</span></div>
+                <div class="sams-stat"><span class="sams-k">CM artifacts retained</span><span class="sams-v">Forever (by policy)</span></div>
+                <div class="sams-stat"><span class="sams-k">Expiring soon</span><span class="sams-v">3 artifacts · 30 days</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SRMS ═══ -->
+      <div class="tp" id="tp-srms">
+        <div class="stat-row stat-row-4">
+          <div class="sc"><div class="sl">Human Resources</div><div class="sv">4</div><div class="ss">1,240 dev hrs / mo</div></div>
+          <div class="sc"><div class="sl">Compute Spend</div><div class="sv">$4,280</div><div class="ss">This month</div></div>
+          <div class="sc"><div class="sl">3rd-Party</div><div class="sv">$680</div><div class="ss">Tools + SaaS</div></div>
+          <div class="sc"><div class="sl">Idle Detected</div><div class="sv" style="color:#d4b97a">$240</div><div class="ss">AI optimization</div></div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">SRMS — Solution Resource Management System</div></div>
+          <div style="padding:14px 18px;font-size:12.5px;color:var(--quinary);line-height:1.7;border-bottom:1px solid var(--border)">SRMS provides comprehensive tracking, allocation, optimization, and governance of all resources consumed across the solution lifecycle — human, compute, financial, third-party, physical, energy, and network. Resources tracked at individual solution, SDE, factory tier, and platform levels.</div>
+
+          <div class="srms-row">
+            <span class="srms-icon">👤</span>
+            <div class="srms-body">
+              <div class="srms-name">Human Resources</div>
+              <div class="srms-desc">Developer time, team capacity, skill profiles, assignment status, velocity, utilization rate. Capacity planning dashboards, bottleneck detection, AI-recommended team composition.</div>
+              <div class="srms-metrics">
+                <span class="srms-metric highlight">4 engineers assigned</span>
+                <span class="srms-metric highlight">1,240 hrs / month</span>
+                <span class="srms-metric">Alex Jordan · 60% Customer API</span>
+                <span class="srms-metric">Sara Mitchell · 40% Customer API</span>
+                <span class="srms-metric">Jamie Okafor · 25% Customer API</span>
+              </div>
+              <div class="srms-track"><div class="srms-bar"><div class="srms-fill" style="width:74%;background:linear-gradient(90deg,#2943c6,#4a6fd4)"></div></div><span class="srms-pct">74% utilized</span></div>
+            </div>
+          </div>
+
+          <div class="srms-row">
+            <span class="srms-icon">💻</span>
+            <div class="srms-body">
+              <div class="srms-name">Compute Resources</div>
+              <div class="srms-desc">CPU cores, memory, disk I/O, network bandwidth per SDE, per pipeline run, per deployed instance. Auto-scaling policies, idle resource detection, ephemeral environment teardown, cost attribution.</div>
+              <div class="srms-metrics">
+                <span class="srms-metric highlight">$4,280 / month</span>
+                <span class="srms-metric highlight">8 active SDEs</span>
+                <span class="srms-metric">sde-api-main: $320/mo</span>
+                <span class="srms-metric">sde-sandbox-legacy: $96/mo (idle ⚠)</span>
+                <span class="srms-metric">Pipeline runs: $180/mo</span>
+              </div>
+              <div class="srms-track"><div class="srms-bar"><div class="srms-fill" style="width:56%;background:linear-gradient(90deg,var(--quinary),var(--quaternary))"></div></div><span class="srms-pct">56% utilized</span></div>
+            </div>
+          </div>
+
+          <div class="srms-row">
+            <span class="srms-icon">💰</span>
+            <div class="srms-body">
+              <div class="srms-name">Financial Resources</div>
+              <div class="srms-desc">Cost per project, team, solution, environment tier, and factory level. License fees, cloud spend, vendor contracts. Budget tracking, cost anomaly alerts, AI-driven spend optimization.</div>
+              <div class="srms-metrics">
+                <span class="srms-metric highlight">$62,400 annual budget</span>
+                <span class="srms-metric highlight">$41,280 spent YTD</span>
+                <span class="srms-metric highlight">$21,120 remaining</span>
+                <span class="srms-metric">Burn rate: $5,160 / month</span>
+                <span class="srms-metric">Forecast: on budget ✓</span>
+              </div>
+              <div class="srms-track"><div class="srms-bar"><div class="srms-fill" style="width:66%;background:linear-gradient(90deg,#2d6b47,#3a9e62)"></div></div><span class="srms-pct">66% consumed</span></div>
+            </div>
+          </div>
+
+          <div class="srms-row">
+            <span class="srms-icon">🔧</span>
+            <div class="srms-body">
+              <div class="srms-name">Third-Party Resources</div>
+              <div class="srms-desc">Licensed tools, SaaS subscriptions, vendor services, external APIs, open-source library dependencies. License compliance tracking, usage metering, contract renewal alerts.</div>
+              <div class="srms-metrics">
+                <span class="srms-metric highlight">$680 / month</span>
+                <span class="srms-metric">Redis Cloud: $48/mo</span>
+                <span class="srms-metric">PagerDuty: $96/mo</span>
+                <span class="srms-metric">GitHub: $84/mo</span>
+                <span class="srms-metric">38 open-source libs (free)</span>
+              </div>
+              <div class="srms-track"><div class="srms-bar"><div class="srms-fill" style="width:42%;background:linear-gradient(90deg,#2943c6,#4a6fd4)"></div></div><span class="srms-pct">$680 / $1,600 budget</span></div>
+            </div>
+          </div>
+
+          <div class="srms-row">
+            <span class="srms-icon">⚡</span>
+            <div class="srms-body">
+              <div class="srms-name">Energy &amp; Power</div>
+              <div class="srms-desc">Power consumption per environment, server rack, and cloud region. Estimated carbon footprint. Idle environment shutdown, workload scheduling optimization, green-region preferences.</div>
+              <div class="srms-metrics">
+                <span class="srms-metric highlight">~2.4 kWh / day (est.)</span>
+                <span class="srms-metric">3 idle SDEs detected</span>
+                <span class="srms-metric">AI: suspend idle SDEs → save $240/mo</span>
+              </div>
+              <div class="srms-track"><div class="srms-bar"><div class="srms-fill" style="width:34%;background:linear-gradient(90deg,#2d6b47,#3a9e62)"></div></div><span class="srms-pct">Below budget</span></div>
+            </div>
+          </div>
+
+          <div class="srms-row">
+            <span class="srms-icon">🌐</span>
+            <div class="srms-body">
+              <div class="srms-name">Network Resources</div>
+              <div class="srms-desc">Bandwidth utilization, inter-service traffic volumes, external API call rates, CDN usage. Traffic shaping, caching policies, redundant call elimination, request batching.</div>
+              <div class="srms-metrics">
+                <span class="srms-metric highlight">~84 GB / day transferred</span>
+                <span class="srms-metric">CDN: 62 GB/day</span>
+                <span class="srms-metric">Inter-service: 18 GB/day</span>
+                <span class="srms-metric">External APIs: 4 GB/day</span>
+              </div>
+              <div class="srms-track"><div class="srms-bar"><div class="srms-fill" style="width:58%;background:linear-gradient(90deg,var(--quinary),var(--quaternary))"></div></div><span class="srms-pct">58% of quota</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:12px 16px;background:rgba(41,67,198,0.07);border:1px solid rgba(41,67,198,0.18);border-radius:10px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="font-size:18px">⚡</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#8aaaf5;margin-bottom:4px">AI Optimization Recommendations</div>
+            <div style="font-size:12px;color:var(--quinary);line-height:1.7">
+              1. <strong style="color:var(--tertiary)">Suspend sde-sandbox-legacy</strong> — idle 52h, no active solutions · saves ~$96/mo<br>
+              2. <strong style="color:var(--tertiary)">Archive sde-sandbox-legacy</strong> if not resumed within 7 days · saves $96/mo fully<br>
+              3. <strong style="color:var(--tertiary)">Parallelise integration test stage</strong> in Customer API pipeline · estimated -2.2min/run · saves 26 compute-hrs/mo<br>
+              4. <strong style="color:var(--tertiary)">Renegotiate PagerDuty plan</strong> — current usage is below enterprise tier threshold · consider team plan · ~$36/mo saving
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ ROOMS ═══ -->
+      <div class="tp" id="tp-rooms">
+        <div class="panel">
+          <div class="ph"><div class="pt">Collaboration Rooms</div><span class="pa">+ New Room</span></div>
+          <div style="padding:14px 18px;font-size:12.5px;color:var(--quinary);line-height:1.7;border-bottom:1px solid var(--border)">qala organizes collaborative contexts into structured rooms that map to specific work types and organizational relationships. Rooms are linked to solutions, factories, and teams for context-aware collaboration.</div>
+          <div class="room-grid" style="padding:14px 18px;">
+            <div class="room-card"><div class="room-icon">💼</div><div class="room-name">Customer API Sprint</div><div class="room-desc">Active sprint room for v3.0 design phase. 4 members.</div><div class="room-meta">Work room · Updated 11min ago</div></div>
+            <div class="room-card"><div class="room-icon">🔍</div><div class="room-name">CM Board Review</div><div class="room-desc">Analytics Dashboard 1.2.0-rc2 pending approval. 3 approvers.</div><div class="room-meta">Governance room · Action required</div></div>
+            <div class="room-card"><div class="room-icon">🚨</div><div class="room-name">Incident Bridge</div><div class="room-desc">Emergency coordination channel. Last incident: 14 days ago.</div><div class="room-meta">Emergency room · Inactive</div></div>
+            <div class="room-card"><div class="room-icon">📐</div><div class="room-name">GraphQL RFC #018</div><div class="room-desc">Federation gateway design discussion. 6 comments open.</div><div class="room-meta">RFC room · Updated 2h ago</div></div>
+            <div class="room-card"><div class="room-icon">🏭</div><div class="room-name">Platform Engineering</div><div class="room-desc">Team room for all platform solutions. 4 members active.</div><div class="room-meta">Team room · General</div></div>
+            <div class="room-card"><div class="room-icon">🤝</div><div class="room-name">Vendor: Redis Ltd.</div><div class="room-desc">Vendor consultation room for SLA and support queries.</div><div class="room-meta">Vendor room · Last activity 3d</div></div>
+            <div class="room-card"><div class="room-icon">📊</div><div class="room-name">Security Review</div><div class="room-desc">CVE remediation tracking and pentest coordination.</div><div class="room-meta">Security room · 1 open item</div></div>
+            <div class="room-card"><div class="room-icon">🌐</div><div class="room-name">Community: API Dev</div><div class="room-desc">Cross-team community for API design patterns and Q&amp;A.</div><div class="room-meta">Community room · 12 members</div></div>
+            <div class="room-card" style="border-style:dashed;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--quinary);font-size:13px;"><span>+</span><span>New Room</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ NOTIFICATIONS ═══ -->
+      <div class="tp" id="tp-notifications">
+        <div class="stat-row stat-row-4">
+          <div class="sc"><div class="sl">Total (7d)</div><div class="sv">84</div><div class="ss">Dispatched</div></div>
+          <div class="sc"><div class="sl">Unread</div><div class="sv" style="color:#d4b97a">2</div><div class="ss">Require action</div></div>
+          <div class="sc"><div class="sl">Alerts</div><div class="sv" style="color:#d98080">3</div><div class="ss">This week</div></div>
+          <div class="sc"><div class="sl">Delivery Rate</div><div class="sv" style="color:#7fc4a0">100%</div><div class="ss">All channels</div></div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">Notification Feed</div><span class="pa">Mark all read</span></div>
+          <div class="notif-row">
+            <div class="notif-dot-indicator nd-sec"></div>
+            <div class="notif-body">
+              <div class="notif-title">⚠ CVE-2024-8812 detected — golangci-lint v1.57.2</div>
+              <div class="notif-desc">SAST scan flagged a known vulnerability in the embedded staticcheck dependency. Tool marked Deprecated. Migrate before next CM gate.</div>
+            </div>
+            <div class="notif-time">2d ago<br><span class="badge b-red" style="font-size:9px">UNREAD</span></div>
+          </div>
+          <div class="notif-row">
+            <div class="notif-dot-indicator nd-warn"></div>
+            <div class="notif-body">
+              <div class="notif-title">terraform BSL license governance review open</div>
+              <div class="notif-desc">License advisory requires governance board review. IaC Toolset marked Provisional until resolved. Review deadline: 2026-04-01.</div>
+            </div>
+            <div class="notif-time">4d ago<br><span class="badge b-red" style="font-size:9px">UNREAD</span></div>
+          </div>
+          <div class="notif-row">
+            <div class="notif-dot-indicator nd-release"></div>
+            <div class="notif-body">
+              <div class="notif-title">✓ Customer API v2.4.1 production deployment confirmed</div>
+              <div class="notif-desc">Blue/green deployment complete. All health checks passing. p99 94ms — within SLA. SLSA L3 attestation on record.</div>
+            </div>
+            <div class="notif-time">1d ago</div>
+          </div>
+          <div class="notif-row">
+            <div class="notif-dot-indicator nd-build"></div>
+            <div class="notif-body">
+              <div class="notif-title">Analytics Dashboard 1.2.0-rc2 — CM promotion pending</div>
+              <div class="notif-desc">All gate criteria met. 2 of 3 CM board approvers have signed. Awaiting Sara Mitchell sign-off.</div>
+            </div>
+            <div class="notif-time">1d ago</div>
+          </div>
+          <div class="notif-row">
+            <div class="notif-dot-indicator nd-sec"></div>
+            <div class="notif-body">
+              <div class="notif-title">Data Ingestion Pipeline CI build failed — SAST gate blocked</div>
+              <div class="notif-desc">feat/schema-v2 branch blocked by CVE-2024-3094 in libxz dependency. DEV → NIGHTLY promotion halted until remediated.</div>
+            </div>
+            <div class="notif-time">14h ago</div>
+          </div>
+          <div class="notif-row">
+            <div class="notif-dot-indicator nd-info"></div>
+            <div class="notif-body">
+              <div class="notif-title">sde-sandbox-legacy idle for 52h — suspension recommended</div>
+              <div class="notif-desc">AI Agents: no active solutions, no pipeline runs. Suspending would save ~$96/month. Archiving after 7 days idle saves further.</div>
+            </div>
+            <div class="notif-time">2h ago</div>
+          </div>
+          <div class="notif-row">
+            <div class="notif-dot-indicator nd-release"></div>
+            <div class="notif-body">
+              <div class="notif-title">Notification Service nightly build passed — 214 tests, 97% coverage</div>
+              <div class="notif-desc">Nightly CI green on main branch. SAST clean, SCA clean. No regressions detected.</div>
+            </div>
+            <div class="notif-time">6h ago</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tc -->
+  </div><!-- /body -->
+</main>

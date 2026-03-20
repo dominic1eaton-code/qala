@@ -1,0 +1,624 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Tools <span>/ Tool Registry · Toolsets · Toolkits · Toolchains</span></div>
+    <input class="search-input" placeholder="🔍  Search tools, toolsets…" oninput="filterTools(this.value)">
+    <button class="tb-btn">Type ▾</button>
+    <button class="tb-btn">Status ▾</button>
+    <button class="tb-btn primary">+ Register Tool</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="content-area">
+
+    <!-- TAB RAIL -->
+    <div class="tab-rail">
+      <div class="tr-section">Views</div>
+      <div class="tab-item active" onclick="switchTab('overview')"><span class="ti-ico">⬡</span>Overview</div>
+      <div class="tab-divider"></div>
+      <div class="tr-section">Registry</div>
+      <div class="tab-item" onclick="switchTab('tools')"><span class="ti-ico">🔧</span>Tools<span class="tab-count">38</span></div>
+      <div class="tab-divider"></div>
+      <div class="tr-section">Composition</div>
+      <div class="tab-item" onclick="switchTab('toolsets')"><span class="ti-ico">◈</span>Toolsets<span class="tab-count">8</span></div>
+      <div class="tab-item" onclick="switchTab('toolkits')"><span class="ti-ico">◇</span>Toolkits<span class="tab-count">4</span></div>
+      <div class="tab-item" onclick="switchTab('toolchains')"><span class="ti-ico">⬥</span>Toolchains<span class="tab-count">3</span></div>
+      <div class="tab-divider"></div>
+      <div class="tr-section">Structure</div>
+      <div class="tab-item" onclick="switchTab('hierarchy')"><span class="ti-ico">⊹</span>Hierarchy</div>
+      <div class="tab-divider"></div>
+      <div class="tr-section">Security</div>
+      <div class="tab-item" onclick="switchTab('advisories')"><span class="ti-ico">⚠</span>Advisories<span class="tab-count warn">2</span></div>
+    </div>
+
+    <!-- MAIN CONTENT + DRAWER -->
+    <div style="flex:1;display:flex;overflow:hidden;">
+      <div class="tab-content" id="tabContent">
+
+        <!-- ═══ OVERVIEW ═══ -->
+        <div class="tab-panel active" id="tab-overview">
+          <div class="stat-row">
+            <div class="sc"><div class="sl">Tools</div><div class="sv">38</div><div class="ss">32 approved · 4 provisional</div></div>
+            <div class="sc"><div class="sl">Toolsets</div><div class="sv">8</div><div class="ss">Named purpose groups</div></div>
+            <div class="sc"><div class="sl">Toolkits</div><div class="sv">4</div><div class="ss">Domain practice kits</div></div>
+            <div class="sc"><div class="sl">Toolchains</div><div class="sv">3</div><div class="ss">Linked exec sequences</div></div>
+            <div class="sc"><div class="sl">Advisories</div><div class="sv" style="color:#d4b97a">2</div><div class="ss">Pending review</div></div>
+          </div>
+
+          <div class="panel">
+            <div class="ph"><div class="pt">Tooling Hierarchy Map</div><span class="pa" onclick="switchTab('hierarchy')">Full view →</span></div>
+            <div class="hier-block" style="padding:18px;">
+              <div class="hier-intro">
+                <strong>Hierarchy:</strong> Tool (atomic) → Toolset (grouped by purpose) → Toolkit (domain practice) → Tool Suite (governed platform standard). A <strong>Toolchain</strong> is an independent ordered execution sequence. All tool binaries are SHA-256 verified at every SDE provisioning event.
+              </div>
+              <div class="hier-level">
+                <div class="hl-label">Suite</div>
+                <div class="hl-connector">╴</div>
+                <div class="hl-items">
+                  <div class="hi suite">Go Backend Suite</div>
+                  <div class="hi suite">Frontend Suite</div>
+                  <div class="hi suite">DevOps Suite</div>
+                </div>
+              </div>
+              <div class="hier-level">
+                <div class="hl-label">Toolkit</div>
+                <div class="hl-connector">╴</div>
+                <div class="hl-items">
+                  <div class="hi toolkit">Backend Dev Kit</div>
+                  <div class="hi toolkit">Frontend Dev Kit</div>
+                  <div class="hi toolkit">Security Kit</div>
+                  <div class="hi toolkit">Infra Kit</div>
+                </div>
+              </div>
+              <div class="hier-level">
+                <div class="hl-label">Toolset</div>
+                <div class="hl-connector">╴</div>
+                <div class="hl-items">
+                  <div class="hi toolset">Go Build</div>
+                  <div class="hi toolset">Go Test</div>
+                  <div class="hi toolset">Container</div>
+                  <div class="hi toolset">IaC</div>
+                  <div class="hi toolset">Security Scan</div>
+                  <div class="hi toolset">Signing</div>
+                  <div class="hi toolset">Lint</div>
+                  <div class="hi toolset">Web Build</div>
+                </div>
+              </div>
+              <div class="hier-level">
+                <div class="hl-label">Tool</div>
+                <div class="hl-connector">╴</div>
+                <div class="hl-items">
+                  <div class="hi tool">go</div><div class="hi tool">gofmt</div><div class="hi tool">golint</div>
+                  <div class="hi tool">gotest</div><div class="hi tool">docker</div><div class="hi tool">kubectl</div>
+                  <div class="hi tool">terraform</div><div class="hi tool">semgrep</div><div class="hi tool">trivy</div>
+                  <div class="hi tool">cosign</div><div class="hi tool">syft</div><div class="hi tool">grype</div>
+                  <div class="hi tool">node</div><div class="hi tool">npm</div><div class="hi tool">vite</div>
+                  <div class="hi tool">eslint</div><div class="hi tool">helm</div><div class="hi more">+ 21 more</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick advisories notice -->
+          <div style="padding:12px 16px;background:rgba(196,148,74,0.07);border:1px solid rgba(196,148,74,0.2);border-radius:10px;display:flex;align-items:center;gap:12px;">
+            <div style="font-size:18px">⚠</div>
+            <div style="flex:1">
+              <div style="font-size:13px;font-weight:500;color:#d4b97a;margin-bottom:2px">2 security advisories require attention</div>
+              <div style="font-size:12px;color:var(--quinary)">golangci-lint is deprecated with a known vulnerability. terraform BSL license change requires governance review.</div>
+            </div>
+            <button class="tb-btn warn" style="border-color:rgba(196,148,74,0.3);color:#d4b97a;" onclick="switchTab('advisories')">View Advisories →</button>
+          </div>
+        </div>
+
+        <!-- ═══ TOOLS ═══ -->
+        <div class="tab-panel" id="tab-tools">
+          <div class="panel">
+            <div class="ph">
+              <div class="pt">Tool Registry — 38 tools</div>
+              <span style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">32 approved · 4 provisional · 1 deprecated · 1 blocked</span>
+            </div>
+            <div class="tool-header">
+              <span class="th">Tool</span>
+              <span class="th">Version</span>
+              <span class="th">Type</span>
+              <span class="th">License</span>
+              <span class="th">Status</span>
+              <span class="th">SHA-256</span>
+              <span class="th">Action</span>
+            </div>
+
+            <div class="tool-row" onclick="openTool('go','1.22.0','compiler','BSD-3-Clause','The Go Authors','Approved','4a2b3c9d1e7f8a0b2c4d6e8f0a1b3c5d','Go Build Toolset · Backend Dev Kit · Go Backend Suite','Build, compile, and format Go source. Core of all Go Backend SDEs.')">
+              <div><div class="tool-name">go</div><div class="tool-vendor">The Go Authors</div></div>
+              <span class="mono">1.22.0</span><span class="type-badge">compiler</span><span class="mono">BSD-3</span>
+              <span class="qual q-approved">Approved</span><span class="hash">4a2b3c9d…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('gofmt','1.22.0','formatter','BSD-3-Clause','The Go Authors','Approved','7c1a4e9b2d5f8c0a3e6b9d2f5a8c1e4b','Go Build Toolset · Backend Dev Kit','Formats Go source code according to standard style.')">
+              <div><div class="tool-name">gofmt</div><div class="tool-vendor">The Go Authors</div></div>
+              <span class="mono">1.22.0</span><span class="type-badge">formatter</span><span class="mono">BSD-3</span>
+              <span class="qual q-approved">Approved</span><span class="hash">7c1a4e9b…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('docker','24.0.7','container','Apache 2.0','Docker Inc.','Approved','7f8a1e3c4b9d2f6a0c8e4b1d3f7a2c9e','Container Toolset · Backend Dev Kit · Frontend Dev Kit','Container build, push, and runtime management for all SDE environments.')">
+              <div><div class="tool-name">docker</div><div class="tool-vendor">Docker Inc.</div></div>
+              <span class="mono">24.0.7</span><span class="type-badge">container</span><span class="mono">Apache 2.0</span>
+              <span class="qual q-approved">Approved</span><span class="hash">7f8a1e3c…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('kubectl','1.29.2','container','Apache 2.0','CNCF / Google','Approved','8c4b1e9d3a6f2c8e0b4d7f1a5c8e2b6d','Container Toolset · Infra Kit · DevOps Suite','Kubernetes cluster management and deployment orchestration.')">
+              <div><div class="tool-name">kubectl</div><div class="tool-vendor">CNCF / Google</div></div>
+              <span class="mono">1.29.2</span><span class="type-badge">container</span><span class="mono">Apache 2.0</span>
+              <span class="qual q-approved">Approved</span><span class="hash">8c4b1e9d…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('semgrep','1.67.0','scanner','LGPL 2.1','Semgrep Inc.','Approved','9b1c4e7a3d6f9b2c5e8a1d4f7b0c3e6a','Security Scan Toolset · Security Kit · Go Backend Suite','SAST scanner. Mandatory CI gate — failures block artifact promotion.')">
+              <div><div class="tool-name">semgrep</div><div class="tool-vendor">Semgrep Inc.</div></div>
+              <span class="mono">1.67.0</span><span class="type-badge">scanner</span><span class="mono">LGPL 2.1</span>
+              <span class="qual q-approved">Approved</span><span class="hash">9b1c4e7a…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('trivy','0.50.1','scanner','Apache 2.0','Aqua Security','Approved','3f7d9a2c6e1b4f8c0d3a7f2b5e8c1a4d','Security Scan Toolset · Container Toolset · Security Kit','Container and filesystem vulnerability scanning. Runs post-docker-build in all pipelines.')">
+              <div><div class="tool-name">trivy</div><div class="tool-vendor">Aqua Security</div></div>
+              <span class="mono">0.50.1</span><span class="type-badge">scanner</span><span class="mono">Apache 2.0</span>
+              <span class="qual q-approved">Approved</span><span class="hash">3f7d9a2c…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('cosign','2.2.3','signing','Apache 2.0','Sigstore / CNCF','Approved','e4c2a8f1b6d0e3c7a2f5b9d1c4e8a2f6','Signing Toolset · Security Kit · All Suites','Artifact signing and SLSA provenance generation. Required for TEST+ artifacts.')">
+              <div><div class="tool-name">cosign</div><div class="tool-vendor">Sigstore / CNCF</div></div>
+              <span class="mono">2.2.3</span><span class="type-badge">signing</span><span class="mono">Apache 2.0</span>
+              <span class="qual q-approved">Approved</span><span class="hash">e4c2a8f1…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('syft','1.0.1','scanner','Apache 2.0','Anchore Inc.','Approved','a1b3c5d7e9f0a2b4c6d8e0f2a4b6c8d0','Signing Toolset · Security Kit','SBOM generation tool. Produces CycloneDX and SPDX manifests for all TEST+ artifacts.')">
+              <div><div class="tool-name">syft</div><div class="tool-vendor">Anchore Inc.</div></div>
+              <span class="mono">1.0.1</span><span class="type-badge">scanner</span><span class="mono">Apache 2.0</span>
+              <span class="qual q-approved">Approved</span><span class="hash">a1b3c5d7…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('terraform','1.7.4','IaC','BSL 1.1','HashiCorp','Provisional','2d5f8a0b4c7e1a3f6d9b2e5a8c1d4f7a','IaC Toolset · Infra Kit · DevOps Suite','Infrastructure provisioning. BSL license change under governance review — currently Provisional.')">
+              <div><div class="tool-name">terraform</div><div class="tool-vendor">HashiCorp</div></div>
+              <span class="mono">1.7.4</span><span class="type-badge">IaC</span><span class="mono">BSL 1.1</span>
+              <span class="qual q-prov">Provisional</span><span class="hash">2d5f8a0b…</span>
+              <button class="ab warn">Review</button>
+            </div>
+            <div class="tool-row" onclick="openTool('helm','3.14.2','IaC','Apache 2.0','CNCF / Helm','Approved','f2a4b6c8d0e2f4a6b8c0d2e4f6a8b0c2','IaC Toolset · Infra Kit · DevOps Suite','Kubernetes package manager for SDE provisioning and deployment workflows.')">
+              <div><div class="tool-name">helm</div><div class="tool-vendor">CNCF / Helm</div></div>
+              <span class="mono">3.14.2</span><span class="type-badge">IaC</span><span class="mono">Apache 2.0</span>
+              <span class="qual q-approved">Approved</span><span class="hash">f2a4b6c8…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('node','20.11.1','runtime','MIT','OpenJS Foundation','Approved','b3c5d7e9f1a3b5c7d9e1f3a5b7c9d1e3','Web Build Toolset · Frontend Dev Kit · Frontend Suite','Node.js JavaScript runtime. Pinned version for all frontend SDE builds.')">
+              <div><div class="tool-name">node</div><div class="tool-vendor">OpenJS Foundation</div></div>
+              <span class="mono">20.11.1</span><span class="type-badge">runtime</span><span class="mono">MIT</span>
+              <span class="qual q-approved">Approved</span><span class="hash">b3c5d7e9…</span>
+              <button class="ab">Details</button>
+            </div>
+            <div class="tool-row" onclick="openTool('golangci-lint','1.57.2','linter','GPL 3.0','GolangCI','Deprecated','1a9e5c3b7f2d6a0e4c8b2f6a0d4c8b2f','Go Build Toolset (deprecated)','Known vulnerability in embedded staticcheck. Migrate to golangci-lint v1.58+ or standalone linter stack.')">
+              <div><div class="tool-name">golangci-lint</div><div class="tool-vendor">GolangCI</div></div>
+              <span class="mono">1.57.2</span><span class="type-badge">linter</span><span class="mono">GPL 3.0</span>
+              <span class="qual q-deprecated">Deprecated</span><span class="hash">1a9e5c3b…</span>
+              <button class="ab danger">Migrate</button>
+            </div>
+            <div style="padding:10px 18px;background:rgba(229,224,214,0.02);border-top:1px solid var(--border)">
+              <span style="font-size:11.5px;color:var(--quinary)">Showing 12 of 38 tools — </span>
+              <span style="font-size:11.5px;color:var(--quaternary);cursor:pointer">Load all 38 →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ TOOLSETS ═══ -->
+        <div class="tab-panel" id="tab-toolsets">
+          <div class="card-grid-2">
+
+            <div class="tset-card">
+              <div class="tset-name">Go Build Toolset</div>
+              <div class="tset-meta">build · 5 tools · Go Build Toolset</div>
+              <div class="tset-desc">Core compilation, formatting, and vetting for Go solutions. Standard baseline for every Go Backend SDE template. Required before any artifact can be produced.</div>
+              <div class="tool-pills"><span class="tpill">go</span><span class="tpill">gofmt</span><span class="tpill">go vet</span><span class="tpill">golint</span><span class="tpill">go build</span></div>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center"><span class="qual q-approved" style="font-size:9.5px">Approved</span><span style="font-size:11px;color:var(--quinary)">Used in 6 SDEs</span></div>
+            </div>
+
+            <div class="tset-card">
+              <div class="tset-name">Go Test Toolset</div>
+              <div class="tset-meta">testing · 4 tools · Go Test Toolset</div>
+              <div class="tset-desc">Test execution, coverage reporting, and benchmark analysis for Go solutions. Integrated with CI pipeline at the unit test stage. Mandatory for DEV → NIGHTLY promotion.</div>
+              <div class="tool-pills"><span class="tpill">go test</span><span class="tpill">gotest.tools</span><span class="tpill">gotestsum</span><span class="tpill">go bench</span></div>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center"><span class="qual q-approved" style="font-size:9.5px">Approved</span><span style="font-size:11px;color:var(--quinary)">Used in 6 SDEs</span></div>
+            </div>
+
+            <div class="tset-card">
+              <div class="tset-name">Container Toolset</div>
+              <div class="tset-meta">containerization · 3 tools</div>
+              <div class="tset-desc">Container build, image scanning, and cluster deployment. Trivy scans every built image before it can be promoted beyond the integration tier.</div>
+              <div class="tool-pills"><span class="tpill">docker</span><span class="tpill">kubectl</span><span class="tpill">trivy</span></div>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center"><span class="qual q-approved" style="font-size:9.5px">Approved</span><span style="font-size:11px;color:var(--quinary)">Used in 8 SDEs</span></div>
+            </div>
+
+            <div class="tset-card">
+              <div class="tset-name">Security Scan Toolset</div>
+              <div class="tset-meta">security · 4 tools</div>
+              <div class="tset-desc">SAST, SCA, and supply-chain analysis. All four tools run in CI. Critical findings block artifact promotion. Required for all solutions at NIGHTLY maturity and above.</div>
+              <div class="tool-pills"><span class="tpill">semgrep</span><span class="tpill">grype</span><span class="tpill">syft</span><span class="tpill">osv-scanner</span></div>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center"><span class="qual q-approved" style="font-size:9.5px">Approved</span><span style="font-size:11px;color:var(--quinary)">Used in 8 SDEs</span></div>
+            </div>
+
+            <div class="tset-card">
+              <div class="tset-name">Signing Toolset</div>
+              <div class="tset-meta">attestation · 2 tools</div>
+              <div class="tset-desc">Artifact signing and SLSA provenance generation using sigstore. Required for all artifacts at TEST+ maturity. Produces verifiable cryptographic attestations linked to build inputs.</div>
+              <div class="tool-pills"><span class="tpill">cosign</span><span class="tpill">slsa-verifier</span></div>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center"><span class="qual q-approved" style="font-size:9.5px">Approved</span><span style="font-size:11px;color:var(--quinary)">Used in 5 SDEs</span></div>
+            </div>
+
+            <div class="tset-card">
+              <div class="tset-name">IaC Toolset</div>
+              <div class="tset-meta">infrastructure · 3 tools</div>
+              <div class="tset-desc">Infrastructure and SDE environment-as-code provisioning. Version-controlled alongside application source. Terraform under governance review for BSL license change.</div>
+              <div class="tool-pills"><span class="tpill amber">terraform</span><span class="tpill">helm</span><span class="tpill">kustomize</span></div>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center"><span class="qual q-prov" style="font-size:9.5px">Provisional</span><span style="font-size:11px;color:var(--quinary)">Used in 3 SDEs</span></div>
+            </div>
+
+            <div class="tset-card">
+              <div class="tset-name">Lint Toolset</div>
+              <div class="tset-meta">quality · 3 tools</div>
+              <div class="tset-desc">Static code quality analysis. Code quality gate runs after compile. golangci-lint deprecated — migration to revive + staticcheck standalone in progress.</div>
+              <div class="tool-pills"><span class="tpill red">golangci-lint</span><span class="tpill">revive</span><span class="tpill">staticcheck</span></div>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center"><span class="qual q-deprecated" style="font-size:9.5px">Has Deprecated Tool</span><span style="font-size:11px;color:#d98080">Migrate golangci-lint</span></div>
+            </div>
+
+            <div class="tset-card">
+              <div class="tset-name">Web Build Toolset</div>
+              <div class="tset-meta">build · 5 tools</div>
+              <div class="tset-desc">Frontend application build pipeline. Node/npm for package management, Vite for bundling, ESLint for linting, Playwright for end-to-end tests.</div>
+              <div class="tool-pills"><span class="tpill">node</span><span class="tpill">npm</span><span class="tpill">vite</span><span class="tpill">eslint</span><span class="tpill">playwright</span></div>
+              <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center"><span class="qual q-approved" style="font-size:9.5px">Approved</span><span style="font-size:11px;color:var(--quinary)">Used in 2 SDEs</span></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══ TOOLKITS ═══ -->
+        <div class="tab-panel" id="tab-toolkits">
+          <div class="card-grid-2">
+
+            <div class="tset-card" style="border-color:rgba(45,107,71,0.25);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+                <div><div class="tset-name">Backend Dev Kit</div><div class="tset-meta">4 toolsets · 16 tools · Go Backend Suite</div></div>
+                <span class="qual q-approved" style="font-size:9.5px;flex-shrink:0">Approved</span>
+              </div>
+              <div class="tset-desc">Full-domain kit for backend service development in Go. Standard for all Go Backend SDEs. Covers compilation, testing, linting, containerization, security scanning, and SLSA signing.</div>
+              <div class="tool-pills">
+                <span class="tpill green">Go Build</span><span class="tpill green">Go Test</span>
+                <span class="tpill green">Container</span><span class="tpill green">Security Scan</span>
+                <span class="tpill green">Signing</span><span class="tpill green">Lint</span>
+              </div>
+              <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--quinary)">Used in 6 SDEs · 10 solutions</div>
+            </div>
+
+            <div class="tset-card" style="border-color:rgba(41,67,198,0.25);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+                <div><div class="tset-name">Frontend Dev Kit</div><div class="tset-meta">3 toolsets · 10 tools · Frontend Suite</div></div>
+                <span class="qual q-approved" style="font-size:9.5px;flex-shrink:0">Approved</span>
+              </div>
+              <div class="tset-desc">Web application development kit. Covers Node/npm build, ESLint quality gating, Vite bundling, Playwright e2e tests, and container packaging. Standard for React and web SDEs.</div>
+              <div class="tool-pills">
+                <span class="tpill">Web Build</span><span class="tpill">Lint</span>
+                <span class="tpill">Container</span><span class="tpill">Signing</span>
+              </div>
+              <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--quinary)">Used in 2 SDEs · 2 solutions</div>
+            </div>
+
+            <div class="tset-card" style="border-color:rgba(139,58,58,0.25);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+                <div><div class="tset-name">Security Kit</div><div class="tset-meta">2 toolsets · 6 tools · All Suites</div></div>
+                <span style="font-size:9.5px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;background:rgba(139,58,58,0.2);color:#d98080;border:1px solid rgba(139,58,58,0.35);flex-shrink:0">Mandatory</span>
+              </div>
+              <div class="tset-desc">Mandatory security kit applied to all solutions at TEST+ maturity. SAST with semgrep, SCA with grype, SBOM generation with syft, and SLSA L2+ attestation with cosign. Non-negotiable gate.</div>
+              <div class="tool-pills">
+                <span class="tpill red">Security Scan</span><span class="tpill red">Signing</span>
+              </div>
+              <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--quinary)">Applied to all 8 SDEs · All TEST+ solutions</div>
+            </div>
+
+            <div class="tset-card" style="border-color:rgba(196,148,74,0.25);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+                <div><div class="tset-name">Infra Kit</div><div class="tset-meta">2 toolsets · 6 tools · DevOps Suite</div></div>
+                <span class="qual q-prov" style="font-size:9.5px;flex-shrink:0">Provisional</span>
+              </div>
+              <div class="tset-desc">Infrastructure and environment management for SDE provisioning and deployment. Terraform under BSL governance review. Full approval pending license decision from governance board.</div>
+              <div class="tool-pills">
+                <span class="tpill amber">IaC</span><span class="tpill amber">Container</span>
+              </div>
+              <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--quinary)">Used in 3 SDEs · Governance review open</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══ TOOLCHAINS ═══ -->
+        <div class="tab-panel" id="tab-toolchains">
+          <div class="panel">
+            <div class="ph">
+              <div class="pt">Defined Toolchains — Ordered Execution Sequences</div>
+              <span class="pa">+ New Toolchain</span>
+            </div>
+
+            <!-- Chain 1 -->
+            <div class="chain-row">
+              <div class="chain-header">
+                <div class="chain-name">Go Backend Release Chain</div>
+                <span class="chain-badge">SLSA L3 output</span>
+              </div>
+              <div class="chain-desc">Standard hermetic build-to-publish chain for all Go backend solutions. Every stage feeds its output into the next. Network is isolated after source fetch. Produces a signed OCI image with SBOM and build attestation.</div>
+              <div class="chain-output"><strong>Output:</strong> Signed OCI container + SLSA provenance record + CycloneDX SBOM · Used in: Customer API, Notification Service, Auth Platform</div>
+              <div class="chain-flow">
+                <div class="cs-node cn-build">go build</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-test">go test</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-sec">semgrep</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-sec">grype</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-pkg">docker build</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-sec">trivy</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-sign">syft (SBOM)</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-sign">cosign</div>
+              </div>
+              <div class="chain-positions">
+                <span class="cp-badge"><span class="cp-num">1</span>Compile</span>
+                <span class="cp-badge"><span class="cp-num">2</span>Unit Test</span>
+                <span class="cp-badge"><span class="cp-num">3</span>SAST</span>
+                <span class="cp-badge"><span class="cp-num">4</span>SCA</span>
+                <span class="cp-badge"><span class="cp-num">5</span>Package</span>
+                <span class="cp-badge"><span class="cp-num">6</span>Container Scan</span>
+                <span class="cp-badge"><span class="cp-num">7</span>SBOM Generate</span>
+                <span class="cp-badge"><span class="cp-num">8</span>Attest &amp; Sign</span>
+              </div>
+            </div>
+
+            <!-- Chain 2 -->
+            <div class="chain-row">
+              <div class="chain-header">
+                <div class="chain-name">Frontend CI Chain</div>
+                <span class="chain-badge">SLSA L2 output</span>
+              </div>
+              <div class="chain-desc">Build and verification chain for web frontend applications. Outputs a signed OCI image ready for promotion through the staging environment tier.</div>
+              <div class="chain-output"><strong>Output:</strong> Signed OCI container · Used in: Analytics Dashboard</div>
+              <div class="chain-flow">
+                <div class="cs-node cn-build">npm ci</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-build">eslint</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-build">vite build</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-test">playwright</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-pkg">docker build</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-sec">trivy</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-sign">cosign</div>
+              </div>
+              <div class="chain-positions">
+                <span class="cp-badge"><span class="cp-num">1</span>Install</span>
+                <span class="cp-badge"><span class="cp-num">2</span>Lint</span>
+                <span class="cp-badge"><span class="cp-num">3</span>Bundle</span>
+                <span class="cp-badge"><span class="cp-num">4</span>E2E Test</span>
+                <span class="cp-badge"><span class="cp-num">5</span>Package</span>
+                <span class="cp-badge"><span class="cp-num">6</span>Container Scan</span>
+                <span class="cp-badge"><span class="cp-num">7</span>Sign</span>
+              </div>
+            </div>
+
+            <!-- Chain 3 -->
+            <div class="chain-row">
+              <div class="chain-header">
+                <div class="chain-name">IaC Provision Chain</div>
+                <span class="chain-badge q-prov" style="font-size:9.5px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;background:rgba(196,148,74,0.15);color:#d4b97a;border:1px solid rgba(196,148,74,0.3);">Provisional</span>
+              </div>
+              <div class="chain-desc">SDE and environment provisioning chain used for factory setup workflows. Applies declarative IaC definitions to provision hermetic build environments and Kubernetes namespaces.</div>
+              <div class="chain-output"><strong>Output:</strong> Running SDE namespace + verified K8s resources · Used in: Factory provisioning workflows</div>
+              <div class="chain-flow">
+                <div class="cs-node cn-infra">terraform init</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-infra">terraform validate</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-infra">terraform plan</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-infra">terraform apply</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-infra">helm install</div><div class="cs-arrow">→</div>
+                <div class="cs-node cn-test">kubectl verify</div>
+              </div>
+              <div class="chain-positions">
+                <span class="cp-badge"><span class="cp-num">1</span>Init</span>
+                <span class="cp-badge"><span class="cp-num">2</span>Validate</span>
+                <span class="cp-badge"><span class="cp-num">3</span>Plan</span>
+                <span class="cp-badge"><span class="cp-num">4</span>Apply</span>
+                <span class="cp-badge"><span class="cp-num">5</span>Deploy Charts</span>
+                <span class="cp-badge"><span class="cp-num">6</span>Verify</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ HIERARCHY ═══ -->
+        <div class="tab-panel" id="tab-hierarchy">
+          <div class="panel">
+            <div class="ph"><div class="pt">Full Tooling Hierarchy</div></div>
+            <div class="hier-block">
+              <div class="hier-intro">
+                The qala tooling model has five levels of composition. Every <strong>Tool</strong> is an atomic executable with a pinned version and verified SHA-256 hash. <strong>Toolsets</strong> group tools by purpose. <strong>Toolkits</strong> bundle toolsets into domain practice packages. <strong>Tool Suites</strong> are the platform-approved standard kit for a given solution type. <strong>Toolchains</strong> are independent: ordered execution sequences where each tool's output feeds the next.
+              </div>
+              <div class="hier-level">
+                <div class="hl-label">Tool Suite</div>
+                <div class="hl-connector">╴</div>
+                <div class="hl-items">
+                  <div class="hi suite">Go Backend Suite</div>
+                  <div class="hi suite">Frontend Suite</div>
+                  <div class="hi suite">DevOps Suite</div>
+                </div>
+              </div>
+              <div class="hier-level">
+                <div class="hl-label">Toolkit</div>
+                <div class="hl-connector">╴</div>
+                <div class="hl-items">
+                  <div class="hi toolkit">Backend Dev Kit</div>
+                  <div class="hi toolkit">Frontend Dev Kit</div>
+                  <div class="hi toolkit">Security Kit</div>
+                  <div class="hi toolkit">Infra Kit</div>
+                </div>
+              </div>
+              <div class="hier-level">
+                <div class="hl-label">Toolset</div>
+                <div class="hl-connector">╴</div>
+                <div class="hl-items">
+                  <div class="hi toolset">Go Build</div>
+                  <div class="hi toolset">Go Test</div>
+                  <div class="hi toolset">Container</div>
+                  <div class="hi toolset">IaC</div>
+                  <div class="hi toolset">Security Scan</div>
+                  <div class="hi toolset">Signing</div>
+                  <div class="hi toolset">Lint</div>
+                  <div class="hi toolset">Web Build</div>
+                </div>
+              </div>
+              <div class="hier-level">
+                <div class="hl-label">Tool</div>
+                <div class="hl-connector">╴</div>
+                <div class="hl-items">
+                  <div class="hi tool">go 1.22</div><div class="hi tool">gofmt</div><div class="hi tool">go vet</div>
+                  <div class="hi tool">golint</div><div class="hi tool">go test</div><div class="hi tool">gotestsum</div>
+                  <div class="hi tool">docker 24</div><div class="hi tool">kubectl 1.29</div><div class="hi tool">trivy</div>
+                  <div class="hi tool">terraform</div><div class="hi tool">helm 3.14</div><div class="hi tool">kustomize</div>
+                  <div class="hi tool">semgrep</div><div class="hi tool">grype</div><div class="hi tool">syft</div>
+                  <div class="hi tool">osv-scanner</div><div class="hi tool">cosign</div><div class="hi tool">slsa-verifier</div>
+                  <div class="hi tool">revive</div><div class="hi tool">staticcheck</div>
+                  <div class="hi tool">node 20</div><div class="hi tool">npm</div><div class="hi tool">vite</div>
+                  <div class="hi tool">eslint</div><div class="hi tool">playwright</div>
+                  <div class="hi tool" style="border-color:rgba(139,58,58,0.3);background:rgba(139,58,58,0.06);color:#d98080">golangci-lint ⚠</div>
+                  <div class="hi more">+ 12 more</div>
+                </div>
+              </div>
+              <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border)">
+                <div style="font-size:11px;color:var(--quinary);margin-bottom:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em">Toolchains (independent sequences)</div>
+                <div class="hl-items">
+                  <div class="hi chain">Go Backend Release Chain</div>
+                  <div class="hi chain">Frontend CI Chain</div>
+                  <div class="hi chain">IaC Provision Chain</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ ADVISORIES ═══ -->
+        <div class="tab-panel" id="tab-advisories">
+          <div class="panel">
+            <div class="ph">
+              <div class="pt">Security &amp; License Advisories</div>
+              <span style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">2 open · 0 blocked</span>
+            </div>
+
+            <div class="adv-row">
+              <div class="adv-sev sev-high"></div>
+              <div class="adv-body">
+                <div class="adv-title">golangci-lint v1.57.2 — Known Vulnerability in Embedded staticcheck</div>
+                <div class="adv-meta">CVE-2024-8812 · CVSS 7.4 HIGH · Detected: 2026-03-15 · Tool ID: tool-0x3b2a</div>
+                <div class="adv-desc">A vulnerability in the embedded staticcheck dependency within golangci-lint v1.57.2 allows crafted Go source files to cause unbounded memory consumption, potentially leading to OOM in CI environments. The tool is currently marked Deprecated. All SDEs using this version must migrate.</div>
+                <div class="adv-affected">
+                  <span class="adv-tag">sde-api-main</span>
+                  <span class="adv-tag">sde-analytics-01</span>
+                  <span class="adv-tag">sde-data-main</span>
+                  <span class="adv-tag">Lint Toolset</span>
+                  <span class="adv-tag">Backend Dev Kit</span>
+                </div>
+                <div style="margin-top:10px;padding:10px 12px;background:rgba(45,107,71,0.07);border:1px solid rgba(45,107,71,0.18);border-radius:6px;font-size:12px;color:var(--quinary)">
+                  <strong style="color:#7fc4a0">Recommended fix:</strong> Migrate to golangci-lint v1.58.2+ or replace with standalone revive + staticcheck toolset. AI Agent has generated a migration plan — review in AI Agents →
+                </div>
+              </div>
+              <div class="adv-actions">
+                <button class="adv-btn primary">View Migration Plan</button>
+                <button class="adv-btn">Assign Owner</button>
+                <button class="adv-btn">Snooze 7d</button>
+              </div>
+            </div>
+
+            <div class="adv-row">
+              <div class="adv-sev sev-med"></div>
+              <div class="adv-body">
+                <div class="adv-title">terraform v1.7.4 — Business Source License (BSL 1.1) Change</div>
+                <div class="adv-meta">LICENSE CHANGE · Severity: Medium · Detected: 2026-02-28 · Tool ID: tool-0x1a4c</div>
+                <div class="adv-desc">HashiCorp changed Terraform's license from MPL 2.0 to the Business Source License (BSL 1.1) starting with v1.6.0. BSL 1.1 restricts use in products that compete directly with HashiCorp offerings. Governance board review required to confirm this applies to qala's usage context and to determine whether to migrate to OpenTofu (MIT licensed fork) or accept BSL terms.</div>
+                <div class="adv-affected">
+                  <span class="adv-tag" style="background:rgba(196,148,74,0.1);color:#d4b97a;border-color:rgba(196,148,74,0.25)">IaC Toolset</span>
+                  <span class="adv-tag" style="background:rgba(196,148,74,0.1);color:#d4b97a;border-color:rgba(196,148,74,0.25)">Infra Kit</span>
+                  <span class="adv-tag" style="background:rgba(196,148,74,0.1);color:#d4b97a;border-color:rgba(196,148,74,0.25)">IaC Provision Chain</span>
+                  <span class="adv-tag" style="background:rgba(196,148,74,0.1);color:#d4b97a;border-color:rgba(196,148,74,0.25)">3 SDEs</span>
+                </div>
+                <div style="margin-top:10px;padding:10px 12px;background:rgba(41,67,198,0.07);border:1px solid rgba(41,67,198,0.18);border-radius:6px;font-size:12px;color:var(--quinary)">
+                  <strong style="color:#8aaaf5">Options:</strong> (1) Accept BSL terms — legal review confirms usage is permissible; (2) Migrate to OpenTofu v1.6+ — drop-in compatible MIT fork; (3) Replace with Pulumi. Governance board review open.
+                </div>
+              </div>
+              <div class="adv-actions">
+                <button class="adv-btn primary">Open Gov Review</button>
+                <button class="adv-btn">Compare Alternatives</button>
+                <button class="adv-btn">Snooze 14d</button>
+              </div>
+            </div>
+
+            <!-- Resolved -->
+            <div style="padding:12px 18px;background:rgba(229,224,214,0.02);border-top:1px solid var(--border)">
+              <div style="font-size:11.5px;color:var(--quinary);margin-bottom:10px">Resolved Advisories</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(205,195,189,0.06);border-radius:7px;">
+                  <span style="font-size:10px;font-family:'JetBrains Mono',monospace;padding:1px 6px;border-radius:3px;background:rgba(45,107,71,0.15);color:#7fc4a0;border:1px solid rgba(45,107,71,0.25)">RESOLVED</span>
+                  <span style="font-size:12px;color:var(--quinary)">trivy v0.49.1 — false positive in alpine:3.18 base image scan</span>
+                  <span style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--quinary);margin-left:auto">Updated to 0.50.1 · 2026-03-10</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(205,195,189,0.06);border-radius:7px;">
+                  <span style="font-size:10px;font-family:'JetBrains Mono',monospace;padding:1px 6px;border-radius:3px;background:rgba(45,107,71,0.15);color:#7fc4a0;border:1px solid rgba(45,107,71,0.25)">RESOLVED</span>
+                  <span style="font-size:12px;color:var(--quinary)">docker v24.0.5 — CVE-2023-44487 (HTTP/2 rapid reset)</span>
+                  <span style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--quinary);margin-left:auto">Updated to 24.0.7 · 2026-01-22</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TOOL DETAIL DRAWER -->
+      <div class="detail-drawer" id="toolDrawer" style="display:none;">
+        <div class="dd-head">
+          <button class="dd-close" onclick="closeDrawer()">×</button>
+          <div class="dd-name" id="dd-name">go</div>
+          <div class="dd-vendor" id="dd-vendor">The Go Authors</div>
+          <div style="margin-top:8px;display:flex;gap:6px;" id="dd-badges"></div>
+        </div>
+        <div class="dd-scroll">
+          <div class="dd-section">
+            <div class="dd-label">Tool Record</div>
+            <div class="dd-field"><span class="dd-k">Version</span><span class="dd-v" id="dd-ver">1.22.0</span></div>
+            <div class="dd-field"><span class="dd-k">Type</span><span class="dd-v" id="dd-type">compiler</span></div>
+            <div class="dd-field"><span class="dd-k">License</span><span class="dd-v" id="dd-lic">BSD-3-Clause</span></div>
+            <div class="dd-field"><span class="dd-k">Vendor</span><span class="dd-v" id="dd-ven">The Go Authors</span></div>
+            <div class="dd-field"><span class="dd-k">Status</span><span class="dd-v ok" id="dd-status">Approved</span></div>
+          </div>
+          <div class="dd-section">
+            <div class="dd-label">Supply Chain</div>
+            <div class="dd-label" style="font-size:10px;color:var(--quinary);margin-bottom:4px">SHA-256 Verification Hash</div>
+            <div class="hash-full" id="dd-hash">4a2b3c9d1e7f8a0b2c4d6e8f0a1b3c5d7e9f0a2b4c6d8e0f2a4b6c8d0e2f4a6</div>
+            <div style="font-size:11px;color:#7fc4a0;margin-top:6px">✓ Verified at last SDE provisioning</div>
+          </div>
+          <div class="dd-section">
+            <div class="dd-label">Membership</div>
+            <div class="dd-pills" id="dd-membership"></div>
+          </div>
+          <div class="dd-section">
+            <div class="dd-label">Description</div>
+            <div style="font-size:12px;color:var(--quinary);line-height:1.6" id="dd-desc">Build, compile, and format Go source. Core of all Go Backend SDEs.</div>
+          </div>
+          <div class="dd-section">
+            <div class="dd-label">Active Advisories</div>
+            <div id="dd-advisories" style="font-size:12px;color:#7fc4a0">None — tool is clean</div>
+          </div>
+        </div>
+        <div class="dd-actions">
+          <button class="dd-btn primary-btn">View in Registry →</button>
+          <button class="dd-btn">Pin to SDE Template</button>
+          <button class="dd-btn">View Toolset Membership</button>
+          <button class="dd-btn">Verify Hash Now</button>
+        </div>
+      </div>
+
+    </div><!-- /flex wrapper -->
+  </div><!-- /content-area -->
+</main>

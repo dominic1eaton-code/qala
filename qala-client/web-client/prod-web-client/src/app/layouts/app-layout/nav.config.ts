@@ -13,17 +13,17 @@ export interface NavSystem {
 export const NAV_SYSTEMS: NavSystem[] = [
   {
     label: 'Overview',
-    icon: '⌂',
+    icon: 'O',
     route: '/overview',
     children: [
       { label: 'Factory Dashboard', route: '/overview/dashboard' },
       { label: 'App Dashboard', route: '/overview/app-dashboard' },
-      { label: 'SFOS Dashboard (Legacy)', route: '/overview/legacy-dashboard' }
+      { label: 'SFOS Dashboard', route: '/overview/legacy-dashboard' }
     ]
   },
   {
     label: 'Portfolio',
-    icon: '◫',
+    icon: 'P',
     route: '/portfolio',
     children: [
       { label: 'Portfolio', route: '/portfolio/portfolio' },
@@ -35,7 +35,7 @@ export const NAV_SYSTEMS: NavSystem[] = [
   },
   {
     label: 'Solutions',
-    icon: '◇',
+    icon: 'S',
     route: '/solutions',
     children: [
       { label: 'Solutions', route: '/solutions/solutions' },
@@ -44,13 +44,13 @@ export const NAV_SYSTEMS: NavSystem[] = [
       { label: 'Solution Book', route: '/solutions/book' },
       { label: 'Solution Boards', route: '/solutions/boards' },
       { label: 'Solution Channels', route: '/solutions/channels' },
-      { label: 'Legacy Solutions (App)', route: '/solutions/app-solutions' },
+      { label: 'App Solutions', route: '/solutions/app-solutions' },
       { label: 'Legacy Registry (SFOS)', route: '/solutions/legacy-registry' }
     ]
   },
   {
     label: 'Factory',
-    icon: '🏭',
+    icon: 'F',
     route: '/factory',
     children: [
       { label: 'Solution Factory', route: '/factory/solution-factory' },
@@ -58,9 +58,7 @@ export const NAV_SYSTEMS: NavSystem[] = [
       { label: 'Workspaces', route: '/factory/workspaces' },
       { label: 'SDEs', route: '/factory/sdes' },
       { label: 'Tools', route: '/factory/tools' },
-      { label: 'Legacy Factories (App)', route: '/factory/app-factories' },
-      { label: 'Legacy Workspaces (App)', route: '/factory/app-workspaces' },
-      { label: 'Legacy SDEs (App)', route: '/factory/app-sdes' },
+      { label: 'App Factories', route: '/factory/app-factories' },
       { label: 'Legacy Factory (SFOS)', route: '/factory/legacy-solution-factory' },
       { label: 'Legacy SDE Manager', route: '/factory/legacy-sde-manager' },
       { label: 'Legacy Workspace', route: '/factory/legacy-workspace' },
@@ -69,7 +67,7 @@ export const NAV_SYSTEMS: NavSystem[] = [
   },
   {
     label: 'Pipelines',
-    icon: '⚙',
+    icon: 'C',
     route: '/pipelines',
     children: [
       { label: 'Pipelines', route: '/pipelines/pipelines' },
@@ -78,12 +76,12 @@ export const NAV_SYSTEMS: NavSystem[] = [
       { label: 'Release Schedule', route: '/pipelines/release-schedule' },
       { label: 'Solution Schedules', route: '/pipelines/solution-schedules' },
       { label: 'Legacy CI/CD (SFOS)', route: '/pipelines/legacy-cicd' },
-      { label: 'Legacy Pipelines (App)', route: '/pipelines/app-pipelines' }
+      { label: 'App Pipelines', route: '/pipelines/app-pipelines' }
     ]
   },
   {
     label: 'Artifacts',
-    icon: '⬡',
+    icon: 'A',
     route: '/artifacts',
     children: [
       { label: 'Artifacts', route: '/artifacts/artifacts' },
@@ -94,29 +92,23 @@ export const NAV_SYSTEMS: NavSystem[] = [
   },
   {
     label: 'Intelligence',
-    icon: '⚡',
+    icon: 'I',
     route: '/intelligence',
     children: [
       { label: 'AI Insights', route: '/intelligence/ai-insights' },
       { label: 'Data Platform', route: '/intelligence/data-platform' },
-      { label: 'Notifications', route: '/intelligence/notifications' },
-      { label: 'Legacy AI Insights', route: '/intelligence/legacy-ai-insights' },
-      { label: 'Legacy Data Platform', route: '/intelligence/legacy-data-platform' }
+      { label: 'Notifications', route: '/intelligence/notifications' }
     ]
   },
   {
     label: 'Governance',
-    icon: '🛡',
+    icon: 'G',
     route: '/governance',
     children: [
       { label: 'Security', route: '/governance/security' },
       { label: 'Governance', route: '/governance/governance' },
       { label: 'Playbook', route: '/governance/playbook' },
-      { label: 'Settings', route: '/governance/settings' },
-      { label: 'Legacy Security', route: '/governance/legacy-security' },
-      { label: 'Legacy Governance', route: '/governance/legacy-governance' },
-      { label: 'Legacy Playbook', route: '/governance/legacy-playbook' },
-      { label: 'Legacy Settings', route: '/governance/legacy-settings' }
+      { label: 'Settings', route: '/governance/settings' }
     ]
   }
 ];

@@ -1,0 +1,183 @@
+<div class="main">
+  <header class="topbar">
+    <div class="tb-crumb">qala <span style="opacity:.35">/</span> <b>Pipelines</b></div>
+    <div class="tb-right">
+      <div class="tb-notif"></div>
+      <button class="tb-btn primary" onclick="alert('Run Pipeline — select SDE, trigger type')">▶ Run Pipeline</button>
+    </div>
+  </header>
+  <div class="scroll">
+    <div class="content">
+      <div class="pg-eye">Execution Plane · CI/CD</div>
+      <div class="pg-title">Workflow <em>Pipelines</em></div>
+
+      <div class="stat-row">
+        <div class="stat-card"><div class="stat-lbl">Total Runs</div><div class="stat-val">43</div><div class="stat-note">last 7 days</div></div>
+        <div class="stat-card"><div class="stat-lbl">Passed</div><div class="stat-val" style="color:var(--green)">38</div><div class="stat-note"><span class="up">88.4%</span> pass rate</div></div>
+        <div class="stat-card"><div class="stat-lbl">Failed</div><div class="stat-val" style="color:var(--red)">5</div><div class="stat-note"><span class="dn">1 critical</span></div></div>
+        <div class="stat-card"><div class="stat-lbl">Avg Duration</div><div class="stat-val">4m</div><div class="stat-note">32s median</div></div>
+      </div>
+
+      <div class="fbar">
+        <input class="f-inp" type="text" placeholder="Search pipelines…">
+        <button class="f-btn on">All (43)</button>
+        <button class="f-btn">Passed</button>
+        <button class="f-btn">Running</button>
+        <button class="f-btn">Failed</button>
+        <button class="f-btn">Queued</button>
+      </div>
+
+      <div class="pipe-wrap">
+        <div class="pipe-thead">
+          <div class="pipe-th">#</div>
+          <div class="pipe-th">Pipeline</div>
+          <div class="pipe-th">Status</div>
+          <div class="pipe-th">Duration</div>
+          <div class="pipe-th">SDE</div>
+          <div class="pipe-th">Trigger</div>
+          <div class="pipe-th">Actions</div>
+        </div>
+
+        <!-- ENTRY 1: PASSED -->
+        <div class="pipe-entry">
+          <div class="pipe-row" onclick="togglePipe(this)">
+            <div class="pipe-td pipe-num">43</div>
+            <div class="pipe-td"><div class="pipe-name-block"><div class="pipe-name">payments-ci-main</div><div class="pipe-id">pipe_4f2a1b · push to main</div></div></div>
+            <div class="pipe-td"><span class="pstat pstat-pass">● Passed</span></div>
+            <div class="pipe-td">3m 44s</div>
+            <div class="pipe-td" style="color:var(--muted)">payments-sde-01</div>
+            <div class="pipe-td" style="color:var(--muted)">Push</div>
+            <div class="pipe-td"><div class="p-actions"><button class="p-btn">Re-run</button><button class="p-btn">Logs</button></div></div>
+          </div>
+          <div class="pipe-detail">
+            <div class="pd-stages">
+              <div class="pd-stage done"><div class="pd-stage-n">Checkout</div><div class="pd-stage-s" style="color:var(--green)">✓ 4s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">Build</div><div class="pd-stage-s" style="color:var(--green)">✓ 1m 22s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">Test</div><div class="pd-stage-s" style="color:var(--green)">✓ 1m 58s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">DAST Scan</div><div class="pd-stage-s" style="color:var(--green)">✓ 18s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">Attest</div><div class="pd-stage-s" style="color:var(--green)">✓ 2s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">Artifact</div><div class="pd-stage-s" style="color:var(--green)">✓ upload</div></div>
+            </div>
+            <div class="pd-log">
+              <div class="ll ll-info">[09:30:04] Pipeline payments-ci-main started (pipe_4f2a1b)</div>
+              <div class="ll">[09:30:08] Checkout: payments-factory-sde-01 @ snap#14</div>
+              <div class="ll ll-ok">[09:31:30] Build: go build ./... → OK (0 errors, 2 warnings)</div>
+              <div class="ll ll-ok">[09:33:28] Test: 244 passed, 0 failed, 0 skipped</div>
+              <div class="ll ll-ok">[09:33:46] DAST scan: no critical findings</div>
+              <div class="ll ll-ok">[09:33:48] Attestation signed: sha256:4f2a1b93c...</div>
+              <div class="ll ll-ok">[09:33:48] Artifact payments-svc-v1.8.0.tar.gz uploaded</div>
+              <div class="ll ll-info">[09:33:48] Pipeline PASSED in 3m 44s</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTRY 2: RUNNING -->
+        <div class="pipe-entry">
+          <div class="pipe-row" onclick="togglePipe(this)">
+            <div class="pipe-td pipe-num">42</div>
+            <div class="pipe-td"><div class="pipe-name-block"><div class="pipe-name">identity-deploy-staging</div><div class="pipe-id">pipe_9c3d8e · scheduled</div></div></div>
+            <div class="pipe-td"><span class="pstat pstat-run">◌ Running</span></div>
+            <div class="pipe-td">8m 12s…</div>
+            <div class="pipe-td" style="color:var(--muted)">identity-sde-03</div>
+            <div class="pipe-td" style="color:var(--muted)">Schedule</div>
+            <div class="pipe-td"><div class="p-actions"><button class="p-btn danger">Abort</button><button class="p-btn">Logs</button></div></div>
+          </div>
+          <div class="pipe-detail">
+            <div class="pd-stages">
+              <div class="pd-stage done"><div class="pd-stage-n">Checkout</div><div class="pd-stage-s" style="color:var(--green)">✓ 3s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">Build</div><div class="pd-stage-s" style="color:var(--green)">✓ 2m 05s</div></div>
+              <div class="pd-stage active"><div class="pd-stage-n">Test</div><div class="pd-stage-s" style="color:var(--accent)">⟳ Running…</div></div>
+              <div class="pd-stage"><div class="pd-stage-n">DAST Scan</div><div class="pd-stage-s">Waiting</div></div>
+              <div class="pd-stage"><div class="pd-stage-n">Deploy</div><div class="pd-stage-s">Waiting</div></div>
+            </div>
+            <div class="pd-log">
+              <div class="ll ll-info">[09:22:00] Pipeline identity-deploy-staging started</div>
+              <div class="ll ll-ok">[09:22:03] Checkout: identity-sde-03 @ snap#6</div>
+              <div class="ll ll-ok">[09:24:08] Build: OK (1 warning on unused import)</div>
+              <div class="ll">[09:24:08] Running test suite: identity-service-tests...</div>
+              <div class="ll">[09:30:12] Test suite: 178/244 complete...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTRY 3: FAILED -->
+        <div class="pipe-entry">
+          <div class="pipe-row" onclick="togglePipe(this)">
+            <div class="pipe-td pipe-num">41</div>
+            <div class="pipe-td"><div class="pipe-name-block"><div class="pipe-name">security-scan-weekly</div><div class="pipe-id">pipe_7a1c4f · manual</div></div></div>
+            <div class="pipe-td"><span class="pstat pstat-fail">✕ Failed</span></div>
+            <div class="pipe-td">1m 08s</div>
+            <div class="pipe-td" style="color:var(--red)">security-sem-sde-02</div>
+            <div class="pipe-td" style="color:var(--muted)">Manual</div>
+            <div class="pipe-td"><div class="p-actions"><button class="p-btn">Re-run</button><button class="p-btn">Logs</button></div></div>
+          </div>
+          <div class="pipe-detail">
+            <div class="pd-stages">
+              <div class="pd-stage done"><div class="pd-stage-n">Checkout</div><div class="pd-stage-s" style="color:var(--green)">✓ 2s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">Build</div><div class="pd-stage-s" style="color:var(--green)">✓ 44s</div></div>
+              <div class="pd-stage failed"><div class="pd-stage-n">Security Scan</div><div class="pd-stage-s" style="color:var(--red)">✕ Failed</div></div>
+              <div class="pd-stage"><div class="pd-stage-n">Policy Check</div><div class="pd-stage-s">Skipped</div></div>
+            </div>
+            <div class="pd-log">
+              <div class="ll ll-info">[08:15:00] Pipeline security-scan-weekly started</div>
+              <div class="ll ll-ok">[08:15:02] Checkout: security-sem-sde-02 @ snap#3</div>
+              <div class="ll ll-ok">[08:15:46] rust build --release → OK</div>
+              <div class="ll">[08:15:46] Running SEM policy scan...</div>
+              <div class="ll ll-err">[08:16:08] POLICY VIOLATION: Unauthorized network egress detected</div>
+              <div class="ll ll-err">[08:16:08] SDE quarantined by security-sem-service</div>
+              <div class="ll ll-err">[08:16:08] Pipeline FAILED — policy enforcement triggered</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENTRY 4: QUEUED -->
+        <div class="pipe-entry">
+          <div class="pipe-row" onclick="togglePipe(this)">
+            <div class="pipe-td pipe-num">40</div>
+            <div class="pipe-td"><div class="pipe-name-block"><div class="pipe-name">analytics-data-pipeline</div><div class="pipe-id">pipe_2b8e6c · scheduled</div></div></div>
+            <div class="pipe-td"><span class="pstat pstat-q">⏸ Queued</span></div>
+            <div class="pipe-td">—</div>
+            <div class="pipe-td" style="color:var(--muted)">analytics-sde</div>
+            <div class="pipe-td" style="color:var(--muted)">Schedule</div>
+            <div class="pipe-td"><div class="p-actions"><button class="p-btn danger">Cancel</button></div></div>
+          </div>
+          <div class="pipe-detail">
+            <div class="pd-stages">
+              <div class="pd-stage"><div class="pd-stage-n">Checkout</div><div class="pd-stage-s">Queued</div></div>
+              <div class="pd-stage"><div class="pd-stage-n">Build</div><div class="pd-stage-s">Queued</div></div>
+              <div class="pd-stage"><div class="pd-stage-n">Data Pipeline</div><div class="pd-stage-s">Queued</div></div>
+              <div class="pd-stage"><div class="pd-stage-n">Analytics</div><div class="pd-stage-s">Queued</div></div>
+            </div>
+            <div class="pd-log"><div class="ll">[09:40:00] Pipeline queued — awaiting runner availability</div></div>
+          </div>
+        </div>
+
+        <!-- ENTRY 5: PASSED -->
+        <div class="pipe-entry">
+          <div class="pipe-row" onclick="togglePipe(this)">
+            <div class="pipe-td pipe-num">39</div>
+            <div class="pipe-td"><div class="pipe-name-block"><div class="pipe-name">notifications-deploy</div><div class="pipe-id">pipe_5e9d3a · push to main</div></div></div>
+            <div class="pipe-td"><span class="pstat pstat-pass">● Passed</span></div>
+            <div class="pipe-td">2m 11s</div>
+            <div class="pipe-td" style="color:var(--muted)">notifications-sde-01</div>
+            <div class="pipe-td" style="color:var(--muted)">Push</div>
+            <div class="pipe-td"><div class="p-actions"><button class="p-btn">Re-run</button><button class="p-btn">Logs</button></div></div>
+          </div>
+          <div class="pipe-detail">
+            <div class="pd-stages">
+              <div class="pd-stage done"><div class="pd-stage-n">Checkout</div><div class="pd-stage-s" style="color:var(--green)">✓ 2s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">Build</div><div class="pd-stage-s" style="color:var(--green)">✓ 58s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">Test</div><div class="pd-stage-s" style="color:var(--green)">✓ 1m 02s</div></div>
+              <div class="pd-stage done"><div class="pd-stage-n">Deploy</div><div class="pd-stage-s" style="color:var(--green)">✓ 9s</div></div>
+            </div>
+            <div class="pd-log">
+              <div class="ll ll-info">[08:55:00] Pipeline notifications-deploy started</div>
+              <div class="ll ll-ok">[08:57:11] All stages passed. Deployed to exec-sf staging.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,210 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Solution Boards <span>/ Sprint 14 · Customer API v3.0 + Analytics</span></div>
+    <button class="tb-btn">All Solutions ▾</button>
+    <button class="tb-btn">All Members ▾</button>
+    <button class="tb-btn">Maturity ▾</button>
+    <button class="tb-btn primary">+ Add Card</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="view-bar">
+    <span class="vt active">Board</span>
+    <span class="vt">Backlog</span>
+    <span class="vt">Sprint</span>
+    <span class="vt">Maturity Gate</span>
+    <div class="sprint-info">
+      <span class="sprint-badge">Sprint 14 · Mar 18 – Apr 01</span>
+      <span style="font-size:11px;color:var(--quinary)">12 days left</span>
+      <span style="font-size:11px;color:#7fc4a0">32 / 48 pts completed</span>
+    </div>
+  </div>
+
+  <div class="board-area">
+  <div class="board">
+
+    <!-- BACKLOG -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-dot" style="background:rgba(205,195,189,0.3)"></div>
+        <span class="col-name">Backlog</span>
+        <span class="col-count">8</span>
+      </div>
+      <div class="col-body">
+        <div class="card low-p">
+          <div class="card-title">GraphQL subscription support (real-time)</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-doc">v3.5</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><span class="card-points">8 pts</span></div></div>
+        </div>
+        <div class="card low-p">
+          <div class="card-title">Public API developer portal scaffolding</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-doc">WP-003</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><span class="card-points">13 pts</span></div></div>
+        </div>
+        <div class="card low-p">
+          <div class="card-title">Custom analytics dashboard — user-configurable widgets</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-doc">v1.3</span></div>
+          <div class="card-footer"><span class="card-sol">analytics-dashboard</span><div style="display:flex;gap:4px;align-items:center"><span class="card-points">8 pts</span></div></div>
+        </div>
+        <div class="card med-p">
+          <div class="card-title">SSO SAML 2.0 provider integration</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-sec">security</span></div>
+          <div class="card-footer"><span class="card-sol">auth-platform</span><div style="display:flex;gap:4px;align-items:center"><span class="card-points">5 pts</span></div></div>
+        </div>
+        <div class="card low-p">
+          <div class="card-title">Kafka schema registry integration for Data Pipeline</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span></div>
+          <div class="card-footer"><span class="card-sol">data-ingestion</span><div style="display:flex;gap:4px;align-items:center"><span class="card-points">8 pts</span></div></div>
+        </div>
+      </div>
+      <div class="add-card">+ Add to backlog</div>
+    </div>
+
+    <!-- SANDBOX / DESIGN -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-dot" style="background:#8aaaf5"></div>
+        <span class="col-name">Design / Sandbox</span>
+        <span class="col-count">3</span>
+        <span class="col-limit">WIP: 4</span>
+      </div>
+      <div class="wip-bar"><div class="wip-fill" style="width:75%;background:#4a6fd4"></div></div>
+      <div class="col-body">
+        <div class="card med-p">
+          <div class="card-title">ADR-018: GraphQL Federation Gateway architecture decision</div>
+          <div class="card-desc">Document the federation approach, tradeoffs vs REST expansion, schema design principles.</div>
+          <div class="card-meta"><span class="tag t-doc">ADR</span><span class="tag t-feat">v3.0</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">AJ</div><span class="card-points">3 pts</span></div></div>
+        </div>
+        <div class="card med-p">
+          <div class="card-title">GraphQL schema design — unified data graph v1</div>
+          <div class="card-desc">Define types, queries, mutations for all existing REST endpoints. Schema-first approach.</div>
+          <div class="card-meta"><span class="tag t-feat">graphql</span><span class="tag t-feat">v3.0</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">SM</div><span class="card-points">5 pts</span></div></div>
+        </div>
+        <div class="card low-p">
+          <div class="card-title">AI-powered insights module for Analytics Dashboard</div>
+          <div class="card-desc">Design anomaly detection surface and recommendation cards using AI Agents service.</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-doc">v1.3</span></div>
+          <div class="card-footer"><span class="card-sol">analytics-dashboard</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">JO</div><span class="card-points">5 pts</span></div></div>
+        </div>
+      </div>
+      <div class="add-card">+ Add to design</div>
+    </div>
+
+    <!-- IN DEVELOPMENT -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-dot" style="background:#4a6fd4;box-shadow:0 0 6px rgba(74,111,212,0.5);animation:pulse-dot 1.5s ease-in-out infinite"></div>
+        <span class="col-name">In Development</span>
+        <span class="col-count">5</span>
+        <span class="col-limit">WIP: 6</span>
+      </div>
+      <style>@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}</style>
+      <div class="wip-bar"><div class="wip-fill" style="width:83%;background:linear-gradient(90deg,#2943c6,#4a6fd4)"></div></div>
+      <div class="col-body">
+        <div class="card urgent">
+          <div class="card-title">⚠ WP-002: Replace deprecated crypto functions in pkg/legacy/crypto.go</div>
+          <div class="card-desc">Blocking NIGHTLY → TEST promotion. CVE warning in 4 consecutive builds.</div>
+          <div class="card-meta"><span class="tag t-fix">fix</span><span class="tag t-sec">P1</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">JO</div><span class="card-points">3 pts</span><div class="card-checks"><span class="check ch-fail">✗ CI</span></div></div></div>
+        </div>
+        <div class="card high-p">
+          <div class="card-title">Streaming: chunked response encoding with compression</div>
+          <div class="card-meta"><span class="tag t-perf">perf</span><span class="tag t-feat">feat</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">SM</div><span class="card-points">5 pts</span><div class="card-checks"><span class="check ch-pass">✓ CI</span></div></div></div>
+        </div>
+        <div class="card high-p">
+          <div class="card-title">RBAC core: resource-level permission evaluation engine</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-sec">security</span></div>
+          <div class="card-footer"><span class="card-sol">auth-platform</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">AJ</div><span class="card-points">8 pts</span><div class="card-checks"><span class="check ch-pass">✓ CI</span></div></div></div>
+        </div>
+        <div class="card med-p">
+          <div class="card-title">Analytics: cross-portfolio solution comparison with metric dimensions</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-doc">v1.2</span></div>
+          <div class="card-footer"><span class="card-sol">analytics-dashboard</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">SM</div><span class="card-points">8 pts</span><div class="card-checks"><span class="check ch-pend">⟳ CI</span></div></div></div>
+        </div>
+        <div class="card med-p">
+          <div class="card-title">Rate limiter: sliding window boundary condition fix</div>
+          <div class="card-meta"><span class="tag t-fix">fix</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">JO</div><span class="card-points">2 pts</span><div class="card-checks"><span class="check ch-pass">✓ CI</span></div></div></div>
+        </div>
+      </div>
+      <div class="add-card">+ Start development</div>
+    </div>
+
+    <!-- IN REVIEW / TESTING -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-dot" style="background:#c4944a"></div>
+        <span class="col-name">In Review / Test</span>
+        <span class="col-count">4</span>
+        <span class="col-limit">WIP: 4</span>
+      </div>
+      <div class="wip-bar"><div class="wip-fill" style="width:100%;background:#c4944a"></div></div>
+      <div class="col-body">
+        <div class="card high-p">
+          <div class="card-title">PKCE support for public OAuth 2.0 clients</div>
+          <div class="card-desc">PR #231 open. Code review in progress. SAST clean.</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-sec">security</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">AJ</div><span class="card-points">5 pts</span><div class="card-checks"><span class="check ch-pass">✓ CI</span><span class="check ch-pass">✓ SAST</span></div></div></div>
+        </div>
+        <div class="card med-p">
+          <div class="card-title">Analytics: factory-level benchmarking heatmap</div>
+          <div class="card-desc">Integration tests running. Performance gate: p99 &lt; 100ms — currently 82ms. ✓</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-perf">perf</span></div>
+          <div class="card-footer"><span class="card-sol">analytics-dashboard</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">JO</div><span class="card-points">5 pts</span><div class="card-checks"><span class="check ch-pass">✓ Int</span></div></div></div>
+        </div>
+        <div class="card med-p">
+          <div class="card-title">Cache: probabilistic early expiry to prevent thundering-herd</div>
+          <div class="card-meta"><span class="tag t-fix">fix</span><span class="tag t-perf">perf</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">JO</div><span class="card-points">3 pts</span><div class="card-checks"><span class="check ch-pass">✓ CI</span></div></div></div>
+        </div>
+        <div class="card cm-gate">
+          <div class="card-title">✓ Analytics Dashboard v1.2.0-rc2 — CM Gate Review</div>
+          <div class="card-desc">All technical gates passed. Awaiting Sara Mitchell CM board sign-off (2/3 approvers).</div>
+          <div class="card-meta"><span class="tag t-cm">CM Gate</span><span class="tag t-sec">sign-off</span></div>
+          <div class="card-footer"><span class="card-sol">analytics-dashboard</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">CM</div><span class="card-points">—</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DONE / RELEASED -->
+    <div class="col">
+      <div class="col-header">
+        <div class="col-dot" style="background:#3a9e62"></div>
+        <span class="col-name">Done · Sprint 14</span>
+        <span class="col-count">7</span>
+      </div>
+      <div class="col-body">
+        <div class="card" style="opacity:0.75">
+          <div class="card-title">Streaming: response compression — p99 118ms → 94ms</div>
+          <div class="card-meta"><span class="tag t-perf">perf</span><span class="tag t-cm" style="background:rgba(45,107,71,0.15);color:#7fc4a0">✓ done</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">SM</div><span class="card-points">5 pts</span></div></div>
+        </div>
+        <div class="card" style="opacity:0.75">
+          <div class="card-title">Webhook fanout: retry with exponential backoff</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span><span class="tag t-cm" style="background:rgba(45,107,71,0.15);color:#7fc4a0">✓ done</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><div style="display:flex;gap:4px;align-items:center"><div class="card-assignee">AJ</div><span class="card-points">3 pts</span></div></div>
+        </div>
+        <div class="card" style="opacity:0.75">
+          <div class="card-title">OTel: upgrade go.opentelemetry.io/otel v1.24.0</div>
+          <div class="card-meta"><span class="tag t-sec">sec</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><span class="card-points">1 pt</span></div>
+        </div>
+        <div class="card" style="opacity:0.75">
+          <div class="card-title">Analytics: cross-portfolio solution compare — initial impl.</div>
+          <div class="card-meta"><span class="tag t-feat">feat</span></div>
+          <div class="card-footer"><span class="card-sol">analytics-dashboard</span><div class="card-assignee">SM</div></div>
+        </div>
+        <div class="card" style="opacity:0.6">
+          <div class="card-title">v2.4.1 → CM release · Production deployment complete</div>
+          <div class="card-meta"><span class="tag t-cm">CM</span><span class="tag t-cm" style="background:rgba(45,107,71,0.15);color:#7fc4a0">RELEASED</span></div>
+          <div class="card-footer"><span class="card-sol">customer-api</span><span class="card-points">—</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</main>

@@ -1,0 +1,183 @@
+<div class="main">
+  <header class="topbar">
+    <div class="tb-crumb">qala <span style="opacity:.35">/</span> <b>Solutions</b></div>
+    <div class="tb-right">
+      <div class="tb-notif"></div>
+      <button class="tb-btn">Import</button>
+      <button class="tb-btn primary" onclick="alert('New Solution — select type, name, SDE, maturity')">+ New Solution</button>
+    </div>
+  </header>
+
+  <div class="scroll">
+    <div class="content">
+      <div class="pg-eye">Control Plane · SDE</div>
+      <div class="pg-title">Solution <em>Registry</em></div>
+
+      <!-- MATURITY PIPELINE -->
+      <div class="mat-pipeline">
+        <div class="mp-stage mp-sandbox"><div class="mp-name">Sandbox</div><div class="mp-count" style="color:var(--muted)">1</div><div class="mp-bar"></div></div>
+        <div class="mp-stage mp-dev"><div class="mp-name">Dev</div><div class="mp-count" style="color:var(--amber)">3</div><div class="mp-bar"></div></div>
+        <div class="mp-stage mp-int"><div class="mp-name">Integration</div><div class="mp-count" style="color:var(--accent)">2</div><div class="mp-bar"></div></div>
+        <div class="mp-stage mp-qual"><div class="mp-name">Qualification</div><div class="mp-count" style="color:var(--purple)">1</div><div class="mp-bar"></div></div>
+        <div class="mp-stage mp-cm"><div class="mp-name">CM Controlled</div><div class="mp-count" style="color:var(--green)">1</div><div class="mp-bar"></div></div>
+      </div>
+
+      <!-- TYPE COUNTS -->
+      <div class="type-row">
+        <div class="type-cell"><div class="type-n">Platform</div><div class="type-c">2</div></div>
+        <div class="type-cell"><div class="type-n">Service</div><div class="type-c">3</div></div>
+        <div class="type-cell"><div class="type-n">Application</div><div class="type-c">1</div></div>
+        <div class="type-cell"><div class="type-n">System</div><div class="type-c">1</div></div>
+        <div class="type-cell"><div class="type-n">Product</div><div class="type-c">0</div></div>
+        <div class="type-cell"><div class="type-n">Good</div><div class="type-c">0</div></div>
+      </div>
+
+      <!-- FILTERS -->
+      <div class="fbar">
+        <input class="f-inp" type="text" placeholder="Search solutions…">
+        <button class="f-btn on">All (7)</button>
+        <button class="f-btn">Platform</button>
+        <button class="f-btn">Service</button>
+        <button class="f-btn">Application</button>
+        <button class="f-btn">System</button>
+      </div>
+
+      <!-- TABLE -->
+      <div class="sol-wrap">
+        <div class="sol-thead">
+          <div class="sol-th"></div>
+          <div class="sol-th">Name</div>
+          <div class="sol-th">Type</div>
+          <div class="sol-th">Maturity</div>
+          <div class="sol-th">Owner</div>
+          <div class="sol-th">SDE</div>
+          <div class="sol-th">Actions</div>
+        </div>
+
+        <!-- ROW 1 -->
+        <div class="sol-tr">
+          <div class="sol-row" onclick="toggleRow(this)">
+            <div class="sol-td"><button class="sol-expand-btn">+</button></div>
+            <div class="sol-td"><div class="sol-name-block"><div class="sol-name">payments-platform</div><div class="sol-id">sol_4f2a1b</div></div></div>
+            <div class="sol-td"><span class="tb2">Platform</span></div>
+            <div class="sol-td"><span class="mb mb-in">INT</span></div>
+            <div class="sol-td" style="color:var(--muted)">team-payments</div>
+            <div class="sol-td" style="color:var(--muted)">payments-sde-01</div>
+            <div class="sol-td"><div class="ab-actions"><button class="ab">Promote</button><button class="ab">Edit</button><button class="ab">Playbook</button></div></div>
+          </div>
+          <div class="sol-expand-panel">
+            <div class="sep-inner">
+              <div class="sep-label">Solution Hierarchy</div>
+              <div class="hier-grid">
+                <div class="hg-col"><div class="hg-head">Processes</div><div class="hg-item">payments-ingestion</div><div class="hg-item">payments-settlement</div><div class="hg-item">fraud-detection</div></div>
+                <div class="hg-col"><div class="hg-head">Components</div><div class="hg-item">auth-module</div><div class="hg-item">ledger-module</div><div class="hg-item">routing-engine</div></div>
+                <div class="hg-col"><div class="hg-head">Interfaces</div><div class="hg-item">PaymentEvent (export)</div><div class="hg-item">FraudSignal (import)</div><div class="hg-item">SettlementMsg (export)</div></div>
+                <div class="hg-col"><div class="hg-head">Data Types</div><div class="hg-item">PaymentRecord (object)</div><div class="hg-item">amount (float)</div><div class="hg-item">txn_id (string)</div></div>
+              </div>
+              <div class="sep-actions"><button class="ab">Solution Book</button><button class="ab">Promote → QUAL</button><button class="ab">View SDE</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 2 -->
+        <div class="sol-tr">
+          <div class="sol-row" onclick="toggleRow(this)">
+            <div class="sol-td"><button class="sol-expand-btn">+</button></div>
+            <div class="sol-td"><div class="sol-name-block"><div class="sol-name">identity-core</div><div class="sol-id">sol_9c3d8e</div></div></div>
+            <div class="sol-td"><span class="tb2">Service</span></div>
+            <div class="sol-td"><span class="mb mb-dv">DEV</span></div>
+            <div class="sol-td" style="color:var(--muted)">team-platform</div>
+            <div class="sol-td" style="color:var(--muted)">identity-sde-03</div>
+            <div class="sol-td"><div class="ab-actions"><button class="ab">Promote</button><button class="ab">Edit</button></div></div>
+          </div>
+          <div class="sol-expand-panel">
+            <div class="sep-inner">
+              <div class="sep-label">Solution Hierarchy</div>
+              <div class="hier-grid">
+                <div class="hg-col"><div class="hg-head">Processes</div><div class="hg-item">user-registration</div><div class="hg-item">auth-flow</div></div>
+                <div class="hg-col"><div class="hg-head">Components</div><div class="hg-item">oauth-handler</div><div class="hg-item">rbac-engine</div></div>
+                <div class="hg-col"><div class="hg-head">Interfaces</div><div class="hg-item">UserCreated (export)</div><div class="hg-item">TokenIssued (export)</div></div>
+                <div class="hg-col"><div class="hg-head">Data Types</div><div class="hg-item">User (object)</div><div class="hg-item">token (string)</div><div class="hg-item">role (custom)</div></div>
+              </div>
+              <div class="sep-actions"><button class="ab">Solution Book</button><button class="ab">Promote → INT</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 3 -->
+        <div class="sol-tr">
+          <div class="sol-row" onclick="toggleRow(this)">
+            <div class="sol-td"><button class="sol-expand-btn">+</button></div>
+            <div class="sol-td"><div class="sol-name-block"><div class="sol-name">notification-svc</div><div class="sol-id">sol_7a1c4f</div></div></div>
+            <div class="sol-td"><span class="tb2">Service</span></div>
+            <div class="sol-td"><span class="mb mb-cm">CM</span></div>
+            <div class="sol-td" style="color:var(--muted)">team-exec</div>
+            <div class="sol-td" style="color:var(--muted)">notifications-sde-01</div>
+            <div class="sol-td"><div class="ab-actions"><button class="ab">Release</button><button class="ab">Edit</button></div></div>
+          </div>
+          <div class="sol-expand-panel">
+            <div class="sep-inner">
+              <div class="sep-label">Solution Hierarchy</div>
+              <div class="hier-grid">
+                <div class="hg-col"><div class="hg-head">Processes</div><div class="hg-item">dispatch-process</div></div>
+                <div class="hg-col"><div class="hg-head">Components</div><div class="hg-item">kafka-consumer</div><div class="hg-item">email-sender</div></div>
+                <div class="hg-col"><div class="hg-head">Interfaces</div><div class="hg-item">NotifyRequest (import)</div></div>
+                <div class="hg-col"><div class="hg-head">Data Types</div><div class="hg-item">Notification (object)</div><div class="hg-item">message (string)</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 4 -->
+        <div class="sol-tr">
+          <div class="sol-row" onclick="toggleRow(this)">
+            <div class="sol-td"><button class="sol-expand-btn">+</button></div>
+            <div class="sol-td"><div class="sol-name-block"><div class="sol-name">security-sem</div><div class="sol-id">sol_2b8e6c</div></div></div>
+            <div class="sol-td"><span class="tb2">Service</span></div>
+            <div class="sol-td"><span class="mb mb-ql">QUAL</span></div>
+            <div class="sol-td" style="color:var(--muted)">team-security</div>
+            <div class="sol-td" style="color:var(--red)">security-sem-sde-02 ⚠</div>
+            <div class="sol-td"><div class="ab-actions"><button class="ab" style="color:var(--red);border-color:rgba(255,59,26,.3)">Quarantined</button><button class="ab">Diagnose</button></div></div>
+          </div>
+          <div class="sol-expand-panel">
+            <div class="sep-inner">
+              <div class="sep-label">Solution Hierarchy</div>
+              <div class="hier-grid">
+                <div class="hg-col"><div class="hg-head">Processes</div><div class="hg-item">threat-scan</div><div class="hg-item">policy-enforce</div></div>
+                <div class="hg-col"><div class="hg-head">Components</div><div class="hg-item">scanner-engine</div><div class="hg-item">vault-module</div></div>
+                <div class="hg-col"><div class="hg-head">Interfaces</div><div class="hg-item">ThreatEvent (export)</div><div class="hg-item">ScanRequest (import)</div></div>
+                <div class="hg-col"><div class="hg-head">Data Types</div><div class="hg-item">Threat (object)</div><div class="hg-item">severity (int)</div><div class="hg-item">policy (custom)</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 5 -->
+        <div class="sol-tr">
+          <div class="sol-row" onclick="toggleRow(this)">
+            <div class="sol-td"><button class="sol-expand-btn">+</button></div>
+            <div class="sol-td"><div class="sol-name-block"><div class="sol-name">analytics-engine</div><div class="sol-id">sol_c2f1e8</div></div></div>
+            <div class="sol-td"><span class="tb2">Platform</span></div>
+            <div class="sol-td"><span class="mb mb-sb">SANDBOX</span></div>
+            <div class="sol-td" style="color:var(--muted)">team-data</div>
+            <div class="sol-td" style="color:var(--muted)">analytics-platform-sde</div>
+            <div class="sol-td"><div class="ab-actions"><button class="ab">Promote</button><button class="ab">Edit</button></div></div>
+          </div>
+          <div class="sol-expand-panel">
+            <div class="sep-inner">
+              <div class="sep-label">Solution Hierarchy</div>
+              <div class="hier-grid">
+                <div class="hg-col"><div class="hg-head">Processes</div><div class="hg-item">data-ingestion</div><div class="hg-item">metric-compute</div></div>
+                <div class="hg-col"><div class="hg-head">Components</div><div class="hg-item">pipeline-runner</div><div class="hg-item">aggregator</div></div>
+                <div class="hg-col"><div class="hg-head">Interfaces</div><div class="hg-item">DataEvent (import)</div><div class="hg-item">MetricOut (export)</div></div>
+                <div class="hg-col"><div class="hg-head">Data Types</div><div class="hg-item">Metric (object)</div><div class="hg-item">value (double)</div><div class="hg-item">ts (date)</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

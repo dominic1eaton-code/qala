@@ -1,0 +1,116 @@
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Solution Factory</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>alpha-factory-01</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search…">
+      <button class="btn btn-g btn-sm">Export Config</button>
+      <button class="btn btn-p btn-sm">+ New SDE</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sr g4">
+      <div class="sc"><div class="sc-lbl">Factory ID</div><div class="sc-val g" style="font-size:14px;font-family:var(--mono)">alpha-factory-01</div><div class="sc-sub">Root factory · owner</div></div>
+      <div class="sc"><div class="sc-lbl">Networked SDEs</div><div class="sc-val">5</div><div class="sc-sub">8 max allocated</div></div>
+      <div class="sc"><div class="sc-lbl">Solutions Produced</div><div class="sc-val t">12</div><div class="sc-sub">across all SDEs</div></div>
+      <div class="sc"><div class="sc-lbl">Factory Uptime</div><div class="sc-val b">99.7%</div><div class="sc-sub">last 30 days</div></div>
+    </div>
+
+    <div class="g2">
+
+      <div>
+        <div class="panel">
+          <div class="ph"><span class="pt">Factory Topology</span><div class="pa"><button class="btn btn-g btn-sm">Edit Graph</button></div></div>
+          <div class="pb">
+            <div class="sf-graph">
+              <div class="sf-graph-title">SDE Network</div>
+              <div class="sf-nd root" style="margin-bottom:6px">◈ alpha-factory-01<br><span style="font-size:8px;opacity:.7">ROOT FACTORY</span></div>
+              <div style="display:flex;gap:4px;align-items:center;margin:2px 0">
+                <div class="sf-arrow" style="margin:0 20px">│</div>
+                <div class="sf-arrow" style="margin:0 15px">│</div>
+                <div class="sf-arrow" style="margin:0 10px">│</div>
+              </div>
+              <div class="node-row">
+                <div class="sf-nd ok-nd">sde-core-api<br><span style="font-size:8px">Active</span></div>
+                <div class="sf-nd ok-nd">sde-frontend<br><span style="font-size:8px">Active</span></div>
+                <div class="sf-nd warn-nd">sde-ml-research<br><span style="font-size:8px">Degraded</span></div>
+              </div>
+              <div class="node-row" style="margin-top:6px">
+                <div class="sf-nd ok-nd">sde-data-pipeline<br><span style="font-size:8px">Active</span></div>
+                <div class="sf-nd idle-nd">sde-infra<br><span style="font-size:8px">Idle</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Factory Configuration</span><div class="pa"><button class="btn btn-g btn-sm">Edit</button></div></div>
+          <div class="pb">
+            <div class="config-row"><span class="config-key">factory.name</span><span class="config-val">alpha-factory-01</span></div>
+            <div class="config-row"><span class="config-key">factory.owner</span><span class="config-val">Jordan Chen</span></div>
+            <div class="config-row"><span class="config-key">factory.tier</span><span class="config-val">root</span></div>
+            <div class="config-row"><span class="config-key">sde.max_count</span><span class="config-val">8</span></div>
+            <div class="config-row"><span class="config-key">build.isolation</span><span class="config-val">hermetic</span></div>
+            <div class="config-row"><span class="config-key">build.attestation</span><span class="config-val">enabled · sigstore</span></div>
+            <div class="config-row"><span class="config-key">networking.mode</span><span class="config-val">mesh · mTLS</span></div>
+            <div class="config-row"><span class="config-key">events.broker</span><span class="config-val">kafka · localhost:9092</span></div>
+            <div class="config-row"><span class="config-key">secrets.vault</span><span class="config-val">hashicorp-vault · v1.14</span></div>
+            <div class="config-row"><span class="config-key">governance.policy</span><span class="config-val">enterprise-baseline-v2</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <div class="ph"><span class="pt">Networked SDEs</span><div class="pa"><span class="ps">5 of 8 slots</span><button class="btn btn-p btn-sm">+ Add SDE</button></div></div>
+          <div class="pb">
+            <div class="sde-card active">
+              <div class="sde-card-name"><span class="bdg ok"><span class="dot"></span>Active</span>sde-core-api</div>
+              <div class="sde-card-row">Lang: <span>Go</span> · Version: <span>1.2.1</span> · Solutions: <span>3</span> · Snap: <span>v4</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">hermetic</span><span class="tag">ci-enabled</span><span class="tag">signed</span></div>
+            </div>
+            <div class="sde-card active">
+              <div class="sde-card-name"><span class="bdg ok"><span class="dot"></span>Active</span>sde-frontend</div>
+              <div class="sde-card-row">Lang: <span>TypeScript</span> · Version: <span>3.1.0</span> · Solutions: <span>4</span> · Snap: <span>v6</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">hermetic</span><span class="tag">ci-enabled</span></div>
+            </div>
+            <div class="sde-card active">
+              <div class="sde-card-name"><span class="bdg ok"><span class="dot"></span>Active</span>sde-data-pipeline</div>
+              <div class="sde-card-row">Lang: <span>Scala</span> · Version: <span>2.0.0</span> · Solutions: <span>2</span> · Snap: <span>v2</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">hermetic</span><span class="tag">data-plane</span></div>
+            </div>
+            <div class="sde-card warn-state">
+              <div class="sde-card-name"><span class="bdg wn"><span class="dot"></span>Degraded</span>sde-ml-research</div>
+              <div class="sde-card-row">Lang: <span>Rust</span> · Version: <span>0.9.3</span> · Solutions: <span>1</span> · Snap: <span>v1</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">prototype</span><span class="tag">ai-plane</span></div>
+            </div>
+            <div class="sde-card idle">
+              <div class="sde-card-name"><span class="bdg mt"><span class="dot"></span>Idle</span>sde-infra</div>
+              <div class="sde-card-row">Lang: <span>HCL</span> · Version: <span>1.0.0</span> · Solutions: <span>2</span> · Snap: <span>v3</span></div>
+              <div style="margin-top:6px;display:flex;gap:4px"><span class="tag">infra-as-code</span><span class="tag">k8s</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Event Stream Topics</span></div>
+          <div class="pb">
+            <table class="dt">
+              <thead><tr><th>Topic</th><th>Last Event</th><th>Count / Day</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">SDE_EVENTS</td><td class="mono">2m ago</td><td class="mono">142</td><td><span class="bdg ok"><span class="dot"></span>Active</span></td></tr>
+                <tr><td class="mono">BUILD_EVENTS</td><td class="mono">14m ago</td><td class="mono">88</td><td><span class="bdg ok"><span class="dot"></span>Active</span></td></tr>
+                <tr><td class="mono">ARTIFACT_EVENTS</td><td class="mono">3h ago</td><td class="mono">22</td><td><span class="bdg ok"><span class="dot"></span>Active</span></td></tr>
+                <tr><td class="mono">SECURITY_EVENTS</td><td class="mono">1h ago</td><td class="mono">17</td><td><span class="bdg wn"><span class="dot"></span>Alert</span></td></tr>
+                <tr><td class="mono">AI_RECOMMENDATIONS</td><td class="mono">30m ago</td><td class="mono">34</td><td><span class="bdg tl"><span class="dot"></span>Active</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

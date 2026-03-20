@@ -1,0 +1,351 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Version Control &amp; CM <span>/ Customer API · acme-engineering/customer-api</span></div>
+    <button class="tb-btn">Branches ▾</button>
+    <button class="tb-btn">Tags ▾</button>
+    <button class="tb-btn">Diff</button>
+    <button class="tb-btn primary">+ Create Branch</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="body">
+
+    <!-- BRANCH LIST -->
+    <div class="left-pane">
+      <div class="lp-head">
+        <div class="lp-title">Branches &amp; Tags</div>
+        <input class="lp-search" placeholder="🔍 Filter branches…">
+      </div>
+      <div class="lp-body">
+        <div class="branch-section">
+          <div class="branch-section-label">Default</div>
+          <div class="branch-item active">
+            <span class="branch-icon">◉</span>
+            <span class="branch-name">main</span>
+            <span class="branch-badge bb-main">PROTECTED</span>
+          </div>
+        </div>
+        <div class="branch-section">
+          <div class="branch-section-label">Active Branches</div>
+          <div class="branch-item">
+            <span class="branch-icon">⬡</span>
+            <span class="branch-name">feat/graphql-v3</span>
+            <span class="branch-badge bb-feat">+12 ahead</span>
+          </div>
+          <div class="branch-item">
+            <span class="branch-icon">⬡</span>
+            <span class="branch-name">feat/federation-gateway</span>
+            <span class="branch-badge bb-feat">+8 ahead</span>
+          </div>
+          <div class="branch-item">
+            <span class="branch-icon">⬡</span>
+            <span class="branch-name">fix/legacy-crypto</span>
+            <span class="branch-badge bb-fix">+3 ahead</span>
+          </div>
+          <div class="branch-item">
+            <span class="branch-icon">⬡</span>
+            <span class="branch-name">feat/otel-tracing</span>
+            <span class="branch-badge bb-feat">+6 ahead</span>
+          </div>
+        </div>
+        <div class="branch-section">
+          <div class="branch-section-label">Release Branches</div>
+          <div class="branch-item">
+            <span class="branch-icon">⬆</span>
+            <span class="branch-name">release/2.4.1</span>
+            <span class="branch-badge bb-rel">CM</span>
+          </div>
+          <div class="branch-item">
+            <span class="branch-icon">⬆</span>
+            <span class="branch-name">release/2.3.0</span>
+            <span class="branch-badge bb-rel">archived</span>
+          </div>
+        </div>
+        <div class="branch-section">
+          <div class="branch-section-label">Tags (versions)</div>
+          <div class="branch-item">
+            <span class="branch-icon">🏷</span>
+            <span class="branch-name">v2.4.1</span>
+            <span class="branch-badge bb-main">CM</span>
+          </div>
+          <div class="branch-item">
+            <span class="branch-icon">🏷</span>
+            <span class="branch-name">v2.4.0</span>
+            <span class="branch-badge" style="background:rgba(229,224,214,0.06);color:var(--quinary);border:1px solid rgba(205,195,189,0.1)">released</span>
+          </div>
+          <div class="branch-item">
+            <span class="branch-icon">🏷</span>
+            <span class="branch-name">v2.3.0</span>
+            <span class="branch-badge" style="background:rgba(229,224,214,0.06);color:var(--quinary);border:1px solid rgba(205,195,189,0.1)">released</span>
+          </div>
+          <div class="branch-item">
+            <span class="branch-icon">🏷</span>
+            <span class="branch-name">v2.0.0</span>
+          </div>
+          <div class="branch-item">
+            <span class="branch-icon">🏷</span>
+            <span class="branch-name">v1.0.0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMIT LOG -->
+    <div class="commit-log">
+      <div class="cl-head">
+        <div class="cl-branch-info">
+          <span class="cl-branch-icon">◉</span>
+          <span class="cl-branch-name">main</span>
+          <span class="cl-ahead-behind">142 commits · acme-engineering/customer-api</span>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button class="tb-btn" style="font-size:11px">Graph</button>
+          <button class="tb-btn" style="font-size:11px">Compare</button>
+        </div>
+      </div>
+      <div class="cl-body">
+
+        <div class="commit-row selected">
+          <div class="commit-graph"><div class="cg-dot cm-c"></div><div class="cg-line main-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg"><span class="tag tag-cm">CM</span>chore(release): tag v2.4.1 — CM gate approved · immutable release</div>
+            <div class="commit-meta">
+              <span class="commit-hash">a3f9c2b</span>
+              <span class="commit-author">Alex Jordan</span>
+              <span class="commit-time">2026-03-19 09:42</span>
+              <div class="commit-checks">
+                <span class="check-badge cb-pass">✓ CI</span>
+                <span class="check-badge cb-pass">✓ SAST</span>
+                <span class="check-badge cb-pass">✓ CM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commit-row">
+          <div class="commit-graph"><div class="cg-dot main-c"></div><div class="cg-line main-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg"><span class="tag tag-perf">perf</span>streaming: enable response compression — p99 improved from 118ms to 94ms</div>
+            <div class="commit-meta">
+              <span class="commit-hash">b7c2f8e</span>
+              <span class="commit-author">Sara Mitchell</span>
+              <span class="commit-time">2026-03-18 16:30</span>
+              <div class="commit-checks"><span class="check-badge cb-pass">✓ CI</span><span class="check-badge cb-pass">✓ SAST</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commit-row">
+          <div class="commit-graph"><div class="cg-dot main-c"></div><div class="cg-line main-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg"><span class="tag tag-feat">feat</span>webhooks: add fanout retry with exponential backoff (max 3 attempts)</div>
+            <div class="commit-meta">
+              <span class="commit-hash">d1e4a9f</span>
+              <span class="commit-author">Alex Jordan</span>
+              <span class="commit-time">2026-03-17 14:22</span>
+              <div class="commit-checks"><span class="check-badge cb-pass">✓ CI</span><span class="check-badge cb-pass">✓ SAST</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commit-row">
+          <div class="commit-graph"><div class="cg-dot feat-c"></div><div class="cg-line feat-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg"><span class="tag tag-feat">feat</span>streaming: implement chunked transfer encoding for large response bodies</div>
+            <div class="commit-meta">
+              <span class="commit-hash">9e4a1d3</span>
+              <span class="commit-author">Sara Mitchell</span>
+              <span class="commit-time">2026-03-16 11:08</span>
+              <div class="commit-checks"><span class="check-badge cb-pass">✓ CI</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commit-row">
+          <div class="commit-graph"><div class="cg-dot main-c"></div><div class="cg-line main-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg"><span class="tag tag-sec">sec</span>deps: upgrade go.opentelemetry.io/otel v1.24.0 — closes OTEL-2024-012</div>
+            <div class="commit-meta">
+              <span class="commit-hash">2f8b3c1</span>
+              <span class="commit-author">Dependabot</span>
+              <span class="commit-time">2026-03-15 09:00</span>
+              <div class="commit-checks"><span class="check-badge cb-pass">✓ CI</span><span class="check-badge cb-pass">✓ SCA</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commit-row">
+          <div class="commit-graph"><div class="cg-dot fix-c"></div><div class="cg-line main-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg"><span class="tag tag-fix">fix</span>rate-limiter: correct sliding window boundary condition causing off-by-one</div>
+            <div class="commit-meta">
+              <span class="commit-hash">4c9d2a7</span>
+              <span class="commit-author">Jamie Okafor</span>
+              <span class="commit-time">2026-03-14 17:44</span>
+              <div class="commit-checks"><span class="check-badge cb-pass">✓ CI</span><span class="check-badge cb-pass">✓ SAST</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commit-row">
+          <div class="commit-graph"><div class="cg-dot main-c"></div><div class="cg-line main-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg"><span class="tag tag-feat">feat</span>auth: add PKCE support for public clients in OAuth 2.0 authorization flow</div>
+            <div class="commit-meta">
+              <span class="commit-hash">e8b1f4c</span>
+              <span class="commit-author">Alex Jordan</span>
+              <span class="commit-time">2026-03-13 10:15</span>
+              <div class="commit-checks"><span class="check-badge cb-pass">✓ CI</span><span class="check-badge cb-pass">✓ SAST</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commit-row">
+          <div class="commit-graph"><div class="cg-dot main-c"></div><div class="cg-line main-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg">Merge pull request #228 from feat/webhook-fanout</div>
+            <div class="commit-meta">
+              <span class="commit-hash">f1c4a8b</span>
+              <span class="commit-author">Alex Jordan</span>
+              <span class="commit-time">2026-03-12 15:00</span>
+              <div class="commit-checks"><span class="check-badge cb-pass">✓ CI</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commit-row">
+          <div class="commit-graph"><div class="cg-dot feat-c"></div><div class="cg-line feat-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg"><span class="tag tag-feat">feat</span>webhooks: initial fanout implementation with configurable endpoint list</div>
+            <div class="commit-meta">
+              <span class="commit-hash">3a2c9f1</span>
+              <span class="commit-author">Sara Mitchell</span>
+              <span class="commit-time">2026-03-10 13:42</span>
+              <div class="commit-checks"><span class="check-badge cb-pass">✓ CI</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="commit-row">
+          <div class="commit-graph"><div class="cg-dot fix-c"></div><div class="cg-line main-l"></div></div>
+          <div class="commit-body">
+            <div class="commit-msg"><span class="tag tag-fix">fix</span>cache: prevent thundering-herd on cache-miss with probabilistic early expiry</div>
+            <div class="commit-meta">
+              <span class="commit-hash">7d8b0e5</span>
+              <span class="commit-author">Jamie Okafor</span>
+              <span class="commit-time">2026-03-08 09:20</span>
+              <div class="commit-checks"><span class="check-badge cb-pass">✓ CI</span><span class="check-badge cb-pass">✓ SAST</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:10px 16px;font-size:11.5px;color:var(--quinary);border-top:1px solid var(--border)">
+          Showing 10 of 142 commits — <span style="color:var(--quaternary);cursor:pointer">Load more →</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VERSION + CM PANEL -->
+    <div class="version-panel">
+      <div class="vp-head">
+        <div class="vp-title">Versions &amp; CM History</div>
+      </div>
+      <div class="vp-body">
+        <div class="ver-tl">
+
+          <div class="ver-item">
+            <div class="ver-marker">
+              <div class="ver-dot" style="background:#7fc4a0;box-shadow:0 0 8px rgba(127,196,160,0.5)"></div>
+              <div class="ver-line" style="background:rgba(127,196,160,0.2)"></div>
+            </div>
+            <div class="ver-content">
+              <div class="ver-tag">v2.4.1 <span class="badge b-green" style="font-size:9px">CM · LIVE</span></div>
+              <div class="ver-date">2026-03-19 · SLSA L3</div>
+              <div class="ver-desc">Streaming compression, webhook fanout, PKCE auth. Production deployment confirmed.</div>
+            </div>
+          </div>
+
+          <div class="ver-item">
+            <div class="ver-marker">
+              <div class="ver-dot" style="background:rgba(45,107,71,0.5)"></div>
+              <div class="ver-line" style="background:rgba(45,107,71,0.15)"></div>
+            </div>
+            <div class="ver-content">
+              <div class="ver-tag">v2.4.0 <span class="badge" style="background:rgba(229,224,214,0.07);color:var(--quinary);font-size:9px">superseded</span></div>
+              <div class="ver-date">2026-02-28 · CM</div>
+              <div class="ver-desc">Rate limiting v2, advanced filtering, performance baseline improvements.</div>
+            </div>
+          </div>
+
+          <div class="ver-item">
+            <div class="ver-marker">
+              <div class="ver-dot" style="background:rgba(45,107,71,0.4)"></div>
+              <div class="ver-line" style="background:rgba(45,107,71,0.12)"></div>
+            </div>
+            <div class="ver-content">
+              <div class="ver-tag">v2.3.0</div>
+              <div class="ver-date">2025-12-08 · CM</div>
+              <div class="ver-desc">Webhook support, pagination improvements, OpenTelemetry instrumentation.</div>
+            </div>
+          </div>
+
+          <div class="ver-item">
+            <div class="ver-marker">
+              <div class="ver-dot" style="background:rgba(41,67,198,0.5)"></div>
+              <div class="ver-line" style="background:rgba(41,67,198,0.12)"></div>
+            </div>
+            <div class="ver-content">
+              <div class="ver-tag">v2.0.0</div>
+              <div class="ver-date">2025-10-15 · CM</div>
+              <div class="ver-desc">Major API redesign. Breaking: v1.x endpoints deprecated (sunset 2026-10-15).</div>
+            </div>
+          </div>
+
+          <div class="ver-item">
+            <div class="ver-marker">
+              <div class="ver-dot" style="background:rgba(41,67,198,0.3)"></div>
+            </div>
+            <div class="ver-content">
+              <div class="ver-tag">v1.0.0</div>
+              <div class="ver-date">2025-10-01 · CM</div>
+              <div class="ver-desc">Initial CM release. Core auth + product endpoints.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="cm-section">
+          <div class="cm-title">CM Record — v2.4.1</div>
+          <div class="cm-field"><span class="cm-k">CM Gate</span><span class="cm-v ok">✓ Approved</span></div>
+          <div class="cm-field"><span class="cm-k">CM Board</span><span class="cm-v ok">✓ 3/3 signed</span></div>
+          <div class="cm-field"><span class="cm-k">Build Attest</span><span class="cm-v ok">✓ SLSA L3</span></div>
+          <div class="cm-field"><span class="cm-k">SAST</span><span class="cm-v ok">✓ Clean</span></div>
+          <div class="cm-field"><span class="cm-k">DAST</span><span class="cm-v ok">✓ Clean</span></div>
+          <div class="cm-field"><span class="cm-k">SCA</span><span class="cm-v ok">✓ 0 CVEs</span></div>
+          <div class="cm-field"><span class="cm-k">Pentest</span><span class="cm-v ok">✓ No P1 findings</span></div>
+          <div class="cm-field"><span class="cm-k">Perf benchmarks</span><span class="cm-v ok">✓ p99 94ms</span></div>
+          <div class="cm-field"><span class="cm-k">Immutable</span><span class="cm-v ok">✓ Tagged + locked</span></div>
+          <div class="cm-field"><span class="cm-k">Date</span><span class="cm-v">2026-03-19T09:42Z</span></div>
+
+          <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border)">
+            <div class="cm-title" style="margin-bottom:8px">Open PRs</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="padding:8px 10px;border:1px solid rgba(41,67,198,0.2);border-radius:7px;background:rgba(41,67,198,0.06)">
+                <div style="font-size:11.5px;color:#8aaaf5;font-family:'JetBrains Mono',monospace">#234 fix/legacy-crypto</div>
+                <div style="font-size:11px;color:var(--quinary);margin-top:2px">Replace deprecated crypto functions</div>
+                <div style="display:flex;gap:4px;margin-top:4px"><span class="check-badge cb-run" style="font-size:9px">⟳ CI running</span></div>
+              </div>
+              <div style="padding:8px 10px;border:1px solid rgba(41,67,198,0.2);border-radius:7px;background:rgba(41,67,198,0.06)">
+                <div style="font-size:11.5px;color:#8aaaf5;font-family:'JetBrains Mono',monospace">#235 feat/graphql-v3</div>
+                <div style="font-size:11px;color:var(--quinary);margin-top:2px">GraphQL federation gateway initial scaffolding</div>
+                <div style="display:flex;gap:4px;margin-top:4px"><span class="check-badge cb-pass" style="font-size:9px">✓ Draft</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>

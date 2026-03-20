@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -12,7 +12,8 @@ interface FactoryTier {
   selector: 'app-onboarding-factory',
   standalone: true,
   imports: [NgFor, RouterLink],
-  templateUrl: './onboarding-factory.component.html'
+  templateUrl: './onboarding-factory.component.html',
+  styleUrl: './auth.styles.css'
 })
 export class OnboardingFactoryComponent {
   namespace = '';
@@ -32,3 +33,5 @@ export class OnboardingFactoryComponent {
     this.namespace = value.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/--+/g, '-');
   }
 }
+
+

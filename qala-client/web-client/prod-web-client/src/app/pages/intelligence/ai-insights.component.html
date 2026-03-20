@@ -1,0 +1,165 @@
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">AI Insights</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>alpha-factory-01</span><span class="sep">/</span><span style="color:var(--teal)">ai-agents</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search insights…">
+      <button class="btn btn-g btn-sm">Configure</button>
+      <button class="btn btn-t btn-sm">✦ Analyze All SDEs</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sr g4" style="margin-bottom:14px">
+      <div class="sc"><div class="sc-lbl">Active Insights</div><div class="sc-val g">7</div><div class="sc-sub">3 high priority</div></div>
+      <div class="sc"><div class="sc-lbl">Optimizations Found</div><div class="sc-val t">4</div><div class="sc-sub">estimated 32% perf gain</div></div>
+      <div class="sc"><div class="sc-lbl">Tests Generated</div><div class="sc-val b">14</div><div class="sc-sub">for inventory-tracker</div></div>
+      <div class="sc"><div class="sc-lbl">Last Analysis</div><div class="sc-val" style="font-size:14px;font-family:var(--mono)">30m ago</div><div class="sc-sub">sde-data-pipeline</div></div>
+    </div>
+
+    <div class="gs">
+      <!-- Left: insight cards -->
+      <div>
+        <div class="panel">
+          <div class="ph"><span class="pt">Recommendations</span><div class="pa"><span class="ps">7 active</span><button class="btn btn-xs btn-g">Filter</button></div></div>
+          <div class="pb" style="padding:8px">
+
+            <div class="ai-card type-warn">
+              <div class="ai-type warn">⚠ Pipeline Bottleneck</div>
+              <div class="ai-title">sde-data-pipeline — Stage 3 latency 2.8× expected</div>
+              <div class="ai-body">Stage 3 (data-transform) consistently averaging 8.4 minutes against a 3-minute SLA. Parallelizing the transform workers from 2 to 6 threads is projected to reduce duration by 65%.</div>
+              <div class="ai-footer">
+                <span class="ai-sde">sde-data-pipeline</span>
+                <span class="ai-conf conf-high">94% confidence</span>
+                <div style="margin-left:auto;display:flex;gap:4px">
+                  <button class="btn btn-xs btn-t">Apply Fix</button>
+                  <button class="btn btn-xs btn-g">Dismiss</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="ai-card type-opt">
+              <div class="ai-type opt">✦ SDE Optimization</div>
+              <div class="ai-title">sde-ml-research — Memory reduction opportunity</div>
+              <div class="ai-body">Enabling lazy loading on model weight initialization would reduce peak memory usage from 14.2 GB to ~8.5 GB. No correctness impact detected in static analysis of model loading patterns.</div>
+              <div class="ai-footer">
+                <span class="ai-sde">sde-ml-research</span>
+                <span class="ai-conf conf-high">91% confidence</span>
+                <div style="margin-left:auto;display:flex;gap:4px">
+                  <button class="btn btn-xs btn-t">Apply Fix</button>
+                  <button class="btn btn-xs btn-g">Dismiss</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="ai-card type-err">
+              <div class="ai-type err">⛨ Security Risk</div>
+              <div class="ai-title">sde-core-api — 3 CVEs in dependency tree</div>
+              <div class="ai-body">CVE-2024-44000 (high), CVE-2024-39293 (medium), CVE-2024-38521 (medium) detected in transitive dependencies. Patch versions are available for all three.</div>
+              <div class="ai-footer">
+                <span class="ai-sde">sde-core-api</span>
+                <span class="ai-conf conf-high">100% confirmed</span>
+                <div style="margin-left:auto;display:flex;gap:4px">
+                  <button class="btn btn-xs btn-d">View CVEs</button>
+                  <button class="btn btn-xs btn-g">Dismiss</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="ai-card type-test">
+              <div class="ai-type test">◎ Test Generation</div>
+              <div class="ai-title">inventory-tracker — 14 test scenarios generated</div>
+              <div class="ai-body">AI synthesized 14 test cases from the solution spec and historical defect patterns: 6 unit, 5 integration, 3 edge cases for the stock-tracker component. Current coverage 82% → projected 93% if applied.</div>
+              <div class="ai-footer">
+                <span class="ai-sde">sde-core-api</span>
+                <span class="ai-conf conf-med">78% confidence</span>
+                <div style="margin-left:auto;display:flex;gap:4px">
+                  <button class="btn btn-xs btn-t">Import Tests</button>
+                  <button class="btn btn-xs btn-g">Dismiss</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="ai-card type-info">
+              <div class="ai-type info">◎ Resource Prediction</div>
+              <div class="ai-title">sde-core-api — Compute spike forecasted Friday</div>
+              <div class="ai-body">Based on activity trends, a 3× compute spike is predicted for Friday 09:00–12:00 during the scheduled release window. Recommend pre-scaling worker pool from 2 to 6 replicas.</div>
+              <div class="ai-footer">
+                <span class="ai-sde">sde-core-api</span>
+                <span class="ai-conf conf-med">82% confidence</span>
+                <div style="margin-left:auto;display:flex;gap:4px">
+                  <button class="btn btn-xs btn-t">Schedule Scale</button>
+                  <button class="btn btn-xs btn-g">Dismiss</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: detail + metrics -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Pipeline Bottleneck — Detail</span><span class="ps" style="color:var(--teal)">sde-data-pipeline</span></div>
+          <div class="pb">
+            <div class="sh">Suggested Fix — Parallelization</div>
+            <div class="rd-code"><span class="c"># pipeline.yaml — Stage 3 transform worker config</span>
+<span class="k">stages</span>:
+  - <span class="k">name</span>: <span class="s">data-transform</span>
+    <span class="k">workers</span>: <span class="n">6</span>  <span class="c"># was: 2</span>
+    <span class="k">timeout</span>: <span class="n">300</span>
+    <span class="k">parallelism</span>: <span class="k">true</span>
+    <span class="k">batch_size</span>: <span class="n">5000</span>  <span class="c"># was: 15000</span></div>
+            <div style="margin-top:10px">
+              <div class="metric-row">
+                <span class="metric-name">Current avg duration</span>
+                <span class="metric-val" style="color:var(--err)">8m 24s</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-name">Target duration (SLA)</span>
+                <span class="metric-val">3m 00s</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-name">Projected w/ fix</span>
+                <span class="metric-val" style="color:var(--ok)">2m 58s</span>
+              </div>
+              <div class="metric-row">
+                <span class="metric-name">Confidence</span>
+                <span class="metric-val" style="color:var(--ok)">94%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Factory AI Metrics</span></div>
+          <div class="pb">
+            <div class="metric-row"><span class="metric-name">Avg pipeline build time</span><div class="metric-bar"><div class="pbar"><div class="pfill" style="width:65%"></div></div></div><span class="metric-val">2m 04s</span></div>
+            <div class="metric-row"><span class="metric-name">Test coverage (avg)</span><div class="metric-bar"><div class="pbar"><div class="pfill g" style="width:72%"></div></div></div><span class="metric-val">72.5%</span></div>
+            <div class="metric-row"><span class="metric-name">SDE health score</span><div class="metric-bar"><div class="pbar"><div class="pfill" style="width:80%"></div></div></div><span class="metric-val">80 / 100</span></div>
+            <div class="metric-row"><span class="metric-name">Defect prediction score</span><div class="metric-bar"><div class="pbar"><div class="pfill e" style="width:22%"></div></div></div><span class="metric-val" style="color:var(--ok)">Low risk</span></div>
+            <div class="metric-row"><span class="metric-name">Security posture</span><div class="metric-bar"><div class="pbar"><div class="pfill e" style="width:30%"></div></div></div><span class="metric-val" style="color:var(--warn)">Moderate</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Analyze SDE</span></div>
+          <div class="pb">
+            <div style="font-size:11px;color:var(--text-secondary);margin-bottom:10px">Run a full AI analysis on any SDE to generate fresh recommendations across performance, security, coverage, and resource efficiency.</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+              <button class="btn btn-g btn-sm">sde-core-api</button>
+              <button class="btn btn-g btn-sm">sde-data-pipeline</button>
+              <button class="btn btn-g btn-sm">sde-frontend</button>
+              <button class="btn btn-g btn-sm">sde-ml-research</button>
+              <button class="btn btn-g btn-sm">sde-infra</button>
+            </div>
+            <button class="btn btn-t" style="width:100%;justify-content:center">✦ Analyze Selected SDE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

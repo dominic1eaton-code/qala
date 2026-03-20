@@ -1,0 +1,194 @@
+<div class="main">
+  <header class="topbar">
+    <div class="tb-crumb">qala <span style="opacity:.35">/</span> <b>Factories</b></div>
+    <div class="tb-right">
+      <div class="tb-notif"></div>
+      <button class="tb-btn primary" onclick="alert('New Factory — name, template, SDE topology')">+ New Factory</button>
+    </div>
+  </header>
+  <div class="scroll">
+    <div class="content">
+      <div class="pg-eye">Control Plane</div>
+      <div class="pg-title">Solution <em>Factories</em></div>
+
+      <!-- HIERARCHY VIZ -->
+      <div class="hier-viz">
+        <div class="hv-label">Factory Hierarchy — qala root → child factories → SDEs</div>
+        <div class="hv-tree">
+          <div class="hv-col">
+            <div class="hv-col-label">Root</div>
+            <div class="hv-node root">qala-root-factory<br><span style="font-size:.53rem;color:rgba(255,255,255,.35)">sfact_root · 5 children</span></div>
+          </div>
+          <div class="hv-arr"><div class="hv-arr-line"></div><div class="hv-arr-tip">›</div></div>
+          <div class="hv-col">
+            <div class="hv-col-label">Child Factories</div>
+            <div class="hv-node">payments-sf</div>
+            <div class="hv-node">core-sf</div>
+            <div class="hv-node">data-sf</div>
+            <div class="hv-node">exec-sf</div>
+            <div class="hv-node err">sec-sf ⚠</div>
+          </div>
+          <div class="hv-arr"><div class="hv-arr-line"></div><div class="hv-arr-tip">›</div></div>
+          <div class="hv-col">
+            <div class="hv-col-label">SDEs</div>
+            <div class="hv-node">payments-factory-sde-01 <span style="color:var(--green)">●</span></div>
+            <div class="hv-node">identity-sde-03 <span style="color:var(--amber)">●</span></div>
+            <div class="hv-node">analytics-platform-sde <span style="color:var(--green)">●</span></div>
+            <div class="hv-node">workflow-cicd-sde-01 <span style="color:var(--green)">●</span></div>
+            <div class="hv-node err">security-sem-sde-02 ✕</div>
+          </div>
+          <div class="hv-arr"><div class="hv-arr-line"></div><div class="hv-arr-tip">›</div></div>
+          <div class="hv-col">
+            <div class="hv-col-label">Solutions</div>
+            <div class="hv-node">payments-platform (INT)</div>
+            <div class="hv-node">identity-core (DEV)</div>
+            <div class="hv-node">analytics-engine (SANDBOX)</div>
+            <div class="hv-node">notification-svc (CM)</div>
+            <div class="hv-node err">security-sem (QUAL, quarantined)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FACTORY CARDS -->
+      <div class="factory-grid">
+
+        <div class="factory-card">
+          <div class="fc-head">
+            <div><div class="fc-name">payments-sf</div><div class="fc-id">sfact_4f2a1b · 3 SDEs · 2 solutions</div></div>
+            <div class="fc-status fcs-ok"><div class="fcs-dot"></div>Active</div>
+          </div>
+          <div class="fc-props">
+            <span class="fc-prop"><b>Owner</b> team-payments</span>
+            <span class="fc-prop"><b>Template</b> go-microservice-v3</span>
+            <span class="fc-prop"><b>Lang</b> Go</span>
+          </div>
+          <div class="fc-sde-lbl">Connected SDEs</div>
+          <div class="fc-sdes">
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--green)"></div>payments-factory-sde-01</div>
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--muted)"></div>payments-test-sde</div>
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--accent)"></div>payments-staging-sde</div>
+          </div>
+          <div class="fc-spark">
+            <div class="sp-bar" style="height:60%;background:rgba(26,62,255,.25)"></div>
+            <div class="sp-bar" style="height:80%;background:rgba(26,62,255,.25)"></div>
+            <div class="sp-bar" style="height:45%;background:rgba(26,62,255,.25)"></div>
+            <div class="sp-bar" style="height:100%;background:rgba(26,62,255,.35)"></div>
+            <div class="sp-bar" style="height:70%;background:rgba(26,62,255,.25)"></div>
+            <div class="sp-bar" style="height:90%;background:rgba(26,62,255,.25)"></div>
+            <div class="sp-bar" style="height:55%;background:rgba(26,62,255,.25)"></div>
+          </div>
+          <div class="fc-foot"><button class="fc-btn">+ Add SDE</button><button class="fc-btn">Configure</button><button class="fc-btn">Run Pipeline</button></div>
+        </div>
+
+        <div class="factory-card">
+          <div class="fc-head">
+            <div><div class="fc-name">core-sf</div><div class="fc-id">sfact_9c3d8e · 2 SDEs · 1 solution</div></div>
+            <div class="fc-status fcs-ok"><div class="fcs-dot"></div>Active</div>
+          </div>
+          <div class="fc-props">
+            <span class="fc-prop"><b>Owner</b> team-platform</span>
+            <span class="fc-prop"><b>Template</b> go-service-v2</span>
+            <span class="fc-prop"><b>Lang</b> Go</span>
+          </div>
+          <div class="fc-sde-lbl">Connected SDEs</div>
+          <div class="fc-sdes">
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--amber)"></div>identity-sde-03</div>
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--green)"></div>gateway-sde-01</div>
+          </div>
+          <div class="fc-spark">
+            <div class="sp-bar" style="height:40%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:65%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:70%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:50%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:80%;background:rgba(26,62,255,.3)"></div>
+            <div class="sp-bar" style="height:60%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:90%;background:rgba(26,62,255,.3)"></div>
+          </div>
+          <div class="fc-foot"><button class="fc-btn">+ Add SDE</button><button class="fc-btn">Configure</button><button class="fc-btn">Run Pipeline</button></div>
+        </div>
+
+        <div class="factory-card">
+          <div class="fc-head">
+            <div><div class="fc-name">data-sf</div><div class="fc-id">sfact_7a1c4f · 1 SDE · 1 solution</div></div>
+            <div class="fc-status fcs-ok"><div class="fcs-dot"></div>Active</div>
+          </div>
+          <div class="fc-props">
+            <span class="fc-prop"><b>Owner</b> team-data</span>
+            <span class="fc-prop"><b>Template</b> scala-analytics-v1</span>
+            <span class="fc-prop"><b>Lang</b> Scala</span>
+          </div>
+          <div class="fc-sde-lbl">Connected SDEs</div>
+          <div class="fc-sdes">
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--green)"></div>analytics-platform-sde</div>
+          </div>
+          <div class="fc-spark">
+            <div class="sp-bar" style="height:30%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:55%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:40%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:70%;background:rgba(26,62,255,.25)"></div>
+            <div class="sp-bar" style="height:45%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:60%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:35%;background:rgba(26,62,255,.2)"></div>
+          </div>
+          <div class="fc-foot"><button class="fc-btn">+ Add SDE</button><button class="fc-btn">Configure</button><button class="fc-btn">Run Pipeline</button></div>
+        </div>
+
+        <div class="factory-card">
+          <div class="fc-head">
+            <div><div class="fc-name">exec-sf</div><div class="fc-id">sfact_2b8e6c · 3 SDEs · 2 solutions</div></div>
+            <div class="fc-status fcs-ok"><div class="fcs-dot"></div>Active</div>
+          </div>
+          <div class="fc-props">
+            <span class="fc-prop"><b>Owner</b> team-exec</span>
+            <span class="fc-prop"><b>Template</b> scala-messaging-v1</span>
+            <span class="fc-prop"><b>Lang</b> Scala</span>
+          </div>
+          <div class="fc-sde-lbl">Connected SDEs</div>
+          <div class="fc-sdes">
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--muted)"></div>notifications-sde-01</div>
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--green)"></div>workflow-cicd-sde-01</div>
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--green)"></div>artifact-sde-01</div>
+          </div>
+          <div class="fc-spark">
+            <div class="sp-bar" style="height:50%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:75%;background:rgba(26,62,255,.25)"></div>
+            <div class="sp-bar" style="height:60%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:85%;background:rgba(26,62,255,.3)"></div>
+            <div class="sp-bar" style="height:55%;background:rgba(26,62,255,.2)"></div>
+            <div class="sp-bar" style="height:70%;background:rgba(26,62,255,.25)"></div>
+            <div class="sp-bar" style="height:80%;background:rgba(26,62,255,.3)"></div>
+          </div>
+          <div class="fc-foot"><button class="fc-btn">+ Add SDE</button><button class="fc-btn">Configure</button><button class="fc-btn">Run Pipeline</button></div>
+        </div>
+
+        <div class="factory-card" style="border:1px solid rgba(255,59,26,.2);background:rgba(255,59,26,.02);">
+          <div class="fc-head">
+            <div><div class="fc-name">sec-sf</div><div class="fc-id">sfact_c2f1e8 · 2 SDEs · 1 solution</div></div>
+            <div class="fc-status fcs-err"><div class="fcs-dot"></div>Degraded</div>
+          </div>
+          <div class="fc-props">
+            <span class="fc-prop"><b>Owner</b> team-security</span>
+            <span class="fc-prop"><b>Template</b> rust-security-v1</span>
+            <span class="fc-prop"><b>Lang</b> Rust</span>
+          </div>
+          <div class="fc-sde-lbl">Connected SDEs</div>
+          <div class="fc-sdes">
+            <div class="fc-sde-chip" style="border-color:rgba(255,59,26,.3);color:var(--red)"><div class="fc-chip-dot" style="background:var(--red)"></div>security-sem-sde-02</div>
+            <div class="fc-sde-chip"><div class="fc-chip-dot" style="background:var(--muted)"></div>ai-agents-sde-01</div>
+          </div>
+          <div class="fc-spark">
+            <div class="sp-bar" style="height:80%;background:rgba(255,59,26,.2)"></div>
+            <div class="sp-bar" style="height:90%;background:rgba(255,59,26,.2)"></div>
+            <div class="sp-bar" style="height:50%;background:rgba(255,59,26,.2)"></div>
+            <div class="sp-bar" style="height:10%;background:rgba(255,59,26,.3)"></div>
+            <div class="sp-bar" style="height:5%;background:rgba(255,59,26,.3)"></div>
+            <div class="sp-bar" style="height:2%;background:rgba(255,59,26,.2)"></div>
+            <div class="sp-bar" style="height:0%"></div>
+          </div>
+          <div class="fc-foot"><button class="fc-btn" style="color:var(--red);border-color:rgba(255,59,26,.3)">Quarantine Active</button><button class="fc-btn">Diagnose</button></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

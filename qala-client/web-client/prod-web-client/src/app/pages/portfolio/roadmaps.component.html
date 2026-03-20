@@ -1,0 +1,286 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Roadmaps <span>/ Acme Engineering · FY2026</span></div>
+    <button class="tb-btn">Quarter ▾</button>
+    <button class="tb-btn">All Teams ▾</button>
+    <button class="tb-btn">Priority ▾</button>
+    <button class="tb-btn">Export</button>
+    <button class="tb-btn primary">+ Add Feature</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="view-bar">
+    <span class="vt active">Timeline</span>
+    <span class="vt">By Team</span>
+    <span class="vt">By Solution</span>
+    <span class="vt">Compact</span>
+  </div>
+
+  <div class="scroll" style="flex:1;overflow:auto;">
+  <div class="roadmap-table">
+
+    <!-- HEADER -->
+    <div class="rm-header">
+      <div class="rm-label-header" style="width:310px">Team / Domain</div>
+      <div class="q-header" style="background:rgba(41,67,198,0.06)">
+        <div class="q-title" style="color:#8aaaf5">Q1 2026</div>
+        <div class="q-months">
+          <div class="q-month" style="color:#8aaaf5">JAN</div>
+          <div class="q-month" style="color:#8aaaf5">FEB</div>
+          <div class="q-month" style="color:#8aaaf5;background:rgba(41,67,198,0.1)">MAR ▲</div>
+        </div>
+      </div>
+      <div class="q-header">
+        <div class="q-title" style="color:var(--tertiary)">Q2 2026</div>
+        <div class="q-months">
+          <div class="q-month">APR</div>
+          <div class="q-month">MAY</div>
+          <div class="q-month">JUN</div>
+        </div>
+      </div>
+      <div class="q-header">
+        <div class="q-title" style="color:var(--quinary)">Q3 2026</div>
+        <div class="q-months">
+          <div class="q-month">JUL</div>
+          <div class="q-month">AUG</div>
+          <div class="q-month">SEP</div>
+        </div>
+      </div>
+      <div class="q-header">
+        <div class="q-title" style="color:var(--quinary)">Q4 2026</div>
+        <div class="q-months">
+          <div class="q-month">OCT</div>
+          <div class="q-month">NOV</div>
+          <div class="q-month">DEC</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MILESTONES / RELEASES ROW -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:var(--quinary)"></div>
+          <div class="rm-sh-name">Releases &amp; Milestones</div>
+        </div>
+        <div class="rm-sh-cols"><div class="rm-sh-col" style="flex:3"></div></div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><span class="rm-type-label">Key Deliverables</span></div>
+        <div class="rm-cells">
+          <!-- Q1 -->
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#4a6fd4"></div><span style="font-size:10px;color:#8aaaf5">Analytics 1.2.0 GA</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <!-- Q2 -->
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#3a9e62"></div><span style="font-size:10px;color:#7fc4a0">Customer API v3.0</span></div></div>
+          <div class="rm-cell"></div>
+          <!-- Q3 -->
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:var(--quinary)"></div><span style="font-size:10px;color:var(--quaternary)">Auth Platform v1.0</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <!-- Q4 -->
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#c4944a"></div><span style="font-size:10px;color:#d4b97a">Customer API v3.5</span></div></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLATFORM ENGINEERING SECTION -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:#4a6fd4"></div>
+          <div><div class="rm-sh-name">Platform Engineering</div><div style="font-size:10.5px;color:var(--quinary);margin-top:2px">Customer API · Auth Platform · Reporting</div></div>
+        </div>
+      </div>
+      <!-- Releases row -->
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Releases</div><div style="font-size:10.5px;color:var(--quinary)">Customer API</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#4a6fd4"></div><span style="font-size:10px;color:#8aaaf5">v2.4.1 ✓</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#3a9e62"></div><span style="font-size:10px;color:#7fc4a0">v3.0 GA</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:#c4944a"></div><span style="font-size:10px;color:#d4b97a">v3.5 Public API</span></div></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+      <!-- API row -->
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">API &amp; Backend</div></div></div>
+        <div class="rm-cells">
+          <!-- Q1 - now: design phase, crypto fix -->
+          <div class="rm-cell"><div class="chip chip-high">Crypto Fix</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-blue">v3.0 Design</div></div>
+          <!-- Q2 -->
+          <div class="rm-cell"><div class="chip chip-blue">Federation Gateway</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Resolver Layer</div></div>
+          <div class="rm-cell"><div class="chip chip-low">OTel Tracing</div></div>
+          <!-- Q3 -->
+          <div class="rm-cell"><div class="chip chip-low">Perf Tuning</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <!-- Q4 -->
+          <div class="rm-cell"><div class="chip chip-mid">Public API Portal</div></div>
+          <div class="rm-cell"><div class="chip chip-low">API Keys + Metering</div></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+      <!-- Auth Platform row -->
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Auth Platform</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"><div class="chip chip-high">Core Auth Engine</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-high">RBAC Integration</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-mid">SSO + OAuth 2.0</div></div>
+          <div class="rm-cell"><div class="chip chip-low">MFA</div></div>
+          <div class="rm-cell"><div class="rm-milestone"><div class="ms-diamond" style="background:var(--quinary)"></div><span style="font-size:10px;color:var(--quaternary)">v1.0 CM</span></div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATA & ANALYTICS -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:#c4944a"></div>
+          <div><div class="rm-sh-name">Data &amp; Analytics</div><div style="font-size:10.5px;color:var(--quinary);margin-top:2px">Analytics Dashboard · Data Ingestion · Event Streaming</div></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Analytics Dashboard</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-high">CM Gate</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Cross-Portfolio Compare</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Factory Heatmap</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-mid">AI-Driven Insights</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-low">Custom Dashboards</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Data Ingestion Pipeline</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-high">CVE Remediation</div></div>
+          <div class="rm-cell"><div class="chip chip-high">Schema Migration</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Kafka Integration</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Backpressure Handling</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONSUMER PRODUCTS -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:#3a9e62"></div>
+          <div><div class="rm-sh-name">Consumer Products</div><div style="font-size:10.5px;color:var(--quinary);margin-top:2px">Mobile App · Search Platform · Pricing Engine</div></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Mobile Companion App</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-blue">UX Discovery</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">App Architecture</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Core Features</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Beta Build</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Alpha Testing</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Beta Launch</div></div>
+          <div class="rm-cell"><div class="chip chip-low">v1.0 DEV gate</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Search Platform</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"><div class="chip chip-high">Search Index</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-mid">Full-text Search</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Faceted Filters</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Relevance Tuning</div></div>
+          <div class="rm-cell"><div class="chip chip-low">Analytics Integration</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="rm-section">
+      <div class="rm-section-header">
+        <div class="rm-sh-label" style="width:310px">
+          <div class="rm-sh-color" style="background:#c4504a"></div>
+          <div><div class="rm-sh-name">Security &amp; Infrastructure</div><div style="font-size:10.5px;color:var(--quinary);margin-top:2px">Factory-wide · All teams</div></div>
+        </div>
+      </div>
+      <div class="rm-row">
+        <div class="rm-row-type" style="width:310px"><div style="padding-left:8px"><div style="font-size:11.5px;color:var(--tertiary);font-weight:500">Security Program</div></div></div>
+        <div class="rm-cells">
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-high">SDE Compliance Audit</div></div>
+          <div class="rm-cell"><div class="chip chip-high">BSL License Review</div></div>
+          <div class="rm-cell"><div class="chip chip-mid">Pentest — API v3.0</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"><div class="chip chip-mid">Annual Security Review</div></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+          <div class="rm-cell"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="legend">
+    <span style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace;margin-right:6px">PRIORITY:</span>
+    <div class="legend-item"><div class="ld" style="background:rgba(196,80,74,0.5)"></div>High</div>
+    <div class="legend-item"><div class="ld" style="background:rgba(196,148,74,0.5)"></div>Mid</div>
+    <div class="legend-item"><div class="ld" style="background:rgba(45,107,71,0.5)"></div>Low</div>
+    <div class="legend-item"><div class="ld" style="background:rgba(41,67,198,0.5)"></div>Strategic</div>
+    <div class="legend-item" style="margin-left:16px"><div style="width:10px;height:10px;transform:rotate(45deg);background:var(--quinary)"></div> Milestone / Release</div>
+    <div class="legend-item" style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">▲ = Current month</div>
+  </div>
+</main>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -7,7 +7,8 @@ import { RouterLink } from '@angular/router';
   selector: 'app-registration',
   standalone: true,
   imports: [FormsModule, NgClass, RouterLink],
-  templateUrl: './registration.component.html'
+  templateUrl: './registration.component.html',
+  styleUrl: './auth.styles.css'
 })
 export class RegistrationComponent {
   showPassword = false;
@@ -46,3 +47,5 @@ export class RegistrationComponent {
     return current >= index;
   }
 }
+
+

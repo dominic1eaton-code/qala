@@ -1,0 +1,364 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Release Schedule <span>/ Checkpoints · Milestones · FY2026</span></div>
+    <button class="tb-btn">All Solutions ▾</button>
+    <button class="tb-btn">Export</button>
+    <button class="tb-btn primary">+ Schedule Release</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+  <div class="view-tabs">
+    <span class="vt active">Timeline</span>
+    <span class="vt">Calendar</span>
+    <span class="vt">Detail</span>
+    <span class="vt">CM Board</span>
+  </div>
+
+  <div class="body">
+
+    <!-- STATS -->
+    <div class="stat-row">
+      <div class="sc"><div class="sl">Released (YTD)</div><div class="sv" style="color:#7fc4a0">3</div><div class="ss">All CM-qualified</div></div>
+      <div class="sc"><div class="sl">Pending CM</div><div class="sv" style="color:#d4b97a">1</div><div class="ss">Analytics Dashboard</div></div>
+      <div class="sc"><div class="sl">Scheduled</div><div class="sv">4</div><div class="ss">Next 6 months</div></div>
+      <div class="sc"><div class="sl">Release Train</div><div class="sv">1</div><div class="ss">RT-2026-Q2 · Jun 1</div></div>
+      <div class="sc"><div class="sl">Avg Lead Time</div><div class="sv">6.2d</div><div class="ss">Commit → Production</div></div>
+    </div>
+
+    <!-- RELEASE TRAIN TIMELINE -->
+    <div class="panel">
+      <div class="ph"><div class="pt">Factory Release Calendar — FY2026</div><span class="pa">Export ICS →</span></div>
+      <div class="train-timeline" style="min-width:900px;">
+
+        <!-- Month header -->
+        <div class="tt-header">
+          <div class="tt-label" style="font-size:10px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em;padding-bottom:6px">Solution</div>
+          <div class="tt-months">
+            <div class="tt-month">JAN</div>
+            <div class="tt-month">FEB</div>
+            <div class="tt-month current">MAR</div>
+            <div class="tt-month">APR</div>
+            <div class="tt-month">MAY</div>
+            <div class="tt-month">JUN</div>
+            <div class="tt-month">JUL</div>
+            <div class="tt-month">AUG</div>
+            <div class="tt-month">SEP</div>
+            <div class="tt-month">OCT</div>
+            <div class="tt-month">NOV</div>
+            <div class="tt-month">DEC</div>
+          </div>
+        </div>
+
+        <!-- CHECKPOINTS (Quarterly) -->
+        <div class="train-row" style="height:20px;margin-bottom:12px;">
+          <div class="tr-label"><span style="font-size:10px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase">Checkpoints</span></div>
+          <div class="tr-cells" style="height:20px;">
+            <!-- Q1 end -->
+            <div class="checkpoint-line" style="left:25%;"><div class="checkpoint-label">Q1 End</div></div>
+            <!-- Q2 end -->
+            <div class="checkpoint-line" style="left:50%;"><div class="checkpoint-label">Q2 End</div></div>
+            <!-- Q3 end -->
+            <div class="checkpoint-line" style="left:75%;"><div class="checkpoint-label">Q3 End</div></div>
+            <!-- Today -->
+            <div class="today-vline" style="left:21%;"><div class="today-vlabel">TODAY</div></div>
+          </div>
+        </div>
+
+        <!-- Customer API releases -->
+        <div class="train-row">
+          <div class="tr-label"><div class="tr-name">Customer API</div><div class="tr-sol">sol-0x9f2a</div></div>
+          <div class="tr-cells">
+            <div class="today-vline" style="left:21%;"></div>
+            <!-- v2.4.1 (released) -->
+            <div class="tr-bar" style="left:0%;width:21%;background:rgba(45,107,71,0.3);border:1px solid rgba(45,107,71,0.5);color:#7fc4a0">v2.3.0–v2.4.1 (released)</div>
+            <!-- v3.0 design+build -->
+            <div class="tr-bar" style="left:21%;width:19%;background:rgba(41,67,198,0.35);border:1px solid rgba(41,67,198,0.5);color:#8aaaf5">v3.0 Design+Build</div>
+            <!-- v3.0 milestone -->
+            <div class="ms-marker" style="left:calc(40% - 7px);background:rgba(45,107,71,0.7);border:2px solid #3a9e62;"></div>
+            <div class="ms-label" style="left:42%;top:8px;color:#7fc4a0;">v3.0 GA</div>
+            <!-- v3.5 -->
+            <div class="tr-bar" style="left:67%;width:16%;background:rgba(105,82,66,0.3);border:1px solid rgba(105,82,66,0.5);color:var(--quaternary)">v3.5 Public API</div>
+            <div class="ms-marker" style="left:calc(83% - 7px);background:rgba(105,82,66,0.7);border:2px solid var(--quinary);"></div>
+          </div>
+        </div>
+
+        <!-- Analytics Dashboard -->
+        <div class="train-row">
+          <div class="tr-label"><div class="tr-name">Analytics Dashboard</div><div class="tr-sol">sol-0x3b1c</div></div>
+          <div class="tr-cells">
+            <div class="today-vline" style="left:21%;"></div>
+            <div class="tr-bar" style="left:0%;width:22%;background:rgba(196,148,74,0.3);border:1px solid rgba(196,148,74,0.4);color:#d4b97a">v1.1.x series</div>
+            <div class="ms-marker" style="left:calc(22% - 7px);background:rgba(196,148,74,0.8);border:2px solid #c4944a;animation:pulse-dot 1.5s ease-in-out infinite;"></div>
+            <style>@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}</style>
+            <div class="ms-label" style="left:24%;top:8px;color:#d4b97a;">v1.2.0 CM</div>
+            <div class="tr-bar" style="left:33%;width:14%;background:rgba(41,67,198,0.3);border:1px solid rgba(41,67,198,0.4);color:#8aaaf5">v1.3 AI Insights</div>
+            <div class="ms-marker" style="left:calc(47% - 7px);background:rgba(41,67,198,0.6);border:2px solid #4a6fd4;"></div>
+            <div class="tr-bar" style="left:67%;width:18%;background:rgba(41,67,198,0.2);border:1px dashed rgba(41,67,198,0.3);color:rgba(138,170,245,0.6)">v2.0 (planned)</div>
+          </div>
+        </div>
+
+        <!-- Auth Platform -->
+        <div class="train-row">
+          <div class="tr-label"><div class="tr-name">Auth Platform</div><div class="tr-sol">sol-0x2c8f</div></div>
+          <div class="tr-cells">
+            <div class="today-vline" style="left:21%;"></div>
+            <div class="tr-bar" style="left:8%;width:54%;background:rgba(41,67,198,0.25);border:1px solid rgba(41,67,198,0.4);color:#8aaaf5">v1.0 Development (DEV → CM)</div>
+            <div class="ms-marker" style="left:calc(62% - 7px);background:rgba(41,67,198,0.7);border:2px solid #4a6fd4;"></div>
+            <div class="ms-label" style="left:64%;top:8px;color:#8aaaf5;">v1.0 CM</div>
+          </div>
+        </div>
+
+        <!-- Reporting Service -->
+        <div class="train-row">
+          <div class="tr-label"><div class="tr-name">Reporting Service</div><div class="tr-sol">sol-0x8e2a</div></div>
+          <div class="tr-cells">
+            <div class="today-vline" style="left:21%;"></div>
+            <div class="tr-bar" style="left:9%;width:12%;background:rgba(45,107,71,0.25);border:1px solid rgba(45,107,71,0.35);color:#7fc4a0">v1.1.0 (released)</div>
+            <div class="tr-bar" style="left:42%;width:14%;background:rgba(45,107,71,0.2);border:1px dashed rgba(45,107,71,0.35);color:rgba(127,196,160,0.6)">v1.2 (planned)</div>
+          </div>
+        </div>
+
+        <!-- Release Train -->
+        <div class="train-row" style="margin-top:8px;">
+          <div class="tr-label"><div class="tr-name" style="color:#8aaaf5">RT-2026-Q2</div><div class="tr-sol">Release Train</div></div>
+          <div class="tr-cells">
+            <div class="today-vline" style="left:21%;"></div>
+            <div class="tr-bar" style="left:37%;width:4%;background:rgba(41,67,198,0.5);border:1px solid rgba(41,67,198,0.7);color:#d6e8ff">RT-Q2 ⬆</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:16px;font-size:11px;color:var(--quinary);padding-left:220px;">
+          <div style="display:flex;gap:5px;align-items:center"><div style="width:10px;height:10px;transform:rotate(45deg);background:#3a9e62;flex-shrink:0"></div> Released</div>
+          <div style="display:flex;gap:5px;align-items:center"><div style="width:10px;height:10px;transform:rotate(45deg);background:#c4944a;flex-shrink:0;animation:pulse-dot 1.5s ease-in-out infinite"></div> Pending CM</div>
+          <div style="display:flex;gap:5px;align-items:center"><div style="width:10px;height:10px;transform:rotate(45deg);background:#4a6fd4;flex-shrink:0"></div> Planned Milestone</div>
+          <div style="display:flex;gap:5px;align-items:center"><div style="width:2px;height:14px;background:rgba(74,111,212,0.6)"></div> Today / Checkpoint</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RELEASE DETAIL TIMELINE -->
+    <div class="two-col">
+
+      <!-- LEFT: Release + Checkpoints vertical timeline -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="panel">
+          <div class="ph"><div class="pt">Release Timeline — All Solutions</div><span class="pa">+ Schedule</span></div>
+          <div class="release-timeline" style="padding:16px 18px;">
+
+            <!-- LATEST: Customer API v2.4.1 -->
+            <div class="rt-item">
+              <div class="rt-marker">
+                <div class="rt-date-box rdb-released">MAR<br>19</div>
+                <div class="rt-line" style="background:rgba(45,107,71,0.3)"></div>
+              </div>
+              <div class="rt-body">
+                <div class="rt-header">
+                  <div><div class="rt-version">Customer API v2.4.1</div><div class="rt-solution">sol-0x9f2a · Production</div></div>
+                  <div class="rt-badges"><span class="badge b-green">✓ Released</span><span class="badge b-green">SLSA L3</span><span class="badge b-green">CM</span></div>
+                </div>
+                <div class="changelog-strip">
+                  <div class="cs-item"><span class="cs-tag cst-perf">perf</span><span class="cs-desc">Streaming compression — p99 118ms → 94ms</span></div>
+                  <div class="cs-item"><span class="cs-tag cst-feat">feat</span><span class="cs-desc">Webhook fanout with exponential backoff retry</span></div>
+                  <div class="cs-item"><span class="cs-tag cst-feat">feat</span><span class="cs-desc">PKCE support for public OAuth 2.0 clients</span></div>
+                  <div class="cs-item"><span class="cs-tag cst-sec">sec</span><span class="cs-desc">OTEL v1.24.0 upgrade — resolves OTEL-2024-012</span></div>
+                </div>
+                <div class="checkpoint-section" style="margin-top:10px;">
+                  <div class="cs-title">Release Checkpoints</div>
+                  <div class="checkpoints-grid">
+                    <div class="cp-card done"><div class="cp-icon">🏗</div><div class="cp-name">Build</div><div class="cp-detail">Hermetic · #142 · SLSA L3</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">🔬</div><div class="cp-name">Tests</div><div class="cp-detail">214 tests · 97.3%</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">🔐</div><div class="cp-name">Security</div><div class="cp-detail">SAST · DAST · SCA clean</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">⚡</div><div class="cp-name">Perf Gate</div><div class="cp-detail">p99 94ms — met</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">🧑‍⚖️</div><div class="cp-name">CM Board</div><div class="cp-detail">3/3 approvers signed</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">🚀</div><div class="cp-name">Deploy</div><div class="cp-detail">Blue/green · 02:16 UTC</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">✅</div><div class="cp-name">Verify</div><div class="cp-detail">Health checks pass</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">📢</div><div class="cp-name">Announce</div><div class="cp-detail">Release notes sent</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Analytics Dashboard - PENDING -->
+            <div class="rt-item">
+              <div class="rt-marker">
+                <div class="rt-date-box rdb-pending">MAR<br>22</div>
+                <div class="rt-line" style="background:rgba(196,148,74,0.25)"></div>
+              </div>
+              <div class="rt-body">
+                <div class="rt-header">
+                  <div><div class="rt-version">Analytics Dashboard v1.2.0</div><div class="rt-solution">sol-0x3b1c · Staging → Production</div></div>
+                  <div class="rt-badges"><span class="badge b-amber">⏳ CM Pending</span><span class="badge b-blue">SLSA L2</span></div>
+                </div>
+                <div class="changelog-strip">
+                  <div class="cs-item"><span class="cs-tag cst-feat">feat</span><span class="cs-desc">Cross-portfolio solution comparison dashboard</span></div>
+                  <div class="cs-item"><span class="cs-tag cst-feat">feat</span><span class="cs-desc">Factory-level benchmarking heatmap with drill-down</span></div>
+                  <div class="cs-item"><span class="cs-tag cst-perf">perf</span><span class="cs-desc">Query latency -34% via server-side aggregation</span></div>
+                  <div class="cs-item"><span class="cs-tag cst-fix">fix</span><span class="cs-desc">Maturity distribution chart edge case for &gt;50 solutions</span></div>
+                </div>
+                <div class="checkpoint-section" style="margin-top:10px;">
+                  <div class="cs-title">Release Checkpoints</div>
+                  <div class="checkpoints-grid">
+                    <div class="cp-card done"><div class="cp-icon">🏗</div><div class="cp-name">Build</div><div class="cp-detail">SLSA L2 · #rc2</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">🔬</div><div class="cp-name">Tests</div><div class="cp-detail">187 tests · 91.8%</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">🔐</div><div class="cp-name">Security</div><div class="cp-detail">SAST · DAST clean</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card done"><div class="cp-icon">⚡</div><div class="cp-name">Perf Gate</div><div class="cp-detail">p99 82ms — met</div><div class="cp-status"><span class="badge b-green" style="font-size:9px">✓</span></div></div>
+                    <div class="cp-card active"><div class="cp-icon">🧑‍⚖️</div><div class="cp-name">CM Board</div><div class="cp-detail">2/3 signed · Sara pending</div><div class="cp-status"><span class="badge b-amber" style="font-size:9px">⏳</span></div></div>
+                    <div class="cp-card pending"><div class="cp-icon">🚀</div><div class="cp-name">Deploy</div><div class="cp-detail">Canary 5%→100%</div><div class="cp-status"><span class="badge b-grey" style="font-size:9px">Waiting</span></div></div>
+                    <div class="cp-card pending"><div class="cp-icon">✅</div><div class="cp-name">Verify</div><div class="cp-detail">Pending deploy</div><div class="cp-status"><span class="badge b-grey" style="font-size:9px">Waiting</span></div></div>
+                    <div class="cp-card pending"><div class="cp-icon">📢</div><div class="cp-name">Announce</div><div class="cp-detail">Pending release</div><div class="cp-status"><span class="badge b-grey" style="font-size:9px">Waiting</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Customer API v3.0 - PLANNED -->
+            <div class="rt-item">
+              <div class="rt-marker">
+                <div class="rt-date-box rdb-planned">JUN<br>01</div>
+                <div class="rt-line" style="background:rgba(229,224,214,0.08)"></div>
+              </div>
+              <div class="rt-body">
+                <div class="rt-header">
+                  <div><div class="rt-version">Customer API v3.0</div><div class="rt-solution">sol-0x9f2a · Release Train RT-2026-Q2</div></div>
+                  <div class="rt-badges"><span class="badge b-grey">Planned</span><span class="badge b-blue">Q2 2026</span></div>
+                </div>
+                <div style="font-size:12px;color:var(--quinary);line-height:1.6;margin-top:4px">GraphQL federation gateway, unified data graph, backward-compatible REST deprecation path. Major architectural milestone for the platform.</div>
+                <div class="checkpoint-section" style="margin-top:10px;">
+                  <div class="cs-title">Planned Gate Schedule</div>
+                  <div class="checkpoints-grid">
+                    <div class="cp-card pending"><div class="cp-icon">🏗</div><div class="cp-name">Build</div><div class="cp-detail">Target: May 28</div><div class="cp-status"><span class="badge b-grey" style="font-size:9px">Apr 22</span></div></div>
+                    <div class="cp-card pending"><div class="cp-icon">🔬</div><div class="cp-name">Tests</div><div class="cp-detail">Target: Jun 07</div><div class="cp-status"><span class="badge b-grey" style="font-size:9px">May 28</span></div></div>
+                    <div class="cp-card pending"><div class="cp-icon">🔐</div><div class="cp-name">Pentest</div><div class="cp-detail">External · May 20</div><div class="cp-status"><span class="badge b-grey" style="font-size:9px">May 07</span></div></div>
+                    <div class="cp-card pending"><div class="cp-icon">⚡</div><div class="cp-name">Perf Gate</div><div class="cp-detail">Target: Jun 16</div><div class="cp-status"><span class="badge b-grey" style="font-size:9px">Jun 10</span></div></div>
+                    <div class="cp-card pending"><div class="cp-icon">🧑‍⚖️</div><div class="cp-name">CM Board</div><div class="cp-detail">CM gate: Jun 23</div><div class="cp-status"><span class="badge b-grey" style="font-size:9px">Jun 23</span></div></div>
+                    <div class="cp-card pending"><div class="cp-icon">🚀</div><div class="cp-name">Deploy</div><div class="cp-detail">Target: Jul 01</div><div class="cp-status"><span class="badge b-grey" style="font-size:9px">Jul 01</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Auth Platform v1.0 -->
+            <div class="rt-item">
+              <div class="rt-marker">
+                <div class="rt-date-box rdb-planned">SEP<br>01</div>
+              </div>
+              <div class="rt-body">
+                <div class="rt-header">
+                  <div><div class="rt-version">Auth Platform v1.0</div><div class="rt-solution">sol-0x2c8f · First CM Release</div></div>
+                  <div class="rt-badges"><span class="badge b-grey">Planned</span><span class="badge b-blue">Q3 2026</span></div>
+                </div>
+                <div style="font-size:12px;color:var(--quinary);line-height:1.6;margin-top:4px">First CM-qualified release of the Auth Platform. RBAC, SSO, OAuth 2.0, MFA. Dependencies: Customer API v3.0 must be in TEST+ before Auth Platform can reach CM.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Upcoming milestones + CM board schedule -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div class="panel">
+          <div class="ph"><div class="pt">Upcoming Milestones</div><span class="pa">+ Add Milestone</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Milestone</th><th>Date</th><th>Solution</th><th>Type</th><th>Status</th></tr>
+            <tr>
+              <td><div style="font-size:12.5px;color:var(--secondary)">Analytics Dashboard v1.2.0 GA</div></td>
+              <td class="mono">Mar 22</td><td class="mono">sol-0x3b1c</td>
+              <td><span class="badge b-amber">Release</span></td>
+              <td><span class="badge b-amber">⏳ CM Gate</span></td>
+            </tr>
+            <tr>
+              <td><div style="font-size:12.5px;color:var(--secondary)">Q1 2026 Engineering Review</div></td>
+              <td class="mono">Mar 31</td><td class="mono">All</td>
+              <td><span class="badge b-grey">Checkpoint</span></td>
+              <td><span class="badge b-grey">Scheduled</span></td>
+            </tr>
+            <tr>
+              <td><div style="font-size:12.5px;color:var(--secondary)">Customer API v3.0 Design Freeze</div></td>
+              <td class="mono">Apr 15</td><td class="mono">sol-0x9f2a</td>
+              <td><span class="badge b-blue">Design Gate</span></td>
+              <td><span class="badge b-grey">Planned</span></td>
+            </tr>
+            <tr>
+              <td><div style="font-size:12.5px;color:var(--secondary)">External Pentest — API v3.0</div></td>
+              <td class="mono">May 07</td><td class="mono">sol-0x9f2a</td>
+              <td><span class="badge b-red">Security</span></td>
+              <td><span class="badge b-grey">Scheduled</span></td>
+            </tr>
+            <tr>
+              <td><div style="font-size:12.5px;color:var(--secondary)">Release Train RT-2026-Q2</div></td>
+              <td class="mono">Jun 01</td><td class="mono">3 solutions</td>
+              <td><span class="badge b-blue">Train</span></td>
+              <td><span class="badge b-grey">Planned</span></td>
+            </tr>
+            <tr>
+              <td><div style="font-size:12.5px;color:var(--secondary)">Customer API v3.0 CM Gate</div></td>
+              <td class="mono">Jun 23</td><td class="mono">sol-0x9f2a</td>
+              <td><span class="badge b-green">CM Gate</span></td>
+              <td><span class="badge b-grey">Planned</span></td>
+            </tr>
+            <tr>
+              <td><div style="font-size:12.5px;color:var(--secondary)">Auth Platform v1.0 CM Release</div></td>
+              <td class="mono">Sep 01</td><td class="mono">sol-0x2c8f</td>
+              <td><span class="badge b-green">Release</span></td>
+              <td><span class="badge b-grey">Planned</span></td>
+            </tr>
+            <tr>
+              <td><div style="font-size:12.5px;color:var(--secondary)">Customer API v3.5 Public API</div></td>
+              <td class="mono">Nov 01</td><td class="mono">sol-0x9f2a</td>
+              <td><span class="badge b-grey">Release</span></td>
+              <td><span class="badge b-grey">Vision</span></td>
+            </tr>
+          </tbody></table>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><div class="pt">CM Board Schedule</div><span class="pa">Request Review</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Release</th><th>Meeting</th><th>Approvers</th><th>Evidence</th><th>Status</th></tr>
+            <tr>
+              <td>Analytics Dashboard v1.2.0-rc2</td>
+              <td class="mono">Mar 22 10:00</td>
+              <td>AJ · JO · SM</td>
+              <td><span class="badge b-green">Pack ready</span></td>
+              <td><span class="badge b-amber">2/3 signed</span></td>
+            </tr>
+            <tr>
+              <td>Customer API v3.0</td>
+              <td class="mono">Jun 23 10:00</td>
+              <td>AJ · SM · JO</td>
+              <td><span class="badge b-grey">Not ready</span></td>
+              <td><span class="badge b-grey">Planned</span></td>
+            </tr>
+            <tr>
+              <td>Auth Platform v1.0</td>
+              <td class="mono">Aug 25 10:00</td>
+              <td>AJ · SM · JO</td>
+              <td><span class="badge b-grey">Not ready</span></td>
+              <td><span class="badge b-grey">Planned</span></td>
+            </tr>
+          </tbody></table>
+          <div style="padding:12px 18px;border-top:1px solid var(--border);font-size:12px;color:var(--quinary)">
+            CM board cadence: first available Tuesday after all technical gates pass · Quorum: 3/3 required · Evidence pack reviewed 48h before meeting
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><div class="pt">Release Train — RT-2026-Q2</div><span class="pa">Configure Train</span></div>
+          <div style="padding:14px 18px;border-bottom:1px solid var(--border);font-size:12.5px;color:var(--quinary);line-height:1.7">A coordinated batch release of multiple solutions that have been jointly tested for compatibility and interoperability. All members must reach CM gate before the train departs.</div>
+          <table class="tbl">
+            <tbody><tr><th>Member Solution</th><th>Version</th><th>Gate Status</th><th>Dependency</th></tr>
+            <tr><td>Analytics Dashboard</td><td class="mono">1.2.0</td><td><span class="badge b-amber">CM Pending</span></td><td>None</td></tr>
+            <tr><td>Customer API</td><td class="mono">3.0.0</td><td><span class="badge b-blue">Building</span></td><td>ADR-018 required</td></tr>
+            <tr><td>Auth Platform</td><td class="mono">1.0.0</td><td><span class="badge b-blue">DEV</span></td><td>API v3.0 TEST+ required</td></tr>
+          </tbody></table>
+          <div style="padding:10px 18px;display:flex;gap:8px;align-items:center;font-size:12px;color:var(--quinary);border-top:1px solid var(--border)">
+            <span style="color:#d4b97a">⚠</span> Train departure requires all 3 members to reach CM gate. Current critical path: Customer API v3.0 build (target May 28).
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /body -->
+</main>

@@ -1,0 +1,190 @@
+<div class="main">
+  <div class="topbar">
+    <div class="tb-title">Notifications</div>
+    <div class="tb-crumb"><span class="sep">/</span><span>jordan.chen</span></div>
+    <div class="tb-right">
+      <input class="search" placeholder="⌕  search notifications…">
+      <button class="btn btn-g btn-sm">Mark All Read</button>
+      <button class="btn btn-g btn-sm">Preferences</button>
+      <div class="avatar">JC</div>
+    </div>
+  </div>
+  <div class="content">
+
+    <div class="sr g4" style="margin-bottom:14px">
+      <div class="sc"><div class="sc-lbl">Unread</div><div class="sc-val g">9</div><div class="sc-sub">3 critical · 6 info</div></div>
+      <div class="sc"><div class="sc-lbl">Today</div><div class="sc-val">24</div><div class="sc-sub">across all topics</div></div>
+      <div class="sc"><div class="sc-lbl">Critical / Errors</div><div class="sc-val" style="color:var(--err)">3</div><div class="sc-sub">require action</div></div>
+      <div class="sc"><div class="sc-lbl">AI Insights</div><div class="sc-val t">7</div><div class="sc-sub">new recommendations</div></div>
+    </div>
+
+    <div class="gs">
+      <!-- Left: notification feed -->
+      <div>
+        <div class="filter-bar">
+          <div class="fb sel">All</div>
+          <div class="fb">Build &amp; CI</div>
+          <div class="fb">Security</div>
+          <div class="fb">SDE</div>
+          <div class="fb">AI Insights</div>
+          <div class="fb">Solutions</div>
+          <div class="fb">Unread Only</div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Notification Feed</span><div class="pa"><span class="ps">9 unread · 24 today</span></div></div>
+          <div>
+            <div class="notif-item unread">
+              <div class="ni-icon error">✕</div>
+              <div class="ni-body">
+                <div class="ni-title">Pipeline Failed — test-data-pipeline #23</div>
+                <div class="ni-msg">Stage 3 (data-transform) exceeded timeout of 600s. 1 test suite did not complete. Requires investigation.</div>
+                <div class="ni-footer"><span class="bdg er">CI/CD</span><span>sde-data-pipeline</span><span>·</span><span>14 min ago</span><button class="btn btn-xs btn-g" style="margin-left:auto">View Pipeline</button></div>
+              </div>
+              <div class="ni-unread-dot"></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="ni-icon sec">⛨</div>
+              <div class="ni-body">
+                <div class="ni-title">High Severity CVE Detected — sde-core-api</div>
+                <div class="ni-msg">CVE-2024-44000 (CVSS 8.2) found in go-jose v3.0.1. Auth-service affected. Patch available: v3.0.3.</div>
+                <div class="ni-footer"><span class="bdg er">Security</span><span>sde-core-api</span><span>·</span><span>1h ago</span><button class="btn btn-xs btn-d" style="margin-left:auto">View Threat</button></div>
+              </div>
+              <div class="ni-unread-dot"></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="ni-icon ai">✦</div>
+              <div class="ni-body">
+                <div class="ni-title">AI Recommendation — Pipeline Bottleneck</div>
+                <div class="ni-msg">sde-data-pipeline stage 3 averaging 2.8× expected duration. Parallelization fix available. 94% confidence.</div>
+                <div class="ni-footer"><span class="bdg tl">AI Insight</span><span>sde-data-pipeline</span><span>·</span><span>30 min ago</span><button class="btn btn-xs btn-t" style="margin-left:auto">Apply Fix</button></div>
+              </div>
+              <div class="ni-unread-dot"></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="ni-icon build">✓</div>
+              <div class="ni-body">
+                <div class="ni-title">Pipeline Passed — build-core-api #88</div>
+                <div class="ni-msg">Build successful. 48 tests passed, coverage 82.4%. Artifact signed and attested. Ready for staging.</div>
+                <div class="ni-footer"><span class="bdg ok">CI/CD</span><span>sde-core-api</span><span>·</span><span>2 min ago</span></div>
+              </div>
+              <div class="ni-unread-dot"></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="ni-icon sde">⬕</div>
+              <div class="ni-body">
+                <div class="ni-title">SDE Snapshot Created — sde-core-api v4</div>
+                <div class="ni-msg">Snapshot v4 captured successfully. Post-refactor state preserved. Previous: v3 (2 days ago).</div>
+                <div class="ni-footer"><span class="bdg gd">SDE</span><span>sde-core-api</span><span>·</span><span>1h ago</span></div>
+              </div>
+              <div class="ni-unread-dot"></div>
+            </div>
+            <div class="notif-item">
+              <div class="ni-icon info">◎</div>
+              <div class="ni-body">
+                <div class="ni-title">Solution Promoted — inventory-tracker → TEST</div>
+                <div class="ni-msg">Solution inventory-tracker v1.2.0 passed NIGHTLY gates and has been promoted to TEST maturity. Full test suite now required.</div>
+                <div class="ni-footer"><span class="bdg inf">Solution</span><span>sde-core-api</span><span>·</span><span>3h ago</span></div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="ni-icon warn">⚠</div>
+              <div class="ni-body">
+                <div class="ni-title">SDE Degraded — sde-ml-research</div>
+                <div class="ni-msg">Memory utilization reached 91% of allocated limit (14.2 GB / 15.6 GB). Performance may be impacted. AI recommends lazy loading.</div>
+                <div class="ni-footer"><span class="bdg wn">SDE</span><span>sde-ml-research</span><span>·</span><span>5h ago</span></div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="ni-icon build">✓</div>
+              <div class="ni-body">
+                <div class="ni-title">Artifact Published — admin-dashboard-dist v3.0.1</div>
+                <div class="ni-msg">Artifact successfully signed and published to artifact registry. Available for deployment to staging environment.</div>
+                <div class="ni-footer"><span class="bdg ok">Artifact</span><span>sde-frontend</span><span>·</span><span>6h ago</span></div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="ni-icon ai">✦</div>
+              <div class="ni-body">
+                <div class="ni-title">AI Test Cases Generated — inventory-tracker</div>
+                <div class="ni-msg">14 new test scenarios synthesized from solution spec. Projected to increase coverage from 82% to 93%. Ready to import.</div>
+                <div class="ni-footer"><span class="bdg tl">AI Insight</span><span>sde-core-api</span><span>·</span><span>8h ago</span><button class="btn btn-xs btn-t" style="margin-left:auto">Import</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: channels + preferences -->
+      <div>
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Notification Channels</span><div class="pa"><button class="btn btn-p btn-sm">+ Add Channel</button></div></div>
+          <div class="pb">
+            <div class="channel-row">
+              <div style="font-size:14px;width:22px">📱</div>
+              <div style="flex:1"><div style="font-size:11.5px;color:var(--text-primary);font-weight:500">In-App</div><div style="font-size:9.5px;font-family:var(--mono);color:var(--text-muted)">Platform portal notifications</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="channel-row">
+              <div style="font-size:14px;width:22px">📧</div>
+              <div style="flex:1"><div style="font-size:11.5px;color:var(--text-primary);font-weight:500">Email</div><div style="font-size:9.5px;font-family:var(--mono);color:var(--text-muted)">jordan.chen@company.com</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="channel-row">
+              <div style="font-size:14px;width:22px">💬</div>
+              <div style="flex:1"><div style="font-size:11.5px;color:var(--text-primary);font-weight:500">Slack</div><div style="font-size:9.5px;font-family:var(--mono);color:var(--text-muted)">#platform-alerts · @jordan.chen</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="channel-row">
+              <div style="font-size:14px;width:22px">📲</div>
+              <div style="flex:1"><div style="font-size:11.5px;color:var(--text-primary);font-weight:500">SMS</div><div style="font-size:9.5px;font-family:var(--mono);color:var(--text-muted)">+1 (555) 000-0000 · critical only</div></div>
+              <div class="toggle"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:12px">
+          <div class="ph"><span class="pt">Topic Subscriptions</span></div>
+          <div class="pb">
+            <div class="channel-row">
+              <div style="flex:1"><div style="font-size:11px;color:var(--text-primary)">Build Events</div><div style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Pass, fail, warnings</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="channel-row">
+              <div style="flex:1"><div style="font-size:11px;color:var(--text-primary)">Security Alerts</div><div style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">CVEs, threats, policy violations</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="channel-row">
+              <div style="flex:1"><div style="font-size:11px;color:var(--text-primary)">AI Recommendations</div><div style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">High-confidence insights only</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="channel-row">
+              <div style="flex:1"><div style="font-size:11px;color:var(--text-primary)">SDE Lifecycle Events</div><div style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Snapshots, state changes</div></div>
+              <div class="toggle on"></div>
+            </div>
+            <div class="channel-row">
+              <div style="flex:1"><div style="font-size:11px;color:var(--text-primary)">Artifact Events</div><div style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Uploads, publishes, deletions</div></div>
+              <div class="toggle"></div>
+            </div>
+            <div class="channel-row">
+              <div style="flex:1"><div style="font-size:11px;color:var(--text-primary)">Solution Maturity Promotions</div><div style="font-size:9px;font-family:var(--mono);color:var(--text-muted)">Gate passes, CM approvals</div></div>
+              <div class="toggle on"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="ph"><span class="pt">Notification Statistics</span></div>
+          <div class="pb">
+            <div class="lrow"><span class="lk">last 24h</span><span class="lv" style="color:var(--text-primary)">24 notifications</span></div>
+            <div class="lrow"><span class="lk">last 7 days</span><span class="lv">142 notifications</span></div>
+            <div class="lrow"><span class="lk">most active topic</span><span class="lv" style="color:var(--teal)">BUILD_EVENTS</span></div>
+            <div class="lrow"><span class="lk">avg response time</span><span class="lv">8 min</span></div>
+            <div class="lrow"><span class="lk">critical alerts (7d)</span><span class="lv" style="color:var(--err)">5</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

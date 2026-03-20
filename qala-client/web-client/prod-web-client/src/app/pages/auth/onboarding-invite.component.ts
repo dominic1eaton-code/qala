@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -11,7 +11,8 @@ interface InviteRow {
   selector: 'app-onboarding-invite',
   standalone: true,
   imports: [NgFor, RouterLink],
-  templateUrl: './onboarding-invite.component.html'
+  templateUrl: './onboarding-invite.component.html',
+  styleUrl: './auth.styles.css'
 })
 export class OnboardingInviteComponent {
   invites: InviteRow[] = [
@@ -29,3 +30,5 @@ export class OnboardingInviteComponent {
     }
   }
 }
+
+

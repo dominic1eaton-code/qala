@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+﻿import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgFor, NgClass } from '@angular/common';
 
@@ -21,7 +21,8 @@ interface AdvanceStep {
   selector: 'app-loading',
   standalone: true,
   imports: [NgFor, NgClass],
-  templateUrl: './loading.component.html'
+  templateUrl: './loading.component.html',
+  styleUrl: './auth.styles.css'
 })
 export class LoadingComponent implements OnInit, OnDestroy {
   progress = 25;
@@ -31,12 +32,12 @@ export class LoadingComponent implements OnInit, OnDestroy {
   steps: ProgressStep[] = [
     {
       name: 'Account Created',
-      detail: 'user-identity-service · user record committed',
+      detail: 'user-identity-service Â· user record committed',
       status: 'done'
     },
     {
       name: 'Factory Record Registered',
-      detail: 'sde-management-service · factory-id: fab_9x2k',
+      detail: 'sde-management-service Â· factory-id: fab_9x2k',
       status: 'done'
     },
     {
@@ -46,38 +47,38 @@ export class LoadingComponent implements OnInit, OnDestroy {
     },
     {
       name: 'Installing Toolchain',
-      detail: 'go · docker · terraform · golint · gotest',
+      detail: 'go Â· docker Â· terraform Â· golint Â· gotest',
       status: 'pending'
     },
     {
       name: 'Configuring CI Pipeline',
-      detail: 'workflow-ci-cd-service · registering triggers',
+      detail: 'workflow-ci-cd-service Â· registering triggers',
       status: 'pending'
     },
     {
       name: 'Registering Solution',
-      detail: 'solution-registry · type: Application · stage: SANDBOX',
+      detail: 'solution-registry Â· type: Application Â· stage: SANDBOX',
       status: 'pending'
     },
     {
       name: 'Applying Security Baseline',
-      detail: 'security-sem-service · SAST · SCA · RBAC policies',
+      detail: 'security-sem-service Â· SAST Â· SCA Â· RBAC policies',
       status: 'pending'
     },
     {
       name: 'Factory Ready',
-      detail: 'redirecting to workspace…',
+      detail: 'redirecting to workspaceâ€¦',
       status: 'pending'
     }
   ];
 
   sequence: AdvanceStep[] = [
-    { stepIndex: 3, pct: 38, status: 'RUNNING', detail: 'resolving dependency lock file…' },
-    { stepIndex: 3, pct: 50, status: 'RUNNING', detail: 'installing go 1.22.0 · docker 24.0' },
-    { stepIndex: 4, pct: 62, status: 'RUNNING', detail: 'configuring build triggers…' },
+    { stepIndex: 3, pct: 38, status: 'RUNNING', detail: 'resolving dependency lock fileâ€¦' },
+    { stepIndex: 3, pct: 50, status: 'RUNNING', detail: 'installing go 1.22.0 Â· docker 24.0' },
+    { stepIndex: 4, pct: 62, status: 'RUNNING', detail: 'configuring build triggersâ€¦' },
     { stepIndex: 4, pct: 72, status: 'RUNNING', detail: 'pipeline stages registered' },
     { stepIndex: 5, pct: 80, status: 'RUNNING', detail: 'solution record: sol_8m3n' },
-    { stepIndex: 6, pct: 88, status: 'RUNNING', detail: 'scanning baseline policies…' },
+    { stepIndex: 6, pct: 88, status: 'RUNNING', detail: 'scanning baseline policiesâ€¦' },
     { stepIndex: 6, pct: 94, status: 'RUNNING', detail: 'RBAC policies applied' },
     { stepIndex: 7, pct: 100, status: 'DONE', detail: 'all systems operational' }
   ];
@@ -128,3 +129,5 @@ export class LoadingComponent implements OnInit, OnDestroy {
     this.scheduleAdvance(delay);
   }
 }
+
+
