@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>qala — Lifecycle & Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A0A0F;--paper:#F5F3EE;--paper2:#EDEBE4;--accent:#1A3EFF;--accent2:#FF3B1A;--muted:#7A7870;--rule:#D8D5CC;--green:#00C8A0;--amber:#F5A623;--purple:#BD5FFF;--mono:'DM Mono',monospace;--display:'Syne',sans-serif;--serif:'Instrument Serif',serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--display);overflow-x:hidden;cursor:none;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--accent2);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s;mix-blend-mode:multiply;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--accent2);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.18s ease,width 0.3s,height 0.3s;opacity:0.4;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(245,243,238,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
+.nav-logo{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-0.04em;color:var(--ink);text-decoration:none;}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-links a{font-family:var(--mono);font-size:0.75rem;color:var(--muted);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s;cursor:none;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-badge{font-family:var(--mono);font-size:0.65rem;background:var(--accent);color:white;padding:0.25rem 0.6rem;letter-spacing:0.08em;text-transform:uppercase;}
+.section-rule{height:1px;background:var(--rule);}
+h2.section-title{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;letter-spacing:-0.04em;line-height:1.05;margin-bottom:0.75rem;}
+h2.section-title em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);}
+.section-sub{font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s,transform 0.6s;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* HERO — editorial style */
+.life-hero{
+  padding: 9rem 3rem 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 5rem;
+  align-items: center;
+}
+.lh-eyebrow{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent2);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;}
+.lh-eyebrow::before{content:'';display:inline-block;width:2rem;height:1px;background:var(--accent2);}
+.lh-title{font-size:clamp(3rem,5vw,5.5rem);font-weight:800;letter-spacing:-0.05em;line-height:0.9;margin-bottom:1.5rem;}
+.lh-title em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent);}
+.lh-desc{font-size:1rem;line-height:1.75;color:var(--muted);}
+
+/* VALUE CHAIN TIMELINE */
+.vc-timeline{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 2rem;
+}
+.vc-timeline::before{
+  content:'';
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:1px;
+  background:linear-gradient(to bottom, var(--accent), transparent);
+}
+.vc-item{
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.6rem 0 0.6rem 1rem;
+  position: relative;
+  cursor: none;
+  transition: padding-left 0.2s;
+}
+.vc-item::before{
+  content:'';
+  position:absolute;
+  left:-0.35rem;
+  top:1rem;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--rule);
+  border:2px solid var(--paper2);
+  transition:background 0.2s;
+}
+.vc-item:hover{padding-left:1.4rem;}
+.vc-item:hover::before{background:var(--accent);}
+.vc-num{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--muted);padding-top:0.15rem;min-width:1.5rem;}
+.vc-stage{font-weight:700;font-size:0.9rem;letter-spacing:-0.02em;margin-bottom:0.15rem;}
+.vc-output{font-family:var(--mono);font-size:0.65rem;color:var(--accent);letter-spacing:0.04em;}
+
+/* VALUE CHAIN FULL */
+.vc-section{
+  padding: 6rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.vc-full-table{
+  margin-top:2rem;
+  width:100%;
+  border-collapse:collapse;
+}
+.vc-full-table thead th{
+  font-family:var(--mono);
+  font-size:0.62rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--accent);
+  padding:0.75rem 1.2rem;
+  text-align:left;
+  border-bottom:2px solid var(--accent);
+}
+.vc-full-table tbody td{
+  padding:1rem 1.2rem;
+  border-bottom:1px solid var(--rule);
+  vertical-align:top;
+  font-size:0.85rem;
+  line-height:1.55;
+}
+.vc-full-table tbody td:first-child{
+  font-weight:700;
+  font-size:0.95rem;
+  letter-spacing:-0.02em;
+  white-space:nowrap;
+}
+.vc-full-table tbody td:nth-child(2){
+  color:var(--muted);
+  font-size:0.82rem;
+}
+.vc-full-table tbody td:last-child{
+  font-family:var(--mono);
+  font-size:0.72rem;
+  color:var(--accent);
+}
+.vc-full-table tbody tr:hover td{background:var(--paper2);}
+.vc-full-table tbody tr:last-child td{border-bottom:none;}
+
+/* ORCHESTRATION */
+.orch-section{
+  background:var(--ink);
+  padding:6rem 3rem;
+}
+.orch-inner{max-width:1400px;margin:0 auto;}
+.orch-two{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:4rem;
+  align-items:start;
+  margin-top:3rem;
+}
+.wf-list{
+  display:flex;flex-direction:column;gap:0;
+}
+.wf-item{
+  padding:1rem 1.2rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  cursor:none;
+  transition:background 0.15s, padding-left 0.15s;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.wf-item:hover{background:rgba(255,255,255,0.04);padding-left:1.6rem;}
+.wf-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.wf-name{font-family:var(--mono);font-size:0.75rem;color:rgba(255,255,255,0.6);letter-spacing:0.04em;}
+.wf-desc{font-size:0.72rem;color:rgba(255,255,255,0.25);margin-left:auto;text-align:right;max-width:22ch;line-height:1.4;}
+
+/* TASK SCHEMA */
+.task-schema{
+  background:#0D0D14;
+  border:1px solid rgba(255,255,255,0.06);
+  padding:2rem;
+}
+.ts-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:1.5rem;}
+.ts-field{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0.5rem;
+  padding:0.65rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  align-items:start;
+}
+.ts-field:last-child{border-bottom:none;}
+.ts-key{font-family:var(--mono);font-size:0.7rem;color:rgba(26,62,255,0.8);color:#7BA7FF;}
+.ts-val{font-family:var(--mono);font-size:0.68rem;color:rgba(255,255,255,0.3);line-height:1.4;}
+
+/* GOVERNANCE */
+.gov-section{
+  padding:6rem 3rem;
+  background:var(--paper2);
+}
+.gov-inner{max-width:1400px;margin:0 auto;}
+.gov-instruments{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  margin-top:2.5rem;
+}
+.gov-card{
+  background:var(--paper);
+  border:1.5px solid var(--rule);
+  padding:1.8rem;
+  cursor:none;
+  transition:all 0.2s;
+  position:relative;
+  overflow:hidden;
+}
+.gov-card::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:3px;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.3s;
+  background:var(--accent);
+}
+.gov-card:hover::after{transform:scaleX(1);}
+.gov-card:hover{border-color:rgba(0,0,0,0.1);box-shadow:0 6px 24px rgba(0,0,0,0.07);}
+.gc-icon{font-size:1.5rem;margin-bottom:0.8rem;opacity:0.5;}
+.gc-name{font-size:1rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.gc-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+
+/* OWNERSHIP SYSTEM */
+.ownership-section{
+  padding:6rem 3rem;
+  max-width:1400px;
+  margin:0 auto;
+}
+.ownership-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:start;
+  margin-top:2.5rem;
+}
+.owner-ladder{
+  display:flex;flex-direction:column;gap:0.5rem;
+}
+.owner-row{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding:1.2rem 1.5rem;
+  border:1.5px solid var(--rule);
+  cursor:none;
+  transition:all 0.2s;
+  position:relative;
+}
+.owner-row:hover{border-color:var(--accent);transform:translateX(8px);}
+.or-role{
+  font-weight:700;
+  font-size:0.95rem;
+  letter-spacing:-0.02em;
+  flex:1;
+}
+.or-scope{
+  font-size:0.78rem;
+  color:var(--muted);
+  flex:2;
+  line-height:1.5;
+}
+.or-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+/* SECURITY */
+.security-section{
+  padding:6rem 3rem;
+  background:var(--ink);
+}
+.sec-inner{max-width:1400px;margin:0 auto;}
+.sec-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.05);
+  margin-top:3rem;
+}
+.sec-cell{
+  background:var(--ink);
+  padding:1.8rem 1.5rem;
+  cursor:none;
+  transition:background 0.2s;
+  position:relative;
+  overflow:hidden;
+}
+.sec-cell:hover{background:#0D0D14;}
+.sc-bar{
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:3px;
+  opacity:0;
+  transition:opacity 0.2s;
+}
+.sec-cell:hover .sc-bar{opacity:1;}
+.sc-name{font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.8);margin-bottom:0.4rem;letter-spacing:-0.02em;}
+.sc-desc{font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.6;}
+.sc-abbr{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:0.6rem;}
+
+/* AI SECTION */
+.ai-section{
+  padding:6rem 3rem;
+  background:var(--paper2);
+}
+.ai-inner{max-width:1400px;margin:0 auto;}
+.ai-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0.75rem;
+  margin-top:2.5rem;
+}
+.ai-card{
+  border:1.5px solid var(--rule);
+  padding:1.5rem;
+  background:var(--paper);
+  cursor:none;
+  transition:all 0.2s;
+}
+.ai-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,62,255,0.1);}
+.ai-subsystem{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
+.ai-capability{font-size:0.9rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;}
+.ai-desc{font-size:0.75rem;color:var(--muted);line-height:1.55;}
+
+footer{background:var(--ink);color:rgba(245,243,238,0.3);padding:3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-logo{font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-0.04em;color:rgba(245,243,238,0.5);}
+.footer-logo span{color:var(--accent);}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(245,243,238,0.25);text-decoration:none;transition:color 0.2s;cursor:none;}
+.footer-links a:hover{color:var(--accent);}
+.footer-copy{font-family:var(--mono);font-size:0.65rem;}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">q<span>a</span>la</a>
+  <div class="nav-links">
+    <a href="index.html">Overview</a>
+    <a href="solution.html">Solution</a>
+    <a href="factory.html">Factory & SDE</a>
+    <a href="lifecycle.html" class="active">Lifecycle</a>
+    <span class="nav-badge">SFOS v2.0</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="life-hero">
+  <div class="reveal">
+    <div class="lh-eyebrow">Section 12–18 — Governance & Operations</div>
+    <h1 class="lh-title">Lifecycle &amp;<br><em>Governance</em></h1>
+    <p class="lh-desc">From the first ideation through retirement — every Solution follows an explicit, traceable value chain. Orchestration connects Models to Factories. Governance ensures every step meets defined quality, security, and compliance standards.</p>
+  </div>
+  <div class="reveal">
+    <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Value Chain</div>
+    <div class="vc-timeline">
+      <div class="vc-item">
+        <span class="vc-num">01</span>
+        <div>
+          <div class="vc-stage">Ideation</div>
+          <div class="vc-output">→ Solution Charter</div>
+        </div>
+      </div>
+      <div class="vc-item">
+        <span class="vc-num">02</span>
+        <div>
+          <div class="vc-stage">Design</div>
+          <div class="vc-output">→ Approved Solution Model</div>
+        </div>
+      </div>
+      <div class="vc-item">
+        <span class="vc-num">03</span>
+        <div>
+          <div class="vc-stage">Build</div>
+          <div class="vc-output">→ Verified Build Artifact</div>
+        </div>
+      </div>
+      <div class="vc-item">
+        <span class="vc-num">04</span>
+        <div>
+          <div class="vc-stage">Test</div>
+          <div class="vc-output">→ Test-Qualified Artifact</div>
+        </div>
+      </div>
+      <div class="vc-item">
+        <span class="vc-num">05</span>
+        <div>
+          <div class="vc-stage">Release</div>
+          <div class="vc-output">→ CM-Approved Release</div>
+        </div>
+      </div>
+      <div class="vc-item">
+        <span class="vc-num">06</span>
+        <div>
+          <div class="vc-stage">Deploy</div>
+          <div class="vc-output">→ Running Solution Instance</div>
+        </div>
+      </div>
+      <div class="vc-item">
+        <span class="vc-num">07</span>
+        <div>
+          <div class="vc-stage">Operate</div>
+          <div class="vc-output">→ Stable Operational Solution</div>
+        </div>
+      </div>
+      <div class="vc-item">
+        <span class="vc-num">08</span>
+        <div>
+          <div class="vc-stage">Retire</div>
+          <div class="vc-output">→ Archived Solution Record</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- VALUE CHAIN TABLE -->
+<div class="vc-section">
+  <h2 class="section-title reveal">Solution <em>Value Chain</em></h2>
+  <p class="section-sub reveal" style="max-width:60ch;">qala makes the value chain explicit, traceable, and governable. Every stage produces a defined output that gates entry into the next.</p>
+  <table class="vc-full-table reveal">
+    <thead>
+      <tr><th>Stage</th><th>Key Activities</th><th>Output</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Ideation</td><td>Problem definition, goal setting, feasibility assessment, value proposition articulation</td><td>Solution Charter</td></tr>
+      <tr><td>Design</td><td>Blueprint authoring, architecture design, prototype creation, design review and sign-off</td><td>Approved Solution Model</td></tr>
+      <tr><td>Build</td><td>Hermetic build execution, unit test run, CI pipeline, artifact generation, build attestation</td><td>Verified Build Artifact</td></tr>
+      <tr><td>Test</td><td>Full test suite execution, defect resolution, SAST/DAST scan, performance benchmark</td><td>Test-Qualified Artifact</td></tr>
+      <tr><td>Release</td><td>CM board review, version tagging, changelog generation, attestation verification, sign-off</td><td>CM-Approved Release</td></tr>
+      <tr><td>Deploy</td><td>Deployment workflow execution, environment provisioning, rollout strategy (canary/blue-green)</td><td>Running Solution Instance</td></tr>
+      <tr><td>Operate</td><td>Monitoring, observability, incident response, SLA tracking, security patching</td><td>Stable Operational Solution</td></tr>
+      <tr><td>Retire</td><td>Deprecation notice, migration path authoring, data archival, SDE teardown</td><td>Archived Solution Record</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- ORCHESTRATION -->
+<div class="orch-section">
+  <div class="orch-inner">
+    <h2 class="section-title reveal" style="color:var(--paper);">Solution <em>Orchestration</em></h2>
+    <p class="section-sub reveal" style="color:rgba(245,243,238,0.4);max-width:60ch;">Orchestration connects Solution Models to Solution Factories — coordinating the sequence and parallelism of all factory activities through Workflows and Tasks.</p>
+    <div class="orch-two">
+      <div class="reveal">
+        <div style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:1rem;">Workflow Types</div>
+        <div class="wf-list">
+          <div class="wf-item">
+            <div class="wf-dot" style="background:#1A3EFF;box-shadow:0 0 6px #1A3EFF;"></div>
+            <span class="wf-name">Build Workflow</span>
+            <span class="wf-desc">Hermetic build pipeline for a Solution</span>
+          </div>
+          <div class="wf-item">
+            <div class="wf-dot" style="background:#00C8A0;"></div>
+            <span class="wf-name">Test Workflow</span>
+            <span class="wf-desc">Test suite against a Solution build</span>
+          </div>
+          <div class="wf-item">
+            <div class="wf-dot" style="background:#F5A623;"></div>
+            <span class="wf-name">Release Workflow</span>
+            <span class="wf-desc">build → test → stage → approve → deploy</span>
+          </div>
+          <div class="wf-item">
+            <div class="wf-dot" style="background:#BD5FFF;"></div>
+            <span class="wf-name">Deployment Workflow</span>
+            <span class="wf-desc">Artifact to target environment</span>
+          </div>
+          <div class="wf-item">
+            <div class="wf-dot" style="background:#FF3B1A;"></div>
+            <span class="wf-name">Rollback Workflow</span>
+            <span class="wf-desc">Restore prior Solution version</span>
+          </div>
+          <div class="wf-item">
+            <div class="wf-dot" style="background:#00BEFF;"></div>
+            <span class="wf-name">Provisioning Workflow</span>
+            <span class="wf-desc">Create and configure a new SDE</span>
+          </div>
+          <div class="wf-item">
+            <div class="wf-dot" style="background:#FF80C0;"></div>
+            <span class="wf-name">Governance Workflow</span>
+            <span class="wf-desc">Review, approve, CM promotion gates</span>
+          </div>
+          <div class="wf-item">
+            <div class="wf-dot" style="background:#A0A0A0;"></div>
+            <span class="wf-name">Data Pipeline Workflow</span>
+            <span class="wf-desc">ETL operations for Solution data</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="task-schema">
+          <div class="ts-label">Task Schema</div>
+          <div class="ts-field">
+            <span class="ts-key">task_id</span>
+            <span class="ts-val">uuid — unique identifier</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">name</span>
+            <span class="ts-val">string — human-readable label</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">workflow_ref</span>
+            <span class="ts-val">ref — parent workflow</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">type</span>
+            <span class="ts-val">build | test | deploy | review | approve | notify | script | manual</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">inputs</span>
+            <span class="ts-val">data, artifacts, or conditions required to begin</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">outputs</span>
+            <span class="ts-val">artifacts, state changes, or signals on completion</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">assignee</span>
+            <span class="ts-val">user | team | service | ai_agent</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">status</span>
+            <span class="ts-val">pending | running | succeeded | failed | skipped | blocked</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">dependencies</span>
+            <span class="ts-val">task_id[] — must complete before this task</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">timeout</span>
+            <span class="ts-val">duration — max execution before auto-fail</span>
+          </div>
+          <div class="ts-field">
+            <span class="ts-key">retry_policy</span>
+            <span class="ts-val">{ max_retries, backoff_strategy }</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- GOVERNANCE INSTRUMENTS -->
+<div class="gov-section">
+  <div class="gov-inner">
+    <h2 class="section-title reveal">Governance <em>Instruments</em></h2>
+    <p class="section-sub reveal" style="max-width:60ch;">Governance ensures all Solutions, Factories, and Environments operate within defined quality, security, and compliance boundaries. It is enforced through seven distinct instruments.</p>
+    <div class="gov-instruments">
+      <div class="gov-card reveal">
+        <div class="gc-icon">◈</div>
+        <div class="gc-name">Policy</div>
+        <div class="gc-desc">Declarative rules constraining behavior at the platform, factory, or solution level. For example: "All CM solutions must have passing security scans."</div>
+      </div>
+      <div class="gov-card reveal">
+        <div class="gc-icon">⊞</div>
+        <div class="gc-name">Standard</div>
+        <div class="gc-desc">A defined approach or specification that Solutions must conform to — API versioning standards, naming conventions, data type usage.</div>
+      </div>
+      <div class="gov-card reveal">
+        <div class="gc-icon">⬡</div>
+        <div class="gc-name">Template</div>
+        <div class="gc-desc">Pre-approved scaffolds for common Solution types, SDE configurations, or workflow definitions. Accelerate consistent creation.</div>
+      </div>
+      <div class="gov-card reveal">
+        <div class="gc-icon">▸</div>
+        <div class="gc-name">Playbook</div>
+        <div class="gc-desc">Step-by-step guides for executing defined processes — Release Playbook, Incident Response Playbook, Vendor Qualification Playbook.</div>
+      </div>
+      <div class="gov-card reveal">
+        <div class="gc-icon">◎</div>
+        <div class="gc-name">Gate Criteria</div>
+        <div class="gc-desc">The specific conditions that must be satisfied for a Solution to advance from one maturity stage to the next. Enforced automatically at promotion.</div>
+      </div>
+      <div class="gov-card reveal">
+        <div class="gc-icon">⊡</div>
+        <div class="gc-name">Audit Log</div>
+        <div class="gc-desc">Immutable, tamper-evident record of all actions taken on Solutions, SDEs, and Factories. Append-only. Required for CM-stage compliance.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- OWNERSHIP SYSTEM -->
+<div class="ownership-section">
+  <div class="reveal">
+    <h2 class="section-title">Ownership <em>System</em></h2>
+    <p class="section-sub" style="max-width:60ch;">Every Solution on qala has an unambiguous owner. Ownership defines accountability for quality, security, and lifecycle decisions at every level of the hierarchy.</p>
+  </div>
+  <div class="ownership-grid">
+    <div class="owner-ladder reveal">
+      <div class="owner-row">
+        <div class="or-dot" style="background:#6366F1;"></div>
+        <div class="or-role">Governance Board</div>
+        <div class="or-scope">Approves CM-stage promotions and major lifecycle changes. Final authority.</div>
+      </div>
+      <div class="owner-row">
+        <div class="or-dot" style="background:#1A3EFF;"></div>
+        <div class="or-role">Factory Owner</div>
+        <div class="or-scope">Responsible for operating a Solution Factory and its full SDE network.</div>
+      </div>
+      <div class="owner-row">
+        <div class="or-dot" style="background:#00C8A0;"></div>
+        <div class="or-role">Solution Owner</div>
+        <div class="or-scope">Individual or team accountable for the Solution's quality and roadmap.</div>
+      </div>
+      <div class="owner-row">
+        <div class="or-dot" style="background:#F5A623;"></div>
+        <div class="or-role">Component Owner</div>
+        <div class="or-scope">Individual or team accountable for a specific Solution Component.</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div style="border:1.5px solid var(--rule);padding:2rem;">
+        <div style="font-family:var(--mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;">Maturity Gate Requirements</div>
+        <div style="display:flex;flex-direction:column;gap:1px;">
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:0.8rem 0;border-bottom:1px solid var(--rule);">
+            <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;"><span style="width:8px;height:8px;background:#94A3B8;border-radius:50%;display:inline-block;"></span>SANDBOX → DEV</div>
+            <div style="font-size:0.78rem;color:var(--ink);">Registry created · SDE provisioned · owner assigned</div>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:0.8rem 0;border-bottom:1px solid var(--rule);">
+            <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;"><span style="width:8px;height:8px;background:#22C55E;border-radius:50%;display:inline-block;"></span>DEV → NIGHTLY</div>
+            <div style="font-size:0.78rem;color:var(--ink);">CI pipeline configured · build succeeds · basic tests passing</div>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:0.8rem 0;border-bottom:1px solid var(--rule);">
+            <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;"><span style="width:8px;height:8px;background:#F59E0B;border-radius:50%;display:inline-block;"></span>NIGHTLY → TEST</div>
+            <div style="font-size:0.78rem;color:var(--ink);">All unit + integration tests passing · SAST clean · no P1 defects</div>
+          </div>
+          <div style="display:grid;grid-template-columns:140px 1fr;gap:1rem;padding:0.8rem 0;">
+            <div style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;"><span style="width:8px;height:8px;background:#6366F1;border-radius:50%;display:inline-block;"></span>TEST → CM</div>
+            <div style="font-size:0.78rem;color:var(--ink);">All suites passing · DAST clean · benchmarks met · board sign-off · attestation generated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- SECURITY -->
+<div class="security-section">
+  <div class="sec-inner">
+    <h2 class="section-title reveal" style="color:var(--paper);">Security &amp; <em>Compliance</em></h2>
+    <p class="section-sub reveal" style="color:rgba(245,243,238,0.4);max-width:60ch;">Security is embedded in the Solution lifecycle at every stage — not a separate concern. Enforced by the Security and Event Management (SEM) service.</p>
+    <div class="sec-grid reveal">
+      <div class="sec-cell">
+        <div class="sc-bar" style="background:#1A3EFF;"></div>
+        <div class="sc-abbr">RBAC</div>
+        <div class="sc-name">Role-Based Access</div>
+        <div class="sc-desc">Enforced at every API endpoint and SDE operation. Roles resolve per user identity at the gateway.</div>
+      </div>
+      <div class="sec-cell">
+        <div class="sc-bar" style="background:#00C8A0;"></div>
+        <div class="sc-abbr">mTLS</div>
+        <div class="sc-name">Mutual TLS</div>
+        <div class="sc-desc">All service-to-service communication within the platform uses mutual TLS. No unencrypted inter-service traffic.</div>
+      </div>
+      <div class="sec-cell">
+        <div class="sc-bar" style="background:#F5A623;"></div>
+        <div class="sc-abbr">SAST</div>
+        <div class="sc-name">Static Analysis</div>
+        <div class="sc-desc">Static Application Security Testing runs on every commit. Must be clean before DEV → NIGHTLY promotion.</div>
+      </div>
+      <div class="sec-cell">
+        <div class="sc-bar" style="background:#FF3B1A;"></div>
+        <div class="sc-abbr">DAST</div>
+        <div class="sc-name">Dynamic Analysis</div>
+        <div class="sc-desc">Dynamic Application Security Testing against every build targeting TEST+ maturity. Required for CM promotion.</div>
+      </div>
+      <div class="sec-cell">
+        <div class="sc-bar" style="background:#BD5FFF;"></div>
+        <div class="sc-abbr">SLSA</div>
+        <div class="sc-name">Build Attestation</div>
+        <div class="sc-desc">SLSA provenance records signed for every build output. Verified by the Gateway before any deployment proceeds.</div>
+      </div>
+      <div class="sec-cell">
+        <div class="sc-bar" style="background:#00BEFF;"></div>
+        <div class="sc-abbr">SEM</div>
+        <div class="sc-name">Threat Detection</div>
+        <div class="sc-desc">Real-time monitoring for anomalous activity, policy violations, and attack patterns. SDE quarantine on detection.</div>
+      </div>
+      <div class="sec-cell">
+        <div class="sc-bar" style="background:#FF80C0;"></div>
+        <div class="sc-abbr">KMS</div>
+        <div class="sc-name">Secrets Vault</div>
+        <div class="sc-desc">HashiCorp Vault or cloud-native KMS for all credentials, certificates, and secrets. No plaintext secrets in configs.</div>
+      </div>
+      <div class="sec-cell">
+        <div class="sc-bar" style="background:#A0FF8C;"></div>
+        <div class="sc-abbr">AUDIT</div>
+        <div class="sc-name">Immutable Audit Logs</div>
+        <div class="sc-desc">All platform actions recorded in tamper-evident, append-only logs. Required for compliance reporting.</div>
+      </div>
+      <div class="sec-cell">
+        <div class="sc-bar" style="background:#FFD080;"></div>
+        <div class="sc-abbr">ENC</div>
+        <div class="sc-name">Data Encryption</div>
+        <div class="sc-desc">Encryption at rest and in transit mandatory for all Solution and tenant data across the platform.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- AI INTEGRATION -->
+<div class="ai-section">
+  <div class="ai-inner">
+    <h2 class="section-title reveal">AI <em>Integration</em></h2>
+    <p class="section-sub reveal" style="max-width:60ch;">AI capabilities are embedded throughout the qala platform — not as an add-on, but as an integral part of every major subsystem. The AI Agents service provides hooks across the full lifecycle.</p>
+    <div class="ai-grid">
+      <div class="ai-card reveal">
+        <div class="ai-subsystem">SDE Management</div>
+        <div class="ai-capability">SDE Optimization</div>
+        <div class="ai-desc">Recommends configuration improvements for performance and cost efficiency based on usage patterns.</div>
+      </div>
+      <div class="ai-card reveal">
+        <div class="ai-subsystem">CI/CD</div>
+        <div class="ai-capability">Bottleneck Detection</div>
+        <div class="ai-desc">Identifies slow pipeline stages and recommends parallelization or caching improvements.</div>
+      </div>
+      <div class="ai-card reveal">
+        <div class="ai-subsystem">Testbed</div>
+        <div class="ai-capability">Defect Prediction</div>
+        <div class="ai-desc">Flags high-risk code areas before testing begins using historical defect patterns and change analysis.</div>
+      </div>
+      <div class="ai-card reveal">
+        <div class="ai-subsystem">Testbed</div>
+        <div class="ai-capability">Test Generation</div>
+        <div class="ai-desc">Synthesizes test scenarios from feature specifications and past failure patterns. Self-healing on interface changes.</div>
+      </div>
+      <div class="ai-card reveal">
+        <div class="ai-subsystem">Data Platform</div>
+        <div class="ai-capability">Anomaly Detection</div>
+        <div class="ai-desc">Detects unusual patterns in metrics, logs, and security events across all Solutions and SDEs.</div>
+      </div>
+      <div class="ai-card reveal">
+        <div class="ai-subsystem">Data Platform</div>
+        <div class="ai-capability">Resource Prediction</div>
+        <div class="ai-desc">Forecasts compute and capacity needs based on activity trends. Drives proactive scaling decisions.</div>
+      </div>
+      <div class="ai-card reveal">
+        <div class="ai-subsystem">Security / SEM</div>
+        <div class="ai-capability">Threat Analysis</div>
+        <div class="ai-desc">Correlates security events across SDEs and Solutions to identify attack patterns and emerging risks.</div>
+      </div>
+      <div class="ai-card reveal">
+        <div class="ai-subsystem">Solution Model</div>
+        <div class="ai-capability">Prototype Feedback</div>
+        <div class="ai-desc">Synthesizes prototype test results into structured design recommendations for the Solution Model.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div style="background:var(--paper2);padding:3rem;display:flex;justify-content:space-between;border-top:1px solid var(--rule);">
+  <a href="factory.html" style="font-family:var(--mono);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:none;">← Factory & SDE</a>
+  <a href="index.html"   style="font-family:var(--mono);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);text-decoration:none;cursor:none;">Back to Overview →</a>
+</div>
+
+<footer>
+  <div class="footer-logo">q<span>a</span>la</div>
+  <div class="footer-links">
+    <a href="index.html">Overview</a>
+    <a href="solution.html">Solution</a>
+    <a href="factory.html">Factory & SDE</a>
+    <a href="lifecycle.html">Lifecycle</a>
+  </div>
+  <div class="footer-copy">SFOS v2.0 · Confidential</div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},80);});
+document.querySelectorAll('a,button,.gov-card,.ai-card,.owner-row,.sec-cell,.wf-item,.vc-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';ring.style.width='50px';ring.style.height='50px';ring.style.opacity='0.7';});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='10px';cursor.style.height='10px';ring.style.width='36px';ring.style.height='36px';ring.style.opacity='0.4';});
+});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+</script>
+</body>
+</html>

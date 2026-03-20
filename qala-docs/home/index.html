@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>qala — Solution Factory Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0A0A0F;
+  --paper: #F5F3EE;
+  --paper2: #EDEBE4;
+  --accent: #1A3EFF;
+  --accent2: #FF3B1A;
+  --muted: #7A7870;
+  --rule: #D8D5CC;
+  --glow: rgba(26,62,255,0.12);
+  --mono: 'DM Mono', monospace;
+  --display: 'Syne', sans-serif;
+  --serif: 'Instrument Serif', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+  mix-blend-mode: multiply;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+}
+body:hover .cursor { opacity: 1; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(245,243,238,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+.nav-badge {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.25rem 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  padding: 10rem 3rem 4rem 3rem;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 2rem; height: 1px;
+  background: var(--accent);
+}
+.hero-title {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.hero-title .serif-word {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 42ch;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+.hero-cta {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+}
+.btn-primary {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border: none;
+  cursor: none;
+  transition: background 0.2s, color 0.2s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--accent); }
+.btn-outline {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink);
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border: 1.5px solid var(--rule);
+  cursor: none;
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-right {
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-diagram {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* Animated hierarchy diagram */
+.diagram-wrap {
+  position: relative;
+  width: 340px;
+}
+.d-node {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 0.5rem;
+  position: relative;
+  opacity: 0;
+  transform: translateX(20px);
+  animation: nodeIn 0.5s forwards;
+  cursor: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.d-node:hover {
+  border-color: var(--accent);
+  background: rgba(26,62,255,0.1);
+}
+.d-node::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+}
+.d-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.d-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.7);
+}
+.d-tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-left: auto;
+}
+
+/* Color themes per node */
+.n-sf   { --nc: #1A3EFF; } .n-sf::before   { background: #1A3EFF; }
+.n-sde  { --nc: #00C8A0; } .n-sde::before  { background: #00C8A0; }
+.n-sol  { --nc: #FF3B1A; } .n-sol::before  { background: #FF3B1A; }
+.n-mod  { --nc: #F5A623; } .n-mod::before  { background: #F5A623; }
+.n-tb   { --nc: #BD5FFF; } .n-tb::before   { background: #BD5FFF; }
+.n-orch { --nc: #00BEFF; } .n-orch::before { background: #00BEFF; }
+.n-pkg  { --nc: #FF80C0; } .n-pkg::before  { background: #FF80C0; }
+
+.d-node .d-dot { background: var(--nc); box-shadow: 0 0 8px var(--nc); }
+.d-node.indent-1 { margin-left: 1.5rem; }
+.d-node.indent-2 { margin-left: 3rem; }
+
+@keyframes nodeIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+.d-node:nth-child(1)  { animation-delay: 0.1s; }
+.d-node:nth-child(2)  { animation-delay: 0.2s; }
+.d-node:nth-child(3)  { animation-delay: 0.3s; }
+.d-node:nth-child(4)  { animation-delay: 0.4s; }
+.d-node:nth-child(5)  { animation-delay: 0.5s; }
+.d-node:nth-child(6)  { animation-delay: 0.6s; }
+.d-node:nth-child(7)  { animation-delay: 0.7s; }
+.d-node:nth-child(8)  { animation-delay: 0.8s; }
+.d-node:nth-child(9)  { animation-delay: 0.9s; }
+.d-node:nth-child(10) { animation-delay: 1.0s; }
+
+.hero-right-label {
+  position: absolute;
+  bottom: 2rem; left: 2rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Noise overlay */
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* SECTION STYLES */
+section { padding: 7rem 3rem; }
+
+.section-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  margin: 0;
+}
+
+/* WHAT IS QALA */
+.what-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.what-left h2 {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+.what-left h2 em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.what-left p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+.principle-box {
+  margin-top: 2.5rem;
+  border-left: 3px solid var(--accent);
+  padding: 1.2rem 1.5rem;
+  background: var(--paper2);
+}
+.principle-box p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+}
+.what-right {
+  display: flex; flex-direction: column; gap: 1px;
+}
+.sol-type-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: none;
+  transition: background 0.15s;
+}
+.sol-type-row:first-child { border-top: 1px solid var(--rule); }
+.sol-type-num {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+  width: 1.5rem;
+  flex-shrink: 0;
+}
+.sol-type-name {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  flex: 1;
+}
+.sol-type-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  flex: 2;
+  line-height: 1.5;
+}
+.sol-type-row:hover { padding-left: 0.5rem; }
+.sol-type-row:hover .sol-type-name { color: var(--accent); }
+
+/* HOW IT WORKS */
+.how-section { background: var(--ink); color: var(--paper); }
+.how-header {
+  max-width: 1200px; margin: 0 auto;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.how-header h2 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.how-header h2 em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.how-header p {
+  font-size: 1rem;
+  color: rgba(245,243,238,0.45);
+  max-width: 50ch;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.steps-flow {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.steps-flow::before {
+  content: '';
+  position: absolute;
+  top: 3.5rem;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(26,62,255,0.5), rgba(26,62,255,0.5), transparent);
+}
+.step-col {
+  padding: 0 1.5rem;
+  text-align: center;
+  position: relative;
+}
+.step-num {
+  width: 56px; height: 56px;
+  border: 1.5px solid rgba(26,62,255,0.4);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--ink);
+  position: relative;
+  z-index: 2;
+  transition: background 0.2s, border-color 0.2s;
+}
+.step-col:hover .step-num {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.step-col h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--paper);
+}
+.step-col p {
+  font-size: 0.82rem;
+  color: rgba(245,243,238,0.4);
+  line-height: 1.65;
+}
+.step-col .step-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  opacity: 0.6;
+}
+
+/* MATURITY SECTION */
+.maturity-section { background: var(--paper2); }
+.maturity-header {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+}
+.maturity-header h2 {
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.75rem;
+}
+.maturity-header h2 em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--accent);
+}
+.maturity-header p { font-size: 0.95rem; color: var(--muted); }
+
+.maturity-track {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.mat-stage {
+  background: var(--paper);
+  padding: 2rem 1.5rem;
+  transition: background 0.2s;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+.mat-stage::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  transition: transform 0.3s;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.mat-stage:hover::after { transform: scaleX(1); }
+.mat-stage:hover { background: var(--paper2); }
+.ms-0::after { background: #94A3B8; } /* sandbox */
+.ms-1::after { background: #22C55E; } /* dev */
+.ms-2::after { background: #F59E0B; } /* nightly */
+.ms-3::after { background: #3B82F6; } /* test */
+.ms-4::after { background: #6366F1; } /* CM */
+
+.mat-code {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.mat-code::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.ms-0 .mat-code::before { background: #94A3B8; }
+.ms-1 .mat-code::before { background: #22C55E; }
+.ms-2 .mat-code::before { background: #F59E0B; }
+.ms-3 .mat-code::before { background: #3B82F6; }
+.ms-4 .mat-code::before { background: #6366F1; }
+
+.mat-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+.mat-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.mat-gate {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  padding-top: 0.75rem;
+  line-height: 1.5;
+}
+.mat-gate strong {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+
+/* SYSTEMS SECTION */
+.systems-section { max-width: 1400px; margin: 0 auto; padding: 7rem 3rem; }
+.systems-header {
+  margin-bottom: 4rem;
+}
+.systems-header h2 {
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.75rem;
+}
+.systems-header h2 em { font-family: var(--serif); font-style: italic; color: var(--accent); }
+
+.systems-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.sys-card {
+  border: 1.5px solid var(--rule);
+  padding: 2rem;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+.sys-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.sys-card:hover { border-color: transparent; transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.sys-card:hover::before { transform: scaleX(1); }
+
+.sc-kernel::before { background: #FF3B1A; }
+.sc-control::before { background: #1A3EFF; }
+.sc-exec::before { background: #00C8A0; }
+.sc-intel::before { background: #BD5FFF; }
+
+.sys-plane {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+.sys-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+.sys-subs {
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+.sys-sub {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--rule);
+  transition: color 0.15s;
+}
+.sys-sub:last-child { border-bottom: none; }
+.sys-sub::before {
+  content: '→';
+  font-size: 0.65rem;
+  color: var(--rule);
+  transition: color 0.15s;
+}
+.sys-card:hover .sys-sub { color: var(--ink); }
+.sys-card:hover .sys-sub::before { color: var(--accent); }
+
+/* API SECTION */
+.api-section {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 7rem 3rem;
+}
+.api-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: start;
+}
+.api-left h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+.api-left h2 em { font-family: var(--serif); font-style: italic; color: var(--accent); }
+.api-left p {
+  font-size: 0.9rem;
+  color: rgba(245,243,238,0.45);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+.api-services {
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.api-svc {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  cursor: none;
+  transition: opacity 0.15s;
+}
+.api-svc:hover { opacity: 1 !important; }
+.api-port {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--accent);
+  opacity: 0.7;
+}
+.api-name {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: rgba(245,243,238,0.6);
+}
+.api-lang {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.25);
+}
+.lang-go   { border-color: rgba(0,200,160,0.3); color: rgba(0,200,160,0.7); }
+.lang-rust { border-color: rgba(255,59,26,0.3); color: rgba(255,59,26,0.7); }
+.lang-scala{ border-color: rgba(245,166,35,0.3); color: rgba(245,166,35,0.7); }
+
+.api-right {
+  background: #0D0D14;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 2rem;
+  overflow: hidden;
+}
+.code-tabs {
+  display: flex; gap: 0; margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.code-tab {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  color: rgba(255,255,255,0.3);
+  cursor: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.code-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+pre {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.7;
+  color: rgba(245,243,238,0.6);
+  overflow-x: auto;
+  white-space: pre;
+}
+.c-kw  { color: #BD5FFF; }
+.c-str { color: #00C8A0; }
+.c-num { color: #F5A623; }
+.c-key { color: #1A3EFF; opacity: 1; color: #7BA7FF; }
+.c-cmt { color: rgba(255,255,255,0.2); font-style: italic; }
+.c-fn  { color: #FF80C0; }
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  color: rgba(245,243,238,0.3);
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.04em;
+  color: rgba(245,243,238,0.5);
+}
+.footer-logo span { color: var(--accent); }
+.footer-links {
+  display: flex; gap: 2rem;
+}
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245,243,238,0.25);
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: none;
+}
+.footer-links a:hover { color: var(--accent); }
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+}
+
+/* SCROLL REVEALS */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  z-index: 2;
+}
+.scroll-hint span {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollDown 1.5s ease-in-out infinite;
+}
+@keyframes scrollDown {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Explore more pages banner */
+.pages-section {
+  padding: 5rem 3rem;
+  background: var(--paper);
+}
+.pages-inner { max-width: 1200px; margin: 0 auto; }
+.pages-inner h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin-bottom: 2rem;
+}
+.pages-inner h2 em { font-family: var(--serif); font-style: italic; color: var(--accent); }
+.pages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.page-card {
+  border: 1.5px solid var(--rule);
+  padding: 2rem;
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+}
+.page-card::after {
+  content: '→';
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  font-size: 1rem;
+  color: var(--muted);
+  transition: transform 0.2s, color 0.2s;
+}
+.page-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
+.page-card:hover::after { transform: translate(4px, -4px); color: var(--accent); }
+.page-num {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.page-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.page-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">q<span>a</span>la</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Overview</a>
+    <a href="solution.html">Solution</a>
+    <a href="factory.html">Factory & SDE</a>
+    <a href="lifecycle.html">Lifecycle</a>
+    <span class="nav-badge">SFOS v2.0</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Solution Factory Operating System</div>
+    <h1 class="hero-title">
+      Build<br>
+      <span class="serif-word">anything.</span><br>
+      Ship everything.
+    </h1>
+    <p class="hero-sub">qala is a unified platform for designing, building, managing, and operating solutions of every type — from a solo developer's first project to an enterprise managing thousands of products and services.</p>
+    <div class="hero-cta">
+      <a href="solution.html" class="btn-primary">Explore the Solution Model</a>
+      <a href="factory.html" class="btn-outline">See How Factories Work</a>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="noise"></div>
+    <div class="hero-diagram">
+      <div class="diagram-wrap">
+        <div class="d-node n-sf">
+          <div class="d-dot"></div>
+          <span class="d-label">Solution Factory</span>
+          <span class="d-tag">root</span>
+        </div>
+        <div class="d-node n-sde indent-1">
+          <div class="d-dot"></div>
+          <span class="d-label">Solution Dev Environment</span>
+          <span class="d-tag">SDE</span>
+        </div>
+        <div class="d-node n-sol indent-2">
+          <div class="d-dot"></div>
+          <span class="d-label">Solution</span>
+          <span class="d-tag">root element</span>
+        </div>
+        <div class="d-node n-mod indent-2">
+          <div class="d-dot"></div>
+          <span class="d-label">Solution Model</span>
+          <span class="d-tag">blueprint</span>
+        </div>
+        <div class="d-node n-tb indent-2">
+          <div class="d-dot"></div>
+          <span class="d-label">Solution Testbed</span>
+          <span class="d-tag">verify</span>
+        </div>
+        <div class="d-node n-orch indent-2">
+          <div class="d-dot"></div>
+          <span class="d-label">Orchestration</span>
+          <span class="d-tag">workflow</span>
+        </div>
+        <div class="d-node n-pkg indent-2">
+          <div class="d-dot"></div>
+          <span class="d-label">Solution Package</span>
+          <span class="d-tag">deploy</span>
+        </div>
+        <div class="d-node n-sde indent-1">
+          <div class="d-dot"></div>
+          <span class="d-label">Solution Network</span>
+          <span class="d-tag">chain</span>
+        </div>
+        <div class="d-node n-sf">
+          <div class="d-dot"></div>
+          <span class="d-label">Solution Registry</span>
+          <span class="d-tag">catalog</span>
+        </div>
+        <div class="d-node n-mod">
+          <div class="d-dot"></div>
+          <span class="d-label">Solution Portfolio</span>
+          <span class="d-tag">governed</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right-label">Platform Object Hierarchy</div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- WHAT IS QALA -->
+<section>
+  <div class="what-grid">
+    <div class="what-left reveal">
+      <h2>Every deliverable.<br><em>One model.</em></h2>
+      <p>qala treats every output — software, physical goods, services, platforms — as a Solution with a consistent structure, governed lifecycle, and traceable value chain.</p>
+      <p>The platform is itself a solution factory — the root factory — capable of producing tiered, hierarchical child factories, development environments, and solution models at any scale.</p>
+      <div class="principle-box">
+        <p>"Every solution, regardless of type or scale, is created, maintained, and operated within a standardized, reproducible, and governed environment."</p>
+      </div>
+    </div>
+    <div class="what-right reveal">
+      <div class="sol-type-row">
+        <span class="sol-type-num">01</span>
+        <span class="sol-type-name">Application</span>
+        <span class="sol-type-desc">Software with defined processes and user interactions</span>
+      </div>
+      <div class="sol-type-row">
+        <span class="sol-type-num">02</span>
+        <span class="sol-type-name">System</span>
+        <span class="sol-type-desc">Composed applications with coordinated behavior</span>
+      </div>
+      <div class="sol-type-row">
+        <span class="sol-type-num">03</span>
+        <span class="sol-type-name">Good</span>
+        <span class="sol-type-desc">Tangible or digital deliverables from a defined process</span>
+      </div>
+      <div class="sol-type-row">
+        <span class="sol-type-num">04</span>
+        <span class="sol-type-name">Product</span>
+        <span class="sol-type-desc">Market-facing offerings combining software, services, and goods</span>
+      </div>
+      <div class="sol-type-row">
+        <span class="sol-type-num">05</span>
+        <span class="sol-type-name">Service</span>
+        <span class="sol-type-desc">Capabilities delivered on-demand or continuously</span>
+      </div>
+      <div class="sol-type-row">
+        <span class="sol-type-num">06</span>
+        <span class="sol-type-name">Platform</span>
+        <span class="sol-type-desc">Substrate on which other Solutions are built and operated</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-header reveal">
+    <h2>How <em>qala</em> works</h2>
+    <p>From ideation to retirement — every Solution follows the same governed path through the platform.</p>
+  </div>
+  <div class="steps-flow">
+    <div class="step-col reveal">
+      <div class="step-num">01</div>
+      <span class="step-icon">◈</span>
+      <h3>Model</h3>
+      <p>Define a Solution Model — blueprint, design, architecture, mockup, prototype. This is the intellectual specification layer.</p>
+    </div>
+    <div class="step-col reveal">
+      <div class="step-num">02</div>
+      <span class="step-icon">⬡</span>
+      <h3>Build</h3>
+      <p>A Solution Factory and its networked SDEs execute hermetic, reproducible builds with full CI/CD and attestation.</p>
+    </div>
+    <div class="step-col reveal">
+      <div class="step-num">03</div>
+      <span class="step-icon">◎</span>
+      <h3>Verify</h3>
+      <p>The Solution Testbed runs the full battery — unit, integration, system, security, UAT — gating maturity transitions.</p>
+    </div>
+    <div class="step-col reveal">
+      <div class="step-num">04</div>
+      <span class="step-icon">▲</span>
+      <h3>Release</h3>
+      <p>CM-approved Solutions are packaged, attested, and deployed via governed workflows to any target environment.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- MATURITY SECTION -->
+<section class="maturity-section">
+  <div class="maturity-header reveal">
+    <h2>The <em>Maturity</em> Model</h2>
+    <p>Every Solution progresses through five governed stages. Promotion requires passing defined gate criteria.</p>
+  </div>
+  <div class="maturity-track">
+    <div class="mat-stage ms-0 reveal">
+      <div class="mat-code">SANDBOX</div>
+      <div class="mat-name">Sandbox</div>
+      <div class="mat-desc">Exploratory, unconstrained. No stability guarantees. Open creation.</div>
+      <div class="mat-gate"><strong>Gate</strong>None required — free creation</div>
+    </div>
+    <div class="mat-stage ms-1 reveal">
+      <div class="mat-code">DEV</div>
+      <div class="mat-name">Development</div>
+      <div class="mat-desc">Active feature development. Nightly builds may break. CI in progress.</div>
+      <div class="mat-gate"><strong>Gate</strong>SDE provisioned · owner assigned</div>
+    </div>
+    <div class="mat-stage ms-2 reveal">
+      <div class="mat-code">NIGHTLY</div>
+      <div class="mat-name">Nightly</div>
+      <div class="mat-desc">Automated nightly build and test cycle. Stability improving.</div>
+      <div class="mat-gate"><strong>Gate</strong>CI green · basic tests passing</div>
+    </div>
+    <div class="mat-stage ms-3 reveal">
+      <div class="mat-code">TEST</div>
+      <div class="mat-name">Test</div>
+      <div class="mat-desc">Feature-complete. Full test suites running. Pre-release hardening.</div>
+      <div class="mat-gate"><strong>Gate</strong>All tests pass · SAST clean</div>
+    </div>
+    <div class="mat-stage ms-4 reveal">
+      <div class="mat-code">CM</div>
+      <div class="mat-name">Control Managed</div>
+      <div class="mat-desc">Release-qualified. Under Configuration Management control. Immutable.</div>
+      <div class="mat-gate"><strong>Gate</strong>DAST clean · board sign-off · attestation</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- SYSTEMS -->
+<div style="background: var(--paper)">
+  <div class="systems-section">
+    <div class="systems-header reveal">
+      <h2>Platform <em>Systems</em></h2>
+      <p style="color:var(--muted); font-size: 0.9rem;">qala is organized into four planes — each a distinct system with its own subsystems and responsibilities.</p>
+    </div>
+    <div class="systems-grid">
+      <div class="sys-card sc-kernel reveal">
+        <div class="sys-plane">Kernel</div>
+        <div class="sys-name">qala Kernel</div>
+        <div class="sys-subs">
+          <div class="sys-sub">Registry — service + heartbeat tracking</div>
+          <div class="sys-sub">Command Bus — kernel command execution</div>
+          <div class="sys-sub">Event Aggregator — topic event telemetry</div>
+        </div>
+      </div>
+      <div class="sys-card sc-control reveal">
+        <div class="sys-plane">Control Plane</div>
+        <div class="sys-name">Control Plane</div>
+        <div class="sys-subs">
+          <div class="sys-sub">Gateway — API ingress + routing</div>
+          <div class="sys-sub">Identity — users + RBAC</div>
+          <div class="sys-sub">SDE — lifecycle + snapshots + factories</div>
+          <div class="sys-sub">Workspace — file + content management</div>
+          <div class="sys-sub">Artifact — package metadata + retrieval</div>
+        </div>
+      </div>
+      <div class="sys-card sc-exec reveal">
+        <div class="sys-plane">Execution Plane</div>
+        <div class="sys-name">Execution Plane</div>
+        <div class="sys-subs">
+          <div class="sys-sub">Workflow — CI/CD pipeline run + status</div>
+          <div class="sys-sub">Data — analytics + metrics computation</div>
+          <div class="sys-sub">Notifications — message dispatch</div>
+        </div>
+      </div>
+      <div class="sys-card sc-intel reveal">
+        <div class="sys-plane">Intelligence & Security</div>
+        <div class="sys-name">Intel & Security</div>
+        <div class="sys-subs">
+          <div class="sys-sub">AI — recommendations + analysis hooks</div>
+          <div class="sys-sub">SEM — security events + policy + scanning</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- API SECTION -->
+<section class="api-section">
+  <div class="api-inner">
+    <div class="api-left reveal">
+      <h2>Versioned<br><em>API Surface</em></h2>
+      <p>Every qala capability is exposed through a clean REST API surface. All endpoints route through the central API Gateway with authentication, authorization, rate limiting, and observability enforced at the edge.</p>
+      <div class="api-services">
+        <div class="api-svc">
+          <span class="api-port">7000</span>
+          <span class="api-name">qala-kernel</span>
+          <span class="api-lang lang-rust">Rust</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8080</span>
+          <span class="api-name">api-gateway</span>
+          <span class="api-lang lang-go">Go</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8081</span>
+          <span class="api-name">user-identity-service</span>
+          <span class="api-lang lang-go">Go</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8082</span>
+          <span class="api-name">sde-management-service</span>
+          <span class="api-lang lang-go">Go</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8083</span>
+          <span class="api-name">workspace-cms-service</span>
+          <span class="api-lang lang-go">Go</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8084</span>
+          <span class="api-name">workflow-ci-cd-service</span>
+          <span class="api-lang lang-scala">Scala</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8085</span>
+          <span class="api-name">artifact-package-service</span>
+          <span class="api-lang lang-go">Go</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8086</span>
+          <span class="api-name">data-platform-service</span>
+          <span class="api-lang lang-scala">Scala</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8087</span>
+          <span class="api-name">ai-agents-service</span>
+          <span class="api-lang lang-rust">Rust</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8088</span>
+          <span class="api-name">security-sem-service</span>
+          <span class="api-lang lang-rust">Rust</span>
+        </div>
+        <div class="api-svc">
+          <span class="api-port">8089</span>
+          <span class="api-name">notifications-service</span>
+          <span class="api-lang lang-scala">Scala</span>
+        </div>
+      </div>
+    </div>
+    <div class="api-right reveal">
+      <div class="code-tabs">
+        <div class="code-tab active">Solution API</div>
+      </div>
+<pre><span class="c-cmt">// Create a new Solution</span>
+<span class="c-key">POST</span> /solutions
+{
+  <span class="c-str">"name"</span>:    <span class="c-str">"payments-platform"</span>,
+  <span class="c-str">"type"</span>:    <span class="c-str">"platform"</span>,
+  <span class="c-str">"version"</span>: <span class="c-str">"1.0.0"</span>,
+  <span class="c-str">"maturity"</span>: <span class="c-str">"SANDBOX"</span>,
+  <span class="c-str">"owner"</span>:   <span class="c-str">"team-payments"</span>,
+  <span class="c-str">"tags"</span>:    [<span class="c-str">"fintech"</span>, <span class="c-str">"core"</span>]
+}
+
+<span class="c-cmt">// Add a component to the Solution</span>
+<span class="c-key">POST</span> /solutions/<span class="c-num">{id}</span>/components
+{
+  <span class="c-str">"name"</span>: <span class="c-str">"auth-module"</span>,
+  <span class="c-str">"type"</span>: <span class="c-str">"module"</span>,
+  <span class="c-str">"design"</span>: <span class="c-str">"blueprint://auth-v2"</span>
+}
+
+<span class="c-cmt">// Promote Solution maturity</span>
+<span class="c-key">POST</span> /solutions/<span class="c-num">{id}</span>/maturity
+{
+  <span class="c-str">"target"</span>: <span class="c-str">"DEV"</span>,
+  <span class="c-str">"justification"</span>: <span class="c-str">"CI passing"</span>
+}
+
+<span class="c-cmt">// Create an SDE in a Factory</span>
+<span class="c-key">POST</span> /factories/<span class="c-num">{id}</span>/sdes
+{
+  <span class="c-str">"template"</span>: <span class="c-str">"go-microservice-v3"</span>,
+  <span class="c-str">"solution_ref"</span>: <span class="c-str">"sol_payments"</span>
+}
+
+<span class="c-cmt">// Snapshot an SDE</span>
+<span class="c-key">POST</span> /sdes/<span class="c-num">{id}</span>/snapshot
+<span class="c-cmt">// → { "snapshot_id": "snap_44f3a...", "version": 12 }</span>
+</pre>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- EXPLORE MORE PAGES -->
+<section class="pages-section">
+  <div class="pages-inner">
+    <h2>Explore <em>qala</em> in depth</h2>
+    <div class="pages-grid">
+      <a href="solution.html" class="page-card reveal">
+        <span class="page-num">Page 01</span>
+        <div class="page-title">Solution Model</div>
+        <div class="page-desc">The Solution as root element — components, parts, data, features, structure hierarchy, and the type system.</div>
+      </a>
+      <a href="factory.html" class="page-card reveal">
+        <span class="page-num">Page 02</span>
+        <div class="page-title">Factory & SDE</div>
+        <div class="page-desc">How Solution Factories produce Solutions — SDE architecture, hermetic builds, CI/CD, and the factory hierarchy.</div>
+      </a>
+      <a href="lifecycle.html" class="page-card reveal">
+        <span class="page-num">Page 03</span>
+        <div class="page-title">Lifecycle & Governance</div>
+        <div class="page-desc">The full value chain from ideation to retirement — maturity gates, solution book, orchestration, and governance.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">q<span>a</span>la</div>
+  <div class="footer-links">
+    <a href="index.html">Overview</a>
+    <a href="solution.html">Solution</a>
+    <a href="factory.html">Factory & SDE</a>
+    <a href="lifecycle.html">Lifecycle</a>
+  </div>
+  <div class="footer-copy">SFOS v2.0 · Confidential · Internal Draft</div>
+</footer>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top  = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top  = e.clientY + 'px';
+  }, 80);
+});
+document.querySelectorAll('a,button,.sys-card,.mat-stage,.sol-type-row').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '20px'; cursor.style.height = '20px';
+    ring.style.width = '50px'; ring.style.height = '50px';
+    ring.style.opacity = '0.8';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '10px'; cursor.style.height = '10px';
+    ring.style.width = '36px'; ring.style.height = '36px';
+    ring.style.opacity = '0.5';
+  });
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (e.target.dataset.delay || 0) + 'ms';
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => io.observe(r));
+</script>
+</body>
+</html>

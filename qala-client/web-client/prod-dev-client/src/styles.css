@@ -20,6 +20,10 @@
     --red-text: #d98080;
     --yellow-text: #d4b97a;
     --sidebar-w: 220px;
+    --scrollbar-size: 6px;
+    --scrollbar-track: rgba(6, 14, 30, 0.45);
+    --scrollbar-thumb: rgba(178, 153, 138, 0.35);
+    --scrollbar-thumb-hover: rgba(178, 153, 138, 0.6);
 
     /* legacy theme vars (mapped to primary palette) */
     --bg-void: #0a1222;
@@ -95,11 +99,76 @@
     color: inherit;
     text-decoration: none;
   }
+
+  html {
+    scrollbar-gutter: stable both-edges;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar {
+    width: var(--scrollbar-size) !important;
+    height: var(--scrollbar-size);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track) !important;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb) !important;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover) !important;
+  }
 }
 
 @layer components {
   /* App shell */
   .app-shell {
+    --primary: #0a0f1c;
+    --primary-mid: #0d1424;
+    --primary-light: #16233b;
+    --secondary: #f2ede4;
+    --tertiary: #d6cdc3;
+    --quaternary: #c3a993;
+    --quinary: #8a6f5a;
+    --border: rgba(214, 205, 195, 0.12);
+    --border-md: rgba(214, 205, 195, 0.18);
+    --surface: rgba(242, 237, 228, 0.04);
+    --surface-md: rgba(242, 237, 228, 0.08);
+    --blue: #3b6dff;
+    --blue-light: #6b8dff;
+    --blue-glow: rgba(59, 109, 255, 0.35);
+    --green-text: #57dcb2;
+    --red-text: #ff7b7b;
+    --yellow-text: #f2c76f;
+    --teal: #57dcb2;
+    --violet: #9a7dff;
+    --ok: #57dcb2;
+    --warn: #f2c76f;
+    --err: #ff7b7b;
+    --info: #9a7dff;
+    --paper: #0a0f1c;
+    --paper2: #0f1628;
+    --paper3: #15223b;
+    --ink: #f2ede4;
+    --accent: #3b6dff;
+    --red: #ff6b6b;
+    --green: #39d8a6;
+    --amber: #f2b85c;
+    --purple: #9a7dff;
+    --rule: rgba(214, 205, 195, 0.22);
+    --scrollbar-track: rgba(6, 12, 24, 0.7);
+    --scrollbar-thumb: rgba(108, 141, 255, 0.55);
+    --scrollbar-thumb-hover: rgba(108, 141, 255, 0.85);
     display: flex;
     height: 100vh;
     background: var(--primary);
@@ -119,7 +188,7 @@
     width: var(--sidebar-w);
     flex-shrink: 0;
     height: 100vh;
-    background: linear-gradient(180deg, #0c1628, #060e1e);
+    background: linear-gradient(180deg, #0b1222, #050912);
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
@@ -138,7 +207,7 @@
     width: 34px;
     height: 34px;
     border-radius: 8px;
-    background: linear-gradient(135deg, #2943c6, #1c295c);
+    background: linear-gradient(135deg, var(--blue), #1c295c);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -205,9 +274,9 @@
     font-family: "JetBrains Mono", monospace;
     padding: 2px 7px;
     border-radius: 4px;
-    background: rgba(41, 67, 198, 0.2);
-    color: #8aaaf5;
-    border: 1px solid rgba(41, 67, 198, 0.3);
+    background: rgba(59, 109, 255, 0.22);
+    color: var(--violet);
+    border: 1px solid rgba(59, 109, 255, 0.35);
   }
 
   .nav {
@@ -294,7 +363,7 @@
     gap: 14px;
     justify-content: space-between;
     padding: 0 24px;
-    background: rgba(6, 14, 30, 0.75);
+    background: rgba(4, 10, 22, 0.82);
     backdrop-filter: blur(10px);
     flex-shrink: 0;
   }
@@ -419,7 +488,7 @@
     align-items: center;
     padding: 0 28px;
     gap: 16px;
-    background: rgba(6, 14, 30, 0.8);
+    background: rgba(4, 10, 22, 0.88);
     backdrop-filter: blur(10px);
     flex-shrink: 0;
   }
@@ -487,7 +556,7 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: #c4504a;
+    background: var(--err);
     position: absolute;
     top: 6px;
     right: 6px;
@@ -629,7 +698,8 @@
     justify-content: center;
     background: linear-gradient(120deg, #060e1e, #0b1326, #0f172a);
     color: var(--secondary);
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
   }
 
