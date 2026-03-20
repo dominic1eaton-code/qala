@@ -1,0 +1,92 @@
+<div class="auth-container">
+  <div class="auth-left">
+    <div class="logo-badge">
+      <div class="logo-icon">Q</div>
+      <div class="logo-name">qala</div>
+    </div>
+    <div class="left-heading">Configure your<br>Solution Factory.</div>
+    <div class="left-sub">Your factory is the governed environment<br>that produces all your solutions.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num done">✓</div>
+        <div class="step-text"><strong>Create Account</strong><span>Identity &amp; credentials</span></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num active">02</div>
+        <div class="step-text"><strong>Configure Factory</strong><span>Name your workspace &amp; tier</span></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num pending">03</div>
+        <div class="step-text"><strong>Invite Team</strong><span>Collaborators &amp; roles</span></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num pending">04</div>
+        <div class="step-text"><strong>Launch Pipeline</strong><span>Deploy your first solution</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <div class="form-box">
+      <div class="form-title">Configure Factory</div>
+      <div class="form-sub">Step 2 of 4 — Workspace &amp; factory tier</div>
+
+      <span class="field-label">Factory name</span>
+      <div class="input-wrap">
+        <input type="text" placeholder="e.g. Acme Engineering, My Projects">
+      </div>
+
+      <span class="field-label">Factory namespace</span>
+      <div class="input-wrap">
+        <input
+          type="text"
+          [value]="namespace"
+          (input)="formatNamespace($event.target.value)"
+          placeholder="acme-engineering"
+        >
+      </div>
+
+      <span class="field-label">Factory Tier</span>
+      <div class="tier-grid">
+        <label
+          class="tier-card"
+          [class.selected]="selectedTier === tier.id"
+          *ngFor="let tier of tiers"
+          (click)="selectTier(tier.id)"
+        >
+          <input type="radio" [value]="tier.id" name="tier">
+          <div class="tier-dot"></div>
+          <div class="tier-name">{{ tier.name }}</div>
+          <div class="tier-desc">{{ tier.description }}</div>
+        </label>
+      </div>
+
+      <span class="field-label">Primary solution domain</span>
+      <div class="input-wrap">
+        <select>
+          <option value="" disabled selected>Select domain…</option>
+          <option>Software / Applications</option>
+          <option>Physical Products / Goods</option>
+          <option>Services / Platforms</option>
+          <option>Hardware / Systems</option>
+          <option>Research / R&amp;D</option>
+          <option>Mixed / Other</option>
+        </select>
+      </div>
+
+      <span class="field-label">Factory description <span class="field-label-light">(optional)</span></span>
+      <div class="input-wrap">
+        <textarea rows="2" placeholder="What does this factory produce?"></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" routerLink="/onboarding">← Back</button>
+        <button class="btn-primary" routerLink="/onboarding/invite">Configure &amp; Continue →</button>
+      </div>
+      <div class="footer">qala SFOS · Solution Factory Workspace · v1.0</div>
+    </div>
+  </div>
+</div>

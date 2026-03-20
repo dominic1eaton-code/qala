@@ -1,0 +1,60 @@
+<div class="auth-container">
+  <div class="auth-left">
+    <div class="logo-badge">
+      <div class="logo-icon">Q</div>
+      <div class="logo-name">qala</div>
+    </div>
+
+    <div class="wordmark">
+      <div class="highlight-text">solutions managed in one place</div>
+    </div>
+
+    <div class="features">
+      <div>Design, Build, Deploy Solutions</div>
+      <div>Hermetic Build Environments</div>
+      <div>CI/CD Factory Pipelines</div>
+      <div>Distributed Solution Registry</div>
+      <div>AI-Driven Development Intelligence</div>
+      <div>Multi-Tier Solution Factories</div>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <div class="login-box">
+      <div class="login-title">Access Factory</div>
+
+      <div class="input-wrap">
+        <input type="email" placeholder="Email address">
+      </div>
+
+      <div class="input-wrap">
+        <input [type]="showPassword ? 'text' : 'password'" placeholder="Password">
+        <span class="show-toggle" (click)="togglePassword()">
+          {{ showPassword ? 'HIDE' : 'SHOW' }}
+        </span>
+      </div>
+
+      <div class="row-meta">
+        <label class="checkbox-label">
+          <input type="checkbox"> Keep me signed in
+        </label>
+        <a class="forgot-link" href="#">Forgot password?</a>
+      </div>
+
+      <button routerLink="/overview/dashboard">Login to Factory</button>
+
+      <div class="divider">OR CONTINUE WITH</div>
+
+      <div class="sso">
+        <button>GitHub</button>
+        <button>Google</button>
+        <button>SSO</button>
+      </div>
+
+      <div class="footer">
+        Don't have an account? <a class="create-link" routerLink="/register">Create one free</a>
+        <span class="version">qala SFOS · Solution Factory Workspace · v1.0</span>
+      </div>
+    </div>
+  </div>
+</div>
