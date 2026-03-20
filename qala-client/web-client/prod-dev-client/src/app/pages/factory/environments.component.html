@@ -1,0 +1,208 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Environments <span>/ Solution Development Environments · 8 SDEs</span></div>
+    <button class="tb-btn">Filter State ▾</button>
+    <button class="tb-btn">Filter Maturity ▾</button>
+    <button class="tb-btn primary">+ New SDE</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="mb">
+
+    <div class="stat-row">
+      <div class="sc"><div class="sl">Total SDEs</div><div class="sv">8</div><div class="ss">In factory</div></div>
+      <div class="sc"><div class="sl">Active</div><div class="sv" style="color:#7fc4a0">6</div><div class="ss">Fully operational</div></div>
+      <div class="sc"><div class="sl">Suspended</div><div class="sv" style="color:#d4b97a">1</div><div class="ss">State preserved</div></div>
+      <div class="sc"><div class="sl">Snapshots</div><div class="sv">24</div><div class="ss">Across all SDEs</div></div>
+      <div class="sc"><div class="sl">Quarantined</div><div class="sv" style="color:#d98080">0</div><div class="ss">All clean</div></div>
+    </div>
+
+    <div class="sde-grid">
+
+      <!-- SDE 1 -->
+      <div class="sde-card">
+        <div class="sde-card-top">
+          <div class="sde-header">
+            <div><div class="sde-name">sde-api-main</div><div class="sde-id">sde-0x4f2c · Go Backend</div></div>
+            <span class="sde-state state-active">ACTIVE</span>
+          </div>
+          <div class="sde-meta-row">
+            <span class="sde-meta-tag">CM</span>
+            <span class="sde-meta-tag">Customer API</span>
+            <span class="sde-meta-tag">Alex Jordan</span>
+          </div>
+        </div>
+        <div class="sde-card-mid">
+          <div class="sde-stat-row">
+            <div class="sde-stat"><div class="sde-stat-v">4</div><div class="sde-stat-l">Solutions</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">v8</div><div class="sde-stat-l">Snapshot</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">12d</div><div class="sde-stat-l">Active</div></div>
+          </div>
+        </div>
+        <div class="res-bars">
+          <div class="res-row"><span class="res-label">CPU</span><div class="res-track"><div class="res-fill" style="width:38%;background:linear-gradient(90deg,#2943c6,#4a6fd4)"></div></div><span class="res-pct">38%</span></div>
+          <div class="res-row"><span class="res-label">MEM</span><div class="res-track"><div class="res-fill" style="width:62%;background:linear-gradient(90deg,var(--quinary),var(--quaternary))"></div></div><span class="res-pct">62%</span></div>
+          <div class="res-row"><span class="res-label">DISK</span><div class="res-track"><div class="res-fill" style="width:28%;background:linear-gradient(90deg,#2d6b47,#3a9e62)"></div></div><span class="res-pct">28%</span></div>
+        </div>
+        <div class="sde-actions">
+          <button class="sde-btn primary">Open</button>
+          <button class="sde-btn snap">📷 Snapshot</button>
+          <button class="sde-btn">Clone</button>
+          <button class="sde-btn">Suspend</button>
+        </div>
+      </div>
+
+      <!-- SDE 2 -->
+      <div class="sde-card">
+        <div class="sde-card-top">
+          <div class="sde-header">
+            <div><div class="sde-name">sde-analytics-01</div><div class="sde-id">sde-0x7b3d · Go Backend</div></div>
+            <span class="sde-state state-active">ACTIVE</span>
+          </div>
+          <div class="sde-meta-row">
+            <span class="sde-meta-tag">TEST</span>
+            <span class="sde-meta-tag">Analytics Dashboard</span>
+            <span class="sde-meta-tag">Sara Mitchell</span>
+          </div>
+        </div>
+        <div class="sde-card-mid">
+          <div class="sde-stat-row">
+            <div class="sde-stat"><div class="sde-stat-v">2</div><div class="sde-stat-l">Solutions</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">v5</div><div class="sde-stat-l">Snapshot</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">7d</div><div class="sde-stat-l">Active</div></div>
+          </div>
+        </div>
+        <div class="res-bars">
+          <div class="res-row"><span class="res-label">CPU</span><div class="res-track"><div class="res-fill" style="width:71%;background:linear-gradient(90deg,#8b6f2a,#c4944a)"></div></div><span class="res-pct">71%</span></div>
+          <div class="res-row"><span class="res-label">MEM</span><div class="res-track"><div class="res-fill" style="width:55%;background:linear-gradient(90deg,var(--quinary),var(--quaternary))"></div></div><span class="res-pct">55%</span></div>
+          <div class="res-row"><span class="res-label">DISK</span><div class="res-track"><div class="res-fill" style="width:41%;background:linear-gradient(90deg,#2d6b47,#3a9e62)"></div></div><span class="res-pct">41%</span></div>
+        </div>
+        <div class="sde-actions">
+          <button class="sde-btn primary">Open</button>
+          <button class="sde-btn snap">📷 Snapshot</button>
+          <button class="sde-btn">Clone</button>
+          <button class="sde-btn">Rollback</button>
+        </div>
+      </div>
+
+      <!-- SDE 3 -->
+      <div class="sde-card">
+        <div class="sde-card-top">
+          <div class="sde-header">
+            <div><div class="sde-name">sde-data-main</div><div class="sde-id">sde-0x2e9a · Go Backend</div></div>
+            <span class="sde-state state-quarantine">RISK</span>
+          </div>
+          <div class="sde-meta-row">
+            <span class="sde-meta-tag">DEV</span>
+            <span class="sde-meta-tag">Data Ingestion</span>
+            <span class="sde-meta-tag" style="color:#d98080;border-color:rgba(139,58,58,0.3)">SAST Blocked</span>
+          </div>
+        </div>
+        <div class="sde-card-mid">
+          <div class="sde-stat-row">
+            <div class="sde-stat"><div class="sde-stat-v">1</div><div class="sde-stat-l">Solutions</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">v3</div><div class="sde-stat-l">Snapshot</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">3d</div><div class="sde-stat-l">Active</div></div>
+          </div>
+        </div>
+        <div class="res-bars">
+          <div class="res-row"><span class="res-label">CPU</span><div class="res-track"><div class="res-fill" style="width:22%;background:linear-gradient(90deg,#2943c6,#4a6fd4)"></div></div><span class="res-pct">22%</span></div>
+          <div class="res-row"><span class="res-label">MEM</span><div class="res-track"><div class="res-fill" style="width:34%;background:linear-gradient(90deg,var(--quinary),var(--quaternary))"></div></div><span class="res-pct">34%</span></div>
+          <div class="res-row"><span class="res-label">DISK</span><div class="res-track"><div class="res-fill" style="width:18%;background:linear-gradient(90deg,#2d6b47,#3a9e62)"></div></div><span class="res-pct">18%</span></div>
+        </div>
+        <div class="sde-actions">
+          <button class="sde-btn primary">Open</button>
+          <button class="sde-btn">Rollback</button>
+          <button class="sde-btn danger">Quarantine</button>
+        </div>
+      </div>
+
+      <!-- SDE 4 -->
+      <div class="sde-card">
+        <div class="sde-card-top">
+          <div class="sde-header">
+            <div><div class="sde-name">sde-auth-dev</div><div class="sde-id">sde-0x6c1f · Go Backend</div></div>
+            <span class="sde-state state-active">ACTIVE</span>
+          </div>
+          <div class="sde-meta-row">
+            <span class="sde-meta-tag">DEV</span>
+            <span class="sde-meta-tag">Auth Platform</span>
+            <span class="sde-meta-tag">Alex Jordan</span>
+          </div>
+        </div>
+        <div class="sde-card-mid">
+          <div class="sde-stat-row">
+            <div class="sde-stat"><div class="sde-stat-v">2</div><div class="sde-stat-l">Solutions</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">v4</div><div class="sde-stat-l">Snapshot</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">5d</div><div class="sde-stat-l">Active</div></div>
+          </div>
+        </div>
+        <div class="res-bars">
+          <div class="res-row"><span class="res-label">CPU</span><div class="res-track"><div class="res-fill" style="width:45%;background:linear-gradient(90deg,#2943c6,#4a6fd4)"></div></div><span class="res-pct">45%</span></div>
+          <div class="res-row"><span class="res-label">MEM</span><div class="res-track"><div class="res-fill" style="width:48%;background:linear-gradient(90deg,var(--quinary),var(--quaternary))"></div></div><span class="res-pct">48%</span></div>
+          <div class="res-row"><span class="res-label">DISK</span><div class="res-track"><div class="res-fill" style="width:22%;background:linear-gradient(90deg,#2d6b47,#3a9e62)"></div></div><span class="res-pct">22%</span></div>
+        </div>
+        <div class="sde-actions">
+          <button class="sde-btn primary">Open</button>
+          <button class="sde-btn snap">📷 Snapshot</button>
+          <button class="sde-btn">Clone</button>
+        </div>
+      </div>
+
+      <!-- SDE 5 - Provisioning -->
+      <div class="sde-card">
+        <div class="sde-card-top">
+          <div class="sde-header">
+            <div><div class="sde-name">sde-mobile-01</div><div class="sde-id">sde-0x3a7e · React Native</div></div>
+            <span class="sde-state state-prov">PROVISIONING</span>
+          </div>
+          <div class="sde-meta-row">
+            <span class="sde-meta-tag">SANDBOX</span>
+            <span class="sde-meta-tag">Mobile App</span>
+            <span class="sde-meta-tag">Alex Jordan</span>
+          </div>
+        </div>
+        <div class="sde-card-mid">
+          <div style="padding:4px 0;font-size:12px;color:var(--quinary)">Applying template… installing toolchain</div>
+          <div style="height:4px;background:rgba(205,195,189,0.07);border-radius:2px;overflow:hidden;margin-top:8px">
+            <div style="height:100%;width:60%;background:linear-gradient(90deg,#1c295c,#4a6fd4);border-radius:2px;animation:prog 2s ease-in-out infinite alternate"></div>
+          </div>
+          <style>@keyframes prog{0%{width:40%}100%{width:80%}}</style>
+        </div>
+        <div class="sde-actions">
+          <button class="sde-btn" style="color:var(--quinary)">Cancel Provisioning</button>
+        </div>
+      </div>
+
+      <!-- SDE 6 - Suspended -->
+      <div class="sde-card" style="opacity:0.7">
+        <div class="sde-card-top">
+          <div class="sde-header">
+            <div><div class="sde-name">sde-sandbox-legacy</div><div class="sde-id">sde-0x8d4b · Mixed</div></div>
+            <span class="sde-state state-suspended">SUSPENDED</span>
+          </div>
+          <div class="sde-meta-row">
+            <span class="sde-meta-tag">SANDBOX</span>
+            <span class="sde-meta-tag" style="color:#d4b97a;border-color:rgba(196,148,74,0.3)">Idle 52h</span>
+          </div>
+        </div>
+        <div class="sde-card-mid">
+          <div class="sde-stat-row">
+            <div class="sde-stat"><div class="sde-stat-v">0</div><div class="sde-stat-l">Solutions</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">v2</div><div class="sde-stat-l">Snapshot</div></div>
+            <div class="sde-stat"><div class="sde-stat-v">52h</div><div class="sde-stat-l">Idle</div></div>
+          </div>
+        </div>
+        <div style="padding:8px 12px;font-size:11.5px;color:var(--quinary);background:rgba(196,148,74,0.05);border-top:1px solid var(--border)">
+          ⚡ AI: Consider archiving — no active solutions. ~$3.20/day saved.
+        </div>
+        <div class="sde-actions">
+          <button class="sde-btn">Resume</button>
+          <button class="sde-btn">Archive</button>
+          <button class="sde-btn danger">Terminate</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>

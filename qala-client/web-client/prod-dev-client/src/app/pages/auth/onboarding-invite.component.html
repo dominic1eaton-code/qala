@@ -1,0 +1,66 @@
+<div class="auth-container">
+  <div class="auth-left">
+    <div class="logo-badge">
+      <div class="logo-icon">Q</div>
+      <div class="logo-name">qala</div>
+    </div>
+    <div class="left-heading">Invite your team<br>to the Factory.</div>
+    <div class="left-sub">Collaborate with the right roles in place.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num done">✓</div>
+        <div class="step-text"><strong>Create Account</strong><span>Identity &amp; credentials</span></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num done">✓</div>
+        <div class="step-text"><strong>Configure Factory</strong><span>Name your workspace &amp; tier</span></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num active">03</div>
+        <div class="step-text"><strong>Invite Team</strong><span>Collaborators &amp; roles</span></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num pending">04</div>
+        <div class="step-text"><strong>Launch Pipeline</strong><span>Deploy your first solution</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <div class="invite-box">
+      <div class="form-title">Invite Team</div>
+      <div class="form-sub">Step 3 of 4 — Collaborators &amp; roles</div>
+
+      <div class="invite-list">
+        <div class="invite-row" *ngFor="let invite of invites; let i = index">
+          <div class="input-wrap">
+            <input type="email" placeholder="name@company.com">
+          </div>
+          <div class="input-wrap">
+            <select>
+              <option>Developer</option>
+              <option>QA / Test</option>
+              <option>Platform / DevOps</option>
+              <option>Product Manager</option>
+              <option>Solutions Architect</option>
+              <option>Viewer</option>
+            </select>
+          </div>
+          <button class="remove-btn" (click)="removeRow(i)">×</button>
+        </div>
+      </div>
+
+      <button class="add-invite-btn" (click)="addRow()">+ Add another member</button>
+
+      <div class="btn-row">
+        <button class="btn-back" routerLink="/onboarding/factory">← Back</button>
+        <button class="btn-primary" routerLink="/onboarding/sde">Continue →</button>
+      </div>
+
+      <div class="footer">qala SFOS · Team Setup · v1.0</div>
+    </div>
+  </div>
+</div>

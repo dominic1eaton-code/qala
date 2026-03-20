@@ -1,0 +1,154 @@
+<div class="main">
+  <header class="topbar">
+    <div class="tb-crumb">qala <span style="opacity:.35">/</span> <b>SDEs</b></div>
+    <div class="tb-right">
+      <div class="tb-notif"></div>
+      <button class="tb-btn primary" onclick="alert('New SDE — select factory, template, language, configure')">+ New SDE</button>
+    </div>
+  </header>
+  <div class="scroll">
+    <div class="content">
+      <div class="pg-eye">Control Plane</div>
+      <div class="pg-title">Solution Development <em>Environments</em></div>
+      <div class="fbar">
+        <input class="f-inp" type="text" placeholder="Search SDEs…">
+        <button class="f-btn on">All (12)</button>
+        <button class="f-btn">Running</button>
+        <button class="f-btn">Building</button>
+        <button class="f-btn">Error</button>
+        <button class="f-btn">Idle</button>
+      </div>
+
+      <div class="sde-layout">
+        <!-- LEFT: SDE LIST -->
+        <div class="sde-list-panel">
+
+          <div class="sde-card selected" onclick="selectSde(this,'payments-factory-sde-01','sde_4f2a1b93','go · Factory: payments-sf · snap #14','running')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-run"></div>
+              <div class="sde-info"><div class="sde-name">payments-factory-sde-01</div><div class="sde-meta">Go · payments-sf · snap #14</div></div>
+              <span class="stag stag-g">Running</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+              <button class="a-btn">Workspace</button>
+              <button class="a-btn danger">Stop</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'identity-sde-03','sde_9c3d8e41','Go · core-sf · snap #6','building')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-build"></div>
+              <div class="sde-info"><div class="sde-name">identity-sde-03</div><div class="sde-meta">Go · core-sf · snap #6</div></div>
+              <span class="stag stag-a">Building</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'analytics-platform-sde','sde_2b8e6c77','Scala · data-sf · snap #9','running')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-run"></div>
+              <div class="sde-info"><div class="sde-name">analytics-platform-sde</div><div class="sde-meta">Scala · data-sf · snap #9</div></div>
+              <span class="stag stag-g">Running</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+              <button class="a-btn danger">Stop</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'security-sem-sde-02','sde_7a1c4f28','Rust · sec-sf · snap #3','error')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-err"></div>
+              <div class="sde-info"><div class="sde-name">security-sem-sde-02</div><div class="sde-meta">Rust · sec-sf · snap #3 · ⚠ quarantined</div></div>
+              <span class="stag stag-r">Error</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Rollback</button>
+              <button class="a-btn">Diagnose</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'notifications-sde-01','sde_5e9d3a12','Scala · exec-sf · snap #7','idle')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-idle"></div>
+              <div class="sde-info"><div class="sde-name">notifications-sde-01</div><div class="sde-meta">Scala · exec-sf · snap #7</div></div>
+              <span class="stag">Idle</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Start</button>
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+            </div>
+          </div>
+
+          <div class="sde-card" onclick="selectSde(this,'workflow-cicd-sde-01','sde_c2f1e8a5','Scala · exec-sf · snap #11','running')">
+            <div class="sde-card-top">
+              <div class="sdot sdot-run"></div>
+              <div class="sde-info"><div class="sde-name">workflow-cicd-sde-01</div><div class="sde-meta">Scala · exec-sf · snap #11 · hermetic</div></div>
+              <span class="stag stag-g">Running</span>
+            </div>
+            <div class="sde-actions-row">
+              <button class="a-btn">Snapshot</button>
+              <button class="a-btn">Configure</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: DETAIL PANEL -->
+        <div class="sde-detail" id="detailPanel">
+          <div class="detail-header">
+            <div class="dh-name" id="dh-name">payments-factory-sde-01</div>
+            <div class="dh-id" id="dh-id">sde_4f2a1b93 · Go · payments-sf</div>
+          </div>
+          <div class="detail-scroll">
+
+            <div class="d-section">
+              <div class="d-section-hd">Environment Variables</div>
+              <table class="env-tbl">
+                <tbody><tr><td class="env-key">APP_ENV</td><td class="env-val">production</td></tr>
+                <tr><td class="env-key">DB_HOST</td><td class="env-val">postgres-primary.internal</td></tr>
+                <tr><td class="env-key">DB_PORT</td><td class="env-val">5432</td></tr>
+                <tr><td class="env-key">KAFKA_BROKERS</td><td class="env-val">kafka-01:9092,kafka-02:9092</td></tr>
+                <tr><td class="env-key">LOG_LEVEL</td><td class="env-val">info</td></tr>
+                <tr><td class="env-key">HERMETIC_BUILD</td><td class="env-val">true</td></tr>
+                <tr><td class="env-key">KERNEL_ENDPOINT</td><td class="env-val">http://kernel:7000</td></tr>
+              </tbody></table>
+            </div>
+
+            <div class="d-section">
+              <div class="d-section-hd">Toolkits</div>
+              <div class="toolkit-grid">
+                <div class="tk-cell"><div class="tk-name">go-toolchain-1.22</div><div class="tk-meta">Build · 4 tools · hermetic</div></div>
+                <div class="tk-cell"><div class="tk-name">gotest-suite-v3</div><div class="tk-meta">Test · 8 tools · CI-linked</div></div>
+                <div class="tk-cell"><div class="tk-name">k8s-helm-v4</div><div class="tk-meta">Deploy · 6 tools · k8s</div></div>
+                <div class="tk-cell"><div class="tk-name">docker-buildkit</div><div class="tk-meta">Container · 3 tools</div></div>
+              </div>
+            </div>
+
+            <div class="d-section">
+              <div class="d-section-hd">Snapshots</div>
+              <div class="snap-row"><div class="snap-num">snap #14</div><div class="snap-date">Mar 14 09:30 UTC</div><div class="snap-hash">4f2a1b</div><button class="snap-btn">restore</button></div>
+              <div class="snap-row"><div class="snap-num">snap #13</div><div class="snap-date">Mar 13 18:12 UTC</div><div class="snap-hash">9c3d8e</div><button class="snap-btn">restore</button></div>
+              <div class="snap-row"><div class="snap-num">snap #12</div><div class="snap-date">Mar 13 09:44 UTC</div><div class="snap-hash">7a1c4f</div><button class="snap-btn">restore</button></div>
+              <div class="snap-row"><div class="snap-num">snap #11</div><div class="snap-date">Mar 12 22:03 UTC</div><div class="snap-hash">2b8e6c</div><button class="snap-btn">restore</button></div>
+            </div>
+
+            <div class="d-section">
+              <div class="d-section-hd">Solutions</div>
+              <div class="sol-chip-row"><div class="sol-chip-n">payments-platform</div><span class="mat-chip mc-in">INT</span></div>
+              <div class="sol-chip-row"><div class="sol-chip-n">payments-auth</div><span class="mat-chip mc-dv">DEV</span></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

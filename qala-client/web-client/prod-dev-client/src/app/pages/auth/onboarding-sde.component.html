@@ -1,0 +1,59 @@
+<div class="auth-container">
+  <div class="auth-left">
+    <div class="logo-badge">
+      <div class="logo-icon">Q</div>
+      <div class="logo-name">qala</div>
+    </div>
+    <div class="left-heading">Launch your first<br>Solution Environment.</div>
+    <div class="left-sub">Pick a template and provision your SDE.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num done">✓</div>
+        <div class="step-text"><strong>Create Account</strong><span>Identity &amp; credentials</span></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num done">✓</div>
+        <div class="step-text"><strong>Configure Factory</strong><span>Name your workspace &amp; tier</span></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num done">✓</div>
+        <div class="step-text"><strong>Invite Team</strong><span>Collaborators &amp; roles</span></div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-num active">04</div>
+        <div class="step-text"><strong>Launch Pipeline</strong><span>Deploy your first solution</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <div class="form-box">
+      <div class="form-title">Launch Pipeline</div>
+      <div class="form-sub">Step 4 of 4 — Choose SDE template</div>
+
+      <span class="field-label">SDE Template</span>
+      <div class="tmpl-grid">
+        <label
+          class="tmpl-card"
+          *ngFor="let tmpl of templates"
+          [class.selected]="selectedTemplate === tmpl.id"
+          (click)="selectTemplate(tmpl.id)"
+        >
+          <input type="radio" name="tmpl" [value]="tmpl.id">
+          <div class="tmpl-dot"></div>
+          <div class="tmpl-name">{{ tmpl.name }}</div>
+          <div class="tmpl-desc">{{ tmpl.description }}</div>
+        </label>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" routerLink="/onboarding/invite">← Back</button>
+        <button class="btn-primary" routerLink="/loading">Provision &amp; Launch →</button>
+      </div>
+      <div class="footer">qala SFOS · SDE Provisioning · v1.0</div>
+    </div>
+  </div>
+</div>

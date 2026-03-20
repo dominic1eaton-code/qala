@@ -1,0 +1,187 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Multi-Solution Tracking <span>/ All Solutions · Acme Engineering</span></div>
+    <button class="tb-btn">Group by ▾</button>
+    <button class="tb-btn">Filter ▾</button>
+    <button class="tb-btn">Export CSV</button>
+    <button class="tb-btn primary">+ Add Task</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="body">
+
+    <div class="stat-row">
+      <div class="sc"><div class="sl">Solutions</div><div class="sv">12</div><div class="ss">3 portfolios</div></div>
+      <div class="sc"><div class="sl">Active Tasks</div><div class="sv">38</div><div class="ss">Across all solutions</div></div>
+      <div class="sc"><div class="sl">On Track</div><div class="sv" style="color:#7fc4a0">29</div><div class="ss">76% of tasks</div></div>
+      <div class="sc"><div class="sl">At Risk</div><div class="sv" style="color:#d4b97a">6</div><div class="ss">Needs attention</div></div>
+      <div class="sc"><div class="sl">Overdue</div><div class="sv" style="color:#d98080">3</div><div class="ss">Action required</div></div>
+    </div>
+
+    <div class="tracking-table">
+      <div class="tt-header">
+        <div class="th">Solution / Task</div>
+        <div class="th">Status</div>
+        <div class="th">Priority</div>
+        <div class="th">Start</div>
+        <div class="th">End</div>
+        <div class="th">% Done</div>
+        <div class="th">Cost</div>
+        <div class="th">Hours</div>
+        <div class="th">Schedule Bar (Q1–Q2 2026)</div>
+        <div class="th">Owner</div>
+      </div>
+
+      <!-- PROJECT 1: Customer API -->
+      <div class="pg-header">
+        <div class="pg-cell"><div class="pg-color" style="background:#4a6fd4"></div><span class="pg-name">Customer API v3.0</span></div>
+        <div class="pg-cell"><span class="badge bs-ip">In Progress</span></div>
+        <div class="pg-cell"><span class="badge bp-hi">HIGH</span></div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">Mar 19</div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">Jul 01</div>
+        <div class="pg-cell">
+          <div style="display:flex;flex-direction:column;gap:3px;width:100%">
+            <div class="prog-track"><div class="prog-fill" style="width:18%;background:linear-gradient(90deg,#2943c6,#4a6fd4)"></div></div>
+            <span class="pct-label">18%</span>
+          </div>
+        </div>
+        <div class="pg-cell"><span class="cost">$28,400</span></div>
+        <div class="pg-cell"><span class="cost">486h</span></div>
+        <div class="pg-cell">
+          <div class="mini-gantt">
+            <div class="mg-today" style="left:45%"></div>
+            <div class="mg-bar" style="left:45%;width:38%;background:rgba(74,111,212,0.5)"></div>
+          </div>
+        </div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary)">Alex J.</div>
+      </div>
+      <div class="task-row">
+        <div class="tc tc-indent">3.1 Architecture &amp; Design</div>
+        <div class="tc"><span class="badge bs-ip">In Progress</span></div>
+        <div class="tc"><span class="badge bp-hi">HIGH</span></div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Mar 19</div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Apr 15</div>
+        <div class="tc"><div style="display:flex;align-items:center;gap:6px"><div class="prog-track" style="width:60px"><div class="prog-fill" style="width:35%;background:#4a6fd4"></div></div><span class="pct-label">35%</span></div></div>
+        <div class="tc"><span class="cost">$6,200</span></div>
+        <div class="tc"><span class="cost">112h</span></div>
+        <div class="tc"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:45%;width:12%;background:rgba(74,111,212,0.6)"></div></div></div>
+        <div class="tc" style="font-size:11px;color:var(--quinary)">Alex J.</div>
+      </div>
+      <div class="task-row">
+        <div class="tc tc-indent" style="color:#d98080">3.2.1 Legacy Crypto Fix ⚠</div>
+        <div class="tc"><span class="badge bs-ip">In Progress</span></div>
+        <div class="tc"><span class="badge bp-hi">HIGH</span></div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Mar 19</div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#d98080">Mar 28 !</div>
+        <div class="tc"><div style="display:flex;align-items:center;gap:6px"><div class="prog-track" style="width:60px"><div class="prog-fill" style="width:20%;background:#c4504a"></div></div><span class="pct-label">20%</span></div></div>
+        <div class="tc"><span class="cost">$800</span></div>
+        <div class="tc"><span class="cost">14h</span></div>
+        <div class="tc"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:45%;width:4%;background:rgba(196,80,74,0.8)"></div></div></div>
+        <div class="tc" style="font-size:11px;color:var(--quinary)">Jamie O.</div>
+      </div>
+      <div class="task-row">
+        <div class="tc tc-indent">3.2.2 Federation Gateway</div>
+        <div class="tc"><span class="badge bs-ns">Not Started</span></div>
+        <div class="tc"><span class="badge bp-hi">HIGH</span></div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Apr 22</div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">May 28</div>
+        <div class="tc"><div style="display:flex;align-items:center;gap:6px"><div class="prog-track" style="width:60px"><div class="prog-fill" style="width:0%;background:#4a6fd4"></div></div><span class="pct-label">0%</span></div></div>
+        <div class="tc"><span class="cost">$12,400</span></div>
+        <div class="tc"><span class="cost">220h</span></div>
+        <div class="tc"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:57%;width:18%;background:rgba(41,67,198,0.4)"></div></div></div>
+        <div class="tc" style="font-size:11px;color:var(--quinary)">Alex J.</div>
+      </div>
+
+      <!-- PROJECT 2: Analytics Dashboard -->
+      <div class="pg-header">
+        <div class="pg-cell"><div class="pg-color" style="background:#c4944a"></div><span class="pg-name">Analytics Dashboard v1.2.0</span></div>
+        <div class="pg-cell"><span class="badge bs-hold">CM Pending</span></div>
+        <div class="pg-cell"><span class="badge bp-hi">HIGH</span></div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">Jan 15</div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">Mar 25</div>
+        <div class="pg-cell"><div style="display:flex;flex-direction:column;gap:3px;width:100%"><div class="prog-track"><div class="prog-fill" style="width:92%;background:linear-gradient(90deg,#2d6b47,#3a9e62)"></div></div><span class="pct-label">92%</span></div></div>
+        <div class="pg-cell"><span class="cost">$16,700</span></div>
+        <div class="pg-cell"><span class="cost">310h</span></div>
+        <div class="pg-cell"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:10%;width:36%;background:rgba(196,148,74,0.7)"></div></div></div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary)">Sara M.</div>
+      </div>
+      <div class="task-row">
+        <div class="tc tc-indent">Cross-portfolio compare dashboard</div>
+        <div class="tc"><span class="badge bs-done">Complete</span></div>
+        <div class="tc"><span class="badge bp-hi">HIGH</span></div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Feb 01</div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Mar 12</div>
+        <div class="tc"><div style="display:flex;align-items:center;gap:6px"><div class="prog-track" style="width:60px"><div class="prog-fill" style="width:100%;background:#3a9e62"></div></div><span class="pct-label">100%</span></div></div>
+        <div class="tc"><span class="cost">$6,380</span></div>
+        <div class="tc"><span class="cost">115h</span></div>
+        <div class="tc"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:16%;width:28%;background:rgba(45,107,71,0.6)"></div></div></div>
+        <div class="tc" style="font-size:11px;color:var(--quinary)">Sara M.</div>
+      </div>
+      <div class="task-row">
+        <div class="tc tc-indent">CM board sign-off</div>
+        <div class="tc"><span class="badge bs-hold">Pending</span></div>
+        <div class="tc"><span class="badge bp-hi">HIGH</span></div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Mar 19</div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Mar 22</div>
+        <div class="tc"><div style="display:flex;align-items:center;gap:6px"><div class="prog-track" style="width:60px"><div class="prog-fill" style="width:66%;background:#c4944a"></div></div><span class="pct-label">66%</span></div></div>
+        <div class="tc"><span class="cost">—</span></div>
+        <div class="tc"><span class="cost">3h</span></div>
+        <div class="tc"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:45%;width:2%;background:rgba(196,148,74,0.8)"></div></div></div>
+        <div class="tc" style="font-size:11px;color:var(--quinary)">CM Board</div>
+      </div>
+
+      <!-- PROJECT 3: Data Ingestion -->
+      <div class="pg-header">
+        <div class="pg-cell"><div class="pg-color" style="background:#c4504a"></div><span class="pg-name">Data Ingestion Pipeline v0.2</span></div>
+        <div class="pg-cell"><span class="badge bs-over">CI Blocked</span></div>
+        <div class="pg-cell"><span class="badge bp-hi">HIGH</span></div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">Jan 10</div>
+        <div class="pg-cell" style="font-size:11px;color:#d98080;font-family:'JetBrains Mono',monospace">Apr 25 !</div>
+        <div class="pg-cell"><div style="display:flex;flex-direction:column;gap:3px;width:100%"><div class="prog-track"><div class="prog-fill" style="width:22%;background:linear-gradient(90deg,#8b3a3a,#c4504a)"></div></div><span class="pct-label">22%</span></div></div>
+        <div class="pg-cell"><span class="cost">$8,350</span></div>
+        <div class="pg-cell"><span class="cost">194h</span></div>
+        <div class="pg-cell"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:5%;width:42%;background:rgba(196,80,74,0.4)"></div></div></div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary)">Jamie O.</div>
+      </div>
+      <div class="task-row">
+        <div class="tc tc-indent" style="color:#d98080">CVE-2024-3094 remediation ⚠</div>
+        <div class="tc"><span class="badge bs-over">Overdue</span></div>
+        <div class="tc"><span class="badge bp-hi">HIGH</span></div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Mar 15</div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#d98080">Mar 20 !</div>
+        <div class="tc"><div style="display:flex;align-items:center;gap:6px"><div class="prog-track" style="width:60px"><div class="prog-fill" style="width:40%;background:#c4504a"></div></div><span class="pct-label">40%</span></div></div>
+        <div class="tc"><span class="cost">$600</span></div>
+        <div class="tc"><span class="cost">12h</span></div>
+        <div class="tc"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:41%;width:3%;background:rgba(196,80,74,0.9)"></div></div></div>
+        <div class="tc" style="font-size:11px;color:var(--quinary)">Jamie O.</div>
+      </div>
+      <div class="task-row">
+        <div class="tc tc-indent">Schema v2 migration</div>
+        <div class="tc"><span class="badge bs-ns">Blocked</span></div>
+        <div class="tc"><span class="badge bp-hi">HIGH</span></div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Mar 22</div>
+        <div class="tc" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">Apr 12</div>
+        <div class="tc"><div style="display:flex;align-items:center;gap:6px"><div class="prog-track" style="width:60px"><div class="prog-fill" style="width:0%;background:#c4504a"></div></div><span class="pct-label">0%</span></div></div>
+        <div class="tc"><span class="cost">$3,200</span></div>
+        <div class="tc"><span class="cost">58h</span></div>
+        <div class="tc"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:47%;width:14%;background:rgba(196,80,74,0.35)"></div></div></div>
+        <div class="tc" style="font-size:11px;color:var(--quinary)">Jamie O.</div>
+      </div>
+
+      <!-- PROJECT 4: Auth Platform -->
+      <div class="pg-header">
+        <div class="pg-cell"><div class="pg-color" style="background:#4a6fd4"></div><span class="pg-name">Auth Platform v1.0</span></div>
+        <div class="pg-cell"><span class="badge bs-ip">In Progress</span></div>
+        <div class="pg-cell"><span class="badge bp-hi">HIGH</span></div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">Feb 01</div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">Sep 01</div>
+        <div class="pg-cell"><div style="display:flex;flex-direction:column;gap:3px;width:100%"><div class="prog-track"><div class="prog-fill" style="width:30%;background:linear-gradient(90deg,#2943c6,#4a6fd4)"></div></div><span class="pct-label">30%</span></div></div>
+        <div class="pg-cell"><span class="cost">$42,000</span></div>
+        <div class="pg-cell"><span class="cost">760h</span></div>
+        <div class="pg-cell"><div class="mini-gantt"><div class="mg-today" style="left:45%"></div><div class="mg-bar" style="left:14%;width:72%;background:rgba(41,67,198,0.45)"></div></div></div>
+        <div class="pg-cell" style="font-size:11px;color:var(--quinary)">Alex J.</div>
+      </div>
+
+    </div>
+  </div>
+</main>

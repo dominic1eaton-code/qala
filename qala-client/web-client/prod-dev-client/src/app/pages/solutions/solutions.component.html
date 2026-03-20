@@ -1,0 +1,212 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Solutions <span>/ Registry · 12 solutions</span></div>
+    <input class="search-input" placeholder="🔍  Search solutions…">
+    <button class="tb-btn">Type ▾</button>
+    <button class="tb-btn">Maturity ▾</button>
+    <button class="tb-btn">Owner ▾</button>
+    <button class="tb-btn primary">+ New Solution</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="content-area">
+    <div class="table-area">
+      <div style="padding:14px 28px 10px;border-bottom:1px solid var(--border);">
+        <div class="filter-row">
+          <span class="ftab active">All (12)</span>
+          <span class="ftab">Application (4)</span>
+          <span class="ftab">System (2)</span>
+          <span class="ftab">Service (1)</span>
+          <span class="ftab">Platform (2)</span>
+          <span class="ftab">Product (1)</span>
+          <span class="ftab">Good (1)</span>
+          <span class="ftab">Factory (1)</span>
+          <span class="ftab" style="margin-left:12px">⬆ CM (2)</span>
+          <span class="ftab">✓ TEST (1)</span>
+          <span class="ftab">● DEV (4)</span>
+          <span class="ftab">● SANDBOX (3)</span>
+        </div>
+      </div>
+
+      <div style="flex:1;overflow-y:auto;padding:0 28px 24px;">
+        <div class="panel" style="margin-top:16px;">
+          <div class="table-header">
+            <span class="th">Solution</span>
+            <span class="th">Maturity</span>
+            <span class="th">Version</span>
+            <span class="th">Type</span>
+            <span class="th">Owner</span>
+            <span class="th">Status</span>
+            <span class="th">Actions</span>
+          </div>
+
+          <div class="sol-row" onclick="selectSol(this,'Customer API','sol-0x9f2a','Application','CM','2.4.1','Alex Jordan','active','Customer-facing REST API powering all product surfaces. SLSA L3 attested.')">
+            <div><div class="sol-name">Customer API</div><div class="sol-id">sol-0x9f2a</div></div>
+            <span class="mat-badge mat-cm">CM</span>
+            <span class="ver">2.4.1</span>
+            <span class="type-badge">Application</span>
+            <span class="owner-cell">Alex Jordan</span>
+            <div class="status-row"><div class="sdot dot-g"></div><span class="status-label">Active</span></div>
+            <div class="action-btns"><button class="ab">Open</button><button class="ab">Deploy</button></div>
+          </div>
+
+          <div class="sol-row" onclick="selectSol(this,'Analytics Dashboard','sol-0x3b1c','Application','TEST','1.2.0-rc2','Sara Mitchell','active','Cross-portfolio analytics and reporting dashboard. CM promotion pending.')">
+            <div><div class="sol-name">Analytics Dashboard</div><div class="sol-id">sol-0x3b1c</div></div>
+            <span class="mat-badge mat-test">TEST</span>
+            <span class="ver">1.2.0-rc2</span>
+            <span class="type-badge">Application</span>
+            <span class="owner-cell">Sara Mitchell</span>
+            <div class="status-row"><div class="sdot dot-y"></div><span class="status-label">Pending CM</span></div>
+            <div class="action-btns"><button class="ab">Open</button><button class="ab promote">↑ CM</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Notification Service</div><div class="sol-id">sol-0x7d4e</div></div>
+            <span class="mat-badge mat-nightly">NIGHTLY</span>
+            <span class="ver">0.9.4</span>
+            <span class="type-badge">Service</span>
+            <span class="owner-cell">Jamie Okafor</span>
+            <div class="status-row"><div class="sdot dot-g"></div><span class="status-label">Active</span></div>
+            <div class="action-btns"><button class="ab">Open</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Auth Platform</div><div class="sol-id">sol-0x2c8f</div></div>
+            <span class="mat-badge mat-dev">DEV</span>
+            <span class="ver">0.3.0</span>
+            <span class="type-badge">Platform</span>
+            <span class="owner-cell">Alex Jordan</span>
+            <div class="status-row"><div class="sdot dot-g"></div><span class="status-label">Active</span></div>
+            <div class="action-btns"><button class="ab">Open</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Data Ingestion Pipeline</div><div class="sol-id">sol-0x5a6b</div></div>
+            <span class="mat-badge mat-dev">DEV</span>
+            <span class="ver">0.1.2</span>
+            <span class="type-badge">System</span>
+            <span class="owner-cell">Jamie Okafor</span>
+            <div class="status-row"><div class="sdot dot-r"></div><span class="status-label">CI Blocked</span></div>
+            <div class="action-btns"><button class="ab">Open</button><button class="ab" style="color:#d98080">⚠ Fix</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Mobile Companion App</div><div class="sol-id">sol-0x1f3d</div></div>
+            <span class="mat-badge mat-sandbox">SANDBOX</span>
+            <span class="ver">0.0.1</span>
+            <span class="type-badge">Application</span>
+            <span class="owner-cell">Alex Jordan</span>
+            <div class="status-row"><div class="sdot dot-x"></div><span class="status-label">Exploring</span></div>
+            <div class="action-btns"><button class="ab">Open</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Reporting Service</div><div class="sol-id">sol-0x8e2a</div></div>
+            <span class="mat-badge mat-cm">CM</span>
+            <span class="ver">1.1.0</span>
+            <span class="type-badge">Service</span>
+            <span class="owner-cell">Sara Mitchell</span>
+            <div class="status-row"><div class="sdot dot-g"></div><span class="status-label">Active</span></div>
+            <div class="action-btns"><button class="ab">Open</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Search Platform</div><div class="sol-id">sol-0x4d7c</div></div>
+            <span class="mat-badge mat-dev">DEV</span>
+            <span class="ver">0.2.1</span>
+            <span class="type-badge">Platform</span>
+            <span class="owner-cell">Sara Mitchell</span>
+            <div class="status-row"><div class="sdot dot-g"></div><span class="status-label">Active</span></div>
+            <div class="action-btns"><button class="ab">Open</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Event Streaming Core</div><div class="sol-id">sol-0x9c1b</div></div>
+            <span class="mat-badge mat-nightly">NIGHTLY</span>
+            <span class="ver">0.5.3</span>
+            <span class="type-badge">System</span>
+            <span class="owner-cell">Jamie Okafor</span>
+            <div class="status-row"><div class="sdot dot-g"></div><span class="status-label">Active</span></div>
+            <div class="action-btns"><button class="ab">Open</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Inventory Management</div><div class="sol-id">sol-0x6f4a</div></div>
+            <span class="mat-badge mat-dev">DEV</span>
+            <span class="ver">0.1.0</span>
+            <span class="type-badge">Application</span>
+            <span class="owner-cell">Alex Jordan</span>
+            <div class="status-row"><div class="sdot dot-x"></div><span class="status-label">Paused</span></div>
+            <div class="action-btns"><button class="ab">Open</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Product Catalog API</div><div class="sol-id">sol-0x2b8e</div></div>
+            <span class="mat-badge mat-sandbox">SANDBOX</span>
+            <span class="ver">0.0.2</span>
+            <span class="type-badge">Application</span>
+            <span class="owner-cell">Alex Jordan</span>
+            <div class="status-row"><div class="sdot dot-x"></div><span class="status-label">Exploring</span></div>
+            <div class="action-btns"><button class="ab">Open</button></div>
+          </div>
+
+          <div class="sol-row">
+            <div><div class="sol-name">Pricing Engine</div><div class="sol-id">sol-0x7a3c</div></div>
+            <span class="mat-badge mat-sandbox">SANDBOX</span>
+            <span class="ver">0.0.1</span>
+            <span class="type-badge">Service</span>
+            <span class="owner-cell">Sara Mitchell</span>
+            <div class="status-row"><div class="sdot dot-x"></div><span class="status-label">Exploring</span></div>
+            <div class="action-btns"><button class="ab">Open</button></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail Drawer -->
+    <div class="detail-drawer" id="drawer" style="display:none;position:relative;">
+      <button class="dd-close" onclick="closeDrawer()">×</button>
+      <div class="dd-header">
+        <div class="dd-name" id="dd-name">Customer API</div>
+        <div class="dd-id" id="dd-id">sol-0x9f2a</div>
+        <div style="margin-top:8px;display:flex;gap:6px;" id="dd-badges"></div>
+      </div>
+      <div style="flex:1;overflow-y:auto;">
+        <div class="dd-section">
+          <div class="dd-label">Metadata</div>
+          <div class="dd-field"><span class="dd-field-k">Version</span><span class="dd-field-v" id="dd-ver">2.4.1</span></div>
+          <div class="dd-field"><span class="dd-field-k">Type</span><span class="dd-field-v" id="dd-type">Application</span></div>
+          <div class="dd-field"><span class="dd-field-k">Maturity</span><span class="dd-field-v" id="dd-mat">CM</span></div>
+          <div class="dd-field"><span class="dd-field-k">Owner</span><span class="dd-field-v" id="dd-owner">Alex Jordan</span></div>
+          <div class="dd-field"><span class="dd-field-k">SDE</span><span class="dd-field-v">sde-api-main</span></div>
+          <div class="dd-field"><span class="dd-field-k">Factory</span><span class="dd-field-v">acme-engineering</span></div>
+          <div class="dd-field"><span class="dd-field-k">Status</span><span class="dd-field-v" id="dd-status" style="color:#7fc4a0">Active</span></div>
+        </div>
+        <div class="dd-section">
+          <div class="dd-label">Value Proposition</div>
+          <div class="dd-vp" id="dd-vp">Customer-facing REST API powering all product surfaces. SLSA L3 attested.</div>
+        </div>
+        <div class="dd-section">
+          <div class="dd-label">Tags</div>
+          <div class="dd-tags"><span class="tag">api</span><span class="tag">production</span><span class="tag">customer-facing</span><span class="tag">slsa-l3</span></div>
+        </div>
+        <div class="dd-section">
+          <div class="dd-label">Maturity Gates</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">SANDBOX → DEV</span></div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">DEV → NIGHTLY</span></div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">NIGHTLY → TEST</span></div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">TEST → CM</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="dd-actions">
+        <button class="dd-btn prim">Open Solution →</button>
+        <button class="dd-btn">View Solution Book</button>
+        <button class="dd-btn">View Pipeline</button>
+        <button class="dd-btn">Manage Components</button>
+      </div>
+    </div>
+  </div>
+</main>

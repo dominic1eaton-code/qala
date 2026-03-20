@@ -1,0 +1,139 @@
+<div class="auth-container">
+  <div class="auth-left">
+    <div class="logo-badge">
+      <div class="logo-icon">Q</div>
+      <div class="logo-name">qala</div>
+    </div>
+
+    <div class="left-heading">Set up your Factory<br>workspace in minutes.</div>
+    <div class="left-sub">One account. Every solution pipeline<br>you'll ever need.</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num active">01</div>
+        <div class="step-text">
+          <strong>Create Account</strong>
+          <span>Identity &amp; credentials</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step">
+        <div class="step-num pending">02</div>
+        <div class="step-text">
+          <strong>Configure Factory</strong>
+          <span>Name your workspace &amp; tier</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step">
+        <div class="step-num pending">03</div>
+        <div class="step-text">
+          <strong>Invite Team</strong>
+          <span>Collaborators &amp; roles</span>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step">
+        <div class="step-num pending">04</div>
+        <div class="step-text">
+          <strong>Launch Pipeline</strong>
+          <span>Deploy your first solution</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <div class="register-box">
+      <div class="register-title">Create your account</div>
+      <div class="register-sub">Step 1 of 4 — Identity &amp; credentials</div>
+
+      <div class="field-group">
+        <span class="field-label">Full name</span>
+        <div class="field-row">
+          <div class="input-wrap">
+            <input type="text" placeholder="First">
+          </div>
+          <div class="input-wrap">
+            <input type="text" placeholder="Last">
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">Work email</span>
+        <div class="input-wrap">
+          <input type="email" placeholder="you@company.com">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">Role</span>
+        <div class="input-wrap">
+          <select>
+            <option value="" disabled selected>Select your role…</option>
+            <option>Engineer</option>
+            <option>Platform / DevOps</option>
+            <option>Product Manager</option>
+            <option>Solutions Architect</option>
+            <option>Team Lead / Manager</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">Password</span>
+        <div class="input-wrap pw-wrap">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="Min. 8 characters"
+            (input)="updateStrength($event.target.value)"
+          >
+          <span class="show-toggle" (click)="togglePassword()">
+            {{ showPassword ? 'HIDE' : 'SHOW' }}
+          </span>
+        </div>
+        <div class="strength-bar">
+          <div class="strength-seg" [ngClass]="strengthActive(0) ? strengthClass : ''"></div>
+          <div class="strength-seg" [ngClass]="strengthActive(1) ? strengthClass : ''"></div>
+          <div class="strength-seg" [ngClass]="strengthActive(2) ? strengthClass : ''"></div>
+          <div class="strength-seg" [ngClass]="strengthActive(3) ? strengthClass : ''"></div>
+        </div>
+        <div class="strength-label" [ngClass]="strengthClass">{{ strengthLabel }}</div>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">Confirm password</span>
+        <div class="input-wrap">
+          <input type="password" placeholder="Re-enter password">
+        </div>
+      </div>
+
+      <div class="terms-row">
+        <input type="checkbox" id="termsCheck">
+        <label class="terms-text" for="termsCheck">
+          I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I understand my workspace data is subject to the qala SFOS data processing agreement.
+        </label>
+      </div>
+
+      <button class="btn-primary" routerLink="/onboarding">Create Factory Account</button>
+
+      <div class="divider">OR SIGN UP WITH</div>
+
+      <div class="sso">
+        <button>GitHub</button>
+        <button>Google</button>
+        <button>SSO</button>
+      </div>
+
+      <div class="footer">
+        Already have an account? <a routerLink="/login">Sign in</a>
+        <span class="version">qala SFOS · Solution Factory Workspace · v1.0</span>
+      </div>
+    </div>
+  </div>
+</div>

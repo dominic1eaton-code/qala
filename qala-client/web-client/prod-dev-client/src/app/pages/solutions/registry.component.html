@@ -1,0 +1,185 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Solution Registry <span>/ Platform-wide authoritative catalog</span></div>
+    <input class="search-input" placeholder="🔍  Search registry…">
+    <button class="tb-btn">Filter ▾</button>
+    <button class="tb-btn primary">+ Register</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="body">
+    <div class="tab-rail">
+      <div class="tr-sec">Catalogs</div>
+      <div class="ti active" onclick="sw('solutions')"><span class="ti-ico">◈</span>Solutions<span class="ti-count">12</span></div>
+      <div class="ti" onclick="sw('models')"><span class="ti-ico">⬥</span>Models<span class="ti-count">12</span></div>
+      <div class="ti" onclick="sw('vendors')"><span class="ti-ico">🏢</span>Vendors<span class="ti-count">4</span></div>
+      <div class="ti" onclick="sw('tools-reg')"><span class="ti-ico">🔧</span>Tools<span class="ti-count">38</span></div>
+      <div class="ti" onclick="sw('factories')"><span class="ti-ico">🏭</span>Factories<span class="ti-count">1</span></div>
+      <div class="ti" onclick="sw('artifacts-reg')"><span class="ti-ico">⬡</span>Artifacts<span class="ti-count">184</span></div>
+      <div class="ti" onclick="sw('portfolios')"><span class="ti-ico">◫</span>Portfolios<span class="ti-count">3</span></div>
+      <div class="ti" onclick="sw('channels-reg')"><span class="ti-ico">📡</span>Channels<span class="ti-count">6</span></div>
+      <div class="ti" onclick="sw('sdes-reg')"><span class="ti-ico">⬡</span>SDEs<span class="ti-count">8</span></div>
+    </div>
+
+    <div class="tc">
+
+      <!-- SOLUTIONS -->
+      <div class="tp active" id="tp-solutions">
+        <div class="stat-row">
+          <div class="sc"><div class="sl">Registered</div><div class="sv">12</div><div class="ss">All typed &amp; versioned</div></div>
+          <div class="sc"><div class="sl">CM Released</div><div class="sv" style="color:#7fc4a0">2</div><div class="ss">Production-qualified</div></div>
+          <div class="sc"><div class="sl">Active</div><div class="sv">10</div><div class="ss">Non-archived</div></div>
+          <div class="sc"><div class="sl">Orphaned</div><div class="sv" style="color:#7fc4a0">0</div><div class="ss">All owned</div></div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">Solution Registry — 12 solutions</div><span class="pa">Export JSON →</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Solution</th><th>Type</th><th>Version</th><th>Maturity</th><th>Owner</th><th>SDE</th><th>Factory</th><th>Status</th></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Customer API</div><div class="mono">sol-0x9f2a</div></td><td>Application</td><td class="mono">2.4.1</td><td><span class="badge b-green">CM</span></td><td>Alex Jordan</td><td class="mono">sde-api-main</td><td class="mono">acme-eng</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Analytics Dashboard</div><div class="mono">sol-0x3b1c</div></td><td>Application</td><td class="mono">1.2.0-rc2</td><td><span class="badge b-amber">TEST</span></td><td>Sara Mitchell</td><td class="mono">sde-analytics-01</td><td class="mono">acme-eng</td><td><span class="badge b-amber">Pending CM</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Notification Service</div><div class="mono">sol-0x7d4e</div></td><td>Service</td><td class="mono">0.9.4</td><td><span class="badge b-blue">NIGHTLY</span></td><td>Jamie Okafor</td><td class="mono">sde-notif-main</td><td class="mono">acme-eng</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Auth Platform</div><div class="mono">sol-0x2c8f</div></td><td>Platform</td><td class="mono">0.3.0</td><td><span class="badge b-blue">DEV</span></td><td>Alex Jordan</td><td class="mono">sde-auth-dev</td><td class="mono">acme-eng</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Reporting Service</div><div class="mono">sol-0x8e2a</div></td><td>Service</td><td class="mono">1.1.0</td><td><span class="badge b-green">CM</span></td><td>Sara Mitchell</td><td class="mono">sde-api-main</td><td class="mono">acme-eng</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Data Ingestion Pipeline</div><div class="mono">sol-0x5a6b</div></td><td>System</td><td class="mono">0.1.2</td><td><span class="badge b-blue">DEV</span></td><td>Jamie Okafor</td><td class="mono">sde-data-main</td><td class="mono">acme-eng</td><td><span class="badge b-red">CI Blocked</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Mobile Companion App</div><div class="mono">sol-0x1f3d</div></td><td>Application</td><td class="mono">0.0.1</td><td><span class="badge b-grey">SANDBOX</span></td><td>Alex Jordan</td><td class="mono">sde-mobile-01</td><td class="mono">acme-eng</td><td><span class="badge b-grey">Exploring</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Search Platform</div><div class="mono">sol-0x4d7c</div></td><td>Platform</td><td class="mono">0.2.1</td><td><span class="badge b-blue">DEV</span></td><td>Sara Mitchell</td><td class="mono">sde-search-dev</td><td class="mono">acme-eng</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Event Streaming Core</div><div class="mono">sol-0x9c1b</div></td><td>System</td><td class="mono">0.5.3</td><td><span class="badge b-blue">NIGHTLY</span></td><td>Jamie Okafor</td><td class="mono">sde-data-main</td><td class="mono">acme-eng</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Product Catalog API</div><div class="mono">sol-0x2b8e</div></td><td>Application</td><td class="mono">0.0.2</td><td><span class="badge b-grey">SANDBOX</span></td><td>Alex Jordan</td><td class="mono">sde-api-main</td><td class="mono">acme-eng</td><td><span class="badge b-grey">Exploring</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Inventory Management</div><div class="mono">sol-0x6f4a</div></td><td>Application</td><td class="mono">0.1.0</td><td><span class="badge b-blue">DEV</span></td><td>Alex Jordan</td><td class="mono">sde-api-main</td><td class="mono">acme-eng</td><td><span class="badge b-grey">Paused</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Pricing Engine</div><div class="mono">sol-0x7a3c</div></td><td>Service</td><td class="mono">0.0.1</td><td><span class="badge b-grey">SANDBOX</span></td><td>Sara Mitchell</td><td class="mono">sde-analytics-01</td><td class="mono">acme-eng</td><td><span class="badge b-grey">Exploring</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- MODELS -->
+      <div class="tp" id="tp-models">
+        <div class="panel">
+          <div class="ph"><div class="pt">Solution Models Registry — Blueprints, Designs, Architectures, Mockups, Prototypes</div></div>
+          <table class="tbl">
+            <tbody><tr><th>Model</th><th>Type</th><th>Solution</th><th>Version</th><th>Artifacts</th><th>Status</th></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Customer API System Design</div><div class="mono">mdl-0x9f2a-blueprint</div></td><td><span class="badge b-blue">Blueprint</span></td><td>Customer API</td><td class="mono">v2.4</td><td class="mono">system-design.md · api-schema.yaml</td><td><span class="badge b-green">Current</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">API Flow Design v2.4</div><div class="mono">mdl-0x9f2a-design</div></td><td><span class="badge b-amber">Design</span></td><td>Customer API</td><td class="mono">v2.4</td><td class="mono">api-flow-v2.4.fig · data-model.drawio</td><td><span class="badge b-green">Current</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">ADR Collection (ADR-001 to ADR-017)</div><div class="mono">mdl-0x9f2a-arch</div></td><td><span class="badge b-green">Architecture</span></td><td>Customer API</td><td class="mono">v2.4</td><td class="mono">ADR-001…ADR-017 · topology-map.png</td><td><span class="badge b-green">Current</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">GraphQL Federation POC</div><div class="mono">mdl-0x9f2a-proto-v3</div></td><td><span class="badge b-amber">Prototype</span></td><td>Customer API (v3.0)</td><td class="mono">poc-001</td><td class="mono">Ephemeral-POC-001 sandbox env</td><td><span class="badge b-amber">In Progress</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Analytics Dashboard Wireframes</div><div class="mono">mdl-0x3b1c-mockup</div></td><td><span class="badge b-grey">Mockup</span></td><td>Analytics Dashboard</td><td class="mono">v1.2</td><td class="mono">dashboard-mockup-v1.2.fig</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Data Ingestion Architecture</div><div class="mono">mdl-0x5a6b-blueprint</div></td><td><span class="badge b-blue">Blueprint</span></td><td>Data Ingestion Pipeline</td><td class="mono">v0.1</td><td class="mono">pipeline-arch.md · kafka-topology.png</td><td><span class="badge b-amber">Draft</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- VENDORS -->
+      <div class="tp" id="tp-vendors">
+        <div class="panel">
+          <div class="ph"><div class="pt">Vendor Registry — 4 vendors</div><span class="pa">+ Register Vendor</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Vendor</th><th>Type</th><th>Parts Catalog</th><th>License</th><th>CVEs</th><th>SLA Ref</th><th>Status</th></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">gin-gonic OSS</div><div class="mono">vnd-0x1a2b</div></td><td>Open Source Project</td><td>gin v1.9.1</td><td>MIT</td><td><span class="badge b-green">0</span></td><td>Community</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Redis Ltd.</div><div class="mono">vnd-0x3c4d</div></td><td>SaaS Provider</td><td>go-redis v9.4.0</td><td>BSD-2</td><td><span class="badge b-green">0</span></td><td>redis-sla-2026</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">PostgreSQL Dev Group</div><div class="mono">vnd-0x5e6f</div></td><td>Open Source Project</td><td>pgx v5.5.3</td><td>MIT</td><td><span class="badge b-green">0</span></td><td>Community</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Sigstore / CNCF</div><div class="mono">vnd-0x7a8b</div></td><td>Open Source Foundation</td><td>cosign · slsa-verifier</td><td>Apache 2.0</td><td><span class="badge b-green">0</span></td><td>Apache 2.0</td><td><span class="badge b-green">Approved</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- TOOLS REGISTRY -->
+      <div class="tp" id="tp-tools-reg">
+        <div class="panel">
+          <div class="ph"><div class="pt">Tool Registry — 38 tools (summary)</div><span class="pa" onclick="window.location='tools.html'">Full Tool Registry →</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Tool</th><th>Version</th><th>Type</th><th>License</th><th>Toolset</th><th>Status</th></tr>
+            <tr><td>go</td><td class="mono">1.22.0</td><td>compiler</td><td>BSD-3</td><td>Go Build</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td>docker</td><td class="mono">24.0.7</td><td>container</td><td>Apache 2.0</td><td>Container</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td>semgrep</td><td class="mono">1.67.0</td><td>scanner</td><td>LGPL 2.1</td><td>Security Scan</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td>cosign</td><td class="mono">2.2.3</td><td>signing</td><td>Apache 2.0</td><td>Signing</td><td><span class="badge b-green">Approved</span></td></tr>
+            <tr><td>terraform</td><td class="mono">1.7.4</td><td>IaC</td><td>BSL 1.1</td><td>IaC</td><td><span class="badge b-amber">Provisional</span></td></tr>
+            <tr><td>golangci-lint</td><td class="mono">1.57.2</td><td>linter</td><td>GPL 3.0</td><td>Lint</td><td><span class="badge b-red">Deprecated</span></td></tr>
+            <tr><td style="color:var(--quinary)" colspan="6">+ 32 more tools · <span style="cursor:pointer;color:var(--quaternary)" onclick="window.location='tools.html'">View full Tool Registry →</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- FACTORIES -->
+      <div class="tp" id="tp-factories">
+        <div class="panel">
+          <div class="ph"><div class="pt">Factory Registry — 1 factory</div><span class="pa" onclick="window.location='solution_factory.html'">Open Factory →</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Factory</th><th>Tier</th><th>Owner</th><th>SDEs</th><th>Solutions</th><th>Parent</th><th>Status</th></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Acme Engineering</div><div class="mono">fab-0x9a2c</div></td><td><span class="badge b-blue">TEAM</span></td><td>Alex Jordan</td><td>8 active</td><td>12 solutions</td><td class="mono">qala Root SF</td><td><span class="badge b-green">Active</span></td></tr>
+          </tbody></table>
+          <div style="padding:12px 18px;border-top:1px solid var(--border)">
+            <div style="font-size:11.5px;color:var(--quinary);margin-bottom:8px">Factory Hierarchy: qala Root SF → Acme Engineering (TEAM)</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span style="font-size:11px;padding:3px 10px;border:1px solid rgba(105,82,66,0.2);border-radius:5px;color:var(--quinary)">Root SF (qala)</span>
+              <span style="font-size:11px;color:var(--quinary)">→</span>
+              <span style="font-size:11px;padding:3px 10px;border:1px solid rgba(41,67,198,0.3);border-radius:5px;color:#8aaaf5;background:rgba(41,67,198,0.1)">Acme Engineering (TEAM)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTIFACTS REGISTRY -->
+      <div class="tp" id="tp-artifacts-reg">
+        <div class="panel">
+          <div class="ph"><div class="pt">Artifact Registry — 184 artifacts (top 8)</div><span class="pa" onclick="window.location='artifacts.html'">Full Artifact Registry →</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Artifact</th><th>Solution</th><th>Version</th><th>Type</th><th>Tier</th><th>SLSA</th><th>Size</th></tr>
+            <tr><td class="mono">customer-api:2.4.1</td><td>Customer API</td><td class="mono">2.4.1</td><td>Container</td><td><span class="badge b-green">Production</span></td><td><span class="badge b-green">L3</span></td><td class="mono">24.8 MB</td></tr>
+            <tr><td class="mono">reporting-service:1.1.0</td><td>Reporting Service</td><td class="mono">1.1.0</td><td>Container</td><td><span class="badge b-green">Production</span></td><td><span class="badge b-green">L3</span></td><td class="mono">18.2 MB</td></tr>
+            <tr><td class="mono">analytics-dashboard:1.2.0-rc2</td><td>Analytics Dashboard</td><td class="mono">1.2.0-rc2</td><td>Container</td><td><span class="badge b-blue">Staging</span></td><td><span class="badge b-blue">L2</span></td><td class="mono">31.5 MB</td></tr>
+            <tr><td class="mono">notification-service:0.9.4</td><td>Notification Service</td><td class="mono">0.9.4</td><td>Container</td><td><span class="badge b-amber">Integration</span></td><td><span class="badge b-blue">L2</span></td><td class="mono">12.1 MB</td></tr>
+            <tr><td class="mono">auth-platform:0.3.0</td><td>Auth Platform</td><td class="mono">0.3.0</td><td>Binary</td><td><span class="badge b-grey">Dev</span></td><td><span class="badge b-grey">L1</span></td><td class="mono">8.4 MB</td></tr>
+            <tr><td style="color:var(--quinary)" colspan="7">+ 179 more artifacts · <span style="cursor:pointer;color:var(--quaternary)" onclick="window.location='artifacts.html'">View full Artifact Registry →</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- PORTFOLIOS -->
+      <div class="tp" id="tp-portfolios">
+        <div class="panel">
+          <div class="ph"><div class="pt">Portfolio Registry — 3 portfolios</div><span class="pa" onclick="window.location='portfolio.html'">Portfolio view →</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Portfolio</th><th>Owner</th><th>Factory</th><th>Solutions</th><th>Maturity Dist.</th><th>Governance</th><th>Status</th></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Platform Engineering</div><div class="mono">pfl-0x1a2b</div></td><td>Sara Mitchell</td><td class="mono">acme-eng</td><td>5</td><td>1 CM · 1 TEST · 2 DEV · 1 SANDBOX</td><td><span class="badge b-green">Healthy</span></td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Data &amp; Analytics</div><div class="mono">pfl-0x3c4d</div></td><td>Jamie Okafor</td><td class="mono">acme-eng</td><td>3</td><td>0 CM · 1 NIGHTLY · 1 DEV · 1 SANDBOX</td><td><span class="badge b-amber">Action Needed</span></td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">Consumer Products</div><div class="mono">pfl-0x5e6f</div></td><td>Alex Jordan</td><td class="mono">acme-eng</td><td>4</td><td>1 CM · 1 TEST · 1 DEV · 1 SANDBOX</td><td><span class="badge b-green">Healthy</span></td><td><span class="badge b-green">Active</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- CHANNELS REGISTRY -->
+      <div class="tp" id="tp-channels-reg">
+        <div class="panel">
+          <div class="ph"><div class="pt">Channel Registry — 6 channels</div><span class="pa" onclick="window.location='solution_channels.html'">Full channels →</span></div>
+          <table class="tbl">
+            <tbody><tr><th>Channel</th><th>Category</th><th>Type</th><th>Routing Rule</th><th>Archival Policy</th><th>Status</th></tr>
+            <tr><td>#api-platform-alerts</td><td>Internal</td><td>Alert, Event Notification</td><td>BUILD_EVENTS + SECURITY_EVENTS</td><td>90 days</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>api-release@acme.io</td><td>Communication</td><td>Announcement</td><td>CM gate approved</td><td>Forever</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>PagerDuty On-Call</td><td>Emergency</td><td>Alert (escalation)</td><td>P0/P1 severity</td><td>1 year</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>Factory Kafka Bus</td><td>Internal</td><td>Event Notification</td><td>All platform events</td><td>7d compaction</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>api-status.acme.io</td><td>External</td><td>Announcement</td><td>Uptime monitor events</td><td>2 years</td><td><span class="badge b-green">Active</span></td></tr>
+            <tr><td>GitHub Discussions</td><td>Internal</td><td>Group Message</td><td>RFC + merge events</td><td>Permanent</td><td><span class="badge b-green">Active</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- SDEs REGISTRY -->
+      <div class="tp" id="tp-sdes-reg">
+        <div class="panel">
+          <div class="ph"><div class="pt">SDE Registry — 8 environments</div><span class="pa" onclick="window.location='environments.html'">Full SDE view →</span></div>
+          <table class="tbl">
+            <tbody><tr><th>SDE</th><th>Owner</th><th>Factory</th><th>Maturity</th><th>Solutions</th><th>State</th><th>Snapshots</th></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">sde-api-main</div><div class="mono">sde-0x4f2c · Go Backend</div></td><td>Alex Jordan</td><td class="mono">acme-eng</td><td><span class="badge b-green">CM</span></td><td>4</td><td><span class="badge b-green">Active</span></td><td>v8</td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">sde-analytics-01</div><div class="mono">sde-0x7b3d · Go Backend</div></td><td>Sara Mitchell</td><td class="mono">acme-eng</td><td><span class="badge b-amber">TEST</span></td><td>2</td><td><span class="badge b-green">Active</span></td><td>v5</td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">sde-data-main</div><div class="mono">sde-0x2e9a · Go Backend</div></td><td>Jamie Okafor</td><td class="mono">acme-eng</td><td><span class="badge b-blue">DEV</span></td><td>1</td><td><span class="badge b-red">Risk · SAST</span></td><td>v3</td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">sde-auth-dev</div><div class="mono">sde-0x6c1f · Go Backend</div></td><td>Alex Jordan</td><td class="mono">acme-eng</td><td><span class="badge b-blue">DEV</span></td><td>2</td><td><span class="badge b-green">Active</span></td><td>v4</td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">sde-notif-main</div><div class="mono">sde-0x8d2c · Go Backend</div></td><td>Jamie Okafor</td><td class="mono">acme-eng</td><td><span class="badge b-blue">NIGHTLY</span></td><td>1</td><td><span class="badge b-green">Active</span></td><td>v6</td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">sde-mobile-01</div><div class="mono">sde-0x3a7e · React Native</div></td><td>Alex Jordan</td><td class="mono">acme-eng</td><td><span class="badge b-grey">SANDBOX</span></td><td>1</td><td><span class="badge b-blue">Provisioning</span></td><td>—</td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">sde-search-dev</div><div class="mono">sde-0x1b4a · Go Backend</div></td><td>Sara Mitchell</td><td class="mono">acme-eng</td><td><span class="badge b-blue">DEV</span></td><td>2</td><td><span class="badge b-green">Active</span></td><td>v2</td></tr>
+            <tr><td><div style="font-size:12.5px;color:var(--secondary)">sde-sandbox-legacy</div><div class="mono">sde-0x8d4b · Mixed</div></td><td>(unassigned)</td><td class="mono">acme-eng</td><td><span class="badge b-grey">SANDBOX</span></td><td>0</td><td><span class="badge b-grey">Suspended</span></td><td>v2</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>

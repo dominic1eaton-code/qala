@@ -1,0 +1,52 @@
+<div class="glow-bg"></div>
+<div class="content">
+  <div class="logo-badge">
+    <div class="logo-icon">Q</div>
+    <div class="logo-name">qala</div>
+  </div>
+
+  <div class="status-title">Provisioning your factory…</div>
+  <div class="status-sub">
+    Building your Solution Factory environment.<br>
+    This takes about 15–20 seconds.
+  </div>
+
+  <div class="progress-container">
+    <div
+      class="progress-step"
+      *ngFor="let step of steps; let i = index"
+      [ngClass]="{ done: step.status === 'done', active: step.status === 'active' }"
+    >
+      <div class="step-icon">
+        <ng-container *ngIf="step.status === 'done'">✓</ng-container>
+        <ng-container *ngIf="step.status === 'active'">
+          <span class="spinner-wrap"><span class="spinner"></span></span>
+        </ng-container>
+        <ng-container *ngIf="step.status === 'pending'">{{ i + 1 | number:'2.0' }}</ng-container>
+      </div>
+      <div class="step-body">
+        <div class="step-name">{{ step.name }}</div>
+        <div class="step-detail" [ngClass]="{ typing: step.status === 'active' }">
+          {{ step.detail }}
+        </div>
+      </div>
+      <div class="step-status">
+        <ng-container *ngIf="step.status === 'done'">DONE</ng-container>
+        <ng-container *ngIf="step.status === 'active'">RUNNING</ng-container>
+        <ng-container *ngIf="step.status === 'pending'">—</ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar-container">
+    <div class="bar-label">
+      <span>FACTORY PROVISIONING</span>
+      <span>{{ percentLabel }}</span>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill" [style.width.%]="progress"></div>
+    </div>
+  </div>
+
+  <div class="bottom-note">kernel:7000 · sde-management:8082 · workflow:8084</div>
+</div>

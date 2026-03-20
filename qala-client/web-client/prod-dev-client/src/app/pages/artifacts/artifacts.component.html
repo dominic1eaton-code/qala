@@ -1,0 +1,145 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Artifacts <span>/ SAMS · Solution Artifact Management System</span></div>
+    <button class="tb-btn">Filter ▾</button>
+    <button class="tb-btn">Verify Attestation</button>
+    <button class="tb-btn primary">↑ Upload Artifact</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="mb">
+
+    <div class="stat-row">
+      <div class="sc"><div class="sl">Total Artifacts</div><div class="sv">184</div><div class="ss">Across all solutions</div></div>
+      <div class="sc"><div class="sl">SLSA L3 Attested</div><div class="sv" style="color:#7fc4a0">12</div><div class="ss">Highest integrity</div></div>
+      <div class="sc"><div class="sl">Warehouse Size</div><div class="sv">48.2 GB</div><div class="ss">OCI + S3 storage</div></div>
+      <div class="sc"><div class="sl">In Production</div><div class="sv">3</div><div class="ss">Actively deployed</div></div>
+      <div class="sc"><div class="sl">SBOM Generated</div><div class="sv">8</div><div class="ss">TEST+ artifacts</div></div>
+    </div>
+
+    <!-- Artifact Registry Table -->
+    <div class="panel">
+      <div class="ph"><div class="pt">Artifact Registry</div><span class="pa">View warehouse →</span></div>
+      <div class="art-table-header">
+        <span class="th">Artifact</span>
+        <span class="th">Version</span>
+        <span class="th">Size</span>
+        <span class="th">Type</span>
+        <span class="th">Promotion</span>
+        <span class="th">SLSA</span>
+        <span class="th">Actions</span>
+      </div>
+
+      <div class="art-row">
+        <div><div class="art-name">customer-api</div><div class="art-id">art-0x9f2a · sol-0x9f2a</div></div>
+        <span class="ver">2.4.1</span>
+        <span class="size">24.8 MB</span>
+        <span class="art-type">Container</span>
+        <span class="promo-badge p-prod">Production</span>
+        <span class="slsa-badge slsa-l3">SLSA L3</span>
+        <div style="display:flex;gap:4px"><button class="ab">SBOM</button><button class="ab">⬇</button></div>
+      </div>
+      <div class="art-row">
+        <div><div class="art-name">reporting-service</div><div class="art-id">art-0x8e2a · sol-0x8e2a</div></div>
+        <span class="ver">1.1.0</span>
+        <span class="size">18.2 MB</span>
+        <span class="art-type">Container</span>
+        <span class="promo-badge p-prod">Production</span>
+        <span class="slsa-badge slsa-l3">SLSA L3</span>
+        <div style="display:flex;gap:4px"><button class="ab">SBOM</button><button class="ab">⬇</button></div>
+      </div>
+      <div class="art-row">
+        <div><div class="art-name">analytics-dashboard</div><div class="art-id">art-0x3b1c · sol-0x3b1c</div></div>
+        <span class="ver">1.2.0-rc2</span>
+        <span class="size">31.5 MB</span>
+        <span class="art-type">Container</span>
+        <span class="promo-badge p-stg">Staging</span>
+        <span class="slsa-badge slsa-l2">SLSA L2</span>
+        <div style="display:flex;gap:4px"><button class="ab">SBOM</button><button class="ab">↑ Promote</button></div>
+      </div>
+      <div class="art-row">
+        <div><div class="art-name">notification-service</div><div class="art-id">art-0x7d4e · sol-0x7d4e</div></div>
+        <span class="ver">0.9.4</span>
+        <span class="size">12.1 MB</span>
+        <span class="art-type">Container</span>
+        <span class="promo-badge p-int">Integration</span>
+        <span class="slsa-badge slsa-l2">SLSA L2</span>
+        <div style="display:flex;gap:4px"><button class="ab">SBOM</button><button class="ab">⬇</button></div>
+      </div>
+      <div class="art-row">
+        <div><div class="art-name">auth-platform</div><div class="art-id">art-0x2c8f · sol-0x2c8f</div></div>
+        <span class="ver">0.3.0</span>
+        <span class="size">8.4 MB</span>
+        <span class="art-type">Binary</span>
+        <span class="promo-badge p-dev">Dev</span>
+        <span class="slsa-badge slsa-l1">SLSA L1</span>
+        <div style="display:flex;gap:4px"><button class="ab">Attest</button><button class="ab">⬇</button></div>
+      </div>
+      <div class="art-row">
+        <div><div class="art-name">search-platform</div><div class="art-id">art-0x4d7c · sol-0x4d7c</div></div>
+        <span class="ver">0.2.1</span>
+        <span class="size">6.9 MB</span>
+        <span class="art-type">Binary</span>
+        <span class="promo-badge p-dev">Dev</span>
+        <span class="slsa-badge slsa-l1">SLSA L1</span>
+        <div style="display:flex;gap:4px"><button class="ab">Attest</button><button class="ab">⬇</button></div>
+      </div>
+
+    </div>
+
+    <!-- Attestation + Warehouse -->
+    <div class="two-col">
+
+      <div class="panel">
+        <div class="ph"><div class="pt">Build Attestation — customer-api v2.4.1</div><span class="pa" style="color:#7fc4a0">✓ Verified</span></div>
+        <div class="attest-field"><span class="af-key">Build ID</span><span class="af-val">bld-0x9f2a-142</span></div>
+        <div class="attest-field"><span class="af-key">Source Commit</span><span class="af-val">a3f9c2b819e44df208c31b77f4a92d80c1e8f332</span></div>
+        <div class="attest-field"><span class="af-key">Env Hash</span><span class="af-val">sha256:8f4a2c9d1e7b3f56a0c8d2e4f6a1b3c5d7e9f0a2b</span></div>
+        <div class="attest-field"><span class="af-key">Artifact Hash</span><span class="af-val">sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4</span></div>
+        <div class="attest-field"><span class="af-key">SLSA Level</span><span class="af-val ok">Level 3 — Highest integrity</span></div>
+        <div class="attest-field"><span class="af-key">Signature</span><span class="af-val ok">Valid · cosign · sigstore</span></div>
+        <div class="attest-field"><span class="af-key">Builder</span><span class="af-val">ci-agent-prod-01</span></div>
+        <div class="attest-field"><span class="af-key">Timestamp</span><span class="af-val">2026-03-19T09:42:11Z</span></div>
+        <div class="attest-field"><span class="af-key">Deps Locked</span><span class="af-val ok">48 packages · all SHA-256 verified</span></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="panel">
+          <div class="ph"><div class="pt">Warehouse Summary</div><span class="pa">SAMS →</span></div>
+          <div class="warehouse-stats">
+            <div class="ws-item"><div class="ws-val">184</div><div class="ws-label">Total artifacts</div></div>
+            <div class="ws-item"><div class="ws-val">48.2 GB</div><div class="ws-label">Total size</div></div>
+            <div class="ws-item"><div class="ws-val">3</div><div class="ws-label">In production</div></div>
+            <div class="ws-item"><div class="ws-val">8</div><div class="ws-label">SBOM files</div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><div class="pt">Supply Chain Tiers</div></div>
+          <div style="padding:14px 18px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+              <span style="width:8px;height:8px;border-radius:50%;background:#3a9e62;flex-shrink:0"></span>
+              <span style="color:var(--tertiary);flex:1">Production tier</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">3 artifacts</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+              <span style="width:8px;height:8px;border-radius:50%;background:#4a6fd4;flex-shrink:0"></span>
+              <span style="color:var(--tertiary);flex:1">Staging tier</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">5 artifacts</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+              <span style="width:8px;height:8px;border-radius:50%;background:#c4944a;flex-shrink:0"></span>
+              <span style="color:var(--tertiary);flex:1">Integration tier</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">14 artifacts</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:12px">
+              <span style="width:8px;height:8px;border-radius:50%;background:rgba(205,195,189,0.3);flex-shrink:0"></span>
+              <span style="color:var(--tertiary);flex:1">Dev tier</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--quinary)">162 artifacts</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>

@@ -1,0 +1,52 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">Q</div>
+      <div class="logo-name">qala</div>
+    </div>
+
+    <div class="factory-select">
+      <div class="factory-info">
+        <div class="factory-label">Active Factory</div>
+        <div class="factory-name">Acme Engineering</div>
+      </div>
+      <span class="factory-tier">TEAM</span>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-system" *ngFor="let system of navSystems">
+        <a
+          class="nav-system-title"
+          [routerLink]="system.route"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <span class="ico">{{ system.icon }}</span>
+          {{ system.label }}
+        </a>
+        <div class="nav-sub">
+          <a
+            *ngFor="let item of system.children"
+            class="nav-item"
+            [routerLink]="item.route"
+            routerLinkActive="active"
+          >
+            {{ item.label }}
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="avatar">AJ</div>
+      <div class="user-info">
+        <div class="user-name">Alex Jordan</div>
+        <div class="user-role">Factory Admin</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="content-shell">
+    <router-outlet></router-outlet>
+  </div>
+</div>

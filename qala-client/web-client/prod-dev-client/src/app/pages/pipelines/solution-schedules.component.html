@@ -1,0 +1,227 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Solution Schedules <span>/ Acme Engineering · Q1–Q4 2026</span></div>
+    <button class="tb-btn">Filter ▾</button>
+    <button class="tb-btn">Group by ▾</button>
+    <button class="tb-btn">Export</button>
+    <button class="tb-btn primary">+ Add Activity</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="view-tabs">
+    <span class="vt active">Schedule View</span>
+    <span class="vt">Calendar</span>
+    <span class="vt">List</span>
+    <span class="vt">Workload</span>
+  </div>
+
+  <div class="stat-pills">
+    <div class="sp"><strong>12</strong> active solutions</div>
+    <div class="sp"><strong>38</strong> scheduled activities</div>
+    <div class="sp"><span style="width:8px;height:8px;border-radius:2px;background:#3a9e62;display:inline-block"></span><strong>14</strong> on track</div>
+    <div class="sp"><span style="width:8px;height:8px;border-radius:2px;background:#c4944a;display:inline-block"></span><strong>3</strong> at risk</div>
+    <div class="sp"><span style="width:8px;height:8px;border-radius:2px;background:#c4504a;display:inline-block"></span><strong>1</strong> overdue</div>
+    <div class="sp"><strong>2026</strong> fiscal year</div>
+  </div>
+
+  <div class="body">
+    <div class="scroll-area">
+    <div class="schedule-wrapper">
+
+      <!-- HEADER -->
+      <div class="sch-header">
+        <div class="sch-left-header">Activity / Solution</div>
+        <div class="sch-timeline-header">
+          <div class="month-col">JAN</div>
+          <div class="month-col">FEB</div>
+          <div class="month-col current">MAR ▲</div>
+          <div class="month-col">APR</div>
+          <div class="month-col">MAY</div>
+          <div class="month-col">JUN</div>
+          <div class="month-col">JUL</div>
+          <div class="month-col">AUG</div>
+          <div class="month-col">SEP</div>
+          <div class="month-col">OCT</div>
+          <div class="month-col">NOV</div>
+          <div class="month-col">DEC</div>
+        </div>
+      </div>
+
+      <!-- PLATFORM ENGINEERING SECTION -->
+      <div class="sch-section">
+        <div class="sch-section-label">
+          <div class="slabel">
+            <div class="slabel-color" style="background:#4a6fd4"></div>
+            <div class="slabel-info">
+              <div class="slabel-name">Platform Engineering</div>
+              <div class="slabel-meta">5 solutions · Alex Jordan</div>
+            </div>
+          </div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Customer API · v3.0 Design</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Customer API · Legacy crypto fix</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Auth Platform · DEV phase</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Reporting Service · Maintenance</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary)">Customer API · v3.0 Build</div>
+        </div>
+        <div class="sch-section-bars" style="position:relative">
+          <!-- Today line at ~21% (mid-March) -->
+          <div class="today-line" style="left:21.5%"></div>
+
+          <!-- Row 1: v3.0 Design - Mar to May -->
+          <div class="section-row">
+            <div class="bar" style="left:19%;width:16%;background:linear-gradient(90deg,#2943c6,#4a6fd4);color:#d6e8ff">v3.0 Design Phase</div>
+          </div>
+          <!-- Row 2: Legacy crypto - Mar to Mar (short) -->
+          <div class="section-row">
+            <div class="bar" style="left:19%;width:5%;background:rgba(196,148,74,0.7);color:#fff">WP-002</div>
+          </div>
+          <!-- Row 3: Auth Platform DEV - now to Aug -->
+          <div class="section-row">
+            <div class="bar" style="left:8%;width:54%;background:rgba(41,67,198,0.35);border:1px solid rgba(41,67,198,0.5);color:#8aaaf5">Auth Platform — DEV</div>
+          </div>
+          <!-- Row 4: Reporting Maintenance - Mar -->
+          <div class="section-row">
+            <div class="bar" style="left:19%;width:6%;background:rgba(45,107,71,0.4);border:1px solid rgba(45,107,71,0.5);color:#7fc4a0">Maintenance</div>
+          </div>
+          <!-- Row 5: v3.0 Build - May onwards -->
+          <div class="section-row">
+            <div class="bar" style="left:35%;width:22%;background:rgba(41,67,198,0.6);color:#d6e8ff">v3.0 Build Phase</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA SECTION -->
+      <div class="sch-section">
+        <div class="sch-section-label">
+          <div class="slabel">
+            <div class="slabel-color" style="background:#c4944a"></div>
+            <div class="slabel-info">
+              <div class="slabel-name">Data &amp; Analytics</div>
+              <div class="slabel-meta">3 solutions · Jamie Okafor</div>
+            </div>
+          </div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Analytics Dashboard · CM Promotion</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Data Ingestion · CVE remediation</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary)">Event Streaming · NIGHTLY phase</div>
+        </div>
+        <div class="sch-section-bars" style="position:relative">
+          <div class="today-line" style="left:21.5%"></div>
+          <div class="section-row">
+            <div class="bar" style="left:19%;width:4%;background:rgba(45,107,71,0.7);color:#d6f0e4">CM Gate</div>
+            <!-- milestone -->
+            <div class="milestone-dot" style="left:24%;background:#3a9e62;border:2px solid #1a4a2e"></div>
+          </div>
+          <div class="section-row">
+            <div class="bar" style="left:19%;width:3%;background:rgba(196,80,74,0.7);color:#ffd6d4">CVE Fix</div>
+          </div>
+          <div class="section-row">
+            <div class="bar" style="left:4%;width:46%;background:rgba(196,148,74,0.3);border:1px solid rgba(196,148,74,0.5);color:#d4b97a">Event Streaming — NIGHTLY</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONSUMER PRODUCTS SECTION -->
+      <div class="sch-section">
+        <div class="sch-section-label">
+          <div class="slabel">
+            <div class="slabel-color" style="background:#3a9e62"></div>
+            <div class="slabel-info">
+              <div class="slabel-name">Consumer Products</div>
+              <div class="slabel-meta">4 solutions · Alex Jordan</div>
+            </div>
+          </div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Analytics Dashboard · Production rollout</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Mobile App · SANDBOX exploration</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Search Platform · DEV phase</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary)">Pricing Engine · Prototype</div>
+        </div>
+        <div class="sch-section-bars" style="position:relative">
+          <div class="today-line" style="left:21.5%"></div>
+          <div class="section-row">
+            <div class="bar" style="left:23%;width:3%;background:rgba(45,107,71,0.8);color:#fff">Deploy</div>
+          </div>
+          <div class="section-row">
+            <div class="bar" style="left:19%;width:30%;background:rgba(229,224,214,0.07);border:1px solid rgba(205,195,189,0.15);color:var(--quinary)">Mobile — Sandbox exploration</div>
+          </div>
+          <div class="section-row">
+            <div class="bar" style="left:4%;width:70%;background:rgba(41,67,198,0.25);border:1px solid rgba(41,67,198,0.35);color:#8aaaf5">Search Platform — DEV</div>
+          </div>
+          <div class="section-row">
+            <div class="bar" style="left:19%;width:20%;background:rgba(105,82,66,0.3);border:1px solid rgba(105,82,66,0.4);color:var(--quaternary)">Pricing Prototype</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECURITY / INFRA SECTION -->
+      <div class="sch-section">
+        <div class="sch-section-label">
+          <div class="slabel">
+            <div class="slabel-color" style="background:#c4504a"></div>
+            <div class="slabel-info">
+              <div class="slabel-name">Security &amp; Compliance</div>
+              <div class="slabel-meta">Factory-wide · All teams</div>
+            </div>
+          </div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">SDE Compliance Audit (all SDEs)</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">External Pentest — Customer API v3.0</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary)">Tool Advisory Review (terraform BSL)</div>
+        </div>
+        <div class="sch-section-bars" style="position:relative">
+          <div class="today-line" style="left:21.5%"></div>
+          <div class="section-row">
+            <div class="bar" style="left:21%;width:2%;background:rgba(139,58,58,0.7);color:#ffd6d4">Audit</div>
+          </div>
+          <div class="section-row">
+            <div class="bar" style="left:35%;width:8%;background:rgba(139,58,58,0.5);border:1px solid rgba(139,58,58,0.7);color:#ffd6d4">External Pentest</div>
+          </div>
+          <div class="section-row">
+            <div class="bar" style="left:21%;width:8%;background:rgba(196,148,74,0.4);border:1px solid rgba(196,148,74,0.6);color:#d4b97a">BSL Review</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RELEASES -->
+      <div class="sch-section">
+        <div class="sch-section-label">
+          <div class="slabel">
+            <div class="slabel-color" style="background:var(--quinary)"></div>
+            <div class="slabel-info">
+              <div class="slabel-name">Planned Releases</div>
+              <div class="slabel-meta">CM-qualified deliverables</div>
+            </div>
+          </div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Analytics Dashboard v1.2.0 → Production</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary);border-bottom:1px solid rgba(205,195,189,0.04)">Customer API v3.0 Release Train</div>
+          <div style="padding:6px 18px 6px 32px;font-size:11.5px;color:var(--quinary)">Auth Platform v1.0 → CM</div>
+        </div>
+        <div class="sch-section-bars" style="position:relative">
+          <div class="today-line" style="left:21.5%"></div>
+          <div class="section-row">
+            <div class="milestone-dot" style="left:24.5%;background:#3a9e62;border:2px solid #1a4a2e"></div>
+            <span style="position:absolute;left:26.5%;font-size:11px;color:#7fc4a0;white-space:nowrap">Analytics 1.2.0</span>
+          </div>
+          <div class="section-row">
+            <div class="milestone-dot" style="left:41%;background:#4a6fd4;border:2px solid #1c295c"></div>
+            <span style="position:absolute;left:43%;font-size:11px;color:#8aaaf5;white-space:nowrap">Customer API v3.0</span>
+          </div>
+          <div class="section-row">
+            <div class="milestone-dot" style="left:54%;background:var(--quinary);border:2px solid #3d2e1e"></div>
+            <span style="position:absolute;left:56%;font-size:11px;color:var(--quaternary);white-space:nowrap">Auth Platform v1.0</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+
+  <div class="summary-section">
+    <div class="sum-item"><div class="sum-dot" style="background:#4a6fd4"></div>Platform Engineering</div>
+    <div class="sum-item"><div class="sum-dot" style="background:#c4944a"></div>Data &amp; Analytics</div>
+    <div class="sum-item"><div class="sum-dot" style="background:#3a9e62"></div>Consumer Products</div>
+    <div class="sum-item"><div class="sum-dot" style="background:#c4504a"></div>Security</div>
+    <div class="sum-item"><div class="sum-dot" style="background:var(--quinary)"></div>Releases</div>
+    <div class="sum-item" style="margin-left:auto"><div style="width:12px;height:12px;transform:rotate(45deg);background:#3a9e62;flex-shrink:0"></div> Milestone</div>
+    <div class="sum-item"><div style="width:2px;height:16px;background:rgba(74,111,212,0.6);flex-shrink:0"></div> Today</div>
+  </div>
+</main>

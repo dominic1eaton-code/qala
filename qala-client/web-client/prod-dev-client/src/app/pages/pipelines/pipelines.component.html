@@ -1,0 +1,129 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Pipelines <span>/ CI · CD · CM · 48 runs this week</span></div>
+    <button class="tb-btn">Filter ▾</button>
+    <button class="tb-btn primary">▶ Trigger Run</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="content-area">
+
+    <!-- LIST -->
+    <div class="list-pane">
+      <div class="lp-head">
+        <span class="lp-title">Recent Runs</span>
+        <span style="font-size:11px;color:var(--quinary)">48 this week</span>
+      </div>
+      <div class="lp-body">
+
+        <div class="pr-item selected" onclick="showRun(1)">
+          <div class="pr-header"><div class="pr-dot running"></div><div class="pr-name">Customer API · CI Build</div><span class="pr-type-badge ptype-ci">CI</span></div>
+          <div class="pr-meta">main · a3f9c2b · 1:12 elapsed</div>
+        </div>
+        <div class="pr-item" onclick="showRun(2)">
+          <div class="pr-header"><div class="pr-dot fail"></div><div class="pr-name">Data Ingestion · CI Build</div><span class="pr-type-badge ptype-ci">CI</span></div>
+          <div class="pr-meta">feat/schema-v2 · 9e4a1d3 · 1:35 · SAST FAILED</div>
+        </div>
+        <div class="pr-item" onclick="showRun(3)">
+          <div class="pr-header"><div class="pr-dot pass"></div><div class="pr-name">Analytics Dashboard · CD Staging</div><span class="pr-type-badge ptype-cd">CD</span></div>
+          <div class="pr-meta">release/1.2 · b7c2f8e · 4:12</div>
+        </div>
+        <div class="pr-item" onclick="showRun(4)">
+          <div class="pr-header"><div class="pr-dot pass"></div><div class="pr-name">Notification Service · Nightly</div><span class="pr-type-badge ptype-ci">CI</span></div>
+          <div class="pr-meta">main · d1e4a9f · 2:08</div>
+        </div>
+        <div class="pr-item">
+          <div class="pr-header"><div class="pr-dot pass"></div><div class="pr-name">Customer API · CD Production</div><span class="pr-type-badge ptype-cm">CM</span></div>
+          <div class="pr-meta">v2.4.1 · release tag · 5:44</div>
+        </div>
+        <div class="pr-item">
+          <div class="pr-header"><div class="pr-dot pass"></div><div class="pr-name">Auth Platform · CI Build</div><span class="pr-type-badge ptype-ci">CI</span></div>
+          <div class="pr-meta">main · 2f8b3c1 · 1:58</div>
+        </div>
+        <div class="pr-item">
+          <div class="pr-header"><div class="pr-dot fail"></div><div class="pr-name">Search Platform · CI Build</div><span class="pr-type-badge ptype-ci">CI</span></div>
+          <div class="pr-meta">feat/index · 4c9d2a7 · 0:47 · LINT FAILED</div>
+        </div>
+        <div class="pr-item">
+          <div class="pr-header"><div class="pr-dot pass"></div><div class="pr-name">Reporting Service · Nightly</div><span class="pr-type-badge ptype-ci">CI</span></div>
+          <div class="pr-meta">main · e8b1f4c · 3:21</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DETAIL PANE -->
+    <div class="detail-pane">
+      <div class="dp-head">
+        <div class="dp-title" id="dp-title">Customer API · CI Build #142</div>
+        <div class="dp-meta" id="dp-meta">main · a3f9c2b · sde-api-main · Triggered by: Alex Jordan · 1:12 elapsed</div>
+        <div class="dp-badges">
+          <span style="font-size:10px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;background:rgba(41,67,198,0.2);color:#8aaaf5;border:1px solid rgba(41,67,198,0.3)">CI</span>
+          <span style="font-size:10px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;background:rgba(41,67,198,0.15);color:#8aaaf5;animation:pd 1.2s ease-in-out infinite">● RUNNING</span>
+        </div>
+      </div>
+
+      <div class="dp-body">
+
+        <!-- Stages -->
+        <div>
+          <div style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">Pipeline Stages</div>
+          <div class="stages-track">
+
+            <div class="stage-row">
+              <div class="stage-dot-wrap"><div class="stage-dot sd-pass"></div><div class="stage-connector" style="height:100%;min-height:20px"></div></div>
+              <div class="stage-content"><div class="sc-header"><span class="sc-name">Source Fetch</span><span class="sc-status-badge ssb-pass">PASS</span><span class="sc-dur">0:02</span></div><div class="sc-detail">Checked out main at a3f9c2b. SCM signature verified.</div></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-dot-wrap"><div class="stage-dot sd-pass"></div><div class="stage-connector" style="height:100%;min-height:20px"></div></div>
+              <div class="stage-content"><div class="sc-header"><span class="sc-name">Environment Provision</span><span class="sc-status-badge ssb-pass">PASS</span><span class="sc-dur">0:08</span></div><div class="sc-detail">Hermetic container instantiated. go:1.22.0 · docker:24.0 verified against lock hashes.</div></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-dot-wrap"><div class="stage-dot sd-pass"></div><div class="stage-connector" style="height:100%;min-height:20px"></div></div>
+              <div class="stage-content"><div class="sc-header"><span class="sc-name">Dependency Resolution</span><span class="sc-status-badge ssb-pass">PASS</span><span class="sc-dur">0:14</span></div><div class="sc-detail">48 packages resolved from internal mirror. Lock file verified. No known CVEs.</div></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-dot-wrap"><div class="stage-dot sd-pass"></div><div class="stage-connector" style="height:100%;min-height:20px"></div></div>
+              <div class="stage-content"><div class="sc-header"><span class="sc-name">Compile / Build</span><span class="sc-status-badge ssb-pass">PASS</span><span class="sc-dur">0:22</span></div><div class="sc-detail">Build succeeded. 0 errors, 2 warnings. No external network access during compile.</div></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-dot-wrap"><div class="stage-dot sd-pass"></div><div class="stage-connector" style="height:100%;min-height:20px"></div></div>
+              <div class="stage-content"><div class="sc-header"><span class="sc-name">Unit Tests</span><span class="sc-status-badge ssb-pass">PASS</span><span class="sc-dur">0:18</span></div><div class="sc-detail">214 tests run · 214 passed · 0 failed · Coverage: 97.3%</div></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-dot-wrap"><div class="stage-dot sd-run"></div><div class="stage-connector" style="height:100%;min-height:20px"></div></div>
+              <div class="stage-content"><div class="sc-header"><span class="sc-name">Security Scan (SAST)</span><span class="sc-status-badge ssb-run">RUNNING</span><span class="sc-dur">0:08</span></div><div class="sc-detail">Scanning source and dependency graph… 3 files remaining.</div></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-dot-wrap"><div class="stage-dot sd-skip"></div></div>
+              <div class="stage-content" style="opacity:0.4"><div class="sc-header"><span class="sc-name">Code Quality Gate</span><span class="sc-status-badge ssb-skip">PENDING</span></div><div class="sc-detail">Awaiting SAST completion</div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Live log -->
+        <div>
+          <div style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Live Log — SAST Stage</div>
+          <div class="log-block" id="liveLog">
+<span class="log-info">[sast] Starting semgrep scan on 142 source files…</span>
+<span class="log-ok">[sast] Scanning internal/api/handlers.go … OK</span>
+<span class="log-ok">[sast] Scanning internal/api/auth.go … OK</span>
+<span class="log-ok">[sast] Scanning internal/db/queries.go … OK</span>
+<span class="log-warn">[sast] Warning: deprecated crypto function in pkg/legacy/crypto.go:88</span>
+<span class="log-ok">[sast] Scanning pkg/cache/redis.go … OK</span>
+<span class="log-info">[sast] Scanning pkg/transport/grpc.go …</span>
+          </div>
+        </div>
+
+        <!-- AI insight -->
+        <div style="padding:12px 14px;background:rgba(41,67,198,0.07);border:1px solid rgba(41,67,198,0.2);border-radius:8px;">
+          <div style="font-size:11px;font-weight:600;color:#8aaaf5;margin-bottom:4px">⚡ AI Insight</div>
+          <div style="font-size:12px;color:var(--quinary);line-height:1.6">Unit test stage 18% faster than baseline. The deprecated crypto warning in pkg/legacy/crypto.go has appeared in 3 of the last 5 builds — recommend scheduling remediation before TEST maturity gate.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>

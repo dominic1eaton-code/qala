@@ -1,0 +1,147 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Value Chain <span>/ Acme Engineering · Current Sprint</span></div>
+    <button class="tb-btn">Filter by Solution</button>
+    <button class="tb-btn">Export Metrics</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="mb">
+
+    <!-- Visual Flow -->
+    <div class="panel">
+      <div class="ph"><div class="pt">Solution Lifecycle Flow — All Active Solutions</div><span class="pa">Configure stages →</span></div>
+      <div class="vc-flow">
+        <div class="vc-stage-col done"><div class="vc-node-lg">💡</div><div class="vc-stage-name">Ideation</div><div class="vc-stage-meta">2 solutions</div></div>
+        <div class="vc-connector">›</div>
+        <div class="vc-stage-col done"><div class="vc-node-lg">✏</div><div class="vc-stage-name">Design</div><div class="vc-stage-meta">3 solutions</div></div>
+        <div class="vc-connector">›</div>
+        <div class="vc-stage-col active"><div class="vc-node-lg">⚙</div><div class="vc-stage-name">Build</div><div class="vc-stage-meta">5 solutions</div></div>
+        <div class="vc-connector">›</div>
+        <div class="vc-stage-col"><div class="vc-node-lg">✓</div><div class="vc-stage-name">Test</div><div class="vc-stage-meta">1 solution</div></div>
+        <div class="vc-connector">›</div>
+        <div class="vc-stage-col"><div class="vc-node-lg">⬆</div><div class="vc-stage-name">Release</div><div class="vc-stage-meta">0 solutions</div></div>
+        <div class="vc-connector">›</div>
+        <div class="vc-stage-col done"><div class="vc-node-lg">🚀</div><div class="vc-stage-name">Deploy</div><div class="vc-stage-meta">1 solution</div></div>
+        <div class="vc-connector">›</div>
+        <div class="vc-stage-col done"><div class="vc-node-lg">📊</div><div class="vc-stage-name">Operate</div><div class="vc-stage-meta">2 solutions</div></div>
+        <div class="vc-connector">›</div>
+        <div class="vc-stage-col"><div class="vc-node-lg">◌</div><div class="vc-stage-name">Retire</div><div class="vc-stage-meta">0 solutions</div></div>
+      </div>
+    </div>
+
+    <!-- Stage Metric Cards -->
+    <div class="stage-metrics">
+      <div class="smc done"><div class="smc-stage">Ideation</div><div class="smc-val">4d</div><div class="smc-label">Avg time</div><span class="smc-badge b-done">Done</span></div>
+      <div class="smc done"><div class="smc-stage">Design</div><div class="smc-val">12d</div><div class="smc-label">Avg time</div><span class="smc-badge b-done">Done</span></div>
+      <div class="smc active"><div class="smc-stage">Build</div><div class="smc-val">18d</div><div class="smc-label">Avg time</div><span class="smc-badge b-active">Active</span></div>
+      <div class="smc idle"><div class="smc-stage">Test</div><div class="smc-val">9d</div><div class="smc-label">Avg time</div><span class="smc-badge b-idle">Upcoming</span></div>
+      <div class="smc idle"><div class="smc-stage">Release</div><div class="smc-val">3d</div><div class="smc-label">Avg time</div><span class="smc-badge b-idle">Upcoming</span></div>
+      <div class="smc done"><div class="smc-stage">Deploy</div><div class="smc-val">0.4d</div><div class="smc-label">Avg time</div><span class="smc-badge b-done">Done</span></div>
+      <div class="smc done"><div class="smc-stage">Operate</div><div class="smc-val">99.4%</div><div class="smc-label">Uptime</div><span class="smc-badge b-done">Live</span></div>
+      <div class="smc idle"><div class="smc-stage">Retire</div><div class="smc-val">—</div><div class="smc-label">No active</div><span class="smc-badge b-idle">N/A</span></div>
+    </div>
+
+    <!-- Solutions by stage + Cycle Time -->
+    <div class="two-col">
+
+      <div class="panel">
+        <div class="ph"><div class="pt">Solutions by Stage</div><span class="pa">View registry →</span></div>
+        <div class="sol-chain-row">
+          <div class="scr-dot active"></div>
+          <div class="scr-info"><div class="scr-name">Customer API</div><div class="scr-sub">Application · sde-api-main</div></div>
+          <span class="scr-stage ss-operate">OPERATE</span>
+        </div>
+        <div class="sol-chain-row">
+          <div class="scr-dot active"></div>
+          <div class="scr-info"><div class="scr-name">Analytics Dashboard</div><div class="scr-sub">Application · sde-analytics-01</div></div>
+          <span class="scr-stage ss-test">TEST</span>
+        </div>
+        <div class="sol-chain-row">
+          <div class="scr-dot active"></div>
+          <div class="scr-info"><div class="scr-name">Notification Service</div><div class="scr-sub">Service · sde-notif-main</div></div>
+          <span class="scr-stage ss-build">BUILD</span>
+        </div>
+        <div class="sol-chain-row">
+          <div class="scr-dot active"></div>
+          <div class="scr-info"><div class="scr-name">Auth Platform</div><div class="scr-sub">Platform · sde-auth-dev</div></div>
+          <span class="scr-stage ss-build">BUILD</span>
+        </div>
+        <div class="sol-chain-row">
+          <div class="scr-dot active"></div>
+          <div class="scr-info"><div class="scr-name">Data Ingestion Pipeline</div><div class="scr-sub">System · sde-data-main</div></div>
+          <span class="scr-stage ss-build">BUILD ⚠</span>
+        </div>
+        <div class="sol-chain-row">
+          <div class="scr-dot done"></div>
+          <div class="scr-info"><div class="scr-name">Customer API v2.4.1</div><div class="scr-sub">Application · sde-api-prod</div></div>
+          <span class="scr-stage ss-deploy">OPERATE</span>
+        </div>
+        <div class="sol-chain-row">
+          <div class="scr-dot idle"></div>
+          <div class="scr-info"><div class="scr-name">Mobile Companion App</div><div class="scr-sub">Application · sde-mobile-01</div></div>
+          <span class="scr-stage ss-design">DESIGN</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="ph"><div class="pt">Cycle Time by Stage</div><span class="pa">vs. baseline →</span></div>
+        <div class="cycle-row">
+          <div class="cycle-stage">Ideation</div>
+          <div class="cycle-bar-track"><div class="cycle-bar-fill" style="width:22%;background:rgba(45,107,71,0.6)"></div></div>
+          <div class="cycle-time">4.2d</div>
+          <div class="cycle-delta" style="color:#7fc4a0;font-size:10px">↓ 12%</div>
+        </div>
+        <div class="cycle-row">
+          <div class="cycle-stage">Design</div>
+          <div class="cycle-bar-track"><div class="cycle-bar-fill" style="width:55%;background:rgba(41,67,198,0.5)"></div></div>
+          <div class="cycle-time">12.1d</div>
+          <div class="cycle-delta" style="color:#d4b97a;font-size:10px">↑ 8%</div>
+        </div>
+        <div class="cycle-row">
+          <div class="cycle-stage">Build</div>
+          <div class="cycle-bar-track"><div class="cycle-bar-fill" style="width:75%;background:rgba(41,67,198,0.6)"></div></div>
+          <div class="cycle-time">17.8d</div>
+          <div class="cycle-delta" style="color:#d4b97a;font-size:10px">↑ 5%</div>
+        </div>
+        <div class="cycle-row">
+          <div class="cycle-stage">Test</div>
+          <div class="cycle-bar-track"><div class="cycle-bar-fill" style="width:40%;background:rgba(196,148,74,0.5)"></div></div>
+          <div class="cycle-time">9.3d</div>
+          <div class="cycle-delta" style="color:#7fc4a0;font-size:10px">↓ 18%</div>
+        </div>
+        <div class="cycle-row">
+          <div class="cycle-stage">Release</div>
+          <div class="cycle-bar-track"><div class="cycle-bar-fill" style="width:14%;background:rgba(105,82,66,0.5)"></div></div>
+          <div class="cycle-time">3.1d</div>
+          <div class="cycle-delta" style="color:#7fc4a0;font-size:10px">↓ 2%</div>
+        </div>
+        <div class="cycle-row">
+          <div class="cycle-stage">Deploy</div>
+          <div class="cycle-bar-track"><div class="cycle-bar-fill" style="width:3%;background:rgba(45,107,71,0.7)"></div></div>
+          <div class="cycle-time">0.4d</div>
+          <div class="cycle-delta" style="color:#7fc4a0;font-size:10px">↓ 30%</div>
+        </div>
+        <div style="padding:14px 18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;color:var(--quinary)">Total lead time (concept → production)</span>
+          <span style="font-size:15px;font-weight:700;color:var(--secondary);font-family:'JetBrains Mono',monospace">46.9d</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Resource + Value metrics -->
+    <div class="panel">
+      <div class="ph"><div class="pt">Resource Consumption by Stage</div><span class="pa">SRMS →</span></div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);padding:18px;gap:14px;">
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:var(--secondary)">1,240</div><div style="font-size:11px;color:var(--quinary);margin-top:3px">Dev hours / mo</div></div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:var(--secondary)">$4,280</div><div style="font-size:11px;color:var(--quinary);margin-top:3px">Compute spend</div></div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:var(--secondary)">48</div><div style="font-size:11px;color:var(--quinary);margin-top:3px">Pipeline runs</div></div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:var(--secondary)">214</div><div style="font-size:11px;color:var(--quinary);margin-top:3px">Test runs</div></div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:var(--secondary);color:#7fc4a0">99.4%</div><div style="font-size:11px;color:var(--quinary);margin-top:3px">Production uptime</div></div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:700;color:var(--secondary)">3.2h</div><div style="font-size:11px;color:var(--quinary);margin-top:3px">Avg MTTR</div></div>
+      </div>
+    </div>
+
+  </div>
+</main>

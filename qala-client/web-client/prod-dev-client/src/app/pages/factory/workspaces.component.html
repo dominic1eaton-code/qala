@@ -1,0 +1,144 @@
+<div class="main">
+  <header class="topbar">
+    <div class="tb-crumb">qala <span style="opacity:.35">/</span> <b>Workspaces</b> <span style="opacity:.35">/</span> payments-workspace</div>
+    <div class="tb-right">
+      <div class="tb-notif"></div>
+      <button class="tb-btn primary">+ New Workspace</button>
+    </div>
+  </header>
+
+  <div class="ws-layout">
+
+    <!-- PANEL 1: WORKSPACE LIST -->
+    <div class="ws-list">
+      <div class="ws-list-head">
+        <div class="ws-list-title">Workspaces</div>
+        <button class="ws-list-add">+</button>
+      </div>
+      <div class="ws-list-scroll">
+        <div class="ws-item active">
+          <div class="ws-name">payments-workspace</div>
+          <div class="ws-meta">payments-sde-01 · 14 files</div>
+        </div>
+        <div class="ws-item">
+          <div class="ws-name">identity-workspace</div>
+          <div class="ws-meta">identity-sde-03 · 9 files</div>
+        </div>
+        <div class="ws-item">
+          <div class="ws-name">analytics-workspace</div>
+          <div class="ws-meta">analytics-sde · 22 files</div>
+        </div>
+        <div class="ws-item">
+          <div class="ws-name">notifications-ws</div>
+          <div class="ws-meta">notifications-sde · 7 files</div>
+        </div>
+        <div class="ws-item">
+          <div class="ws-name">security-workspace</div>
+          <div class="ws-meta">sec-sde-02 · 11 files</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2: FILE TREE -->
+    <div class="ws-tree">
+      <div class="ws-tree-head">
+        <div class="wt-title">payments-workspace</div>
+        <div class="wt-actions">
+          <button class="wt-btn" title="New file">+</button>
+          <button class="wt-btn" title="New folder">📁</button>
+        </div>
+      </div>
+      <div class="ws-tree-scroll">
+        <div class="tree-folder open" onclick="this.classList.toggle('open')">
+          <span class="tree-folder-arrow">▶</span>
+          <span class="tree-folder-name">docs/</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'docs/charter.md')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"></rect></svg>
+          <span class="tree-file-name">charter.md</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'docs/solution-book.md')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"></rect></svg>
+          <span class="tree-file-name">solution-book.md</span>
+        </div>
+        <div class="tree-file active" onclick="openFile(this,'docs/api-spec.yaml')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"></rect></svg>
+          <span class="tree-file-name">api-spec.yaml</span>
+        </div>
+        <div class="tree-folder open" onclick="this.classList.toggle('open')">
+          <span class="tree-folder-arrow">▶</span>
+          <span class="tree-folder-name">config/</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'config/sde.env')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"></rect></svg>
+          <span class="tree-file-name">sde.env</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'config/toolchain.toml')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"></rect></svg>
+          <span class="tree-file-name">toolchain.toml</span>
+        </div>
+        <div class="tree-file" onclick="openFile(this,'config/hermetic.lock')">
+          <svg class="tree-file-icon" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="8" height="8" rx=".5" stroke="currentColor" stroke-width="1"></rect></svg>
+          <span class="tree-file-name">hermetic.lock</span>
+        </div>
+        <div class="tree-folder" onclick="this.classList.toggle('open')">
+          <span class="tree-folder-arrow">▶</span>
+          <span class="tree-folder-name">playbooks/</span>
+        </div>
+        <div class="tree-folder" onclick="this.classList.toggle('open')">
+          <span class="tree-folder-arrow">▶</span>
+          <span class="tree-folder-name">solution-models/</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: VIEWER -->
+    <div class="ws-viewer">
+      <div class="wv-head">
+        <div class="wv-path">payments-workspace / docs / <b id="vpath">api-spec.yaml</b></div>
+        <div class="wv-acts">
+          <button class="wv-btn">Edit</button>
+          <button class="wv-btn">Download</button>
+          <button class="wv-btn">History</button>
+        </div>
+      </div>
+      <div class="wv-scroll">
+        <pre class="wv-code" id="vcode"><span class="ln">1</span><span class="cm"># payments-platform API specification</span>
+<span class="ln">2</span><span class="cm"># qala workspace: payments-workspace</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="kw">openapi</span>: <span class="st">"3.1.0"</span>
+<span class="ln">5</span><span class="kw">info</span>:
+<span class="ln">6</span>  <span class="kw">title</span>: <span class="st">payments-platform API</span>
+<span class="ln">7</span>  <span class="kw">version</span>: <span class="st">"1.0.0"</span>
+<span class="ln">8</span>  <span class="kw">description</span>: <span class="st">Core payments solution REST API</span>
+<span class="ln">9</span>
+<span class="ln">10</span><span class="kw">paths</span>:
+<span class="ln">11</span>  <span class="nm">/payments</span>:
+<span class="ln">12</span>    <span class="kw">post</span>:
+<span class="ln">13</span>      <span class="kw">summary</span>: Initiate a payment
+<span class="ln">14</span>      <span class="kw">requestBody</span>:
+<span class="ln">15</span>        <span class="kw">content</span>:
+<span class="ln">16</span>          <span class="st">application/json</span>:
+<span class="ln">17</span>            <span class="kw">schema</span>:
+<span class="ln">18</span>              <span class="kw">$ref</span>: <span class="st">'#/components/schemas/PaymentRecord'</span>
+<span class="ln">19</span>
+<span class="ln">20</span><span class="kw">components</span>:
+<span class="ln">21</span>  <span class="kw">schemas</span>:
+<span class="ln">22</span>    <span class="nm">PaymentRecord</span>:
+<span class="ln">23</span>      <span class="kw">type</span>: <span class="st">object</span>
+<span class="ln">24</span>      <span class="kw">properties</span>:
+<span class="ln">25</span>        <span class="nm">txn_id</span>:
+<span class="ln">26</span>          <span class="kw">type</span>: <span class="st">string</span>
+<span class="ln">27</span>        <span class="nm">amount</span>:
+<span class="ln">28</span>          <span class="kw">type</span>: <span class="st">number</span>
+<span class="ln">29</span>          <span class="kw">format</span>: <span class="st">double</span>
+<span class="ln">30</span>        <span class="nm">currency</span>:
+<span class="ln">31</span>          <span class="kw">type</span>: <span class="st">string</span>
+<span class="ln">32</span>          <span class="kw">enum</span>: [<span class="st">USD</span>, <span class="st">EUR</span>, <span class="st">GBP</span>]
+<span class="ln">33</span>        <span class="nm">recipient_id</span>:
+<span class="ln">34</span>          <span class="kw">type</span>: <span class="st">string</span>
+<span class="ln">35</span>      <span class="kw">required</span>: [txn_id, amount, currency, recipient_id]</pre>
+      </div>
+    </div>
+  </div>
+</div>

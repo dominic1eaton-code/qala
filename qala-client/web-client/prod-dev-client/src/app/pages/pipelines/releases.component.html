@@ -1,0 +1,234 @@
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title">Releases &amp; Distribution <span>/ Release Management · Deployment · Rollout</span></div>
+    <button class="tb-btn">Release Train</button>
+    <button class="tb-btn">Rollback</button>
+    <button class="tb-btn primary">+ New Release</button>
+    <div class="icon-btn">🔔<div class="notif-dot"></div></div>
+  </div>
+
+  <div class="body">
+
+    <!-- RELEASES LIST -->
+    <div class="releases-list">
+      <div class="rl-head">
+        <span class="rl-title">All Releases</span>
+        <span style="font-size:11px;color:var(--quinary)">8 total</span>
+      </div>
+      <div class="rl-body">
+
+        <div class="release-item selected" onclick="select(this)">
+          <div class="ri-header">
+            <div class="ri-dot rd-pending"></div>
+            <div class="ri-name">Analytics Dashboard 1.2.0-rc2</div>
+            <span class="ri-tag b-amber">CM PENDING</span>
+          </div>
+          <div class="ri-meta">sol-0x3b1c · 2026-03-18 · 2/3 approvers</div>
+        </div>
+
+        <div class="release-item" onclick="select(this)">
+          <div class="ri-header">
+            <div class="ri-dot rd-released"></div>
+            <div class="ri-name">Customer API v2.4.1</div>
+            <span class="ri-tag b-green">RELEASED</span>
+          </div>
+          <div class="ri-meta">sol-0x9f2a · 2026-03-19 · Production</div>
+        </div>
+
+        <div class="release-item" onclick="select(this)">
+          <div class="ri-header">
+            <div class="ri-dot rd-released"></div>
+            <div class="ri-name">Reporting Service v1.1.0</div>
+            <span class="ri-tag b-green">RELEASED</span>
+          </div>
+          <div class="ri-meta">sol-0x8e2a · 2026-02-12 · Production</div>
+        </div>
+
+        <div class="release-item" onclick="select(this)">
+          <div class="ri-header">
+            <div class="ri-dot rd-train"></div>
+            <div class="ri-name">Release Train RT-2026-Q2</div>
+            <span class="ri-tag b-blue">TRAIN</span>
+          </div>
+          <div class="ri-meta">3 solutions · Scheduled 2026-06-01</div>
+        </div>
+
+        <div class="release-item" onclick="select(this)">
+          <div class="ri-header">
+            <div class="ri-dot rd-draft"></div>
+            <div class="ri-name">Customer API v2.3.0</div>
+            <span class="ri-tag b-grey">ARCHIVED</span>
+          </div>
+          <div class="ri-meta">sol-0x9f2a · 2026-02-28 · Superseded</div>
+        </div>
+
+        <div class="release-item" onclick="select(this)">
+          <div class="ri-header">
+            <div class="ri-dot rd-released"></div>
+            <div class="ri-name">Analytics Dashboard v1.1.2</div>
+            <span class="ri-tag b-green">RELEASED</span>
+          </div>
+          <div class="ri-meta">sol-0x3b1c · 2026-01-20 · Superseded by rc2</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RELEASE DETAIL -->
+    <div class="release-detail">
+
+      <!-- Header card -->
+      <div class="panel">
+        <div class="ph">
+          <div style="flex:1">
+            <div style="font-size:17px;font-weight:700;color:var(--secondary);margin-bottom:4px">Analytics Dashboard v1.2.0-rc2</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span class="badge b-amber">CM Pending</span>
+              <span class="badge b-blue">TEST Maturity</span>
+              <span class="badge b-grey">sol-0x3b1c</span>
+              <span class="badge b-grey">pkg-0x3b1c</span>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace">Assembled 2026-03-18T16:04:00Z</div>
+            <div style="font-size:11px;color:var(--quinary);margin-top:3px">Owner: Sara Mitchell</div>
+          </div>
+        </div>
+        <div class="frow"><div class="fk">Release type</div><div class="fv">Minor — new features, backward compatible</div></div>
+        <div class="frow"><div class="fk">Artifact</div><div class="fv mono">analytics-dashboard:1.2.0-rc2 (OCI) · 31.5 MB</div></div>
+        <div class="frow"><div class="fk">SLSA Level</div><div class="fv"><span class="badge b-blue">SLSA L2</span> — will upgrade to L3 on CM promotion</div></div>
+        <div class="frow"><div class="fk">Deployment strategy</div><div class="fv">Canary — 5% → 25% → 100% traffic shift over 30min</div></div>
+        <div class="frow"><div class="fk">Target environment</div><div class="fv mono">K8s prod namespace · CDN invalidation required</div></div>
+        <div class="frow"><div class="fk">Rollback target</div><div class="fv mono">analytics-dashboard:1.1.2 — retained, instant rollback available</div></div>
+        <div class="frow"><div class="fk">Distribution channels</div><div class="fv">OCI Registry → K8s · CDN (CloudFront) · api-release@acme.io</div></div>
+      </div>
+
+      <!-- Release pipeline stages -->
+      <div class="panel">
+        <div class="ph"><div class="pt">Release Pipeline — Gate Status</div></div>
+        <div class="stage-row"><div class="stage-dot sd-pass"></div><span class="stage-name">Build — CI green · artifact produced</span><span class="stage-meta">✓ 2026-03-17</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pass"></div><span class="stage-name">Unit Tests — 187 tests · 91.8% coverage</span><span class="stage-meta">✓ 2026-03-17</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pass"></div><span class="stage-name">Security Scan (SAST) — 0 findings</span><span class="stage-meta">✓ 2026-03-17</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pass"></div><span class="stage-name">SCA — 44 deps · 0 critical CVEs</span><span class="stage-meta">✓ 2026-03-17</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pass"></div><span class="stage-name">Integration Tests — all suites passing</span><span class="stage-meta">✓ 2026-03-18</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pass"></div><span class="stage-name">Performance Benchmarks — p99 82ms (met)</span><span class="stage-meta">✓ 2026-03-18</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pass"></div><span class="stage-name">Staging Deploy — deployed to release-env-analytics-rc2</span><span class="stage-meta">✓ 2026-03-18</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pass"></div><span class="stage-name">DAST Scan — dynamic scan clean</span><span class="stage-meta">✓ 2026-03-18</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pass"></div><span class="stage-name">Container Scan (trivy) — 0 critical</span><span class="stage-meta">✓ 2026-03-18</span></div>
+        <div class="stage-row" style="background:rgba(196,148,74,0.05)"><div class="stage-dot sd-active"></div><span class="stage-name" style="color:#d4b97a">CM Gate — 2/3 approvers signed · awaiting Sara Mitchell</span><span class="stage-meta" style="color:#d4b97a">⏳ Pending</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pend"></div><span class="stage-name">Production Deploy — Canary rollout</span><span class="stage-meta">Pending</span></div>
+        <div class="stage-row"><div class="stage-dot sd-pend"></div><span class="stage-name">Post-Deploy Verification — health check</span><span class="stage-meta">Pending</span></div>
+      </div>
+
+      <!-- Changelog -->
+      <div class="panel">
+        <div class="ph"><div class="pt">Changelog — v1.2.0-rc2</div><span class="pa">Full notes →</span></div>
+        <div class="changelog-entry"><span class="cl-type cl-feat">FEATURE</span><div class="cl-desc">Cross-portfolio solution comparison dashboard with configurable metric dimensions</div><div class="cl-pr">PR #218 · Sara Mitchell · 2026-03-12</div></div>
+        <div class="changelog-entry"><span class="cl-type cl-feat">FEATURE</span><div class="cl-desc">Factory-level benchmarking heatmap with drill-down by solution type and maturity</div><div class="cl-pr">PR #224 · Jamie Okafor · 2026-03-14</div></div>
+        <div class="changelog-entry"><span class="cl-type cl-perf">PERF</span><div class="cl-desc">Dashboard query latency reduced 34% via server-side aggregation and incremental rendering</div><div class="cl-pr">PR #226 · Sara Mitchell · 2026-03-15</div></div>
+        <div class="changelog-entry"><span class="cl-type cl-fix">FIX</span><div class="cl-desc">Maturity distribution chart incorrect for factories with &gt;50 solutions — edge case resolved</div><div class="cl-pr">PR #229 · Jamie Okafor · 2026-03-16</div></div>
+        <div class="changelog-entry"><span class="cl-type cl-sec">SECURITY</span><div class="cl-desc">Upgraded go.opentelemetry.io/otel to v1.24.0 — eliminates OTEL-2024-012 advisory</div><div class="cl-pr">PR #231 · Dependabot · 2026-03-17</div></div>
+      </div>
+
+      <!-- Distribution plan -->
+      <div class="panel">
+        <div class="ph"><div class="pt">Distribution Plan — Post CM Gate</div></div>
+        <table class="tbl">
+          <tbody><tr><th>Step</th><th>Action</th><th>Channel</th><th>Timeline</th><th>Confirmation</th></tr>
+          <tr><td class="mono">1</td><td>Tag immutable release in OCI registry</td><td>Internal OCI Registry</td><td>Immediately on CM gate</td><td>Digest + cosign verify</td></tr>
+          <tr><td class="mono">2</td><td>Canary deploy — 5% traffic shift</td><td>CD Pipeline → K8s prod</td><td>T+0 post-gate</td><td>Error rate &lt; 0.1% over 10min</td></tr>
+          <tr><td class="mono">3</td><td>Canary expand — 25% traffic</td><td>CD Pipeline → K8s prod</td><td>T+10min</td><td>p99 &lt; 120ms · no anomalies</td></tr>
+          <tr><td class="mono">4</td><td>Full rollout — 100%</td><td>CD Pipeline → K8s prod</td><td>T+30min</td><td>All health checks pass</td></tr>
+          <tr><td class="mono">5</td><td>CDN invalidation — frontend assets</td><td>CloudFront CDN</td><td>T+0 post-gate</td><td>Cache miss + origin verified</td></tr>
+          <tr><td class="mono">6</td><td>Release announcement</td><td>api-release@acme.io</td><td>T+5min post-deploy confirm</td><td>Email delivery confirmed</td></tr>
+        </tbody></table>
+      </div>
+
+      <!-- Stats row at bottom -->
+      <div class="stat-row">
+        <div class="sc"><div class="sl">Releases (30d)</div><div class="sv">3</div><div class="ss">CM-qualified</div></div>
+        <div class="sc"><div class="sl">Success Rate</div><div class="sv" style="color:#7fc4a0">100%</div><div class="ss">No rollbacks</div></div>
+        <div class="sc"><div class="sl">Avg Lead Time</div><div class="sv">6.2d</div><div class="ss">Commit → production</div></div>
+        <div class="sc"><div class="sl">Pending CM</div><div class="sv" style="color:#d4b97a">1</div><div class="ss">Analytics Dashboard</div></div>
+      </div>
+
+    </div>
+
+    <!-- APPROVAL PANE -->
+    <div class="approval-pane">
+      <div class="ap-head">
+        <div class="ap-title">CM Board Approval</div>
+        <div style="font-size:11px;color:var(--quinary);margin-top:3px">Analytics Dashboard 1.2.0-rc2</div>
+      </div>
+      <div class="ap-body">
+
+        <div style="padding:10px 12px;background:rgba(196,148,74,0.07);border:1px solid rgba(196,148,74,0.2);border-radius:8px;font-size:12px;color:var(--quinary);line-height:1.6">
+          All technical gates passed. CM board sign-off required from 3 of 3 approvers before production deployment.
+        </div>
+
+        <!-- Approver 1 — signed -->
+        <div class="approver-card" style="border-color:rgba(45,107,71,0.25);">
+          <div class="approver-header">
+            <div class="approver-avatar">AJ</div>
+            <div><div class="approver-name">Alex Jordan</div><div class="approver-role">Factory Admin</div></div>
+            <div class="approver-status"><span class="badge b-green">✓ Signed</span></div>
+          </div>
+          <div style="font-size:11px;color:var(--quinary);margin-top:4px">Signed 2026-03-18 · "All gates met. Evidence reviewed. Approved."</div>
+        </div>
+
+        <!-- Approver 2 — signed -->
+        <div class="approver-card" style="border-color:rgba(45,107,71,0.25);">
+          <div class="approver-header">
+            <div class="approver-avatar" style="background:linear-gradient(135deg,#2943c6,#1c295c)">JO</div>
+            <div><div class="approver-name">Jamie Okafor</div><div class="approver-role">QA / Release Manager</div></div>
+            <div class="approver-status"><span class="badge b-green">✓ Signed</span></div>
+          </div>
+          <div style="font-size:11px;color:var(--quinary);margin-top:4px">Signed 2026-03-19 · "Test evidence and DAST results reviewed."</div>
+        </div>
+
+        <!-- Approver 3 — pending -->
+        <div class="approver-card" style="border-color:rgba(196,148,74,0.3);background:rgba(196,148,74,0.04);">
+          <div class="approver-header">
+            <div class="approver-avatar" style="background:linear-gradient(135deg,var(--quinary),#3d2e1e)">SM</div>
+            <div><div class="approver-name">Sara Mitchell</div><div class="approver-role">Architect / Owner</div></div>
+            <div class="approver-status"><span class="badge b-amber">⏳ Pending</span></div>
+          </div>
+          <div style="font-size:11px;color:var(--quinary);margin-top:4px">Notified 2026-03-19T08:14Z. Action required.</div>
+          <button class="sign-btn">✓ Sign Off — Approve Release</button>
+          <button class="reject-btn">✗ Reject with Comments</button>
+        </div>
+
+        <div style="padding:10px 12px;border:1px solid var(--border);border-radius:8px;">
+          <div style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Evidence Pack</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">Test report — 187 tests passing</span></div>
+            <div style="display:flex;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">SAST report — 0 findings</span></div>
+            <div style="display:flex;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">DAST report — clean</span></div>
+            <div style="display:flex;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">Performance benchmarks met</span></div>
+            <div style="display:flex;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">Container scan — 0 critical</span></div>
+            <div style="display:flex;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">SLSA L2 attestation on record</span></div>
+            <div style="display:flex;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">Changelog complete</span></div>
+            <div style="display:flex;gap:8px;font-size:11.5px"><span style="color:#7fc4a0">✓</span><span style="color:var(--quinary)">Deployment runbook reviewed</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:11px;color:var(--quinary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">Release Train — Q2 2026</div>
+          <div class="train-card">
+            <div class="tc-header">
+              <span class="tc-name">RT-2026-Q2</span>
+              <span class="badge b-blue">Scheduled Jun 1</span>
+            </div>
+            <div class="tc-body">
+              <div class="tc-member"><span style="width:7px;height:7px;border-radius:50%;background:#d4b97a;flex-shrink:0"></span>Analytics Dashboard 1.2.0</div>
+              <div class="tc-member"><span style="width:7px;height:7px;border-radius:50%;background:rgba(205,195,189,0.2);flex-shrink:0"></span>Customer API v3.0</div>
+              <div class="tc-member"><span style="width:7px;height:7px;border-radius:50%;background:rgba(205,195,189,0.2);flex-shrink:0"></span>Auth Platform v1.0</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /body -->
+</main>
