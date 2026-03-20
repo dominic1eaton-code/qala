@@ -1,0 +1,148 @@
+<section class="home-hero">
+  <div class="home-container home-hero-grid">
+    <div>
+      <div class="home-eyebrow">Factory Domain</div>
+      <h1 class="home-title">Factory &amp; SDE</h1>
+      <p class="home-lead">
+        The Solution Development Environment (SDE) is the atomic operational unit. SDEs are solution-agnostic:
+        they define the conditions for creating, maintaining, and operating solutions, not the solutions themselves.
+      </p>
+      <div class="home-cta-row">
+        <a class="home-btn primary" routerLink="/register">Start a Factory</a>
+        <a class="home-btn ghost" routerLink="/home/solution">Back to Solution</a>
+      </div>
+    </div>
+    <div class="home-card">
+      <div class="home-card-title">Factory Hierarchy</div>
+      <div class="home-grid">
+        <div class="home-row"><span class="home-pill">root</span> Solution Factory</div>
+        <div class="home-row"><span class="home-pill">org</span> Enterprise Factory</div>
+        <div class="home-row"><span class="home-pill">team</span> Product Factory</div>
+        <div class="home-row"><span class="home-pill">solo</span> Personal Factory</div>
+        <div class="home-row"><span class="home-pill">SDE</span> Solution Dev Environment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section">
+  <div class="home-container">
+    <div class="home-card-title">The SDE</div>
+    <p class="home-card-body">
+      One SDE can support a collection of Solutions. SDEs are deployable, configurable, distributable,
+      version-controlled, composable, releasable, and scalable.
+    </p>
+    <div class="home-grid cols-4" style="margin-top:16px;">
+      <div class="home-card">
+        <div class="home-card-title">Sandbox</div>
+        <div class="home-card-body">Open exploration and experimentation. No stability guarantees. Ephemeral by default.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Build &amp; Assembly</div>
+        <div class="home-card-body">Hermetic build and assembly. Isolated, reproducible, attested outputs.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Test</div>
+        <div class="home-card-body">Full verification and validation. Auto-provisioned clones of production topology.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Release</div>
+        <div class="home-card-body">Pre-release staging and CM sign-off. Immutable after CM gate.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section alt">
+  <div class="home-container">
+    <div class="home-card-title">CI/CD/CM Pipeline</div>
+    <div class="home-grid cols-4" style="margin-top:16px;">
+      <div class="home-card">
+        <div class="home-card-title">Continuous Integration</div>
+        <div class="home-card-body">Compile, test, and validate every change on commit.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Continuous Delivery</div>
+        <div class="home-card-body">Package, sign, and prepare release artifacts for deployment.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Continuous Deploy</div>
+        <div class="home-card-body">Promote governed releases to approved target environments.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Config Management</div>
+        <div class="home-card-body">Controls CM gate approvals and immutable release history.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section">
+  <div class="home-container home-grid cols-2">
+    <div>
+      <div class="home-card-title">Hermetic Build Environments</div>
+      <p class="home-card-body">
+        Builds are isolated, deterministic, and reproducible. Every artifact is fully traceable to its source,
+        dependency graph, and execution environment.
+      </p>
+      <div class="home-grid" style="margin-top:12px;">
+        <div class="home-row"><span class="home-pill">Isolated</span>Immutable build containers</div>
+        <div class="home-row"><span class="home-pill">Reproducible</span>Deterministic dependency graphs</div>
+        <div class="home-row"><span class="home-pill">Attested</span>Signed provenance records</div>
+      </div>
+    </div>
+    <div class="home-card">
+      <div class="home-card-title">SLSA Provenance</div>
+      <div class="home-card-body">
+        Each build emits signed provenance with source, dependencies, environment, and output hashes. Policy
+        enforcement ensures only verified artifacts progress to Release and CM stages.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section alt">
+  <div class="home-container">
+    <div class="home-card-title">Solution Tooling</div>
+    <p class="home-card-body">
+      Tooling is organized as Tools, Toolsets, Toolkits, Toolchains, and governed Tool Suites. Each layer builds on
+      the previous to standardize solution delivery.
+    </p>
+    <div class="home-grid cols-3" style="margin-top:16px;">
+      <div class="home-card">
+        <div class="home-card-title">Toolset</div>
+        <div class="home-card-body">Curated set of tools for a specific task or workflow.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Toolkit</div>
+        <div class="home-card-body">Collection of toolsets covering a full domain of practice.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Toolchain</div>
+        <div class="home-card-body">Ordered sequence of tools with version-controlled outputs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section">
+  <div class="home-container">
+    <div class="home-card-title">SDE Lifecycle States</div>
+    <p class="home-card-body">
+      An SDE transitions through seven lifecycle states. The state determines allowed operations and resources.
+    </p>
+    <div class="home-grid cols-3" style="margin-top:16px;">
+      <div class="home-card"><div class="home-card-title">Provisioning</div><div class="home-card-body">Environment assembled from template or definition.</div></div>
+      <div class="home-card"><div class="home-card-title">Active</div><div class="home-card-body">Fully operational; all development and build activities occur here.</div></div>
+      <div class="home-card"><div class="home-card-title">Snapshotted</div><div class="home-card-body">State captured while environment continues to run normally.</div></div>
+      <div class="home-card"><div class="home-card-title">Suspended</div><div class="home-card-body">Resources released; state preserved for resumption.</div></div>
+      <div class="home-card"><div class="home-card-title">Rolled Back</div><div class="home-card-body">Restored to a prior snapshot; CI/CD resumes.</div></div>
+      <div class="home-card"><div class="home-card-title">Archived</div><div class="home-card-body">Long-term storage with reactivation on demand.</div></div>
+      <div class="home-card"><div class="home-card-title">Terminated</div><div class="home-card-body">Decommissioned with backups retained per policy.</div></div>
+    </div>
+    <div class="home-cta-row">
+      <a class="home-btn ghost" routerLink="/home/lifecycle">Next: Lifecycle &amp; Governance</a>
+      <a class="home-btn" routerLink="/login">Login</a>
+    </div>
+  </div>
+</section>

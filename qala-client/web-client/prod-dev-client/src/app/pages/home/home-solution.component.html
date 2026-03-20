@@ -1,0 +1,145 @@
+<section class="home-hero">
+  <div class="home-container home-hero-grid">
+    <div>
+      <div class="home-eyebrow">Section 03 - Core Domain</div>
+      <h1 class="home-title">The Solution Model</h1>
+      <p class="home-lead">
+        The Solution is the central root element of qala. Every object managed on the platform either is a Solution,
+        belongs to a Solution, or exists to support a Solution. The platform's information architecture radiates
+        outward from this root.
+      </p>
+      <div class="home-cta-row">
+        <a class="home-btn primary" routerLink="/register">Register a Solution</a>
+        <a class="home-btn ghost" routerLink="/login">Login</a>
+      </div>
+    </div>
+    <div class="home-card">
+      <div class="home-card-title">Solution Structure Hierarchy</div>
+      <div class="home-grid cols-2">
+        <div class="home-row"><span class="home-pill">System</span>Application</div>
+        <div class="home-row"><span class="home-pill">Process</span>Component</div>
+        <div class="home-row"><span class="home-pill">Interface</span>Message</div>
+        <div class="home-row"><span class="home-pill">Data</span>Data Structure</div>
+        <div class="home-row"><span class="home-pill">Event</span>Dynamic message</div>
+        <div class="home-row"><span class="home-pill">State</span>Static message</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section">
+  <div class="home-container">
+    <div class="home-card-title">Solution Data</div>
+    <p class="home-card-body">
+      Every Solution carries a canonical metadata record and a features list. This data persists in the Solution
+      Registry and is versioned alongside the Solution itself.
+    </p>
+    <div class="home-card" style="padding:0;">
+      <table class="home-table">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Unique ID</td><td>UUID v4</td><td>Globally unique identifier assigned at creation</td></tr>
+          <tr><td>Name</td><td>string</td><td>Human-readable Solution name</td></tr>
+          <tr><td>Version</td><td>semver</td><td>MAJOR.MINOR.PATCH semantic version</td></tr>
+          <tr><td>Maturity</td><td>enum</td><td>SANDBOX | DEV | NIGHTLY | TEST | CM</td></tr>
+          <tr><td>Solution Type</td><td>enum</td><td>Application | System | Good | Product | Service | Platform</td></tr>
+          <tr><td>Owner</td><td>ref</td><td>User or organization accountable for the Solution</td></tr>
+          <tr><td>SDE Reference</td><td>ref</td><td>Pointer to the SDE where this Solution was created</td></tr>
+          <tr><td>Factory Reference</td><td>ref</td><td>Pointer to the Solution Factory that produced it</td></tr>
+          <tr><td>Tags</td><td>string[]</td><td>Freeform labels for search and classification</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="home-section alt">
+  <div class="home-container">
+    <div class="home-card-title">Solution Features</div>
+    <p class="home-card-body">Capabilities are described by a structured features list with a name, brief, and spec.</p>
+    <div class="home-grid cols-3" style="margin-top:16px;">
+      <div class="home-card">
+        <div class="home-card-title">Authentication Gateway</div>
+        <div class="home-card-body">
+          Provides JWT-based authentication and role resolution for all API requests. Validates bearer tokens,
+          resolves RBAC, and injects identity into request context.
+        </div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Snapshot &amp; Rollback</div>
+        <div class="home-card-body">
+          Captures point-in-time SDE state and restores any prior snapshot version. CI/CD resumes post-rollback.
+        </div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-title">Maturity Gates</div>
+        <div class="home-card-body">
+          Defines required test, security, and compliance gates for promotion across lifecycle stages.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section">
+  <div class="home-container home-grid cols-2">
+    <div>
+      <div class="home-card-title">Components &amp; Parts</div>
+      <p class="home-card-body">
+        Solutions are built from composable structures. Components, interfaces, and messages form the
+        functional blueprint for implementation and orchestration.
+      </p>
+      <div class="home-grid" style="margin-top:12px;">
+        <div class="home-row"><span class="home-pill">Component</span>Software or hardware unit</div>
+        <div class="home-row"><span class="home-pill">Interface</span>Inbound or outbound contract</div>
+        <div class="home-row"><span class="home-pill">Message</span>Event or state payload</div>
+        <div class="home-row"><span class="home-pill">Data</span>Schema and storage definitions</div>
+      </div>
+    </div>
+    <div>
+      <div class="home-card-title">Data Type System</div>
+      <p class="home-card-body">
+        The solution model uses a typed system that spans configuration, runtime data, events, and state.
+      </p>
+      <div class="home-grid" style="margin-top:12px;">
+        <div class="home-row"><span class="home-pill">Primitive</span>string · int · float · bool</div>
+        <div class="home-row"><span class="home-pill">Composite</span>struct · object · map</div>
+        <div class="home-row"><span class="home-pill">Collection</span>list · set · stream</div>
+        <div class="home-row"><span class="home-pill">Domain</span>custom business types</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section alt">
+  <div class="home-container">
+    <div class="home-card-title">Solution Compositions</div>
+    <p class="home-card-body">Solutions can be composed in multiple ways to match scale and operational need.</p>
+    <div class="home-grid cols-3" style="margin-top:16px;">
+      <div class="home-card"><div class="home-card-title">Single Solution</div><div class="home-card-body">Standalone capability with one model and lifecycle.</div></div>
+      <div class="home-card"><div class="home-card-title">Solution Group</div><div class="home-card-body">Multiple related Solutions governed as a set.</div></div>
+      <div class="home-card"><div class="home-card-title">Solution Network</div><div class="home-card-body">Interconnected Solutions with shared orchestration.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section">
+  <div class="home-container">
+    <div class="home-card-title">The Solution Book</div>
+    <p class="home-card-body">
+      Every Solution has a living book: model definitions, architecture, testbed results, maturity gates,
+      packaging details, and release history. It is the canonical source of truth for the Solution lifecycle.
+    </p>
+    <div class="home-cta-row">
+      <a class="home-btn ghost" routerLink="/home/factory">Next: Factory &amp; SDE</a>
+      <a class="home-btn" routerLink="/login">Login</a>
+      <a class="home-btn" routerLink="/register">Register</a>
+    </div>
+  </div>
+</section>

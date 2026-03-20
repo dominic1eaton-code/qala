@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AppLayoutComponent } from './layouts/app-layout/app-layout.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginComponent } from './pages/auth/login.component';
 import { RegistrationComponent } from './pages/auth/registration.component';
 import { OnboardingComponent } from './pages/auth/onboarding.component';
@@ -52,9 +53,23 @@ import { GovernanceSecurityComponent } from './pages/governance/security.compone
 import { GovernanceOverviewComponent } from './pages/governance/governance.component';
 import { GovernancePlaybookComponent } from './pages/governance/playbook.component';
 import { GovernanceSettingsComponent } from './pages/governance/settings.component';
+import { HomeComponent } from './pages/home/home.component';
+import { HomeFactoryComponent } from './pages/home/home-factory.component';
+import { HomeLifecycleComponent } from './pages/home/home-lifecycle.component';
+import { HomeSolutionComponent } from './pages/home/home-solution.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+    {
+      path: 'home',
+      component: HomeLayoutComponent,
+      children: [
+        { path: '', component: HomeComponent },
+        { path: 'solution', component: HomeSolutionComponent },
+        { path: 'factory', component: HomeFactoryComponent },
+        { path: 'lifecycle', component: HomeLifecycleComponent }
+      ]
+    },
     {
       path: '',
       component: AuthLayoutComponent,
@@ -167,5 +182,5 @@ export const routes: Routes = [
         { path: '', redirectTo: 'overview/dashboard', pathMatch: 'full' }
       ]
     },
-  { path: '**', redirectTo: 'overview/dashboard' }
+  { path: '**', redirectTo: 'home' }
 ];

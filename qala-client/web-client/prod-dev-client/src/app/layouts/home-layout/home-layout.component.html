@@ -1,0 +1,36 @@
+<div class="home-shell">
+  <header class="home-nav">
+    <div class="home-nav-inner">
+      <a class="home-logo" routerLink="/home">q<span>a</span>la</a>
+      <nav class="home-links">
+        <a class="home-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Overview</a>
+        <a class="home-link" routerLink="/home/solution" routerLinkActive="active">Solution</a>
+        <a class="home-link" routerLink="/home/factory" routerLinkActive="active">Factory &amp; SDE</a>
+        <a class="home-link" routerLink="/home/lifecycle" routerLinkActive="active">Lifecycle</a>
+        <span class="home-badge">SFOS v2.0</span>
+      </nav>
+      <div class="home-actions">
+        <a class="home-btn ghost" routerLink="/login">Login</a>
+        <a class="home-btn primary" routerLink="/register">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="home-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="home-footer">
+    <div class="home-footer-inner">
+      <div>SFOS v2.0 · Confidential</div>
+      <div class="home-footer-links">
+        <a routerLink="/home">Overview</a>
+        <a routerLink="/home/solution">Solution</a>
+        <a routerLink="/home/factory">Factory &amp; SDE</a>
+        <a routerLink="/home/lifecycle">Lifecycle</a>
+        <a routerLink="/login">Login</a>
+        <a routerLink="/register">Register</a>
+      </div>
+    </div>
+  </footer>
+</div>
