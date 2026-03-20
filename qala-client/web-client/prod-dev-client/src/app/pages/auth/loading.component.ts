@@ -1,6 +1,6 @@
 ﻿import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgFor, NgClass } from '@angular/common';
+import { NgFor, NgClass, NgIf, DecimalPipe } from '@angular/common';
 
 type StepStatus = 'done' | 'active' | 'pending';
 
@@ -20,7 +20,7 @@ interface AdvanceStep {
 @Component({
   selector: 'app-loading',
   standalone: true,
-  imports: [NgFor, NgClass],
+  imports: [NgFor, NgClass, NgIf, DecimalPipe],
   templateUrl: './loading.component.html',
   styleUrl: './auth.styles.css'
 })

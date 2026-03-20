@@ -4,8 +4,8 @@
     <div class="tb-right">
       <span class="tb-time">Sat 14 Mar 2026 · 09:42 UTC</span>
       <div class="tb-notif"></div>
-      <a class="tb-btn" routerlink="/factory/sdes">+ New SDE</a>
-      <a class="tb-btn primary" routerlink="/solutions/app-solutions">+ New Solution</a>
+      <a class="tb-btn" routerLink="/factory/sdes">+ New SDE</a>
+      <a class="tb-btn primary" routerLink="/solutions/app-solutions">+ New Solution</a>
     </div>
   </header>
 
@@ -54,29 +54,29 @@
           <div class="panel" style="margin-bottom:1.1rem">
             <div class="ph">
               <div class="ph-title">Active SDEs</div>
-              <a class="ph-link" routerlink="/factory/sdes">View all →</a>
+              <a class="ph-link" routerLink="/factory/sdes">View all →</a>
             </div>
-            <a class="sde-row" routerlink="/factory/sdes">
+            <a class="sde-row" routerLink="/factory/sdes">
               <div class="sdot sdot-run"></div>
               <div class="sde-info"><div class="sde-name">payments-factory-sde-01</div><div class="sde-meta">Go · Factory: payments-sf · snap #14</div></div>
               <span class="stag stag-g">Running</span>
             </a>
-            <a class="sde-row" routerlink="/factory/sdes">
+            <a class="sde-row" routerLink="/factory/sdes">
               <div class="sdot sdot-build"></div>
               <div class="sde-info"><div class="sde-name">identity-sde-03</div><div class="sde-meta">Go · Factory: core-sf · snap #6</div></div>
               <span class="stag stag-a">Building</span>
             </a>
-            <a class="sde-row" routerlink="/factory/sdes">
+            <a class="sde-row" routerLink="/factory/sdes">
               <div class="sdot sdot-run"></div>
               <div class="sde-info"><div class="sde-name">analytics-platform-sde</div><div class="sde-meta">Scala · Factory: data-sf · snap #9</div></div>
               <span class="stag stag-g">Running</span>
             </a>
-            <a class="sde-row" routerlink="/factory/sdes">
+            <a class="sde-row" routerLink="/factory/sdes">
               <div class="sdot sdot-err"></div>
               <div class="sde-info"><div class="sde-name">security-sem-sde-02</div><div class="sde-meta">Rust · Factory: sec-sf · snap #3</div></div>
               <span class="stag stag-r">Error</span>
             </a>
-            <a class="sde-row" routerlink="/factory/sdes">
+            <a class="sde-row" routerLink="/factory/sdes">
               <div class="sdot sdot-idle"></div>
               <div class="sde-info"><div class="sde-name">notifications-sde-01</div><div class="sde-meta">Scala · Factory: exec-sf · snap #7</div></div>
               <span class="stag">Idle</span>
@@ -86,21 +86,21 @@
           <div class="panel">
             <div class="ph">
               <div class="ph-title">Recent Pipelines</div>
-              <a class="ph-link" routerlink="/pipelines/app-pipelines">View all →</a>
+              <a class="ph-link" routerLink="/pipelines/app-pipelines">View all →</a>
             </div>
-            <a class="pipe-row" routerlink="/pipelines/app-pipelines">
+            <a class="pipe-row" routerLink="/pipelines/app-pipelines">
               <div class="pipe-info"><div class="pipe-n">payments-ci-main</div><div class="pipe-id">pipe_4f2a1b · push to main</div></div>
               <span class="pstat pstat-pass">● Passed</span>
             </a>
-            <a class="pipe-row" routerlink="/pipelines/app-pipelines">
+            <a class="pipe-row" routerLink="/pipelines/app-pipelines">
               <div class="pipe-info"><div class="pipe-n">identity-deploy-staging</div><div class="pipe-id">pipe_9c3d8e · scheduled</div></div>
               <span class="pstat pstat-run">◌ Running</span>
             </a>
-            <a class="pipe-row" routerlink="/pipelines/app-pipelines">
+            <a class="pipe-row" routerLink="/pipelines/app-pipelines">
               <div class="pipe-info"><div class="pipe-n">security-scan-weekly</div><div class="pipe-id">pipe_7a1c4f · manual</div></div>
               <span class="pstat pstat-fail">✕ Failed</span>
             </a>
-            <a class="pipe-row" routerlink="/pipelines/app-pipelines">
+            <a class="pipe-row" routerLink="/pipelines/app-pipelines">
               <div class="pipe-info"><div class="pipe-n">analytics-data-pipeline</div><div class="pipe-id">pipe_2b8e6c · scheduled</div></div>
               <span class="pstat pstat-q">⏸ Queued</span>
             </a>
@@ -151,7 +151,7 @@
       <div class="grid3">
         <!-- MATURITY -->
         <div class="panel">
-          <div class="ph"><div class="ph-title">Solution Maturity</div><a class="ph-link" routerlink="/solutions/app-solutions">Manage →</a></div>
+          <div class="ph"><div class="ph-title">Solution Maturity</div><a class="ph-link" routerLink="/solutions/app-solutions">Manage →</a></div>
           <div class="mat-list">
             <div class="mat-item">
               <div class="mat-top"><div class="mat-name">payments-platform</div><div class="mat-stage" style="color:var(--accent)">INT</div></div>
@@ -219,3 +219,4 @@
     </div>
   </div>
 </div>
+
