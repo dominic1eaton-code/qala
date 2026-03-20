@@ -27,3 +27,9 @@ communication relay process
 make all of the pages in C:\dev\ws\qala\qala-client\web-client\prod-dev-client scrollable and have the scrollbars match the aesthetics of the rest of the platform. also make the logged in pages have darker background colors and more vibrant accent colors, for sharper color contrasts on the users logged in pages
 
 ---
+
+solution workbench
+benchmarking
+QA, quality management
+
+---
