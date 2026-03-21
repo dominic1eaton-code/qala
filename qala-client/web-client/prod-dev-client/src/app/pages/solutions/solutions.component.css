@@ -94,3 +94,9 @@ html,body{height:100%;background:var(--primary);color:var(--secondary);overflow:
 
 .content-area{display:flex;flex:1;overflow:hidden;}
 .table-area{flex:1;overflow:hidden;display:flex;flex-direction:column;}
+
+/* Workbench drawer summary */
+.wb-list{display:flex;flex-direction:column;gap:6px;}
+.wb-row{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--quinary);}
+.wb-badge{font-size:10px;padding:2px 6px;border-radius:4px;border:1px solid rgba(205,195,189,0.15);background:rgba(229,224,214,0.04);color:var(--tertiary);}
+a.tb-btn{text-decoration:none;display:inline-flex;align-items:center;}

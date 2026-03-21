@@ -29,7 +29,9 @@ make all of the pages in C:\dev\ws\qala\qala-client\web-client\prod-dev-client s
 ---
 
 solution workbench
-benchmarking
-QA, quality management
 
 ---
+
+requirements management system, specifications, frameworks, policies, procedures, use cases, business cases, product line engineering, baselines, base types, baseling staging, solution streams, solution channels, solution baselines, solution batches, solution branches, solution change control management + configuration management, solution clones, solution IP+license+rights+patents+markings management, solution dashboards+books, solution review system, 
+benchmarking,
+QA, quality management, solution analysis, solution lifecycel management, solution baseline comparison

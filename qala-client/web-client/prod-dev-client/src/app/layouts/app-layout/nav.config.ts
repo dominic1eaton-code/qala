@@ -39,6 +39,7 @@ export const NAV_SYSTEMS: NavSystem[] = [
     route: '/solutions',
     children: [
       { label: 'Solutions', route: '/solutions/solutions' },
+      { label: 'Solution Workbench', route: '/solutions/workbench' },
       { label: 'Solution Registry', route: '/solutions/registry' },
       { label: 'Solution Detail', route: '/solutions/detail' },
       { label: 'Solution Book', route: '/solutions/book' },

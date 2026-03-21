@@ -25,6 +25,7 @@ import { SolutionsBoardsComponent } from './pages/solutions/boards.component';
 import { SolutionsChannelsComponent } from './pages/solutions/channels.component';
 import { SolutionsLegacyRegistryComponent } from './pages/solutions/legacy-registry.component';
 import { SolutionsAppComponent } from './pages/solutions/app-solutions.component';
+import { SolutionsWorkbenchComponent } from './pages/solutions/solution-workbench.component';
 import { FactorySolutionFactoryComponent } from './pages/factory/solution-factory.component';
 import { FactoryEnvironmentsComponent } from './pages/factory/environments.component';
 import { FactoryWorkspacesComponent } from './pages/factory/workspaces.component';
@@ -111,6 +112,7 @@ export const routes: Routes = [
       path: 'solutions',
       children: [
       { path: 'solutions', component: SolutionsListComponent },
+      { path: 'workbench', component: SolutionsWorkbenchComponent },
       { path: 'registry', component: SolutionsRegistryComponent },
       { path: 'detail', component: SolutionsDetailComponent },
       { path: 'book', component: SolutionsBookComponent },
